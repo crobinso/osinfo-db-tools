@@ -275,6 +275,7 @@ AC_CONFIG_FILES([
 	data/install-script/debian.org/Makefile
 	data/install-script/fedoraproject.org/Makefile
 	data/install-script/microsoft.com/Makefile
+	data/install-script/opensuse.org/Makefile
 	data/install-script/redhat.com/Makefile
 	data/install-script/ubuntu.com/Makefile
 	data/os/Makefile
