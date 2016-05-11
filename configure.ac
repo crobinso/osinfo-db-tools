@@ -97,6 +97,10 @@ case "$host" in
     NO_UNDEFINED_LDFLAGS="-no-undefined"
     ;;
 
+  darwin*)
+    NO_UNDEFINED_LDFLAGS="-Wl,-undefined,error"
+    ;;
+
   *)
     NO_UNDEFINED_FLAGS="-Wl,--no-undefined"
     VERSION_SCRIPT_FLAGS=-Wl,--version-script=
