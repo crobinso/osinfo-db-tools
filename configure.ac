@@ -101,6 +101,10 @@ case "$host" in
     NO_UNDEFINED_LDFLAGS="-Wl,-undefined,error"
     ;;
 
+  *-*-solaris*)
+    NO_UNDEFINED_LDFLAGS="-zdefs"
+    ;;
+
   *)
     NO_UNDEFINED_FLAGS="-Wl,--no-undefined"
     VERSION_SCRIPT_FLAGS=-Wl,--version-script=
