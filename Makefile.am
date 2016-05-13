@@ -1,5 +1,5 @@
 
-SUBDIRS = osinfo data test tools docs po examples
+SUBDIRS = tools docs po
 
 INTLTOOL_FILES = \
 	intltool-extract.in \
@@ -16,9 +16,9 @@ DISTCLEANFILES =				\
 
 EXTRA_DIST = \
   COPYING.LIB \
-  libosinfo.spec \
-  libosinfo.spec.in \
-  mingw-libosinfo.spec.in \
+  osinfo-db-tools.spec \
+  osinfo-db-tools.spec.in \
+  mingw-osinfo-db-tools.spec.in \
   build-aux/mktempd \
   cfg.mk \
   GNUmakefile \
@@ -39,26 +39,7 @@ MAINTAINERCLEANFILES =				\
 	po/remove-potcdate.sin			\
 	$(NULL)
 
-DISTCHECK_CONFIGURE_FLAGS=--enable-gtk-doc
-
 ACLOCAL_AMFLAGS = -I m4
-
-LCOV = lcov
-GENHTML = genhtml
-
-cov: clean-cov
-	mkdir $(top_builddir)/coverage
-	$(LCOV) -c -o $(top_builddir)/coverage/libosinfo.info.tmp \
-	  -d $(top_builddir)/osinfo
-	$(LCOV) -r $(top_builddir)/coverage/libosinfo.info.tmp \
-	  -o $(top_builddir)/coverage/libosinfo.info
-	rm $(top_builddir)/coverage/libosinfo.info.tmp
-	$(GENHTML) --show-details -t "libosinfo" -o $(top_builddir)/coverage \
-	  --legend $(top_builddir)/coverage/libosinfo.info
-
-
-clean-cov:
-	rm -rf $(top_builddir)/coverage
 
 dist-hook: gen-ChangeLog gen-AUTHORS
 

@@ -4,7 +4,7 @@
 srcdir=`dirname $0`
 test -z "$srcdir" && srcdir=.
 
-(test -f $srcdir/osinfo/osinfo_db.c) || {
+(test -f $srcdir/tools/osinfo-db-validate.c) || {
     echo -n "**Error**: Directory "\`$srcdir\'" does not look like the"
     echo " top-level libosinfo directory"
     exit 1
@@ -20,4 +20,4 @@ which gnome-autogen.sh || {
 # exists at all times :-(
 touch ChangeLog AUTHORS
 
-ACLOCAL_FLAGS="$ACLOCAL_FLAGS" . gnome-autogen.sh --enable-gtk-doc "$@"
+ACLOCAL_FLAGS="$ACLOCAL_FLAGS" . gnome-autogen.sh "$@"

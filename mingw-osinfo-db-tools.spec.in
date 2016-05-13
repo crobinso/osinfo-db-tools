@@ -1,0 +1,85 @@
+%{?mingw_package_header}
+
+Name: mingw-osinfo-db-tools
+Version: @VERSION@
+Release: 1%{?dist}%{?extra_release}
+Summary: MinGW Windows port of a library for managing OS information for virtualization
+License: LGPLv2+
+Group: Development/Libraries
+Source: https://fedorahosted.org/releases/l/i/libosinfo/osinfo-db-tools-%{version}.tar.gz
+URL: https://fedorahosted.org/libosinfo/
+
+BuildArch: noarch
+
+BuildRequires: intltool
+
+BuildRequires: mingw32-filesystem >= 95
+BuildRequires: mingw64-filesystem >= 95
+BuildRequires: mingw32-gcc
+BuildRequires: mingw64-gcc
+BuildRequires: mingw32-binutils
+BuildRequires: mingw64-binutils
+
+BuildRequires: mingw32-glib2
+BuildRequires: mingw64-glib2
+BuildRequires: mingw32-libxml2
+BuildRequires: mingw64-libxml2
+BuildRequires: mingw32-libxslt
+BuildRequires: mingw64-libxslt
+BuildRequires: mingw32-libsoup
+BuildRequires: mingw64-libsoup
+
+BuildRequires: pkgconfig
+
+BuildRequires: /usr/bin/pod2man
+
+%description
+This package provides tools for managing the osinfo database of
+information about operating systems for use with virtualization
+
+%package -n mingw32-osinfo-db-tools
+Summary: %{summary}
+
+Requires: pkgconfig
+
+%description -n mingw32-osinfo-db-tools
+This package provides tools for managing the osinfo database of
+information about operating systems for use with virtualization
+
+%package -n mingw64-osinfo-db-tools
+Summary: %{summary}
+
+Requires: pkgconfig
+
+%description -n mingw64-osinfo-db-tools
+This package provides tools for managing the osinfo database of
+information about operating systems for use with virtualization
+
+%{?mingw_debug_package}
+
+%prep
+%setup -q -n osinfo-db-tools-%{version}
+
+%build
+%mingw_configure
+%mingw_make %{?_smp_mflags}
+
+
+%install
+%mingw_make_install DESTDIR=$RPM_BUILD_ROOT
+
+# Manpages don't need to be bundled
+rm -rf $RPM_BUILD_ROOT%{mingw32_datadir}/man
+rm -rf $RPM_BUILD_ROOT%{mingw64_datadir}/man
+
+%files -n mingw32-osinfo-db-tools
+%doc AUTHORS ChangeLog COPYING.LIB NEWS README
+%{mingw32_bindir}/osinfo-db-validate.exe
+%{mingw32_datadir}/locale/*/LC_MESSAGES/osinfo-db-tools.mo
+
+%files -n mingw64-osinfo-db-tools
+%doc AUTHORS ChangeLog COPYING.LIB NEWS README
+%{mingw64_bindir}/osinfo-db-validate.exe
+%{mingw64_datadir}/locale/*/LC_MESSAGES/osinfo-db-tools.mo
+
+%changelog

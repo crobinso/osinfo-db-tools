@@ -1,0 +1,39 @@
+# -*- rpm-spec -*-
+
+Summary: Tools for managing the osinfo database
+Name: osinfo-db-tools
+Version: @VERSION@
+Release: 1%{?dist}%{?extra_release}
+License: LGPLv2+
+Group: Development/Libraries
+Source: https://fedorahosted.org/releases/l/i/%{name}/%{name}-%{version}.tar.gz
+URL: http://libosinfo.org/
+BuildRequires: intltool
+BuildRequires: glib2-devel
+BuildRequires: libxml2-devel >= 2.6.0
+BuildRequires: libxslt-devel >= 1.0.0
+BuildRequires: /usr/bin/pod2man
+
+%description
+This package provides tools for managing the osinfo database of
+information about operating systems for use with virtualization
+
+%prep
+%setup -q
+
+%build
+%configure
+%__make %{?_smp_mflags} V=1
+
+%install
+%__make install DESTDIR=%{buildroot}
+
+%find_lang %{name}
+
+%files -f %{name}.lang
+%defattr(-, root, root)
+%doc AUTHORS ChangeLog COPYING.LIB NEWS README
+%{_bindir}/osinfo-db-validate
+%{_mandir}/man1/osinfo-db-validate.1*
+
+%changelog

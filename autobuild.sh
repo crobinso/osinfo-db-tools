@@ -54,7 +54,7 @@ if [ -f /usr/bin/rpmbuild ]; then
   rpmbuild --nodeps \
      --define "extra_release $EXTRA_RELEASE" \
      --define "_sourcedir `pwd`" \
-     -ba --clean libosinfo.spec
+     -ba --clean osinfo-db-tools.spec
 fi
 
 # Test mingw32 cross-compile
@@ -100,6 +100,6 @@ if test -x /usr/bin/i686-w64-mingw32-gcc && test -x /usr/bin/x86_64-w64-mingw32-
     rpmbuild --nodeps \
        --define "extra_release $EXTRA_RELEASE" \
        --define "_sourcedir `pwd`" \
-       -ba --clean mingw-libosinfo.spec
+       -ba --clean mingw-osinfo-db-tools.spec
   fi
 fi
