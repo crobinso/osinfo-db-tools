@@ -1,0 +1,1866 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Translators:
+# Jérôme Fenal <jfenal@gmail.com>, 2013
+# Christophe Fergeau <cfergeau@redhat.com>, 2015. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-13 12:21+0100\n"
+"PO-Revision-Date: 2015-11-05 05:48-0500\n"
+"Last-Translator: Christophe Fergeau <cfergeau@redhat.com>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/libosinfo/"
+"language/fr/)\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Zanata 3.7.3\n"
+
+#: ../tools/osinfo-db-validate.c:38
+msgid "Verbose progress information"
+msgstr "Informations étendues de progression"
+
+#: ../tools/osinfo-db-validate.c:55
+#, c-format
+msgid "Schema validity error %s"
+msgstr "Erreur de validation du schéma %s"
+
+#: ../tools/osinfo-db-validate.c:71
+msgid "Unable to create libxml parser"
+msgstr "Impossible de créer l'analyseur libxml"
+
+#: ../tools/osinfo-db-validate.c:79
+#, c-format
+msgid "Unable to parse XML document '%s'"
+msgstr "Impossible d'analyser le document XML « %s »"
+
+#: ../tools/osinfo-db-validate.c:111
+#, c-format
+msgid "Unable to validate XML document '%s'"
+msgstr "Impossible de valider le document XML « %s »"
+
+#: ../tools/osinfo-db-validate.c:161
+#, c-format
+msgid "Processing '%s'...\n"
+msgstr "Traitement de « %s »...\n"
+
+#: ../tools/osinfo-db-validate.c:184
+#, c-format
+msgid "Processed '%s'.\n"
+msgstr "Traitement de « %s » terminé.\n"
+
+#: ../tools/osinfo-db-validate.c:209
+#, c-format
+msgid "Unable to create RNG parser for %s"
+msgstr "Impossible de créer l'analyseur Relax NG pour %s"
+
+#: ../tools/osinfo-db-validate.c:217
+#, c-format
+msgid "Unable to parse RNG %s"
+msgstr "Impossible d'analyser « %s » avec Relax NG"
+
+#: ../tools/osinfo-db-validate.c:225
+#, c-format
+msgid "Unable to create RNG validation context %s"
+msgstr "Impossible de créer le contexte de validation pour Relax NG %s"
+
+#: ../tools/osinfo-db-validate.c:259
+msgid "- Validate XML documents "
+msgstr "- Valider les documents XML "
+
+#: ../tools/osinfo-db-validate.c:264
+#, c-format
+msgid "Error while parsing commandline options: %s\n"
+msgstr "Erreur lors de l'analyse des options de ligne de commande : %s\n"
+
+#~ msgid "Mandrake RE Spring 2001"
+#~ msgstr "Mandrake RE Spring 2001"
+
+#~ msgid "ALTLinux"
+#~ msgstr "ALTLinux"
+
+#~ msgid "ALT Linux 2.0"
+#~ msgstr "ALT Linux 2.0"
+
+#~ msgid "ALT Linux 2.2"
+#~ msgstr "ALT Linux 2.2"
+
+#~ msgid "ALT Linux 2.4"
+#~ msgstr "ALT Linux 2.4"
+
+#~ msgid "ALT Linux 3.0"
+#~ msgstr "ALT Linux 3.0"
+
+#~ msgid "ALT Linux 4.0"
+#~ msgstr "ALT Linux 4.0"
+
+#~ msgid "ALT Linux 4.1"
+#~ msgstr "ALT Linux 4.1"
+
+#~ msgid "ALT Linux 5.0"
+#~ msgstr "ALT Linux 5.0"
+
+#~ msgid "ALT Linux 6.0"
+#~ msgstr "ALT Linux 6.0"
+
+#~ msgid "ALT Linux 7.0"
+#~ msgstr "ALT Linux 7.0"
+
+#~ msgid "MacOS X Cheetah"
+#~ msgstr "MacOS X Cheetah"
+
+#~ msgid "Apple Inc."
+#~ msgstr "Apple Inc."
+
+#~ msgid "MacOS X Puma"
+#~ msgstr "MacOS X Puma"
+
+#~ msgid "MacOS X Jaguar"
+#~ msgstr "MacOS X Jaguar"
+
+#~ msgid "MacOS X Panther"
+#~ msgstr "MacOS X Panther"
+
+#~ msgid "MacOS X Tiger"
+#~ msgstr "MacOS X Tiger"
+
+#~ msgid "MacOS X Leopard"
+#~ msgstr "MacOS X Leopard"
+
+#~ msgid "MacOS X Snow Leopard"
+#~ msgstr "MacOS X Snow Leopard"
+
+#~ msgid "MacOS X Lion"
+#~ msgstr "MacOS X Lion"
+
+#~ msgid "CentOS 6.0"
+#~ msgstr "CentOS 6.0"
+
+#~ msgid "CentOS"
+#~ msgstr "CentOS"
+
+#~ msgid "CentOS 6.1"
+#~ msgstr "CentOS 6.1"
+
+#~ msgid "CentOS 6.2"
+#~ msgstr "CentOS 6.2"
+
+#~ msgid "CentOS 6.3"
+#~ msgstr "CentOS 6.3"
+
+#~ msgid "CentOS 6.4"
+#~ msgstr "CentOS 6.4"
+
+#~ msgid "CentOS 6.5"
+#~ msgstr "CentOS 6.5"
+
+#~ msgid "CentOS 7.0"
+#~ msgstr "CentOS 7.0"
+
+#~ msgid "Debian Buzz"
+#~ msgstr "Debian Buzz"
+
+#~ msgid "Debian Project"
+#~ msgstr "Debian Project"
+
+#~ msgid "Debian Rex"
+#~ msgstr "Debian Rex"
+
+#~ msgid "Debian Bo"
+#~ msgstr "Debian Bo"
+
+#~ msgid "Debian Hamm"
+#~ msgstr "Debian Hamm"
+
+#~ msgid "Debian Slink"
+#~ msgstr "Debian Slink"
+
+#~ msgid "Debian Potato"
+#~ msgstr "Debian Potato"
+
+#~ msgid "Debian Sarge"
+#~ msgstr "Debian Sarge"
+
+#~ msgid "Debian Woody"
+#~ msgstr "Debian Woody"
+
+#~ msgid "Debian Etch"
+#~ msgstr "Debian Etch"
+
+#~ msgid "Debian Lenny"
+#~ msgstr "Debian Lenny"
+
+#~ msgid "Debian Squeeze"
+#~ msgstr "Debian Squeeze"
+
+#~ msgid "Debian Wheezy"
+#~ msgstr "Debian Wheezy"
+
+#~ msgid "Debian Jessie"
+#~ msgstr "Debian Jessie"
+
+#~ msgid "Fedora Core 1"
+#~ msgstr "Fedora Core 1"
+
+#~ msgid "Fedora Project"
+#~ msgstr "Fedora Project"
+
+#~ msgid "Fedora Core 2"
+#~ msgstr "Fedora Core 2"
+
+#~ msgid "Fedora Core 3"
+#~ msgstr "Fedora Core 3"
+
+#~ msgid "Fedora Core 4"
+#~ msgstr "Fedora Core 4"
+
+#~ msgid "Fedora Core 5"
+#~ msgstr "Fedora Core 5"
+
+#~ msgid "Fedora Core 6"
+#~ msgstr "Fedora Core 6"
+
+#~ msgid "Fedora 7"
+#~ msgstr "Fedora 7"
+
+#~ msgid "Fedora 8"
+#~ msgstr "Fedora 8"
+
+#~ msgid "Fedora 9"
+#~ msgstr "Fedora 9"
+
+#~ msgid "Fedora 10"
+#~ msgstr "Fedora 10"
+
+#~ msgid "Fedora 11"
+#~ msgstr "Fedora 11"
+
+#~ msgid "Fedora 12"
+#~ msgstr "Fedora 12"
+
+#~ msgid "Fedora 13"
+#~ msgstr "Fedora 13"
+
+#~ msgid "Fedora 14"
+#~ msgstr "Fedora 14"
+
+#~ msgid "Fedora 15"
+#~ msgstr "Fedora 15"
+
+#~ msgid "Fedora 16"
+#~ msgstr "Fedora 16"
+
+#~ msgid "Fedora 17"
+#~ msgstr "Fedora 17"
+
+#~ msgid "Fedora 18"
+#~ msgstr "Fedora 18"
+
+#~ msgid "Fedora 19"
+#~ msgstr "Fedora 19"
+
+#~ msgid "Fedora 20"
+#~ msgstr "Fedora 20"
+
+#~ msgid "Fedora 21"
+#~ msgstr "Fedora 21"
+
+#~ msgid "Fedora 21 Workstation"
+#~ msgstr "Fedora 21 Workstation"
+
+#~ msgid "Fedora 21 Server"
+#~ msgstr "Fedora 21 Server"
+
+#~ msgid "Fedora 21 Cloud"
+#~ msgstr "Fedora 21 Cloud"
+
+#~ msgid "Fedora 22"
+#~ msgstr "Fedora 22"
+
+#~ msgid "Fedora 22 Workstation"
+#~ msgstr "Fedora 22 Workstation"
+
+#~ msgid "Fedora 22 Server"
+#~ msgstr "Fedora 22 Server"
+
+#~ msgid "Fedora"
+#~ msgstr "Fedora"
+
+#~ msgid "FreeBSD 1.0"
+#~ msgstr "FreeBSD 1.0"
+
+#~ msgid "FreeBSD Project"
+#~ msgstr "FreeBSD Project"
+
+#~ msgid "FreeBSD 2.0.5"
+#~ msgstr "FreeBSD 2.0.5"
+
+#~ msgid "FreeBSD 2.0"
+#~ msgstr "FreeBSD 2.0"
+
+#~ msgid "FreeBSD 2.2.8"
+#~ msgstr "FreeBSD 2.2.8"
+
+#~ msgid "FreeBSD 2.2.9"
+#~ msgstr "FreeBSD 2.2.9"
+
+#~ msgid "FreeBSD 3.0"
+#~ msgstr "FreeBSD 3.0"
+
+#~ msgid "FreeBSD 3.2"
+#~ msgstr "FreeBSD 3.2"
+
+#~ msgid "FreeBSD 4.0"
+#~ msgstr "FreeBSD 4.0"
+
+#~ msgid "FreeBSD 4.10"
+#~ msgstr "FreeBSD 4.10"
+
+#~ msgid "FreeBSD 4.11"
+#~ msgstr "FreeBSD 4.11"
+
+#~ msgid "FreeBSD 4.1"
+#~ msgstr "FreeBSD 4.1"
+
+#~ msgid "FreeBSD 4.2"
+#~ msgstr "FreeBSD 4.2"
+
+#~ msgid "FreeBSD 4.3"
+#~ msgstr "FreeBSD 4.3"
+
+#~ msgid "FreeBSD 4.4"
+#~ msgstr "FreeBSD 4.4"
+
+#~ msgid "FreeBSD 4.5"
+#~ msgstr "FreeBSD 4.5"
+
+#~ msgid "FreeBSD 4.6"
+#~ msgstr "FreeBSD 4.6"
+
+#~ msgid "FreeBSD 4.7"
+#~ msgstr "FreeBSD 4.7"
+
+#~ msgid "FreeBSD 4.8"
+#~ msgstr "FreeBSD 4.8"
+
+#~ msgid "FreeBSD 4.9"
+#~ msgstr "FreeBSD 4.9"
+
+#~ msgid "FreeBSD 5.0"
+#~ msgstr "FreeBSD 5.0"
+
+#~ msgid "FreeBSD 5.1"
+#~ msgstr "FreeBSD 5.1"
+
+#~ msgid "FreeBSD 5.2.1"
+#~ msgstr "FreeBSD 5.2.1"
+
+#~ msgid "FreeBSD 5.2"
+#~ msgstr "FreeBSD 5.2"
+
+#~ msgid "FreeBSD 5.3"
+#~ msgstr "FreeBSD 5.3"
+
+#~ msgid "FreeBSD 5.4"
+#~ msgstr "FreeBSD 5.4"
+
+#~ msgid "FreeBSD 5.5"
+#~ msgstr "FreeBSD 5.5"
+
+#~ msgid "FreeBSD 6.0"
+#~ msgstr "FreeBSD 6.0"
+
+#~ msgid "FreeBSD 6.1"
+#~ msgstr "FreeBSD 6.1"
+
+#~ msgid "FreeBSD 6.2"
+#~ msgstr "FreeBSD 6.2"
+
+#~ msgid "FreeBSD 6.3"
+#~ msgstr "FreeBSD 6.3"
+
+#~ msgid "FreeBSD 6.4"
+#~ msgstr "FreeBSD 6.4"
+
+#~ msgid "FreeBSD 7.0"
+#~ msgstr "FreeBSD 7.0"
+
+#~ msgid "FreeBSD 7.1"
+#~ msgstr "FreeBSD 7.1"
+
+#~ msgid "FreeBSD 7.2"
+#~ msgstr "FreeBSD 7.2"
+
+#~ msgid "FreeBSD 7.3"
+#~ msgstr "FreeBSD 7.3"
+
+#~ msgid "FreeBSD 7.4"
+#~ msgstr "FreeBSD 7.4"
+
+#~ msgid "FreeBSD 8.0"
+#~ msgstr "FreeBSD 8.0"
+
+#~ msgid "FreeBSD 8.1"
+#~ msgstr "FreeBSD 8.1"
+
+#~ msgid "FreeBSD 8.2"
+#~ msgstr "FreeBSD 8.2"
+
+#~ msgid "FreeBSD 8.3"
+#~ msgstr "FreeBSD 8.3"
+
+#~ msgid "FreeBSD 8.4"
+#~ msgstr "FreeBSD 8.4"
+
+#~ msgid "FreeBSD 9.0"
+#~ msgstr "FreeBSD 9.0"
+
+#~ msgid "FreeBSD 9.1"
+#~ msgstr "FreeBSD 9.1"
+
+#~ msgid "FreeBSD 9.2"
+#~ msgstr "FreeBSD 9.2"
+
+#~ msgid "FreeBSD 9.3"
+#~ msgstr "FreeBSD 9.3"
+
+#~ msgid "FreeBSD 10.0"
+#~ msgstr "FreeBSD 10.0"
+
+#~ msgid "FreeBSD 10.1"
+#~ msgstr "FreeBSD 10.1"
+
+#~ msgid "GNOME 3.6"
+#~ msgstr "GNOME 3.6"
+
+#~ msgid "GNOME Project"
+#~ msgstr "GNOME Project"
+
+#~ msgid "GNOME 3.8"
+#~ msgstr "GNOME 3.8"
+
+#~ msgid "GNOME 3.10"
+#~ msgstr "GNOME 3.10"
+
+#~ msgid "GNOME 3.12"
+#~ msgstr "GNOME 3.12"
+
+#~ msgid "GNOME 3.14"
+#~ msgstr "GNOME 3.14"
+
+#~ msgid "Mageia 1"
+#~ msgstr "Mageia 1"
+
+#~ msgid "Mageia"
+#~ msgstr "Mageia"
+
+#~ msgid "Mageia 2"
+#~ msgstr "Mageia 2"
+
+#~ msgid "Mageia 3"
+#~ msgstr "Mageia 3"
+
+#~ msgid "Mandrake Linux 5.1"
+#~ msgstr "Mandrake Linux 5.1"
+
+#~ msgid "Mandriva"
+#~ msgstr "Mandriva"
+
+#~ msgid "Mandrake Linux 5.2"
+#~ msgstr "Mandrake Linux 5.2"
+
+#~ msgid "Mandrake Linux 5.3"
+#~ msgstr "Mandrake Linux 5.3"
+
+#~ msgid "Mandrake Linux 6.0"
+#~ msgstr "Mandrake Linux 6.0"
+
+#~ msgid "Mandrake Linux 6.1"
+#~ msgstr "Mandrake Linux 6.1"
+
+#~ msgid "Mandrake Linux 7.0"
+#~ msgstr "Mandrake Linux 7.0"
+
+#~ msgid "Mandrake Linux 7.1"
+#~ msgstr "Mandrake Linux 7.1"
+
+#~ msgid "Mandrake Linux 7.2"
+#~ msgstr "Mandrake Linux 7.2"
+
+#~ msgid "Mandrake Linux 8.0"
+#~ msgstr "Mandrake Linux 8.0"
+
+#~ msgid "Mandrake Linux 8.1"
+#~ msgstr "Mandrake Linux 8.1"
+
+#~ msgid "Mandrake Linux 8.2"
+#~ msgstr "Mandrake Linux 8.2"
+
+#~ msgid "Mandrake Linux 9.0"
+#~ msgstr "Mandrake Linux 9.0"
+
+#~ msgid "Mandrake Linux 9.1"
+#~ msgstr "Mandrake Linux 9.1"
+
+#~ msgid "Mandrake Linux 9.2"
+#~ msgstr "Mandrake Linux 9.2"
+
+#~ msgid "Mandrake Linux 10.0"
+#~ msgstr "Mandrake Linux 10.0"
+
+#~ msgid "Mandrake Linux 10.1"
+#~ msgstr "Mandrake Linux 10.1"
+
+#~ msgid "Mandrake Linux 10.2"
+#~ msgstr "Mandrake Linux 10.2"
+
+#~ msgid "Mandriva Linux 2006.0"
+#~ msgstr "Mandriva Linux 2006.0"
+
+#~ msgid "Mandriva Linux 2007 Spring"
+#~ msgstr "Mandriva Linux 2007 Spring"
+
+#~ msgid "Mandriva Linux 2007"
+#~ msgstr "Mandriva Linux 2007"
+
+#~ msgid "Mandriva Linux 2008"
+#~ msgstr "Mandriva Linux 2008"
+
+#~ msgid "Mandriva Linux 2008 Spring"
+#~ msgstr "Mandriva Linux 2008 Spring"
+
+#~ msgid "Mandriva Linux 2009"
+#~ msgstr "Mandriva Linux 2009"
+
+#~ msgid "Mandriva Linux 2009 Spring"
+#~ msgstr "Mandriva Linux 2009 Spring"
+
+#~ msgid "Mandriva Linux 2010"
+#~ msgstr "Mandriva Linux 2010"
+
+#~ msgid "Mandriva Linux 2010 Spring"
+#~ msgstr "Mandriva Linux 2010 Spring"
+
+#~ msgid "Mandriva Linux 2010.2"
+#~ msgstr "Mandriva Linux 2010.2"
+
+#~ msgid "Mandriva Linux 2011"
+#~ msgstr "Mandriva Linux 2011"
+
+#~ msgid "Mandriva Business Server 1.0"
+#~ msgstr "Mandriva Business Server 1.0"
+
+#~ msgid "Mandriva Enterprise Server 5.0"
+#~ msgstr "Mandriva Enterprise Server 5.0"
+
+#~ msgid "Mandriva Enterprise Server 5.1"
+#~ msgstr "Mandriva Enterprise Server 5.1"
+
+#~ msgid "Microsoft MS-DOS 6.22"
+#~ msgstr "Microsoft MS-DOS 6.22"
+
+#~ msgid "Microsoft"
+#~ msgstr "Microsoft"
+
+#~ msgid "Microsoft Windows 1.0"
+#~ msgstr "Microsoft Windows 1.0"
+
+#~ msgid "Microsoft Corporation"
+#~ msgstr "Microsoft Corporation"
+
+#~ msgid "Microsoft Windows 10"
+#~ msgstr "Microsoft Windows 10"
+
+#~ msgid "Microsoft Windows 10 Education"
+#~ msgstr "Microsoft Windows 10 Éducation"
+
+#~ msgid "Microsoft Windows 10 Enterprise"
+#~ msgstr "Microsoft Windows 10 Entreprise"
+
+#~ msgid "Microsoft Windows 2.0"
+#~ msgstr "Microsoft Windows 2.0"
+
+#~ msgid "Microsoft Windows 2.1"
+#~ msgstr "Microsoft Windows 2.1"
+
+#~ msgid "Microsoft Windows Server 2012 R2"
+#~ msgstr "Microsoft Windows Server 2012 R2"
+
+#~ msgid "Windows Server 2012 R2 Storage"
+#~ msgstr "Windows Server 2012 R2 Storage"
+
+#~ msgid "Windows Server 2012 R2 for HyperV"
+#~ msgstr "Windows Server 2012 R2 pour HyperV"
+
+#~ msgid "Windows Server 2012 R2 Essentials"
+#~ msgstr "Windows Server 2012 R2 Essentials"
+
+#~ msgid "Windows Server 2012 R2 Volume License"
+#~ msgstr "Windows Server 2012 R2 Volume License"
+
+#~ msgid "Microsoft Windows Server 2012"
+#~ msgstr "Microsoft Windows Server 2012"
+
+#~ msgid "Windows Server 2012 Storage"
+#~ msgstr "Windows Server 2012 Storage"
+
+#~ msgid "Windows Server 2012 for HyperV"
+#~ msgstr "Windows Server 2012 pour HyperV"
+
+#~ msgid "Windows Server 2012 Essentials"
+#~ msgstr "Windows Server 2012 Essentials"
+
+#~ msgid "Windows Server 2012 Volume License"
+#~ msgstr "Windows Server 2012 Volume License"
+
+#~ msgid "Microsoft Windows Server 2003 R2"
+#~ msgstr "Microsoft Windows Server 2003 R2"
+
+#~ msgid "Microsoft Windows Server 2003"
+#~ msgstr "Microsoft Windows Server 2003"
+
+#~ msgid "Microsoft Windows Server 2008 R2"
+#~ msgstr "Microsoft Windows Server 2008 R2"
+
+#~ msgid "Microsoft Windows Server 2008"
+#~ msgstr "Microsoft Windows Server 2008"
+
+#~ msgid "Microsoft Windows 2000"
+#~ msgstr "Microsoft Windows 2000"
+
+#~ msgid "Microsoft Windows 3.1"
+#~ msgstr "Microsoft Windows 3.1"
+
+#~ msgid "Microsoft Windows 7"
+#~ msgstr "Microsoft Windows 7"
+
+#~ msgid "Microsoft Windows 7 Debug Checked Build"
+#~ msgstr "Microsoft Windows 7 Debug Checked Build"
+
+#~ msgid "Microsoft Windows 7 Starter"
+#~ msgstr "Microsoft Windows 7 Starter"
+
+#~ msgid "Microsoft Windows 7 Home Basic"
+#~ msgstr "Microsoft Windows 7 Édition Familiale Basique"
+
+#~ msgid "Microsoft Windows 7 Home Premium"
+#~ msgstr "Microsoft Windows 7 Édition Familiale Premium"
+
+#~ msgid "Microsoft Windows 7 Professional"
+#~ msgstr "Microsoft Windows 7 Professionnel"
+
+#~ msgid "Microsoft Windows 7 Enterprise"
+#~ msgstr "Microsoft Windows 7 Entreprise"
+
+#~ msgid "Microsoft Windows 7 Ultimate"
+#~ msgstr "Microsoft Windows 7 Édition Intégrale"
+
+#~ msgid "Microsoft Windows 8.1"
+#~ msgstr "Microsoft Windows 8.1"
+
+#~ msgid "Microsoft Windows 8.1 Debug Checked Build"
+#~ msgstr "Microsoft Windows 8.1 Debug Checked Build"
+
+#~ msgid "Microsoft Windows 8.1 Enterprise Debug Checked Build"
+#~ msgstr "Microsoft Windows 8.1 Enterprise Debug Checked Build"
+
+#~ msgid "Microsoft Windows 8.1 Professional"
+#~ msgstr "Microsoft Windows 8.1 Professionnel"
+
+#~ msgid "Microsoft Windows 8.1 Enterprise"
+#~ msgstr "Microsoft Windows 8.1 Entreprise"
+
+#~ msgid "Microsoft Windows 8"
+#~ msgstr "Microsoft Windows 8"
+
+#~ msgid "Microsoft Windows 95"
+#~ msgstr "Microsoft Windows 95"
+
+#~ msgid "Microsoft Windows 98"
+#~ msgstr "Microsoft Windows 98"
+
+#~ msgid "Microsoft Windows Millennium Edition"
+#~ msgstr "Microsoft Windows Millennium Edition"
+
+#~ msgid "Microsoft Windows NT Server 3.1"
+#~ msgstr "Microsoft Windows NT Server 3.1"
+
+#~ msgid "Microsoft Windows NT Server 3.51"
+#~ msgstr "Microsoft Windows NT Server 3.51"
+
+#~ msgid "Microsoft Windows NT Server 3.5"
+#~ msgstr "Microsoft Windows NT Server 3.5"
+
+#~ msgid "Microsoft Windows NT Server 4.0"
+#~ msgstr "Microsoft Windows NT Server 4.0"
+
+#~ msgid "Microsoft Windows Vista"
+#~ msgstr "Microsoft Windows Vista"
+
+#~ msgid "Microsoft Windows XP"
+#~ msgstr "Microsoft Windows XP"
+
+#~ msgid "NetBSD 0.8"
+#~ msgstr "NetBSD 0.8"
+
+#~ msgid "NetBSD Project"
+#~ msgstr "NetBSD Project"
+
+#~ msgid "NetBSD 0.9"
+#~ msgstr "NetBSD 0.9"
+
+#~ msgid "NetBSD 1.0"
+#~ msgstr "NetBSD 1.0"
+
+#~ msgid "NetBSD 1.1"
+#~ msgstr "NetBSD 1.1"
+
+#~ msgid "NetBSD 1.2"
+#~ msgstr "NetBSD 1.2"
+
+#~ msgid "NetBSD 1.3"
+#~ msgstr "NetBSD 1.3"
+
+#~ msgid "NetBSD 1.4"
+#~ msgstr "NetBSD 1.4"
+
+#~ msgid "NetBSD 1.5"
+#~ msgstr "NetBSD 1.5"
+
+#~ msgid "NetBSD 1.6"
+#~ msgstr "NetBSD 1.6"
+
+#~ msgid "NetBSD 2.0"
+#~ msgstr "NetBSD 2.0"
+
+#~ msgid "NetBSD 3.0"
+#~ msgstr "NetBSD 3.0"
+
+#~ msgid "NetBSD 4.0"
+#~ msgstr "NetBSD 4.0"
+
+#~ msgid "NetBSD 5.0"
+#~ msgstr "NetBSD 5.0"
+
+#~ msgid "NetBSD 5.1"
+#~ msgstr "NetBSD 5.1"
+
+#~ msgid "Novell Netware 4"
+#~ msgstr "Novell Netware 4"
+
+#~ msgid "Novell"
+#~ msgstr "Novell"
+
+#~ msgid "Novell Netware 5"
+#~ msgstr "Novell Netware 5"
+
+#~ msgid "Novell Netware 6"
+#~ msgstr "Novell Netware 6"
+
+#~ msgid "OpenBSD 4.2"
+#~ msgstr "OpenBSD 4.2"
+
+#~ msgid "OpenBSD Project"
+#~ msgstr "OpenBSD Project"
+
+#~ msgid "OpenBSD 4.3"
+#~ msgstr "OpenBSD 4.3"
+
+#~ msgid "OpenBSD 4.4"
+#~ msgstr "OpenBSD 4.4"
+
+#~ msgid "OpenBSD 4.5"
+#~ msgstr "OpenBSD 4.5"
+
+#~ msgid "OpenBSD 4.8"
+#~ msgstr "OpenBSD 4.8"
+
+#~ msgid "OpenBSD 4.9"
+#~ msgstr "OpenBSD 4.9"
+
+#~ msgid "OpenBSD 5.0"
+#~ msgstr "OpenBSD 5.0"
+
+#~ msgid "OpenBSD 5.1"
+#~ msgstr "OpenBSD 5.1"
+
+#~ msgid "OpenBSD 5.2"
+#~ msgstr "OpenBSD 5.2"
+
+#~ msgid "OpenBSD 5.3"
+#~ msgstr "OpenBSD 5.3"
+
+#~ msgid "OpenBSD 5.4"
+#~ msgstr "OpenBSD 5.4"
+
+#~ msgid "OpenBSD 5.5"
+#~ msgstr "OpenBSD 5.5"
+
+#~ msgid "OpenBSD 5.6"
+#~ msgstr "OpenBSD 5.6"
+
+#~ msgid "OpenBSD 5.7"
+#~ msgstr "OpenBSD 5.7"
+
+#~ msgid "OpenBSD 5.8"
+#~ msgstr "OpenBSD 5.8"
+
+#~ msgid "openSUSE 10.2"
+#~ msgstr "openSUSE 10.2"
+
+#~ msgid "openSUSE"
+#~ msgstr "openSUSE"
+
+#~ msgid "openSUSE 10.3"
+#~ msgstr "openSUSE 10.3"
+
+#~ msgid "openSUSE 11.0"
+#~ msgstr "openSUSE 11.0"
+
+#~ msgid "openSUSE 11.1"
+#~ msgstr "openSUSE 11.1"
+
+#~ msgid "openSUSE 11.2"
+#~ msgstr "openSUSE 11.2"
+
+#~ msgid "openSUSE 11.3"
+#~ msgstr "openSUSE 11.3"
+
+#~ msgid "openSUSE 11.4"
+#~ msgstr "openSUSE 11.4"
+
+#~ msgid "openSUSE 12.1"
+#~ msgstr "openSUSE 12.1"
+
+#~ msgid "openSUSE 12.2"
+#~ msgstr "openSUSE 12.2"
+
+#~ msgid "openSUSE 12.3"
+#~ msgstr "openSUSE 12.3"
+
+#~ msgid "openSUSE 13.1"
+#~ msgstr "openSUSE 13.1"
+
+#~ msgid "openSUSE 13.2"
+#~ msgstr "openSUSE 13.2"
+
+#~ msgid "Oracle Solaris 11"
+#~ msgstr "Oracle Solaris 11"
+
+#~ msgid "Oracle"
+#~ msgstr "Oracle"
+
+#~ msgid "Red Hat Enterprise Linux 2.1 Update 1"
+#~ msgstr "Red Hat Enterprise Linux 2.1 Update 1"
+
+#~ msgid "Red Hat, Inc"
+#~ msgstr "Red Hat, Inc"
+
+#~ msgid "Red Hat Enterprise Linux 2.1 Update 2"
+#~ msgstr "Red Hat Enterprise Linux 2.1 Update 2"
+
+#~ msgid "Red Hat Enterprise Linux 2.1 Update 3"
+#~ msgstr "Red Hat Enterprise Linux 2.1 Update 3"
+
+#~ msgid "Red Hat Enterprise Linux 2.1 Update 4"
+#~ msgstr "Red Hat Enterprise Linux 2.1 Update 4"
+
+#~ msgid "Red Hat Enterprise Linux 2.1 Update 5"
+#~ msgstr "Red Hat Enterprise Linux 2.1 Update 5"
+
+#~ msgid "Red Hat Enterprise Linux 2.1 Update 6"
+#~ msgstr "Red Hat Enterprise Linux 2.1 Update 6"
+
+#~ msgid "Red Hat Enterprise Linux 2.1 Update 7"
+#~ msgstr "Red Hat Enterprise Linux 2.1 Update 7"
+
+#~ msgid "Red Hat Enterprise Linux 2.1"
+#~ msgstr "Red Hat Enterprise Linux 2.1"
+
+#~ msgid "Red Hat Enterprise Linux 3 Update 1"
+#~ msgstr "Red Hat Enterprise Linux 3 Update 1"
+
+#~ msgid "Red Hat Enterprise Linux 3 Update 2"
+#~ msgstr "Red Hat Enterprise Linux 3 Update 2"
+
+#~ msgid "Red Hat Enterprise Linux 3 Update 3"
+#~ msgstr "Red Hat Enterprise Linux 3 Update 3"
+
+#~ msgid "Red Hat Enterprise Linux 3 Update 4"
+#~ msgstr "Red Hat Enterprise Linux 3 Update 4"
+
+#~ msgid "Red Hat Enterprise Linux 3 Update 5"
+#~ msgstr "Red Hat Enterprise Linux 3 Update 5"
+
+#~ msgid "Red Hat Enterprise Linux 3 Update 6"
+#~ msgstr "Red Hat Enterprise Linux 3 Update 6"
+
+#~ msgid "Red Hat Enterprise Linux 3 Update 7"
+#~ msgstr "Red Hat Enterprise Linux 3 Update 7"
+
+#~ msgid "Red Hat Enterprise Linux 3 Update 8"
+#~ msgstr "Red Hat Enterprise Linux 3 Update 8"
+
+#~ msgid "Red Hat Enterprise Linux 3 Update 9"
+#~ msgstr "Red Hat Enterprise Linux 3 Update 9"
+
+#~ msgid "Red Hat Enterprise Linux 3"
+#~ msgstr "Red Hat Enterprise Linux 3"
+
+#~ msgid "Red Hat Enterprise Linux 4.0"
+#~ msgstr "Red Hat Enterprise Linux 4.0"
+
+#~ msgid "Red Hat Enterprise Linux 4.1"
+#~ msgstr "Red Hat Enterprise Linux 4.1"
+
+#~ msgid "Red Hat Enterprise Linux 4.2"
+#~ msgstr "Red Hat Enterprise Linux 4.2"
+
+#~ msgid "Red Hat Enterprise Linux 4.3"
+#~ msgstr "Red Hat Enterprise Linux 4.3"
+
+#~ msgid "Red Hat Enterprise Linux 4.4"
+#~ msgstr "Red Hat Enterprise Linux 4.4"
+
+#~ msgid "Red Hat Enterprise Linux 4.5"
+#~ msgstr "Red Hat Enterprise Linux 4.5"
+
+#~ msgid "Red Hat Enterprise Linux 4.6"
+#~ msgstr "Red Hat Enterprise Linux 4.6"
+
+#~ msgid "Red Hat Enterprise Linux 4.7"
+#~ msgstr "Red Hat Enterprise Linux 4.7"
+
+#~ msgid "Red Hat Enterprise Linux 4.8"
+#~ msgstr "Red Hat Enterprise Linux 4.8"
+
+#~ msgid "Red Hat Enterprise Linux 4.9"
+#~ msgstr "Red Hat Enterprise Linux 4.9"
+
+#~ msgid "Red Hat Enterprise Linux 5.0"
+#~ msgstr "Red Hat Enterprise Linux 5.0"
+
+#~ msgid "Red Hat Enterprise Linux 5.10"
+#~ msgstr "Red Hat Enterprise Linux 5.10"
+
+#~ msgid "Red Hat Enterprise Linux 5.11"
+#~ msgstr "Red Hat Enterprise Linux 5.11"
+
+#~ msgid "Red Hat Enterprise Linux 5.1"
+#~ msgstr "Red Hat Enterprise Linux 5.1"
+
+#~ msgid "Red Hat Enterprise Linux 5.2"
+#~ msgstr "Red Hat Enterprise Linux 5.2"
+
+#~ msgid "Red Hat Enterprise Linux 5.3"
+#~ msgstr "Red Hat Enterprise Linux 5.3"
+
+#~ msgid "Red Hat Enterprise Linux 5.4"
+#~ msgstr "Red Hat Enterprise Linux 5.4"
+
+#~ msgid "Red Hat Enterprise Linux 5.5"
+#~ msgstr "Red Hat Enterprise Linux 5.5"
+
+#~ msgid "Red Hat Enterprise Linux 5.6"
+#~ msgstr "Red Hat Enterprise Linux 5.6"
+
+#~ msgid "Red Hat Enterprise Linux 5.7"
+#~ msgstr "Red Hat Enterprise Linux 5.7"
+
+#~ msgid "Red Hat Enterprise Linux 5.8"
+#~ msgstr "Red Hat Enterprise Linux 5.8"
+
+#~ msgid "Red Hat Enterprise Linux 5.9"
+#~ msgstr "Red Hat Enterprise Linux 5.9"
+
+#~ msgid "Red Hat Enterprise Linux 6.0"
+#~ msgstr "Red Hat Enterprise Linux 6.0"
+
+#~ msgid "Red Hat Enterprise Linux 6.1"
+#~ msgstr "Red Hat Enterprise Linux 6.1"
+
+#~ msgid "Red Hat Enterprise Linux 6.2"
+#~ msgstr "Red Hat Enterprise Linux 6.2"
+
+#~ msgid "Red Hat Enterprise Linux 6.3"
+#~ msgstr "Red Hat Enterprise Linux 6.3"
+
+#~ msgid "Red Hat Enterprise Linux 6.4"
+#~ msgstr "Red Hat Enterprise Linux 6.4"
+
+#~ msgid "Red Hat Enterprise Linux 6.5"
+#~ msgstr "Red Hat Enterprise Linux 6.5"
+
+#~ msgid "Red Hat Enterprise Linux 6.6"
+#~ msgstr "Red Hat Enterprise Linux 6.6"
+
+#~ msgid "Red Hat Enterprise Linux 7.0"
+#~ msgstr "Red Hat Enterprise Linux 7.0"
+
+#~ msgid "Red Hat Enterprise Linux 7.1"
+#~ msgstr "Red Hat Enterprise Linux 7.1"
+
+#~ msgid "Red Hat Enterprise Linux Atomic Host 7.0"
+#~ msgstr "Red Hat Enterprise Linux Atomic Host 7.0"
+
+#~ msgid "Red Hat Enterprise Linux Atomic Host 7.1"
+#~ msgstr "Red Hat Enterprise Linux Atomic Host 7.1"
+
+#~ msgid "Red Hat Linux 1.0"
+#~ msgstr "Red Hat Linux 1.0"
+
+#~ msgid "Red Hat Linux 1.1"
+#~ msgstr "Red Hat Linux 1.1"
+
+#~ msgid "Red Hat Linux 2.0"
+#~ msgstr "Red Hat Linux 2.0"
+
+#~ msgid "Red Hat Linux 2.1"
+#~ msgstr "Red Hat Linux 2.1"
+
+#~ msgid "Red Hat Linux 3.0.3"
+#~ msgstr "Red Hat Linux 3.0.3"
+
+#~ msgid "Red Hat Linux 4.0"
+#~ msgstr "Red Hat Linux 4.0"
+
+#~ msgid "Red Hat Linux 4.1"
+#~ msgstr "Red Hat Linux 4.1"
+
+#~ msgid "Red Hat Linux 4.2"
+#~ msgstr "Red Hat Linux 4.2"
+
+#~ msgid "Red Hat Linux 5.0"
+#~ msgstr "Red Hat Linux 5.0"
+
+#~ msgid "Red Hat Linux 5.1"
+#~ msgstr "Red Hat Linux 5.1"
+
+#~ msgid "Red Hat Linux 5.2"
+#~ msgstr "Red Hat Linux 5.2"
+
+#~ msgid "Red Hat Linux 6.0"
+#~ msgstr "Red Hat Linux 6.0"
+
+#~ msgid "Red Hat Linux 6.1"
+#~ msgstr "Red Hat Linux 6.1"
+
+#~ msgid "Red Hat Linux 6.2"
+#~ msgstr "Red Hat Linux 6.2"
+
+#~ msgid "Red Hat Linux 7.1"
+#~ msgstr "Red Hat Linux 7.1"
+
+#~ msgid "Red Hat Linux 7.2"
+#~ msgstr "Red Hat Linux 7.2"
+
+#~ msgid "Red Hat Linux 7.3"
+#~ msgstr "Red Hat Linux 7.3"
+
+#~ msgid "Red Hat Linux 7"
+#~ msgstr "Red Hat Linux 7"
+
+#~ msgid "Red Hat Linux 8.0"
+#~ msgstr "Red Hat Linux 8.0"
+
+#~ msgid "Red Hat Linux 9"
+#~ msgstr "Red Hat Linux 9"
+
+#~ msgid "OpenSolaris 2009.06"
+#~ msgstr "OpenSolaris 2009.06"
+
+#~ msgid "Sun"
+#~ msgstr "Sun"
+
+#~ msgid "Solaris 9"
+#~ msgstr "Solaris 9"
+
+#~ msgid "Solaris 10"
+#~ msgstr "Solaris 10"
+
+#~ msgid "SUSE Linux Enterprise Desktop 9"
+#~ msgstr "SUSE Linux Enterprise Desktop 9"
+
+#~ msgid "SUSE"
+#~ msgstr "SUSE"
+
+#~ msgid "SUSE Linux Enterprise Desktop 10"
+#~ msgstr "SUSE Linux Enterprise Desktop 10"
+
+#~ msgid "SUSE Linux Enterprise Desktop 11 SP1"
+#~ msgstr "SUSE Linux Enterprise Desktop 11 SP1"
+
+#~ msgid "SUSE Linux Enterprise Desktop 11 SP2"
+#~ msgstr "SUSE Linux Enterprise Desktop 11 SP2"
+
+#~ msgid "SUSE Linux Enterprise Desktop 11 SP3"
+#~ msgstr "SUSE Linux Enterprise Desktop 11 SP3"
+
+#~ msgid "SUSE Linux Enterprise Desktop 11 SP4"
+#~ msgstr "SUSE Linux Enterprise Desktop 11 SP4"
+
+#~ msgid "SUSE Linux Enterprise Desktop 11"
+#~ msgstr "SUSE Linux Enterprise Desktop 11"
+
+#~ msgid "SUSE Linux Enterprise Desktop 12"
+#~ msgstr "SUSE Linux Enterprise Desktop 12"
+
+#~ msgid "SUSE Linux Enterprise Server 9"
+#~ msgstr "SUSE Linux Enterprise Server 9"
+
+#~ msgid "SUSE Linux Enterprise Server 10"
+#~ msgstr "SUSE Linux Enterprise Server 10"
+
+#~ msgid "SUSE Linux Enterprise Server 11 SP1"
+#~ msgstr "SUSE Linux Enterprise Server 11 SP1"
+
+#~ msgid "SUSE Linux Enterprise Server 11 SP2"
+#~ msgstr "SUSE Linux Enterprise Server 11 SP2"
+
+#~ msgid "SUSE Linux Enterprise Server 11 SP3"
+#~ msgstr "SUSE Linux Enterprise Server 11 SP3"
+
+#~ msgid "SUSE Linux Enterprise Server 11 SP4"
+#~ msgstr "SUSE Linux Enterprise Server 11 SP4"
+
+#~ msgid "SUSE Linux Enterprise Server 11"
+#~ msgstr "SUSE Linux Enterprise Server 11"
+
+#~ msgid "SUSE Linux Enterprise Server 12"
+#~ msgstr "SUSE Linux Enterprise Server 12"
+
+#~ msgid "Ubuntu 4.10"
+#~ msgstr "Ubuntu 4.10"
+
+#~ msgid "Canonical Ltd"
+#~ msgstr "Canonical Ltd"
+
+#~ msgid "Ubuntu 5.04"
+#~ msgstr "Ubuntu 5.04"
+
+#~ msgid "Ubuntu 5.10"
+#~ msgstr "Ubuntu 5.10"
+
+#~ msgid "Ubuntu 6.06 LTS"
+#~ msgstr "Ubuntu 6.06 LTS"
+
+#~ msgid "Ubuntu 6.10"
+#~ msgstr "Ubuntu 6.10"
+
+#~ msgid "Ubuntu 7.04"
+#~ msgstr "Ubuntu 7.04"
+
+#~ msgid "Ubuntu 7.10"
+#~ msgstr "Ubuntu 7.10"
+
+#~ msgid "Ubuntu 8.04 LTS"
+#~ msgstr "Ubuntu 8.04 LTS"
+
+#~ msgid "Ubuntu 8.10"
+#~ msgstr "Ubuntu 8.10"
+
+#~ msgid "Ubuntu 9.04"
+#~ msgstr "Ubuntu 9.04"
+
+#~ msgid "Ubuntu 9.10"
+#~ msgstr "Ubuntu 9.10"
+
+#~ msgid "Ubuntu 10.04 LTS"
+#~ msgstr "Ubuntu 10.04 LTS"
+
+#~ msgid "Ubuntu 10.10"
+#~ msgstr "Ubuntu 10.10"
+
+#~ msgid "Ubuntu 11.04"
+#~ msgstr "Ubuntu 11.04"
+
+#~ msgid "Ubuntu 11.10"
+#~ msgstr "Ubuntu 11.10"
+
+#~ msgid "Ubuntu 12.04 LTS"
+#~ msgstr "Ubuntu 12.04 LTS"
+
+#~ msgid "Ubuntu 12.10"
+#~ msgstr "Ubuntu 12.10"
+
+#~ msgid "Ubuntu 13.04"
+#~ msgstr "Ubuntu 13.04"
+
+#~ msgid "Ubuntu 13.10"
+#~ msgstr "Ubuntu 13.10"
+
+#~ msgid "Ubuntu 14.04 LTS"
+#~ msgstr "Ubuntu 14.04 LTS"
+
+#~ msgid "Ubuntu 14.10"
+#~ msgstr "Ubuntu 14.10"
+
+#~ msgid "Ubuntu 15.04"
+#~ msgstr "Ubuntu 15.04"
+
+#~ msgid "Ubuntu 15.10"
+#~ msgstr "Ubuntu 15.10"
+
+#~ msgid "QEMU-KVM 1.0.1"
+#~ msgstr "QEMU-KVM 1.0.1"
+
+#~ msgid "linux-kvm.org"
+#~ msgstr "linux-kvm.org"
+
+#~ msgid "QEMU-KVM 1.0"
+#~ msgstr "QEMU-KVM 1.0"
+
+#~ msgid "QEMU-KVM 1.1.0"
+#~ msgstr "QEMU-KVM 1.1.0"
+
+#~ msgid "QEMU-KVM 1.1.1"
+#~ msgstr "QEMU-KVM 1.1.1"
+
+#~ msgid "QEMU-KVM 1.1.2"
+#~ msgstr "QEMU-KVM 1.1.2"
+
+#~ msgid "QEMU-KVM 1.2.0"
+#~ msgstr "QEMU-KVM 1.2.0"
+
+#~ msgid "QEMU 1.0.1"
+#~ msgstr "QEMU 1.0.1"
+
+#~ msgid "qemu.org"
+#~ msgstr "qemu.org"
+
+#~ msgid "QEMU 1.0"
+#~ msgstr "QEMU 1.0"
+
+#~ msgid "QEMU 1.1.1-1"
+#~ msgstr "QEMU 1.1.1-1"
+
+#~ msgid "QEMU 1.1.1"
+#~ msgstr "QEMU 1.1.1"
+
+#~ msgid "QEMU 1.1.2"
+#~ msgstr "QEMU 1.1.2"
+
+#~ msgid "QEMU 1.1"
+#~ msgstr "QEMU 1.1"
+
+#~ msgid "QEMU 1.2.0"
+#~ msgstr "QEMU 1.2.0"
+
+#~ msgid "QEMU 1.2.1"
+#~ msgstr "QEMU 1.2.1"
+
+#~ msgid "QEMU 1.2.2"
+#~ msgstr "QEMU 1.2.2"
+
+#~ msgid "QEMU 1.3.0"
+#~ msgstr "QEMU 1.3.0"
+
+#~ msgid "QEMU 1.3.1"
+#~ msgstr "QEMU 1.3.1"
+
+#~ msgid "QEMU 1.4.0"
+#~ msgstr "QEMU 1.4.0"
+
+#~ msgid "QEMU 1.4.1"
+#~ msgstr "QEMU 1.4.1"
+
+#~ msgid "QEMU 1.4.2"
+#~ msgstr "QEMU 1.4.2"
+
+#~ msgid "QEMU 1.5.0"
+#~ msgstr "QEMU 1.5.0"
+
+#~ msgid "QEMU 1.5.1"
+#~ msgstr "QEMU 1.5.1"
+
+#~ msgid "QEMU 1.5.2"
+#~ msgstr "QEMU 1.5.2"
+
+#~ msgid "QEMU 1.5.3"
+#~ msgstr "QEMU 1.5.3"
+
+#~ msgid "QEMU 1.6.0"
+#~ msgstr "QEMU 1.6.0"
+
+#~ msgid "QEMU 1.6.1"
+#~ msgstr "QEMU 1.6.1"
+
+#~ msgid "QEMU 1.6.2"
+#~ msgstr "QEMU 1.6.2"
+
+#~ msgid "QEMU 1.7.0"
+#~ msgstr "QEMU 1.7.0"
+
+#~ msgid "QEMU 1.7.1"
+#~ msgstr "QEMU 1.7.1"
+
+#~ msgid "QEMU 1.7.2"
+#~ msgstr "QEMU 1.7.2"
+
+#~ msgid "QEMU 2.0.0"
+#~ msgstr "QEMU 2.0.0"
+
+#~ msgid "QEMU 2.0.1"
+#~ msgstr "QEMU 2.0.1"
+
+#~ msgid "QEMU 2.0.2"
+#~ msgstr "QEMU 2.0.2"
+
+#~ msgid "QEMU 2.1.0"
+#~ msgstr "QEMU 2.1.0"
+
+#~ msgid "QEMU 2.1.1"
+#~ msgstr "QEMU 2.1.1"
+
+#~ msgid "QEMU 2.1.2"
+#~ msgstr "QEMU 2.1.2"
+
+#~ msgid "QEMU 2.1.3"
+#~ msgstr "QEMU 2.1.3"
+
+#~ msgid "QEMU 2.2.0"
+#~ msgstr "QEMU 2.2.0"
+
+#~ msgid "QEMU 2.2.1"
+#~ msgstr "QEMU 2.2.1"
+
+#~ msgid "QEMU 2.3.0"
+#~ msgstr "QEMU 2.3.0"
+
+#~ msgid "Xen 3.0.3 (RHEL 5.0)"
+#~ msgstr "Xen 3.0.3 (RHEL 5.0)"
+
+#~ msgid "Red Hat, Inc."
+#~ msgstr "Red Hat, Inc."
+
+#~ msgid "Xen 3.1.0 (RHEL 5.1)"
+#~ msgstr "Xen 3.1.0 (RHEL 5.1)"
+
+#~ msgid "Xen 3.1.0 (RHEL 5.2)"
+#~ msgstr "Xen 3.1.0 (RHEL 5.2)"
+
+#~ msgid "Xen 3.1.0 (RHEL 5.3)"
+#~ msgstr "Xen 3.1.0 (RHEL 5.3)"
+
+#~ msgid "Xen 3.1.0 (RHEL 5.4)"
+#~ msgstr "Xen 3.1.0 (RHEL 5.4)"
+
+#~ msgid "Xen 3.1.0 (RHEL 5.5)"
+#~ msgstr "Xen 3.1.0 (RHEL 5.5)"
+
+#~ msgid "Xen 3.1.0 (RHEL 5.6)"
+#~ msgstr "Xen 3.1.0 (RHEL 5.6)"
+
+#~ msgid "Xen 3.1.0 (RHEL 5.7)"
+#~ msgstr "Xen 3.1.0 (RHEL 5.7)"
+
+#~ msgid "Xen 3.0.2"
+#~ msgstr "Xen 3.0.2"
+
+#~ msgid "Citrix Systems, Inc."
+#~ msgstr "Citrix Systems, Inc."
+
+#~ msgid "Xen 3.0.3"
+#~ msgstr "Xen 3.0.3"
+
+#~ msgid "Xen 3.0.4"
+#~ msgstr "Xen 3.0.4"
+
+#~ msgid "Xen 3.1.0"
+#~ msgstr "Xen 3.1.0"
+
+#~ msgid "Xen 3.1.3"
+#~ msgstr "Xen 3.1.3"
+
+#~ msgid "Xen 3.1.4"
+#~ msgstr "Xen 3.1.4"
+
+#~ msgid "Xen 3.2.0"
+#~ msgstr "Xen 3.2.0"
+
+#~ msgid "Xen 3.2.1"
+#~ msgstr "Xen 3.2.1"
+
+#~ msgid "Xen 3.2.2"
+#~ msgstr "Xen 3.2.2"
+
+#~ msgid "Xen 3.2.3"
+#~ msgstr "Xen 3.2.3"
+
+#~ msgid "Xen 3.3.0"
+#~ msgstr "Xen 3.3.0"
+
+#~ msgid "Xen 3.3.1"
+#~ msgstr "Xen 3.3.1"
+
+#~ msgid "Xen 3.3.2"
+#~ msgstr "Xen 3.3.2"
+
+#~ msgid "Xen 3.4.0"
+#~ msgstr "Xen 3.4.0"
+
+#~ msgid "Xen 3.4.1"
+#~ msgstr "Xen 3.4.1"
+
+#~ msgid "Xen 3.4.2"
+#~ msgstr "Xen 3.4.2"
+
+#~ msgid "Xen 3.4.3"
+#~ msgstr "Xen 3.4.3"
+
+#~ msgid "Xen 4.0.0"
+#~ msgstr "Xen 4.0.0"
+
+#~ msgid "Xen 4.0.1"
+#~ msgstr "Xen 4.0.1"
+
+#~ msgid "Xen 4.1.0"
+#~ msgstr "Xen 4.1.0"
+
+#~ msgid "Qemu/KVM"
+#~ msgstr "Qemu/KVM"
+
+#~ msgid "QEMU"
+#~ msgstr "QEMU"
+
+#~ msgid "The allowed mime-types for the avatar"
+#~ msgstr "Types mimes valides pour l'avatar"
+
+#~ msgid "The required width (in pixels) of the avatar"
+#~ msgstr "Largeur demandée (en pixels) pour l'avatar"
+
+#~ msgid "The required height (in pixels) of the avatar."
+#~ msgstr "Hauteur demandée (en pixels) pour l'avatar"
+
+#~ msgid "Whether alpha channel is supported in the avatar."
+#~ msgstr "Indique si l'avatar supporte un canal alpha"
+
+#~ msgid "Operating system"
+#~ msgstr "Système d'exploitation"
+
+#~ msgid "Virtualization platform"
+#~ msgstr "Plate-forme de virtualisation"
+
+#~ msgid "Target device"
+#~ msgstr "Périphérique cible"
+
+#~ msgid "Device link target filter"
+#~ msgstr "Filtre de cible de lien de périphérique"
+
+#~ msgid "Unique identifier"
+#~ msgstr "Identifiant unique"
+
+#~ msgid "Parameter name"
+#~ msgstr "Nom du paramètre"
+
+#~ msgid "Parameter policy"
+#~ msgstr "Politique de paramètre"
+
+#~ msgid "Parameter Value Mapping"
+#~ msgstr "Association Paramètre/Valeur"
+
+#~ msgid "URI for install script template"
+#~ msgstr "URI du modèle de script d'installation"
+
+#~ msgid "Data for install script template"
+#~ msgstr "Données pour le modèle de script d'installation"
+
+#~ msgid "Install script profile name"
+#~ msgstr "Nom de profil de script d'installation"
+
+#~ msgid "Product key format mask"
+#~ msgstr "Masque de format de clé produit"
+
+#~ msgid "Expected path format"
+#~ msgstr "Format attendu pour le chemin"
+
+#~ msgid "Expected avatar format"
+#~ msgstr "Format attendu pour l'avatar"
+
+#~ msgid "Unable to create XML parser context"
+#~ msgstr "Impossible de créer le contexte pour l'analyseur XML"
+
+#~ msgid "Unable to read XSL template"
+#~ msgstr "Impossible de lire le modèle XSL"
+
+#~ msgid "Unable to parse XSL template"
+#~ msgstr "Impossible d'analyser le modèle XSL"
+
+#~ msgid "Unable to create XML node '%s': '%s'"
+#~ msgstr "Impossible de créer le nœud XML « %s » : « %s »"
+
+#~ msgid "Unable to create XML node 'id': '%s'"
+#~ msgstr "Impossible de créer le nœud XML « id » : « %s »"
+
+#~ msgid "Unable to add XML child '%s'"
+#~ msgstr "Impossible d'ajouter l'enfant XML « %s »"
+
+#~ msgid "Unable to set XML root '%s'"
+#~ msgstr "Impossible de définir la racine XML « %s »"
+
+#~ msgid "Unable to set 'media' node: '%s'"
+#~ msgstr "Impossible de positionner le nœud « media » : « %s »"
+
+#~ msgid "Unable to create XSL transform context"
+#~ msgstr "Impossible de créer le contexte de transformation XSL"
+
+#~ msgid "Unable to apply XSL transform context"
+#~ msgstr "Impossible d'appliquer le contexte de transformation XSL"
+
+#~ msgid "Unable to convert XSL output to string"
+#~ msgstr "Impossible de convertir la sortie XSL en chaîne"
+
+#~ msgid "Failed to load script template %s: "
+#~ msgstr "Échec du chargement du modèle de script %s : "
+
+#~ msgid "Failed to apply script template %s: "
+#~ msgstr "Échec de l'application du modèle de script %s : "
+
+#~ msgid "Failed to apply script template: "
+#~ msgstr "Échec de l'application du modèle de script :"
+
+#~ msgid "List element type"
+#~ msgstr "Lister les types d'éléments"
+
+#~ msgid "Expected a nodeset in XPath query %s"
+#~ msgstr "Ensemble de nœuds (nodeset) attendu dans la requête XPath %s"
+
+#~ msgid "Expected a text node attribute value"
+#~ msgstr "Valeur d'attribut de nœud texte attendu"
+
+#~ msgid "Missing device id property"
+#~ msgstr "Propriété identifiant de périphérique manquante"
+
+#~ msgid "Missing device link id property"
+#~ msgstr "Propriété identifiant de lien de périphérique manquante"
+
+#~ msgid "Missing product upgrades id property"
+#~ msgstr "Propriété identifiant de mise à jour de produits manquante"
+
+#~ msgid "Missing platform id property"
+#~ msgstr "Propriété identifiant de plate-forme manquante"
+
+#~ msgid "Missing deployment id property"
+#~ msgstr "Propriété identifiant de déploiement manquante"
+
+#~ msgid "Missing deployment os id property"
+#~ msgstr "Propriété identifiant d'OS de déploiement manquante"
+
+#~ msgid "Missing deployment platform id property"
+#~ msgstr "Propriété identifiant de plate-forme de déploiement manquante"
+
+#~ msgid "Missing os id property"
+#~ msgstr "Propriété identifiant d'OS manquante"
+
+#~ msgid "Missing install script id property"
+#~ msgstr "Propriété identifiant de script d'installation manquante"
+
+#~ msgid "Missing OS install script property"
+#~ msgstr "Propriété script d'installation d'OS manquante"
+
+#~ msgid "Incorrect root element"
+#~ msgstr "Élément racine incorrect"
+
+#~ msgid "Unable to construct parser context"
+#~ msgstr "Impossible de créer le contexte pour l'analyseur"
+
+#~ msgid "Missing root XML element"
+#~ msgstr "Élément racine XML manquant"
+
+#~ msgid "CPU Architecture"
+#~ msgstr "Architecture CPU"
+
+#~ msgid "The URL to this media"
+#~ msgstr "URL vers ce média"
+
+#~ msgid "The expected ISO9660 volume ID"
+#~ msgstr "L'ID de volume ISO9660 attendu"
+
+#~ msgid "The expected ISO9660 publisher ID"
+#~ msgstr "L'ID d'éditeur ISO9660 attendu"
+
+#~ msgid "The expected ISO9660 application ID"
+#~ msgstr "L'ID d'application ISO9660 attendu"
+
+#~ msgid "The expected ISO9660 system ID"
+#~ msgstr "L'ID système ISO9660 attendu"
+
+#~ msgid "The path to the kernel image"
+#~ msgstr "Le chemin vers l'image noyau"
+
+#~ msgid "The path to the initrd image"
+#~ msgstr "Chemin vers l'image initrd"
+
+#~ msgid "Media provides an installer"
+#~ msgstr "Le média contient un programme d'installation"
+
+#~ msgid "Media can boot directly w/o installation"
+#~ msgstr "Le média peut démarrer directement sans installation"
+
+#~ msgid "Number of installer reboots"
+#~ msgstr "Nombre de redémarrages du programme d'installation"
+
+#~ msgid "Information about the operating system on this media"
+#~ msgstr "Informations au sujet du système d'exploitation sur ce média"
+
+#~ msgid "Supported languages"
+#~ msgstr "Langages gérés"
+
+#~ msgid "Expected ISO9660 volume size, in bytes"
+#~ msgstr "Taille du volume ISO9660 attendue, en octets"
+
+#~ msgid "Failed to read supplementary volume descriptor: "
+#~ msgstr "Impossible de lire le descripteur de volume additionnel :"
+
+#~ msgid "Supplementary volume descriptor was truncated"
+#~ msgstr "Le descripteur de volume additionnel a été tronqué"
+
+#~ msgid "Install media is not bootable"
+#~ msgstr "Le média d'installation n'est pas amorçable"
+
+#~ msgid "Failed to read primary volume descriptor: "
+#~ msgstr "Impossible de lire le descripteur de volume principal :"
+
+#~ msgid "Primary volume descriptor was truncated"
+#~ msgstr "Le descripteur de volume principal a été tronqué"
+
+#~ msgid "Insufficient metadata on installation media"
+#~ msgstr "Métadonnées insuffisantes sur le média d'installation"
+
+#~ msgid "Failed to skip %d bytes"
+#~ msgstr "Impossible de passer %d octets"
+
+#~ msgid "No volume descriptors"
+#~ msgstr "Aucun descripteur de volume"
+
+#~ msgid "Failed to open file"
+#~ msgstr "Impossible d'ouvrir le fichier"
+
+#~ msgid "Generic Family"
+#~ msgstr "Famille générique"
+
+#~ msgid "Generic Distro"
+#~ msgstr "Distribution générique"
+
+#~ msgid "Name"
+#~ msgstr "Nom"
+
+#~ msgid "Short ID"
+#~ msgstr "ID court"
+
+#~ msgid "Vendor"
+#~ msgstr "Fournisseur"
+
+#~ msgid "Version"
+#~ msgstr "Version"
+
+#~ msgid "Codename"
+#~ msgstr "Nom de code"
+
+#~ msgid "URI of the logo"
+#~ msgstr "URI du logo"
+
+#~ msgid "CPU frequency in hertz (Hz)"
+#~ msgstr "Fréquence de la CPU (Hz)"
+
+#~ msgid "Number of CPUs"
+#~ msgstr "Nombre de CPU"
+
+#~ msgid "Amount of Random Access Memory (RAM) in bytes"
+#~ msgstr "Quantité de mémoire vive (RAM) en octets"
+
+#~ msgid "Amount of storage space in bytes"
+#~ msgstr "Quantité de stockage en octets"
+
+#~ msgid "The URL to this tree"
+#~ msgstr "URL pointant vers cet arbre"
+
+#~ msgid "The path to the inirtd image"
+#~ msgstr "Le chemin vers l'image initrd"
+
+#~ msgid "The path to the bootable ISO image"
+#~ msgstr "Le chemin vers l'image ISO amorçable"
+
+#~ msgid "Failed to load .treeinfo file: "
+#~ msgstr "Impossible de charger le fichier .treeinfo : "
+
+#~ msgid "Failed to process keyinfo file: "
+#~ msgstr "Impossible de traiter le fichier keyinfo : "
+
+#~ msgid "The name to this variant"
+#~ msgstr "Nom de cette variante"
+
+#~ msgid "Invalid value '%s'"
+#~ msgstr "Valeur invalide « %s »"
+
+#~ msgid "Output format. Default: plain"
+#~ msgstr "Format de sortie. Par défaut : plain"
+
+#~ msgid "plain|env."
+#~ msgstr "plain|env."
+
+#~ msgid "URL type. Default: media"
+#~ msgstr "Type d'URL. Par défaut : média"
+
+#~ msgid "media|tree."
+#~ msgstr "media|tree."
+
+#~ msgid "Media is bootable.\n"
+#~ msgstr "Le média est amorçable.\n"
+
+#~ msgid "Media is not bootable.\n"
+#~ msgstr "Le média n'est pas amorçable.\n"
+
+#~ msgid "Media is an installer for OS '%s'\n"
+#~ msgstr "Le média est un média d'installation pour « %s »\n"
+
+#~ msgid "Media is live media for OS '%s'\n"
+#~ msgstr "Le média est un média live pour « %s »\n"
+
+#~ msgid "Available OS variants on media:\n"
+#~ msgstr "Variantes de système d'exploitation disponibles sur ce média :\n"
+
+#~ msgid "Tree is an installer for OS '%s'\n"
+#~ msgstr "L'arbre est un arbre d'installation pour « %s »\n"
+
+#~ msgid "- Detect if media is bootable and the relevant OS and distribution."
+#~ msgstr ""
+#~ "- Détecter si le média est amorçable ainsi que le système d'exploitation "
+#~ "et la distribution."
+
+#~ msgid "Error loading OS data: %s\n"
+#~ msgstr ""
+#~ "Erreur lors du chargement des données du système d'exploitation : %s\n"
+
+#~ msgid "Error parsing media: %s\n"
+#~ msgstr "Erreur lors de l'analyse du média : %s\n"
+
+#~ msgid "Error parsing installer tree: %s\n"
+#~ msgstr "Erreur lors de l'analyse de l'arbre : %s\n"
+
+#~ msgid "Expected configuration key=value"
+#~ msgstr "Configuration attendue du type clé=valeur"
+
+#~ msgid "Install script profile"
+#~ msgstr "Profil de script d'installation"
+
+#~ msgid "Install script output directory"
+#~ msgstr "Répertoire de sortie du script d'installation"
+
+#~ msgid "The output filename prefix"
+#~ msgstr "Le préfixe des fichiers de sortie"
+
+#~ msgid "Set configuration parameter"
+#~ msgstr "Définir les paramètres de configuration"
+
+#~ msgid "List configuration parameters"
+#~ msgstr "Lister les paramètres de configuration"
+
+#~ msgid "List install script profiles"
+#~ msgstr "Lister les profils de scripts d'installation"
+
+#~ msgid "List supported injection methods"
+#~ msgstr "Lister les méthodes d'injection disponibles"
+
+#~ msgid "Do not display output filenames"
+#~ msgstr "Ne pas afficher les noms des fichiers de sortie"
+
+#~ msgid "No install script for profile '%s' and OS '%s'"
+#~ msgstr ""
+#~ "Pas de script d'installation pour le profil « %s » et le système "
+#~ "d'exploitation « %s »"
+
+#~ msgid "required"
+#~ msgstr "requis"
+
+#~ msgid "optional"
+#~ msgstr "optionnel"
+
+#~ msgid "No install script for profile '%s' and OS '%s'\n"
+#~ msgstr ""
+#~ "Pas de script d'installation pour le profil « %s » et le système "
+#~ "d'exploitation « %s »\n"
+
+#~ msgid "Unable to generate install script: %s\n"
+#~ msgstr "Impossible de créer le script d'installation : %s\n"
+
+#~ msgid "- Generate an OS install script"
+#~ msgstr "- Créer un script d'installation du système d'exploitation"
+
+#~ msgid "Error while parsing options: %s\n"
+#~ msgstr "Erreur lors de l'analyse des options : %s\n"
+
+#~ msgid ""
+#~ "Only one of --list-profile, --list-config and --list-injection-methods "
+#~ "can be requested"
+#~ msgstr ""
+#~ "--list-profile, --list-config et --list-injection-methods ne peuvent pas "
+#~ "être utilisés simultanément"
+
+#~ msgid "Error finding OS: %s\n"
+#~ msgstr "Erreur lors de la recherche du système d'exploitation : %s\n"
+
+#~ msgid "Family"
+#~ msgstr "Famille"
+
+#~ msgid "Distro"
+#~ msgstr "Distribution"
+
+#~ msgid "Release date"
+#~ msgstr "Date de publication"
+
+#~ msgid "End of life"
+#~ msgstr "Fin de vie"
+
+#~ msgid "Code name"
+#~ msgstr "Nom de code"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Vendor ID"
+#~ msgstr "ID de fournisseur"
+
+#~ msgid "Product"
+#~ msgstr "Produit"
+
+#~ msgid "Product ID"
+#~ msgstr "ID Produit"
+
+#~ msgid "Class"
+#~ msgstr "Classe"
+
+#~ msgid "Bus"
+#~ msgstr "Bus"
+
+#~ msgid "Unknown property name %s"
+#~ msgstr "Nom de propriété inconnu %s"
+
+#~ msgid "Syntax error in condition, expecting KEY=VALUE"
+#~ msgstr "Erreur de syntaxe dans la condition, CLÉ=VALEUR est attendu"
+
+#~ msgid "Sort column"
+#~ msgstr "Colonne de tri"
+
+#~ msgid "Display fields"
+#~ msgstr "Afficher les champs"
+
+#~ msgid "- Query the OS info database"
+#~ msgstr "- Interroger la base de données des systèmes d'exploitation"
+
+#~ msgid "Missing data type parameter\n"
+#~ msgstr "Paramètre type de données manquant\n"
+
+#~ msgid "Unknown type '%s' requested\n"
+#~ msgstr "Type demandé « %s » inconnu\n"
+
+#~ msgid "Unable to construct filter: %s\n"
+#~ msgstr "Impossible de construire le filtre : %s\n"
+
+#~ msgid "Unable to set field visibility: %s\n"
+#~ msgstr "Impossible de définir la visiblité du champ :%s\n"
