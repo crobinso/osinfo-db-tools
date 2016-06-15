@@ -1,2 +1,3 @@
+tools/osinfo-db-export.c
 tools/osinfo-db-import.c
 tools/osinfo-db-validate.c

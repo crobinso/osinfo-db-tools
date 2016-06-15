@@ -40,6 +40,9 @@ tools/osinfo-db-validate.1
 tools/osinfo-db-import
 tools/osinfo-db-import.exe
 tools/osinfo-db-import.1
+tools/osinfo-db-export
+tools/osinfo-db-export.exe
+tools/osinfo-db-export.1
 po/.intltool-merge-cache
 po/Makefile.in.in
 po/POTFILES

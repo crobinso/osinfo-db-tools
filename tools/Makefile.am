@@ -10,9 +10,9 @@ AM_CFLAGS = $(GOBJECT_CFLAGS) \
 	    -I$(top_srcdir) \
             $(NULL)
 
-bin_PROGRAMS = osinfo-db-validate osinfo-db-import
+bin_PROGRAMS = osinfo-db-validate osinfo-db-import osinfo-db-export
 
-man1_MANS = osinfo-db-validate.1 osinfo-db-import.1
+man1_MANS = osinfo-db-validate.1 osinfo-db-import.1 osinfo-db-export.1
 
 CLEANFILES = $(man1_MANS)
 
@@ -29,6 +29,12 @@ osinfo_db_validate_LDADD = $(GOBJECT_LIBS)	\
 
 osinfo_db_import_SOURCES = osinfo-db-import.c
 osinfo_db_import_LDADD = $(GOBJECT_LIBS)	\
+		      $(GIO_LIBS)		\
+		      $(GLIB_LIBS)		\
+		      $(LIBARCHIVE_LIBS)
+
+osinfo_db_export_SOURCES = osinfo-db-export.c
+osinfo_db_export_LDADD = $(GOBJECT_LIBS)	\
 		      $(GIO_LIBS)		\
 		      $(GLIB_LIBS)		\
 		      $(LIBARCHIVE_LIBS)
