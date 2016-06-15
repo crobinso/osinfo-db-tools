@@ -12,6 +12,7 @@ BuildRequires: intltool
 BuildRequires: glib2-devel
 BuildRequires: libxml2-devel >= 2.6.0
 BuildRequires: libxslt-devel >= 1.0.0
+BuildRequires: libarchive-devel
 BuildRequires: /usr/bin/pod2man
 
 %description
@@ -33,7 +34,9 @@ information about operating systems for use with virtualization
 %files -f %{name}.lang
 %defattr(-, root, root)
 %doc AUTHORS ChangeLog COPYING.LIB NEWS README
+%{_bindir}/osinfo-db-import
 %{_bindir}/osinfo-db-validate
+%{_mandir}/man1/osinfo-db-import.1*
 %{_mandir}/man1/osinfo-db-validate.1*
 
 %changelog

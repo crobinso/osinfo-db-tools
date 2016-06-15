@@ -37,6 +37,9 @@ build/
 tools/osinfo-db-validate
 tools/osinfo-db-validate.exe
 tools/osinfo-db-validate.1
+tools/osinfo-db-import
+tools/osinfo-db-import.exe
+tools/osinfo-db-import.1
 po/.intltool-merge-cache
 po/Makefile.in.in
 po/POTFILES
