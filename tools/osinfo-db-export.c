@@ -204,7 +204,7 @@ static int osinfo_db_export_create_file(const gchar *prefix,
             g_print("%s: r %s\n", argv0, entpath);
         }
         archive_entry_set_filetype(entry, AE_IFREG);
-        archive_entry_set_perm(entry, 0755);
+        archive_entry_set_perm(entry, 0644);
         archive_entry_set_size(entry, g_file_info_get_size(info));
         break;
 
@@ -213,7 +213,7 @@ static int osinfo_db_export_create_file(const gchar *prefix,
             g_print("%s: d %s\n", argv0, entpath);
         }
         archive_entry_set_filetype(entry, AE_IFDIR);
-        archive_entry_set_perm(entry, 0644);
+        archive_entry_set_perm(entry, 0755);
         archive_entry_set_size(entry, 0);
         break;
 
