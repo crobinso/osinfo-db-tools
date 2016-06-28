@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012 Red Hat, Inc
+ * Copyright (C) 2012-2016 Red Hat, Inc
  *
  * osinfo-validate: validate that XML file(s) follows the published schema
  *
@@ -30,13 +30,6 @@
 #include "osinfo-db-util.h"
 
 static gboolean verbose = FALSE;
-
-static const GOptionEntry entries[] = {
-    { "verbose", 'v', 0, G_OPTION_ARG_NONE, (void*)&verbose,
-      N_("Verbose progress information"), NULL, },
-    { NULL, 0, 0, 0, NULL, NULL, NULL }
-};
-
 
 static void validate_generic_error_nop(void *userData G_GNUC_UNUSED,
                                        const char *msg G_GNUC_UNUSED,
@@ -190,7 +183,7 @@ static gboolean validate_file(xmlRelaxNGValidCtxtPtr rngValid, GFile *file, GFil
 }
 
 
-static gboolean validate_files(GFile *schema, gint argc, gchar **argv, GError **error)
+static gboolean validate_files(GFile *schema, gsize nfiles, GFile **files, GError **error)
 {
     xmlRelaxNGParserCtxtPtr rngParser = NULL;
     xmlRelaxNGPtr rng = NULL;
@@ -227,13 +220,9 @@ static gboolean validate_files(GFile *schema, gint argc, gchar **argv, GError **
         goto cleanup;
     }
 
-    for (i = 0; i < argc; i++) {
-        GFile *file = g_file_new_for_commandline_arg(argv[i]);
-        if (!validate_file(rngValid, file, NULL, error)) {
-            g_object_unref(file);
+    for (i = 0; i < nfiles; i++) {
+        if (!validate_file(rngValid, files[i], NULL, error))
             goto cleanup;
-        }
-        g_object_unref(file);
     }
 
     ret = TRUE;
@@ -252,6 +241,30 @@ gint main(gint argc, gchar **argv)
     GError *error = NULL;
     gint ret = EXIT_FAILURE;
     GFile *schema = NULL;
+    gboolean user = FALSE;
+    gboolean local = FALSE;
+    gboolean system = FALSE;
+    const gchar *root = "";
+    const gchar *custom = NULL;
+    int locs = 0;
+    GFile *dir = NULL;
+    GFile **files = NULL;
+    gsize nfiles = 0, i;
+    const GOptionEntry entries[] = {
+      { "verbose", 'v', 0, G_OPTION_ARG_NONE, (void*)&verbose,
+        N_("Verbose progress information"), NULL, },
+      { "user", 0, 0, G_OPTION_ARG_NONE, (void *)&user,
+        N_("Install into user directory"), NULL, },
+      { "local", 0, 0, G_OPTION_ARG_NONE, (void *)&local,
+        N_("Install into local directory"), NULL, },
+      { "system", 0, 0, G_OPTION_ARG_NONE, (void *)&system,
+        N_("Install into system directory"), NULL, },
+      { "dir", 0, 0, G_OPTION_ARG_STRING, (void *)&custom,
+        N_("Import into custom directory"), NULL, },
+      { "root", 0, 0, G_OPTION_ARG_STRING, &root,
+        N_("Installation root directory"), NULL, },
+      { NULL, 0, 0, 0, NULL, NULL, NULL },
+    };
 
     setlocale(LC_ALL, "");
     textdomain(GETTEXT_PACKAGE);
@@ -269,14 +282,42 @@ gint main(gint argc, gchar **argv)
         goto error;
     }
 
-    schema = osinfo_db_get_file(NULL, FALSE, FALSE, FALSE, NULL,
+    if (local)
+        locs++;
+    if (system)
+        locs++;
+    if (user)
+        locs++;
+    if (custom)
+        locs++;
+    if (locs > 1 || (locs && argc > 1)) {
+        g_printerr(_("Only one of --user, --local, --system, --dir or positional filenames can be used"));
+        goto error;
+    }
+
+    schema = osinfo_db_get_file(root,
+                                user || custom,
+                                local || user || custom,
+                                system || local || user || custom,
+                                custom,
                                 "schema/osinfo.rng", &error);
     if (!schema) {
         g_printerr("%s\n", error->message);
         goto error;
     }
 
-    if (!validate_files(schema, argc - 1, argv + 1, &error)) {
+    dir = osinfo_db_get_path(root, user, local, system, custom);
+
+    if (dir) {
+        files = g_new0(GFile *, 1);
+        files[nfiles++] = dir;
+    } else {
+        files = g_new0(GFile *, argc - 1);
+        for (i = 1; i < argc; i++) {
+            files[nfiles++] = g_file_new_for_commandline_arg(argv[i]);
+        }
+    }
+    if (!validate_files(schema, nfiles, files, &error)) {
         g_printerr("%s\n", error->message);
         goto error;
     }
@@ -286,6 +327,8 @@ gint main(gint argc, gchar **argv)
  error:
     if (schema)
         g_object_unref(schema);
+    if (dir)
+        g_object_unref(dir);
     g_clear_error(&error);
     g_option_context_free(context);
 
@@ -301,16 +344,52 @@ osinfo-db-validate - Validate libosinfo XML data files
 
 =head1 SYNOPSIS
 
+osinfo-db-validate [OPTIONS...]
+
 osinfo-db-validate [OPTIONS...] LOCAL-PATH1 [LOCAL-PATH2...]
 
 osinfo-db-validate [OPTIONS...] URI1 [URI2...]
 
 =head1 DESCRIPTION
 
-Check that all files (C<LOCAL-PATH1> or C<URI1>) comply with the
-libosinfo XML schema. The local path may point to a directory
-containing XML files, or directly to an XML file. The uris must
-point directly to remote XML files
+The B<osinfo-db-validate> tool is able to validate XML files
+in one of the osinfo database locations for compliance with
+the RNG schema.
+
+=over 1
+
+=item B<system>
+
+This is the primary system-wide database location, intended
+for use by operating system vendors distributing database
+files in the native package format. The RNG schema is
+expected to be present in this location.
+
+=item B<local>
+
+This is the secondary system-wide database location, intended
+for use by system administrators wishing to provide an updated
+database for all users. This location may provide an RNG schema
+override, otherwise the RNG schema from the system location
+will be used.
+
+=item B<user>
+
+This is the user private database location, intended for use
+by unprivileged local users wishing to provide applications
+they use with an updated database. This location may provide
+an RNG schema override, otherwise the RNG schema from the
+local location will be used, or failing that the system
+location.
+
+=back
+
+If run by a privileged account (ie root), the B<local> database
+location will be validate by default, otherwise the B<user> location
+will be validated.
+
+Alternatively it is possible to directly provide a list of files
+to be validated using the (C<LOCAL-PATH1> or C<URI1>) arguments.
 
 Any validation errors will be displayed on the console when
 detected.
@@ -318,6 +397,32 @@ detected.
 =head1 OPTIONS
 
 =over 8
+
+=item B<--user>
+
+Override the default behaviour to force validating files from the
+B<user> database location.
+
+=item B<--local>
+
+Override the default behaviour to force validating files from the
+B<local> database location.
+
+=item B<--system>
+
+Override the default behaviour to force validating files from the
+B<system> database location.
+
+=item B<--dir=PATH>
+
+Override the default behaviour to force validating files from the
+custom directory B<PATH>.
+
+=item B<--root=PATH>
+
+Prefix the database location with the root directory given by
+C<PATH>. This is useful when wishing to validate files that are
+in a chroot environment or equivalent.
 
 =item B<-v>, B<--verbose>
 
@@ -332,7 +437,7 @@ or 1 if a validation error was hit.
 
 =head1 SEE ALSO
 
-C<xmllint(1)>
+C<osinfo-db-path(1)>
 
 =head1 AUTHORS
 
@@ -340,7 +445,7 @@ Daniel P. Berrange <berrange@redhat.com>
 
 =head1 COPYRIGHT
 
-Copyright (C) 2012, 2014 Red Hat, Inc.
+Copyright (C) 2012-2016 Red Hat, Inc.
 
 =head1 LICENSE
 
