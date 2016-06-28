@@ -33,6 +33,7 @@
 
 const char *argv0;
 
+time_t entryts;
 
 static int osinfo_db_export_create_file(const gchar *prefix,
                                         GFile *file,
@@ -197,6 +198,11 @@ static int osinfo_db_export_create_file(const gchar *prefix,
     entry = archive_entry_new();
     archive_entry_set_pathname(entry, entpath);
 
+    archive_entry_set_atime(entry, entryts, 0);
+    archive_entry_set_ctime(entry, entryts, 0);
+    archive_entry_set_mtime(entry, entryts, 0);
+    archive_entry_set_birthtime(entry, entryts, 0);
+
     switch (type) {
     case G_FILE_TYPE_REGULAR:
     case G_FILE_TYPE_SYMBOLIC_LINK:
@@ -212,6 +218,7 @@ static int osinfo_db_export_create_file(const gchar *prefix,
         if (verbose) {
             g_print("%s: d %s\n", argv0, entpath);
         }
+
         archive_entry_set_filetype(entry, AE_IFDIR);
         archive_entry_set_perm(entry, 0755);
         archive_entry_set_size(entry, 0);
@@ -405,6 +412,7 @@ gint main(gint argc, gchar **argv)
         goto error;
     }
 
+    entryts = time(NULL);
     prefix = osinfo_db_export_prefix(version);
     archive = argc == 2 ? argv[1] : NULL;
     dir = osinfo_db_get_path(root, user, local, system, custom);
