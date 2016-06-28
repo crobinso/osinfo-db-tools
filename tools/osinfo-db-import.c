@@ -23,89 +23,15 @@
 
 #include <config.h>
 
-#include <glib.h>
-#include <gio/gio.h>
 #include <locale.h>
 #include <glib/gi18n.h>
 #include <stdlib.h>
 #include <archive.h>
 #include <archive_entry.h>
 
+#include "osinfo-db-util.h"
+
 const char *argv0;
-
-static GFile *osinfo_db_import_get_system_path(const gchar *root)
-{
-    GFile *file;
-    gchar *dbdir;
-    const gchar *path = g_getenv("OSINFO_DATA_DIR");
-    if (!path)
-        path = DATA_DIR "/libosinfo";
-
-    dbdir = g_strdup_printf("%s%s/db", root, path);
-    file = g_file_new_for_path(dbdir);
-    g_free(dbdir);
-    return file;
-}
-
-static GFile *osinfo_db_import_get_local_path(const gchar *root)
-{
-    GFile *file;
-    gchar *dbdir;
-
-    dbdir = g_strdup_printf("%s" SYSCONFDIR "/libosinfo/db", root);
-    file = g_file_new_for_path(dbdir);
-    g_free(dbdir);
-    return file;
-}
-
-static GFile *osinfo_db_import_get_user_path(const gchar *root)
-{
-    GFile *file;
-    gchar *dbdir;
-    const gchar *configdir = g_get_user_config_dir();
-
-    dbdir = g_strdup_printf("%s%s/libosinfo/db", root, configdir);
-    file = g_file_new_for_path(dbdir);
-    g_free(dbdir);
-    return file;
-}
-
-static GFile *osinfo_db_import_get_custom_path(const gchar *dir,
-                                               const gchar *root)
-{
-    GFile *file;
-    gchar *dbdir;
-
-    dbdir = g_strdup_printf("%s%s", root, dir);
-    file = g_file_new_for_path(dbdir);
-    g_free(dbdir);
-    return file;
-}
-
-
-static GFile *osinfo_db_import_get_path(const char *root,
-                                        gboolean user,
-                                        gboolean local,
-                                        gboolean system,
-                                        const char *custom)
-{
-    if (custom) {
-        return osinfo_db_import_get_custom_path(custom, root);
-    } else if (user) {
-        return osinfo_db_import_get_user_path(root);
-    } else if (local) {
-        return osinfo_db_import_get_local_path(root);
-    } else if (system) {
-        return osinfo_db_import_get_system_path(root);
-#ifndef WIN32
-    } else if (geteuid() == 0) {
-        return osinfo_db_import_get_local_path(root);
-#endif
-    } else {
-        return osinfo_db_import_get_user_path(root);
-    }
-}
-
 
 static int osinfo_db_import_create_reg(GFile *file,
                                        struct archive *arc,
@@ -335,7 +261,7 @@ gint main(gint argc, gchar **argv)
     }
 
     archive = argc == 2 ? argv[1] : NULL;
-    dir = osinfo_db_import_get_path(root, user, local, system, custom);
+    dir = osinfo_db_get_path(root, user, local, system, custom);
     if (osinfo_db_import_extract(dir, archive, verbose) < 0)
         goto error;
 
