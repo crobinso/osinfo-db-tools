@@ -6,7 +6,7 @@ Version: @VERSION@
 Release: 1%{?dist}%{?extra_release}
 License: LGPLv2+
 Group: Development/Libraries
-Source: https://fedorahosted.org/releases/l/i/%{name}/%{name}-%{version}.tar.gz
+Source: https://fedorahosted.org/releases/l/i/libosinfo/%{name}-%{version}.tar.gz
 URL: http://libosinfo.org/
 BuildRequires: intltool
 BuildRequires: glib2-devel
