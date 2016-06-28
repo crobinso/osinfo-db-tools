@@ -206,6 +206,18 @@ static int osinfo_db_export_create_file(const gchar *prefix,
     switch (type) {
     case G_FILE_TYPE_REGULAR:
     case G_FILE_TYPE_SYMBOLIC_LINK:
+        if (g_file_info_get_is_backup(info) ||
+            g_file_info_get_is_hidden(info)) {
+            ret = 0;
+            goto cleanup;
+        }
+        if (!g_str_has_suffix(entpath, ".rng") &&
+            !g_str_has_suffix(entpath, ".xml") &&
+            !g_str_has_suffix(entpath, ".ids")) {
+            ret = 0;
+            goto cleanup;
+        }
+
         if (verbose) {
             g_print("%s: r %s\n", argv0, entpath);
         }
