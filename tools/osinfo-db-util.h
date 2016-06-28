@@ -26,6 +26,9 @@
 
 #include <gio/gio.h>
 
+#define OSINFO_DB_ERROR osinfo_db_error_quark()
+
+GQuark osinfo_db_error_quark(void);
 GFile *osinfo_db_get_system_path(const gchar *root);
 GFile *osinfo_db_get_local_path(const gchar *root);
 GFile *osinfo_db_get_user_path(const gchar *root);

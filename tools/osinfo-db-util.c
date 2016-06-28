@@ -27,6 +27,11 @@
 
 #include "osinfo-db-util.h"
 
+GQuark osinfo_db_error_quark(void)
+{
+    return g_quark_from_static_string("osinfo-db-error");
+}
+
 GFile *osinfo_db_get_system_path(const gchar *root)
 {
     GFile *file;
@@ -141,7 +146,7 @@ GFile *osinfo_db_get_file(const char *root,
     }
 
     if (!ret) {
-        g_set_error(err, 0, 0,
+        g_set_error(err, OSINFO_DB_ERROR, 0,
                     _("Unable to locate '%s' in any database location"),
                     file);
     }

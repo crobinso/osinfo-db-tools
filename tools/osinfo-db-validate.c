@@ -58,7 +58,7 @@ static xmlDocPtr parse_file(GFile *file, GError **error)
         goto cleanup;
 
     if (!(pctxt = xmlNewParserCtxt())) {
-        g_set_error(error, 0, 0, "%s",
+        g_set_error(error, OSINFO_DB_ERROR, 0, "%s",
                     _("Unable to create libxml parser"));
         goto cleanup;
     }
@@ -66,7 +66,7 @@ static xmlDocPtr parse_file(GFile *file, GError **error)
     if (!(doc = xmlCtxtReadDoc(pctxt, (const xmlChar*)data, uri, NULL,
                                XML_PARSE_NOENT | XML_PARSE_NONET |
                                XML_PARSE_NOWARNING))) {
-        g_set_error(error, 0, 0,
+        g_set_error(error, OSINFO_DB_ERROR, 0,
                     _("Unable to parse XML document '%s'"),
                     uri);
         goto cleanup;
@@ -98,7 +98,7 @@ static gboolean validate_file_regular(xmlRelaxNGValidCtxtPtr rngValid,
         goto cleanup;
 
     if (xmlRelaxNGValidateDoc(rngValid, doc) != 0) {
-        g_set_error(error, 0, 0,
+        g_set_error(error, OSINFO_DB_ERROR, 0,
                     _("Unable to validate XML document '%s'"),
                     uri);
         goto cleanup;
@@ -166,7 +166,7 @@ static gboolean validate_file(xmlRelaxNGValidCtxtPtr rngValid, GFile *file, GFil
         if (!validate_file_regular(rngValid, file, error))
             goto cleanup;
     } else {
-        g_set_error(error, 0, 0,
+        g_set_error(error, OSINFO_DB_ERROR, 0,
                     "Unable to handle file type for %s",
                     uri);
         goto cleanup;
@@ -198,7 +198,7 @@ static gboolean validate_files(GFile *schema, gsize nfiles, GFile **files, GErro
     schemapath = g_file_get_path(schema);
     rngParser = xmlRelaxNGNewParserCtxt(schemapath);
     if (!rngParser) {
-        g_set_error(error, 0, 0,
+        g_set_error(error, OSINFO_DB_ERROR, 0,
                     _("Unable to create RNG parser for %s"),
                     schemapath);
         goto cleanup;
@@ -206,7 +206,7 @@ static gboolean validate_files(GFile *schema, gsize nfiles, GFile **files, GErro
 
     rng = xmlRelaxNGParse(rngParser);
     if (!rng) {
-        g_set_error(error, 0, 0,
+        g_set_error(error, OSINFO_DB_ERROR, 0,
                     _("Unable to parse RNG %s"),
                     schemapath);
         goto cleanup;
@@ -214,7 +214,7 @@ static gboolean validate_files(GFile *schema, gsize nfiles, GFile **files, GErro
 
     rngValid = xmlRelaxNGNewValidCtxt(rng);
     if (!rngValid) {
-        g_set_error(error, 0, 0,
+        g_set_error(error, OSINFO_DB_ERROR, 0,
                     _("Unable to create RNG validation context %s"),
                     schemapath);
         goto cleanup;
