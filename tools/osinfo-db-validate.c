@@ -172,7 +172,6 @@ static gboolean validate_file(xmlRelaxNGValidCtxtPtr rngValid, GFile *file, GFil
         goto cleanup;
     }
 
-    g_print(_("Processed '%s'.\n"), uri);
     ret = TRUE;
 
  cleanup:
