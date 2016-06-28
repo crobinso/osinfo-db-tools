@@ -36,9 +36,11 @@ information about operating systems for use with virtualization
 %doc AUTHORS ChangeLog COPYING.LIB NEWS README
 %{_bindir}/osinfo-db-export
 %{_bindir}/osinfo-db-import
+%{_bindir}/osinfo-db-path
 %{_bindir}/osinfo-db-validate
 %{_mandir}/man1/osinfo-db-export.1*
 %{_mandir}/man1/osinfo-db-import.1*
+%{_mandir}/man1/osinfo-db-path.1*
 %{_mandir}/man1/osinfo-db-validate.1*
 
 %changelog

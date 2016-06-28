@@ -365,7 +365,7 @@ installed.
 
 =head1 SEE ALSO
 
-C<osinfo-db-export(1)>
+C<osinfo-db-export(1)>, C<osinfo-db-path(1)>
 
 =head1 AUTHORS
 

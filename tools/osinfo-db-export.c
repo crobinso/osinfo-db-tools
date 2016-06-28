@@ -518,7 +518,7 @@ packed into the archive.
 
 =head1 SEE ALSO
 
-C<osinfo-db-import(1)>
+C<osinfo-db-import(1)>, C<osinfo-db-path(1)>
 
 =head1 AUTHORS
 

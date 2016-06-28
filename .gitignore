@@ -43,6 +43,9 @@ tools/osinfo-db-import.1
 tools/osinfo-db-export
 tools/osinfo-db-export.exe
 tools/osinfo-db-export.1
+tools/osinfo-db-path
+tools/osinfo-db-path.exe
+tools/osinfo-db-path.1
 po/.intltool-merge-cache
 po/Makefile.in.in
 po/POTFILES
