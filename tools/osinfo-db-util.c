@@ -23,6 +23,8 @@
 
 #include <config.h>
 
+#include <glib/gi18n.h>
+
 #include "osinfo-db-util.h"
 
 GFile *osinfo_db_get_system_path(const gchar *root)
@@ -99,6 +101,52 @@ GFile *osinfo_db_get_path(const char *root,
     } else {
         return osinfo_db_get_user_path(root);
     }
+}
+
+GFile *osinfo_db_get_file(const char *root,
+                          gboolean user,
+                          gboolean local,
+                          gboolean system,
+                          const char *custom,
+                          const gchar *file,
+                          GError **err)
+{
+    GFile *ret = NULL;
+    gboolean tryAll = TRUE;
+    GFile *paths[4];
+    gsize npaths = 0;
+    gsize i;
+
+    if (user || local || system || custom)
+        tryAll = FALSE;
+
+    if (custom)
+        paths[npaths++] = osinfo_db_get_custom_path(custom, root);
+
+    if (tryAll || user)
+        paths[npaths++] = osinfo_db_get_user_path(root);
+
+    if (tryAll || local)
+        paths[npaths++] = osinfo_db_get_local_path(root);
+
+    if (tryAll || system)
+        paths[npaths++] = osinfo_db_get_system_path(root);
+
+    for (i = 0; i < npaths; i++) {
+        ret = g_file_resolve_relative_path(paths[i], file);
+        if (g_file_query_exists(ret, NULL))
+            break;
+        g_object_unref(ret);
+        ret = NULL;
+    }
+
+    if (!ret) {
+        g_set_error(err, 0, 0,
+                    _("Unable to locate '%s' in any database location"),
+                    file);
+    }
+
+    return ret;
 }
 
 /*

@@ -36,6 +36,13 @@ GFile *osinfo_db_get_path(const char *root,
                           gboolean local,
                           gboolean system,
                           const char *custom);
+GFile *osinfo_db_get_file(const char *root,
+                          gboolean user,
+                          gboolean local,
+                          gboolean system,
+                          const char *custom,
+                          const gchar *file,
+                          GError **err);
 
 #endif /* OSINFO_DB_UTIL_H__ */
 

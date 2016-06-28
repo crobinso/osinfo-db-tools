@@ -26,7 +26,7 @@ COMMON_SOURCES = \
 		osinfo-db-util.h \
 		$(NULL)
 
-osinfo_db_validate_SOURCES = osinfo-db-validate.c
+osinfo_db_validate_SOURCES = osinfo-db-validate.c $(COMMON_SOURCES)
 osinfo_db_validate_LDADD = $(GOBJECT_LIBS)	\
 		      $(GIO_LIBS)		\
 		      $(GLIB_LIBS)		\

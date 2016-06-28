@@ -23,13 +23,11 @@
 
 #include <config.h>
 
-#include <glib.h>
-#include <gio/gio.h>
 #include <libxml/relaxng.h>
 #include <locale.h>
 #include <glib/gi18n.h>
 
-#define SCHEMA PKGDATADIR "/schemas/libosinfo.rng"
+#include "osinfo-db-util.h"
 
 static gboolean verbose = FALSE;
 
@@ -192,22 +190,24 @@ static gboolean validate_file(xmlRelaxNGValidCtxtPtr rngValid, GFile *file, GFil
 }
 
 
-static gboolean validate_files(gint argc, gchar **argv, GError **error)
+static gboolean validate_files(GFile *schema, gint argc, gchar **argv, GError **error)
 {
     xmlRelaxNGParserCtxtPtr rngParser = NULL;
     xmlRelaxNGPtr rng = NULL;
     xmlRelaxNGValidCtxtPtr rngValid = NULL;
     gboolean ret = FALSE;
     gsize i;
+    gchar *schemapath = NULL;
 
     xmlSetGenericErrorFunc(NULL, validate_generic_error_nop);
     xmlSetStructuredErrorFunc(NULL, validate_structured_error_nop);
 
-    rngParser = xmlRelaxNGNewParserCtxt(SCHEMA);
+    schemapath = g_file_get_path(schema);
+    rngParser = xmlRelaxNGNewParserCtxt(schemapath);
     if (!rngParser) {
         g_set_error(error, 0, 0,
                     _("Unable to create RNG parser for %s"),
-                    SCHEMA);
+                    schemapath);
         goto cleanup;
     }
 
@@ -215,7 +215,7 @@ static gboolean validate_files(gint argc, gchar **argv, GError **error)
     if (!rng) {
         g_set_error(error, 0, 0,
                     _("Unable to parse RNG %s"),
-                    SCHEMA);
+                    schemapath);
         goto cleanup;
     }
 
@@ -223,7 +223,7 @@ static gboolean validate_files(gint argc, gchar **argv, GError **error)
     if (!rngValid) {
         g_set_error(error, 0, 0,
                     _("Unable to create RNG validation context %s"),
-                    SCHEMA);
+                    schemapath);
         goto cleanup;
     }
 
@@ -239,6 +239,7 @@ static gboolean validate_files(gint argc, gchar **argv, GError **error)
     ret = TRUE;
 
  cleanup:
+    g_free(schemapath);
     xmlRelaxNGFreeValidCtxt(rngValid);
     xmlRelaxNGFreeParserCtxt(rngParser);
     xmlRelaxNGFree(rng);
@@ -250,6 +251,7 @@ gint main(gint argc, gchar **argv)
     GOptionContext *context;
     GError *error = NULL;
     gint ret = EXIT_FAILURE;
+    GFile *schema = NULL;
 
     setlocale(LC_ALL, "");
     textdomain(GETTEXT_PACKAGE);
@@ -267,7 +269,14 @@ gint main(gint argc, gchar **argv)
         goto error;
     }
 
-    if (!validate_files(argc - 1, argv + 1, &error)) {
+    schema = osinfo_db_get_file(NULL, FALSE, FALSE, FALSE, NULL,
+                                "schema/osinfo.rng", &error);
+    if (!schema) {
+        g_printerr("%s\n", error->message);
+        goto error;
+    }
+
+    if (!validate_files(schema, argc - 1, argv + 1, &error)) {
         g_printerr("%s\n", error->message);
         goto error;
     }
@@ -275,6 +284,8 @@ gint main(gint argc, gchar **argv)
     ret = EXIT_SUCCESS;
 
  error:
+    if (schema)
+        g_object_unref(schema);
     g_clear_error(&error);
     g_option_context_free(context);
 
