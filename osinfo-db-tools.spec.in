@@ -32,7 +32,6 @@ information about operating systems for use with virtualization
 %find_lang %{name}
 
 %files -f %{name}.lang
-%defattr(-, root, root)
 %doc AUTHORS ChangeLog COPYING.LIB NEWS README
 %{_bindir}/osinfo-db-export
 %{_bindir}/osinfo-db-import
