@@ -550,7 +550,7 @@ Copyright (C) 2016 Red Hat, Inc.
 
 =head1 LICENSE
 
-C<osinfo-db-export> is distributed under the termsof the GNU LGPL v2+
+C<osinfo-db-export> is distributed under the terms of the GNU LGPL v2+
 license. This is free software; see the source for copying conditions.
 There is NO warranty; not even for MERCHANTABILITY or FITNESS
 FOR A PARTICULAR PURPOSE
