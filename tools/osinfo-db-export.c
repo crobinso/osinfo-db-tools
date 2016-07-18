@@ -292,7 +292,52 @@ static int osinfo_db_export_create_file(const gchar *prefix,
     return ret;
 }
 
+static int osinfo_db_export_create_version(const gchar *prefix,
+                                           const gchar *version,
+                                           const gchar *target,
+                                           struct archive *arc,
+                                           gboolean verbose)
+{
+    int ret = -1;
+    struct archive_entry *entry = NULL;
+    gchar *entpath = NULL;
+
+    entpath = g_strdup_printf("%s/VERSION", prefix);
+    entry = archive_entry_new();
+    archive_entry_set_pathname(entry, entpath);
+
+    archive_entry_set_atime(entry, entryts, 0);
+    archive_entry_set_ctime(entry, entryts, 0);
+    archive_entry_set_mtime(entry, entryts, 0);
+    archive_entry_set_birthtime(entry, entryts, 0);
+
+    if (verbose) {
+        g_print("%s: r %s\n", argv0, entpath);
+    }
+    archive_entry_set_filetype(entry, AE_IFREG);
+    archive_entry_set_perm(entry, 0644);
+    archive_entry_set_size(entry, strlen(version));
+
+    if (archive_write_header(arc, entry) != ARCHIVE_OK) {
+        g_printerr("%s: cannot write archive header %s: %s\n",
+                   argv0, target, archive_error_string(arc));
+        goto cleanup;
+    }
+
+    if (archive_write_data(arc, version, strlen(version)) < 0) {
+        g_printerr("%s: cannot write archive data for %s to %s: %s\n",
+                   argv0, entpath, target, archive_error_string(arc));
+        goto cleanup;
+    }
+
+    ret = 0;
+ cleanup:
+    archive_entry_free(entry);
+    return ret;
+}
+
 static int osinfo_db_export_create(const gchar *prefix,
+                                   const gchar *version,
                                    GFile *source,
                                    const gchar *target,
                                    gboolean verbose)
@@ -320,6 +365,10 @@ static int osinfo_db_export_create(const gchar *prefix,
         goto cleanup;
     }
 
+    if (osinfo_db_export_create_version(prefix, version, target, arc, verbose) < 0) {
+        goto cleanup;
+    }
+
     if (archive_write_close(arc) != ARCHIVE_OK) {
         g_printerr("%s: cannot finish writing archive %s: %s\n",
                    argv0, target, archive_error_string(arc));
@@ -334,23 +383,20 @@ static int osinfo_db_export_create(const gchar *prefix,
     return ret;
 }
 
-static gchar *osinfo_db_export_prefix(const gchar *version)
-{
-    if (version == NULL) {
-        GTimeZone *tz = g_time_zone_new_utc();
-        GDateTime *now = g_date_time_new_now(tz);
-        gchar *ret;
 
-        ret = g_strdup_printf("osinfo-db-%04d%02d%02d",
-                              g_date_time_get_year(now),
-                              g_date_time_get_month(now),
-                              g_date_time_get_day_of_month(now));
-        g_date_time_unref(now);
-        g_time_zone_unref(tz);
-        return ret;
-    } else {
-        return g_strdup_printf("osinfo-db-%s", version);
-    }
+static gchar *osinfo_db_version(void)
+{
+    GTimeZone *tz = g_time_zone_new_utc();
+    GDateTime *now = g_date_time_new_now(tz);
+    gchar *ret;
+
+    ret = g_strdup_printf("%04d%02d%02d",
+                          g_date_time_get_year(now),
+                          g_date_time_get_month(now),
+                          g_date_time_get_day_of_month(now));
+    g_date_time_unref(now);
+    g_time_zone_unref(tz);
+    return ret;
 }
 
 
@@ -367,6 +413,7 @@ gint main(gint argc, gchar **argv)
     const gchar *archive = NULL;
     const gchar *custom = NULL;
     const gchar *version = NULL;
+    gchar *autoversion = NULL;
     gchar *prefix = NULL;
     int locs = 0;
     GFile *dir = NULL;
@@ -425,15 +472,20 @@ gint main(gint argc, gchar **argv)
     }
 
     entryts = time(NULL);
-    prefix = osinfo_db_export_prefix(version);
+    if (version == NULL) {
+        autoversion = osinfo_db_version();
+        version = autoversion;
+    }
+    prefix = g_strdup_printf("osinfo-db-%s", version);
     archive = argc == 2 ? argv[1] : NULL;
     dir = osinfo_db_get_path(root, user, local, system, custom);
-    if (osinfo_db_export_create(prefix, dir, archive, verbose) < 0)
+    if (osinfo_db_export_create(prefix, version, dir, archive, verbose) < 0)
         goto error;
 
     ret = EXIT_SUCCESS;
 
  error:
+    g_free(autoversion);
     g_free(prefix);
     if (dir) {
         g_object_unref(dir);
