@@ -341,7 +341,7 @@ static gchar *osinfo_db_export_prefix(const gchar *version)
         GDateTime *now = g_date_time_new_now(tz);
         gchar *ret;
 
-        ret = g_strdup_printf("osinfo-db-%04d-%02d-%02d",
+        ret = g_strdup_printf("osinfo-db-%04d%02d%02d",
                               g_date_time_get_year(now),
                               g_date_time_get_month(now),
                               g_date_time_get_day_of_month(now));
@@ -522,7 +522,7 @@ in a chroot environment or equivalent.
 
 Set the version string for the files in the archive to
 B<VERSION>. If this argument is not given, the version
-will be set to the current date in the format B<YYYY-MM-DD>.
+will be set to the current date in the format B<YYYYMMDD>.
 
 =item B<-v>, B<--verbose>
 
