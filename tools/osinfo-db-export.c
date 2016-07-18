@@ -410,7 +410,7 @@ gint main(gint argc, gchar **argv)
     gboolean local = FALSE;
     gboolean system = FALSE;
     const gchar *root = "";
-    const gchar *archive = NULL;
+    gchar *archive = NULL;
     const gchar *custom = NULL;
     const gchar *version = NULL;
     gchar *autoversion = NULL;
@@ -477,7 +477,11 @@ gint main(gint argc, gchar **argv)
         version = autoversion;
     }
     prefix = g_strdup_printf("osinfo-db-%s", version);
-    archive = argc == 2 ? argv[1] : NULL;
+    if (argc == 2) {
+        archive = g_strdup(argv[1]);
+    } else {
+        archive = g_strdup_printf("%s.tar.xz", prefix);
+    }
     dir = osinfo_db_get_path(root, user, local, system, custom);
     if (osinfo_db_export_create(prefix, version, dir, archive, verbose) < 0)
         goto error;
@@ -485,6 +489,7 @@ gint main(gint argc, gchar **argv)
     ret = EXIT_SUCCESS;
 
  error:
+    g_free(archive);
     g_free(autoversion);
     g_free(prefix);
     if (dir) {
@@ -506,7 +511,7 @@ osinfo-db-export - Export to a osinfo database archive
 
 =head1 SYNOPSIS
 
-osinfo-db-export [OPTIONS...] ARCHIVE-FILE
+osinfo-db-export [OPTIONS...] [ARCHIVE-FILE]
 
 =head1 DESCRIPTION
 
@@ -539,6 +544,9 @@ they use with an updated database.
 If run by a privileged account (ie root), the B<local> database
 location will be used by default, otherwise the B<user> location
 will be used.
+
+If no B<ARCHIVE-FILE> path is given, an automatically generated
+filename will be used, taking the format B<osinfo-db-$VERSION.tar.xz>.
 
 =head1 OPTIONS
 
