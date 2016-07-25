@@ -36,11 +36,11 @@ GFile *osinfo_db_get_system_path(const gchar *root)
 {
     GFile *file;
     gchar *dbdir;
-    const gchar *path = g_getenv("OSINFO_DATA_DIR");
+    const gchar *path = g_getenv("OSINFO_SYSTEM_DIR");
     if (!path)
-        path = DATA_DIR "/libosinfo";
+        path = DATA_DIR "/osinfo";
 
-    dbdir = g_strdup_printf("%s%s/db", root, path);
+    dbdir = g_strdup_printf("%s%s", root, path);
     file = g_file_new_for_path(dbdir);
     g_free(dbdir);
     return file;
@@ -51,8 +51,11 @@ GFile *osinfo_db_get_local_path(const gchar *root)
 {
     GFile *file;
     gchar *dbdir;
+    const gchar *path = g_getenv("OSINFO_LOCAL_DIR");
+    if (!path)
+        path = SYSCONFDIR "/osinfo";
 
-    dbdir = g_strdup_printf("%s" SYSCONFDIR "/libosinfo/db", root);
+    dbdir = g_strdup_printf("%s%s", root, path);
     file = g_file_new_for_path(dbdir);
     g_free(dbdir);
     return file;
@@ -63,9 +66,14 @@ GFile *osinfo_db_get_user_path(const gchar *root)
 {
     GFile *file;
     gchar *dbdir;
+    const gchar *path = g_getenv("OSINFO_USER_DIR");
     const gchar *configdir = g_get_user_config_dir();
 
-    dbdir = g_strdup_printf("%s%s/libosinfo/db", root, configdir);
+    if (path) {
+        dbdir = g_strdup_printf("%s%s", root, path);
+    } else {
+        dbdir = g_strdup_printf("%s%s/osinfo", root, configdir);
+    }
     file = g_file_new_for_path(dbdir);
     g_free(dbdir);
     return file;
