@@ -73,7 +73,8 @@ rm -rf $RPM_BUILD_ROOT%{mingw32_datadir}/man
 rm -rf $RPM_BUILD_ROOT%{mingw64_datadir}/man
 
 %files -n mingw32-osinfo-db-tools
-%doc AUTHORS ChangeLog COPYING.LIB NEWS README
+%doc AUTHORS ChangeLog NEWS README
+%license COPYING
 %{mingw32_bindir}/osinfo-db-export.exe
 %{mingw32_bindir}/osinfo-db-import.exe
 %{mingw32_bindir}/osinfo-db-path.exe
@@ -81,7 +82,8 @@ rm -rf $RPM_BUILD_ROOT%{mingw64_datadir}/man
 %{mingw32_datadir}/locale/*/LC_MESSAGES/osinfo-db-tools.mo
 
 %files -n mingw64-osinfo-db-tools
-%doc AUTHORS ChangeLog COPYING.LIB NEWS README
+%doc AUTHORS ChangeLog NEWS README
+%license COPYING
 %{mingw64_bindir}/osinfo-db-export.exe
 %{mingw64_bindir}/osinfo-db-import.exe
 %{mingw64_bindir}/osinfo-db-path.exe

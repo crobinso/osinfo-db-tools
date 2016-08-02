@@ -7,7 +7,7 @@ hypervisors and the (virtual) hardware devices they can support.
 This package contains a set of tools to assist administrators and
 developers in managing the database.
 
-osinfo-db-tools is Free Software and licenced under LGPLv2+.
+osinfo-db-tools is Free Software and licenced under GPLv2+.
 
 The latest official releases can be found at:
 

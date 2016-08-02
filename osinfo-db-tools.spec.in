@@ -4,7 +4,7 @@ Summary: Tools for managing the osinfo database
 Name: osinfo-db-tools
 Version: @VERSION@
 Release: 1%{?dist}%{?extra_release}
-License: LGPLv2+
+License: GPLv2+
 Group: Development/Libraries
 Source: https://fedorahosted.org/releases/l/i/libosinfo/%{name}-%{version}.tar.gz
 URL: http://libosinfo.org/
@@ -32,7 +32,8 @@ information about operating systems for use with virtualization
 %find_lang %{name}
 
 %files -f %{name}.lang
-%doc AUTHORS ChangeLog COPYING.LIB NEWS README
+%doc AUTHORS ChangeLog NEWS README
+%license COPYING
 %{_bindir}/osinfo-db-export
 %{_bindir}/osinfo-db-import
 %{_bindir}/osinfo-db-path

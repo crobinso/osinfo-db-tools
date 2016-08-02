@@ -15,7 +15,6 @@ DISTCLEANFILES =				\
 	$(NULL)
 
 EXTRA_DIST = \
-  COPYING.LIB \
   osinfo-db-tools.spec \
   osinfo-db-tools.spec.in \
   mingw-osinfo-db-tools.spec.in \
