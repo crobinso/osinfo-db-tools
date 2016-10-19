@@ -336,10 +336,72 @@ static int osinfo_db_export_create_version(const gchar *prefix,
     return ret;
 }
 
+static int osinfo_db_export_create_license(const gchar *prefix,
+                                           const gchar *license,
+                                           const gchar *target,
+                                           struct archive *arc,
+                                           gboolean verbose)
+{
+    int ret = -1;
+    struct archive_entry *entry = NULL;
+    gchar *entpath = NULL;
+    GFile *file = NULL;
+    GFileInfo *info = NULL;
+    GError *err = NULL;
+
+    file = g_file_new_for_path(license);
+
+    info = g_file_query_info(file,
+                             G_FILE_ATTRIBUTE_STANDARD_NAME
+                             ","
+                             G_FILE_ATTRIBUTE_STANDARD_SIZE,
+                             G_FILE_QUERY_INFO_NONE,
+                             NULL,
+                             &err);
+    if (!info) {
+        g_printerr("%s: cannot get file info %s: %s\n",
+                   argv0, license, err->message);
+        goto cleanup;
+    }
+
+    entpath = g_strdup_printf("%s/LICENSE", prefix);
+    entry = archive_entry_new();
+    archive_entry_set_pathname(entry, entpath);
+
+    archive_entry_set_atime(entry, entryts, 0);
+    archive_entry_set_ctime(entry, entryts, 0);
+    archive_entry_set_mtime(entry, entryts, 0);
+    archive_entry_set_birthtime(entry, entryts, 0);
+
+    if (verbose) {
+        g_print("%s: r %s\n", argv0, entpath);
+    }
+    archive_entry_set_filetype(entry, AE_IFREG);
+    archive_entry_set_perm(entry, 0644);
+    archive_entry_set_size(entry, g_file_info_get_size(info));
+
+    if (archive_write_header(arc, entry) != ARCHIVE_OK) {
+        g_printerr("%s: cannot write archive header %s: %s\n",
+                   argv0, target, archive_error_string(arc));
+        goto cleanup;
+    }
+
+    if (osinfo_db_export_create_reg(file, license, target, arc) < 0)
+        goto cleanup;
+
+    ret = 0;
+ cleanup:
+    archive_entry_free(entry);
+    if (err)
+        g_error_free(err);
+    return ret;
+}
+
 static int osinfo_db_export_create(const gchar *prefix,
                                    const gchar *version,
                                    GFile *source,
                                    const gchar *target,
+                                   const gchar *license,
                                    gboolean verbose)
 {
     struct archive *arc;
@@ -366,6 +428,11 @@ static int osinfo_db_export_create(const gchar *prefix,
     }
 
     if (osinfo_db_export_create_version(prefix, version, target, arc, verbose) < 0) {
+        goto cleanup;
+    }
+
+    if (license != NULL &&
+        osinfo_db_export_create_license(prefix, license, target, arc, verbose) < 0) {
         goto cleanup;
     }
 
@@ -415,6 +482,7 @@ gint main(gint argc, gchar **argv)
     const gchar *version = NULL;
     gchar *autoversion = NULL;
     gchar *prefix = NULL;
+    const gchar *license = NULL;
     int locs = 0;
     GFile *dir = NULL;
     const GOptionEntry entries[] = {
@@ -432,6 +500,8 @@ gint main(gint argc, gchar **argv)
         N_("Set version number of archive"), NULL, },
       { "root", 0, 0, G_OPTION_ARG_STRING, &root,
         N_("Installation root directory"), NULL, },
+      { "license", 0, 0, G_OPTION_ARG_STRING, &license,
+        N_("License file"), NULL, },
       { NULL, 0, 0, 0, NULL, NULL, NULL },
     };
     argv0 = argv[0];
@@ -483,7 +553,8 @@ gint main(gint argc, gchar **argv)
         archive = g_strdup_printf("%s.tar.xz", prefix);
     }
     dir = osinfo_db_get_path(root, user, local, system, custom);
-    if (osinfo_db_export_create(prefix, version, dir, archive, verbose) < 0)
+    if (osinfo_db_export_create(prefix, version, dir, archive,
+                                license, verbose) < 0)
         goto error;
 
     ret = EXIT_SUCCESS;
@@ -583,6 +654,11 @@ in a chroot environment or equivalent.
 Set the version string for the files in the archive to
 B<VERSION>. If this argument is not given, the version
 will be set to the current date in the format B<YYYYMMDD>.
+
+=item B<--license=LICENSE-FILE>
+
+Add C<LICENSE-FILE> to the generated archive as an entry
+named "LICENSE".
 
 =item B<-v>, B<--verbose>
 
