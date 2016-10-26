@@ -2,7 +2,10 @@
 1.1.0
 =====
 
-- xxx
+- Add --license option to osinfo-db-export
+- Fix license file to refer to GPL, not LGPL
+- Fix typos in help output
+- List libarchive as pre-req in README
 
 1.0.0
 =====
