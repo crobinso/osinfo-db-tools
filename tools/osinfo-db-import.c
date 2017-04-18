@@ -39,7 +39,7 @@ static int osinfo_db_import_create_reg(GFile *file,
 {
     GFileOutputStream *os = NULL;
     GError *err = NULL;
-    int ret;
+    int ret = -1;
     int r;
     const void *buf;
     size_t size;
