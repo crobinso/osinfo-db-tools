@@ -8,6 +8,9 @@ AC_CONFIG_HEADERS([config.h])
 AC_PROG_CC
 AC_PROG_LN_S
 
+# Perl is needed for syntax-check
+AC_PATH_PROG([PERL], [perl])
+
 LT_INIT([shared disable-static win32-dll])
 
 LIBOSINFO_COMPILE_WARNINGS
