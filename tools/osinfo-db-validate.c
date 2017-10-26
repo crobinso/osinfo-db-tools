@@ -64,7 +64,7 @@ static xmlDocPtr parse_file(GFile *file, GError **error)
     }
 
     if (!(doc = xmlCtxtReadDoc(pctxt, (const xmlChar*)data, uri, NULL,
-                               XML_PARSE_NOENT | XML_PARSE_NONET |
+                               XML_PARSE_NONET |
                                XML_PARSE_NOWARNING))) {
         g_set_error(error, OSINFO_DB_ERROR, 0,
                     _("Unable to parse XML document '%s'"),
