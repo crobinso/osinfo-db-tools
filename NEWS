@@ -1,4 +1,11 @@
 
+1.2.0
+=====
+
+- Don't expand XML entities
+- Fix build with CLang
+- Don't hardcode perl interpretor path
+
 1.1.0
 =====
 
