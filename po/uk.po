@@ -5,13 +5,14 @@
 # Translators:
 # Yuri Chornoivan <yurchor@ukr.net>, 2012.
 # Daniel Berrange <dan-zanata@berrange.com>, 2016. #zanata
+# Yuri Chornoivan <yurchor@ukr.net>, 2017. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-04 16:45+0000\n"
-"PO-Revision-Date: 2016-03-04 07:50-0500\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+"POT-Creation-Date: 2018-09-05 11:32+0100\n"
+"PO-Revision-Date: 2017-12-06 12:09+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/projects/p/libosinfo/"
 "language/uk/)\n"
 "Language: uk\n"
@@ -20,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Zanata 3.9.6\n"
+"X-Generator: Zanata 4.6.2\n"
 
 #: ../tools/osinfo-db-export.c:490 ../tools/osinfo-db-import.c:213
 #: ../tools/osinfo-db-validate.c:254
@@ -29,36 +30,36 @@ msgstr "Докладні дані щодо поступу"
 
 #: ../tools/osinfo-db-export.c:492
 msgid "Install into user directory"
-msgstr ""
+msgstr "Встановити до каталогу користувача"
 
 #: ../tools/osinfo-db-export.c:494
 msgid "Install into local directory"
-msgstr ""
+msgstr "Встановити до локального каталогу"
 
 #: ../tools/osinfo-db-export.c:496
 msgid "Install into system directory"
-msgstr ""
+msgstr "Встановити до системного каталогу"
 
 #: ../tools/osinfo-db-export.c:498 ../tools/osinfo-db-import.c:221
 msgid "Import into custom directory"
-msgstr ""
+msgstr "Імпортувати до нетипового каталогу"
 
 #: ../tools/osinfo-db-export.c:500
 msgid "Set version number of archive"
-msgstr ""
+msgstr "Встановити номер версії архіву"
 
 #: ../tools/osinfo-db-export.c:502 ../tools/osinfo-db-import.c:223
 #: ../tools/osinfo-db-validate.c:264
 msgid "Installation root directory"
-msgstr ""
+msgstr "Кореневий каталог встановлення"
 
 #: ../tools/osinfo-db-export.c:504
 msgid "License file"
-msgstr ""
+msgstr "Файл умов ліцензування"
 
 #: ../tools/osinfo-db-export.c:514
 msgid "- Export database archive "
-msgstr ""
+msgstr "- Експортувати архів бази даних "
 
 #: ../tools/osinfo-db-export.c:519 ../tools/osinfo-db-import.c:238
 #: ../tools/osinfo-db-path.c:72
@@ -67,72 +68,78 @@ msgid ""
 "%s: error while parsing commandline options: %s\n"
 "\n"
 msgstr ""
+"%s: помилка під час обробки параметрів рядка команди: %s\n"
+"\n"
 
 #: ../tools/osinfo-db-export.c:526
 #, c-format
 msgid "%s: expected path to one archive file to export\n"
 msgstr ""
+"%s: мало бути вказано шлях до одного з файлів архіву для експортування\n"
 
 #: ../tools/osinfo-db-export.c:540 ../tools/osinfo-db-import.c:259
 #: ../tools/osinfo-db-path.c:93
 #, c-format
 msgid "Only one of --user, --local, --system & --dir can be used"
 msgstr ""
+"Можна використовувати лише один з параметрів, --user, --local, --system або "
+"--dir"
 
 #: ../tools/osinfo-db-import.c:215
 msgid "Import into user directory"
-msgstr ""
+msgstr "Імпортувати до каталогу користувача"
 
 #: ../tools/osinfo-db-import.c:217
 msgid "Import into local directory"
-msgstr ""
+msgstr "Імпортувати до локального каталогу"
 
 #: ../tools/osinfo-db-import.c:219
 msgid "Import into system directory"
-msgstr ""
+msgstr "Імпортувати до системного каталогу"
 
 #: ../tools/osinfo-db-import.c:233
 msgid "- Import database archive "
-msgstr ""
+msgstr "- Імпортувати архів бази даних "
 
 #: ../tools/osinfo-db-import.c:245
 #, c-format
 msgid "%s: expected path to one archive file to import\n"
 msgstr ""
+"%s: мало бути вказано шлях до одного з файлів архіву для імпортування\n"
 
 #: ../tools/osinfo-db-path.c:49
 msgid "Report the user directory"
-msgstr ""
+msgstr "Звіт щодо каталогу користувача"
 
 #: ../tools/osinfo-db-path.c:51
 msgid "Report the local directory"
-msgstr ""
+msgstr "Звіт щодо локального каталогу"
 
 #: ../tools/osinfo-db-path.c:53
 msgid "Report the system directory"
-msgstr ""
+msgstr "Звіт щодо системного каталогу"
 
 #: ../tools/osinfo-db-path.c:55
 msgid "Report the custom directory"
-msgstr ""
+msgstr "Звіт щодо нетипового каталогу"
 
 #: ../tools/osinfo-db-path.c:57
 msgid "Report against root directory"
-msgstr ""
+msgstr "Звіт щодо кореневого каталогу"
 
 #: ../tools/osinfo-db-path.c:67
 msgid "- Report database locations "
-msgstr ""
+msgstr "- Звіт щодо розташування баз даних "
 
 #: ../tools/osinfo-db-path.c:79
 #, c-format
 msgid "%s: unexpected extra arguments\n"
-msgstr ""
+msgstr "%s: неочікувані зайві аргументи\n"
 
 #: ../tools/osinfo-db-util.c:158
 #, c-format
 msgid "Unable to locate '%s' in any database location"
-msgstr ""
+msgstr "Не вдалося знайти «%s» у жодному з розташувань баз даних"
 
 #: ../tools/osinfo-db-validate.c:46
 #, c-format
@@ -175,19 +182,19 @@ msgstr "Не вдалося створити контекст перевірки
 
 #: ../tools/osinfo-db-validate.c:256
 msgid "Validate files in user directory"
-msgstr ""
+msgstr "Перевірити файли у каталозі користувача"
 
 #: ../tools/osinfo-db-validate.c:258
 msgid "Validate files in local directory"
-msgstr ""
+msgstr "Перевірити файли у локальному каталозі"
 
 #: ../tools/osinfo-db-validate.c:260
 msgid "Validate files in system directory"
-msgstr ""
+msgstr "Перевірити файли у системному каталозі"
 
 #: ../tools/osinfo-db-validate.c:262
 msgid "Validate files in custom directory"
-msgstr ""
+msgstr "Перевірити файли у нетиповому каталозі"
 
 #: ../tools/osinfo-db-validate.c:273
 msgid "- Validate XML documents "
@@ -204,3 +211,5 @@ msgid ""
 "Only one of --user, --local, --system, --dir or positional filenames can be "
 "used"
 msgstr ""
+"Можна використовувати лише один з параметрів, --user, --local, --system, --"
+"dir або позиційні назви файлів"
