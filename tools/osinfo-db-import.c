@@ -64,7 +64,7 @@ static int osinfo_db_import_create_reg(GFile *file,
         }
 
         if (!g_seekable_seek(G_SEEKABLE(os), offset, G_SEEK_SET, NULL, NULL)) {
-            g_printerr("%s: cannot seek to %" PRId64 " in %s\n",
+            g_printerr("%s: cannot seek to %" G_GUINT64_FORMAT " in %s\n",
                        argv0, (uint64_t)offset, g_file_get_path(file));
             goto cleanup;
         }
