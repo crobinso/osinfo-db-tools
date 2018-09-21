@@ -290,7 +290,7 @@ gint main(gint argc, gchar **argv)
     if (custom)
         locs++;
     if (locs > 1 || (locs && argc > 1)) {
-        g_printerr(_("Only one of --user, --local, --system, --dir or positional filenames can be used"));
+        g_printerr(_("Only one of --user, --local, --system, --dir or positional filenames can be used\n"));
         goto error;
     }
 
