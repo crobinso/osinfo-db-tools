@@ -286,7 +286,8 @@ static int osinfo_db_export_create_file(const gchar *prefix,
     g_free(abspath);
     g_free(relpath);
     g_free(entpath);
-    g_object_unref(info);
+    if (info)
+        g_object_unref(info);
     if (err)
         g_error_free(err);
     return ret;
