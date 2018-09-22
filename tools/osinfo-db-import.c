@@ -287,7 +287,7 @@ osinfo-db-import - Import an osinfo database archive
 
 =head1 SYNOPSIS
 
-osinfo-db-import [OPTIONS...] ARCHIVE-FILE
+osinfo-db-import [OPTIONS...] [ARCHIVE-FILE]
 
 =head1 DESCRIPTION
 
@@ -320,6 +320,9 @@ they use with an updated database.
 If run by a privileged account (ie root), the B<local> database
 location will be used by default, otherwise the B<user> location
 will be used.
+
+With no ARCHIVE-FILE, or when ARCHIVE-FILE is -, read standard
+input.
 
 =head1 OPTIONS
 
