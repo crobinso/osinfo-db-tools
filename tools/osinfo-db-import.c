@@ -134,6 +134,50 @@ static GFile *osinfo_db_import_get_file(GFile *target,
     return g_file_resolve_relative_path(target, tmp);
 }
 
+static int
+osinfo_db_import_download_file(GFile *file,
+                               gchar **source_file)
+{
+    GFile *out = NULL;
+    GError *err = NULL;
+    gchar *filename = NULL;
+    GFileCopyFlags flags = G_FILE_COPY_OVERWRITE | G_FILE_COPY_BACKUP;
+    int ret = -1;
+
+    filename = g_file_get_basename(file);
+    if (filename == NULL)
+        goto cleanup;
+
+    *source_file = g_build_filename(g_get_user_cache_dir(), filename, NULL);
+    if (*source_file == NULL)
+        goto cleanup;
+
+    out = g_file_new_for_path(*source_file);
+    if (out == NULL)
+        goto cleanup;
+
+    if (!g_file_copy(file, out, flags, NULL, NULL, NULL, &err)) {
+        gchar *path = g_file_get_path(file);
+        g_printerr("Could not download file \"%s\": %s\n",
+                   path, err->message);
+        g_free(path);
+        goto cleanup;
+    }
+
+    ret = 0;
+
+ cleanup:
+    g_free(filename);
+    if (out != NULL)
+        g_object_unref(out);
+    if (err != NULL)
+        g_error_free(err);
+    if (ret != 0)
+        unlink(*source_file);
+
+    return ret;
+}
+
 static int osinfo_db_import_extract(GFile *target,
                                     const char *source,
                                     gboolean verbose)
@@ -143,6 +187,8 @@ static int osinfo_db_import_extract(GFile *target,
     int ret = -1;
     int r;
     GFile *file = NULL;
+    gchar *source_file = NULL;
+    gboolean file_is_native = TRUE;
 
     arc = archive_read_new();
 
@@ -152,9 +198,27 @@ static int osinfo_db_import_extract(GFile *target,
     if (source != NULL && g_str_equal(source, "-"))
         source = NULL;
 
-    if ((r = archive_read_open_filename(arc, source, 10240)) != ARCHIVE_OK) {
+    if (source != NULL) {
+        file = g_file_new_for_uri(source);
+        if (file == NULL)
+            goto cleanup;
+
+        file_is_native = g_file_is_native(file);
+        if (!file_is_native) {
+            if (osinfo_db_import_download_file(file, &source_file) < 0)
+                goto cleanup;
+        } else {
+            source_file = g_strdup(source);
+        }
+        if (source_file == NULL)
+            goto cleanup;
+
+        g_clear_object(&file);
+    }
+
+    if ((r = archive_read_open_filename(arc, source_file, 10240)) != ARCHIVE_OK) {
         g_printerr("%s: cannot open archive %s: %s\n",
-                   argv0, source, archive_error_string(arc));
+                   argv0, source_file, archive_error_string(arc));
         goto cleanup;
     }
 
@@ -164,7 +228,7 @@ static int osinfo_db_import_extract(GFile *target,
             break;
         if (r != ARCHIVE_OK) {
             g_printerr("%s: cannot read next archive entry in %s: %s\n",
-                       argv0, source, archive_error_string(arc));
+                       argv0, source_file, archive_error_string(arc));
             goto cleanup;
         }
 
@@ -178,7 +242,7 @@ static int osinfo_db_import_extract(GFile *target,
 
     if (archive_read_close(arc) != ARCHIVE_OK) {
         g_printerr("%s: cannot finish reading archive %s: %s\n",
-                   argv0, source, archive_error_string(arc));
+                   argv0, source_file, archive_error_string(arc));
         goto cleanup;
     }
 
@@ -187,6 +251,9 @@ static int osinfo_db_import_extract(GFile *target,
     archive_read_free(arc);
     if (file)
         g_object_unref(file);
+    if (!file_is_native)
+        unlink(source_file);
+    g_free(source_file);
     return ret;
 }
 
