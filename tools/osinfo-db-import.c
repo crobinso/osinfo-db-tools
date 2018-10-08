@@ -143,7 +143,6 @@ static int osinfo_db_import_extract(GFile *target,
     int ret = -1;
     int r;
     GFile *file = NULL;
-    GError *err = NULL;
 
     arc = archive_read_new();
 
@@ -186,8 +185,6 @@ static int osinfo_db_import_extract(GFile *target,
     ret = 0;
  cleanup:
     archive_read_free(arc);
-    if (err)
-        g_error_free(err);
     if (file)
         g_object_unref(file);
     return ret;
