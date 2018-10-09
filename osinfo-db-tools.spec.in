@@ -13,6 +13,7 @@ BuildRequires: glib2-devel
 BuildRequires: libxml2-devel >= 2.6.0
 BuildRequires: libxslt-devel >= 1.0.0
 BuildRequires: libarchive-devel
+BuildRequires: json-glib-devel
 BuildRequires: /usr/bin/pod2man
 
 %description

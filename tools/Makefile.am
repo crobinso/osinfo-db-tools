@@ -36,7 +36,10 @@ osinfo_db_import_SOURCES = osinfo-db-import.c $(COMMON_SOURCES)
 osinfo_db_import_LDADD = $(GOBJECT_LIBS)	\
 		      $(GIO_LIBS)		\
 		      $(GLIB_LIBS)		\
+		      $(JSON_GLIB_LIBS)	\
 		      $(LIBARCHIVE_LIBS)
+osinfo_db_import_CFLAGS = $(AM_CFLAGS)		\
+		      $(JSON_GLIB_CFLAGS)
 
 osinfo_db_export_SOURCES = osinfo-db-export.c $(COMMON_SOURCES)
 osinfo_db_export_LDADD = $(GOBJECT_LIBS)	\

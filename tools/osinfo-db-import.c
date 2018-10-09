@@ -24,11 +24,16 @@
 
 #include <locale.h>
 #include <glib/gi18n.h>
+#include <glib-object.h>
+#include <json-glib/json-glib.h>
 #include <stdlib.h>
 #include <archive.h>
 #include <archive_entry.h>
 
 #include "osinfo-db-util.h"
+
+#define LATEST_URI "https://db.libosinfo.org/latest.json"
+#define VERSION_FILE "VERSION"
 
 const char *argv0;
 
@@ -178,6 +183,120 @@ osinfo_db_import_download_file(GFile *file,
     return ret;
 }
 
+static gboolean osinfo_db_get_installed_version(GFile *dir,
+                                                gchar **version)
+{
+    GFile *file = NULL;
+    GError *err = NULL;
+    gboolean ret = FALSE;
+
+    file = g_file_get_child(dir, VERSION_FILE);
+    if (file == NULL)
+        return FALSE;
+
+    if (!g_file_load_contents(file, NULL, version, NULL, NULL, &err)) {
+        if (!g_error_matches(err, G_IO_ERROR, G_IO_ERROR_NOT_FOUND)) {
+            g_printerr("Failed get the content of file %s: %s\n",
+                       VERSION_FILE, err->message);
+            goto cleanup;
+        }
+    }
+
+    ret = TRUE;
+
+ cleanup:
+    g_clear_error(&err);
+    g_object_unref(file);
+
+    return ret;
+}
+
+static gboolean osinfo_db_get_latest_info(gchar **version,
+                                          gchar **url)
+{
+    JsonParser *parser = NULL;
+    JsonReader *reader = NULL;
+    GFile *uri = NULL;
+    GError *err = NULL;
+    gchar *content = NULL;
+    gboolean ret = FALSE;
+
+    uri = g_file_new_for_uri(LATEST_URI);
+    if (uri == NULL)
+        return FALSE;
+
+    if (!g_file_load_contents(uri, NULL, &content, NULL, NULL, &err)) {
+        g_printerr("Could not load the content of %s: %s\n",
+                   LATEST_URI, err->message);
+        goto cleanup;
+    }
+
+    parser = json_parser_new();
+    if (parser == NULL) {
+        g_printerr("Failed to create the json parser\n");
+        goto cleanup;
+    }
+
+    if (!json_parser_load_from_data(parser, content, -1, &err)) {
+        g_printerr("Failed to parse the content of %s: %s\n",
+                   LATEST_URI, err->message);
+        goto cleanup;
+    }
+
+    reader = json_reader_new(json_parser_get_root(parser));
+    if (reader == NULL) {
+        g_printerr("Failed to create the reader for the json parser\n");
+        goto cleanup;
+    }
+
+    if (!json_reader_read_member(reader, "release")) {
+        const GError *error = json_reader_get_error(reader);
+        g_printerr("Failed to read the \"release\" member of the %s file: %s\n",
+                   LATEST_URI, error->message);
+        goto cleanup;
+    }
+
+    if (!json_reader_read_member(reader, "version")) {
+        const GError *error = json_reader_get_error(reader);
+        g_printerr("Failed to read the \"version\" member of the %s file: %s\n",
+                   LATEST_URI, error->message);
+        goto cleanup;
+    }
+
+    *version = g_strdup(json_reader_get_string_value(reader));
+    if (*version == NULL)
+        goto cleanup;
+
+    json_reader_end_member(reader); /* "version" */
+
+    if (!json_reader_read_member(reader, "archive")) {
+        const GError *error = json_reader_get_error(reader);
+        g_printerr("Failed to read the \"archive\" member of the %s file: %s\n",
+                   LATEST_URI, error->message);
+        goto cleanup;
+    }
+
+    *url = g_strdup(json_reader_get_string_value(reader));
+    if (*url == NULL)
+        goto cleanup;
+
+    json_reader_end_member(reader); /* "archive" */
+    json_reader_end_member(reader); /* "release" */
+
+    ret = TRUE;
+
+ cleanup:
+    g_object_unref(uri);
+    if (parser != NULL)
+        g_object_unref(parser);
+    if (reader != NULL)
+        g_object_unref(reader);
+    g_free(content);
+    g_clear_error(&err);
+
+    return ret;
+}
+
 static int osinfo_db_import_extract(GFile *target,
                                     const char *source,
                                     gboolean verbose)
@@ -266,6 +385,10 @@ gint main(gint argc, gchar **argv)
     gboolean user = FALSE;
     gboolean local = FALSE;
     gboolean system = FALSE;
+    gboolean latest = FALSE;
+    gchar *installed_version = NULL;
+    gchar *latest_version = NULL;
+    gchar *latest_url = NULL;
     const gchar *root = "";
     const gchar *archive = NULL;
     const gchar *custom = NULL;
@@ -284,6 +407,8 @@ gint main(gint argc, gchar **argv)
         N_("Import into custom directory"), NULL, },
       { "root", 0, 0, G_OPTION_ARG_STRING, &root,
         N_("Installation root directory"), NULL, },
+      { "latest", 0, 0, G_OPTION_ARG_NONE, (void *)&latest,
+        N_("Import the latest osinfo-db from osinfo-db's website"), NULL, },
       { NULL, 0, 0, 0, NULL, NULL, NULL },
     };
     argv0 = argv[0];
@@ -325,6 +450,22 @@ gint main(gint argc, gchar **argv)
 
     archive = argc == 2 ? argv[1] : NULL;
     dir = osinfo_db_get_path(root, user, local, system, custom);
+
+    if (latest) {
+        if (!osinfo_db_get_installed_version(dir, &installed_version))
+            goto error;
+
+        if (!osinfo_db_get_latest_info(&latest_version, &latest_url))
+            goto error;
+
+        if (g_strcmp0(latest_version, installed_version) <= 0) {
+            ret = EXIT_SUCCESS;
+            goto error;
+        }
+
+        archive = latest_url;
+    }
+
     if (osinfo_db_import_extract(dir, archive, verbose) < 0)
         goto error;
 
@@ -334,6 +475,9 @@ gint main(gint argc, gchar **argv)
     if (dir) {
         g_object_unref(dir);
     }
+    g_free(installed_version);
+    g_free(latest_version);
+    g_free(latest_url);
     g_clear_error(&error);
     g_option_context_free(context);
 
@@ -416,6 +560,13 @@ custom directory B<PATH>.
 Prefix the installation location with the root directory
 given by C<PATH>. This is useful when wishing to install
 into a chroot environment or equivalent.
+
+=item B<--latest>
+
+Downloads the latest osinfo-db release from libosinfo's official
+releases website and installs it in the desired location.
+The latest osinfo-db release is only downloaded and installed
+when it's newer than the one installed in the desired location.
 
 =item B<-v>, B<--verbose>
 
