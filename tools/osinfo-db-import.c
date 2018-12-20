@@ -318,7 +318,7 @@ static int osinfo_db_import_extract(GFile *target,
         source = NULL;
 
     if (source != NULL) {
-        file = g_file_new_for_uri(source);
+        file = g_file_new_for_commandline_arg(source);
         if (file == NULL)
             goto cleanup;
 
@@ -327,7 +327,7 @@ static int osinfo_db_import_extract(GFile *target,
             if (osinfo_db_import_download_file(file, &source_file) < 0)
                 goto cleanup;
         } else {
-            source_file = g_strdup(source);
+            source_file = g_file_get_path(file);
         }
         if (source_file == NULL)
             goto cleanup;
