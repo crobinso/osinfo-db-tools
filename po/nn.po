@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-05 11:32+0100\n"
+"POT-Creation-Date: 2019-02-01 16:48+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Norwegian Nynorsk\n"
@@ -18,8 +18,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "X-Generator: Zanata 3.7.3\n"
 
-#: ../tools/osinfo-db-export.c:490 ../tools/osinfo-db-import.c:213
-#: ../tools/osinfo-db-validate.c:254
+#: ../tools/osinfo-db-export.c:490 ../tools/osinfo-db-import.c:399
+#: ../tools/osinfo-db-validate.c:253
 msgid "Verbose progress information"
 msgstr ""
 
@@ -35,7 +35,7 @@ msgstr ""
 msgid "Install into system directory"
 msgstr ""
 
-#: ../tools/osinfo-db-export.c:498 ../tools/osinfo-db-import.c:221
+#: ../tools/osinfo-db-export.c:498 ../tools/osinfo-db-import.c:407
 msgid "Import into custom directory"
 msgstr ""
 
@@ -43,8 +43,8 @@ msgstr ""
 msgid "Set version number of archive"
 msgstr ""
 
-#: ../tools/osinfo-db-export.c:502 ../tools/osinfo-db-import.c:223
-#: ../tools/osinfo-db-validate.c:264
+#: ../tools/osinfo-db-export.c:502 ../tools/osinfo-db-import.c:409
+#: ../tools/osinfo-db-validate.c:263
 msgid "Installation root directory"
 msgstr ""
 
@@ -56,8 +56,8 @@ msgstr ""
 msgid "- Export database archive "
 msgstr ""
 
-#: ../tools/osinfo-db-export.c:519 ../tools/osinfo-db-import.c:238
-#: ../tools/osinfo-db-path.c:72
+#: ../tools/osinfo-db-export.c:519 ../tools/osinfo-db-import.c:426
+#: ../tools/osinfo-db-path.c:71
 #, c-format
 msgid ""
 "%s: error while parsing commandline options: %s\n"
@@ -69,134 +69,138 @@ msgstr ""
 msgid "%s: expected path to one archive file to export\n"
 msgstr ""
 
-#: ../tools/osinfo-db-export.c:540 ../tools/osinfo-db-import.c:259
-#: ../tools/osinfo-db-path.c:93
+#: ../tools/osinfo-db-export.c:540 ../tools/osinfo-db-import.c:447
+#: ../tools/osinfo-db-path.c:92
 #, c-format
-msgid "Only one of --user, --local, --system & --dir can be used"
+msgid "Only one of --user, --local, --system & --dir can be used\n"
 msgstr ""
 
-#: ../tools/osinfo-db-import.c:215
+#: ../tools/osinfo-db-import.c:401
 msgid "Import into user directory"
 msgstr ""
 
-#: ../tools/osinfo-db-import.c:217
+#: ../tools/osinfo-db-import.c:403
 msgid "Import into local directory"
 msgstr ""
 
-#: ../tools/osinfo-db-import.c:219
+#: ../tools/osinfo-db-import.c:405
 msgid "Import into system directory"
 msgstr ""
 
-#: ../tools/osinfo-db-import.c:233
+#: ../tools/osinfo-db-import.c:411
+msgid "Import the latest osinfo-db from osinfo-db's website"
+msgstr ""
+
+#: ../tools/osinfo-db-import.c:421
 msgid "- Import database archive "
 msgstr ""
 
-#: ../tools/osinfo-db-import.c:245
+#: ../tools/osinfo-db-import.c:433
 #, c-format
 msgid "%s: expected path to one archive file to import\n"
 msgstr ""
 
-#: ../tools/osinfo-db-path.c:49
+#: ../tools/osinfo-db-path.c:48
 msgid "Report the user directory"
 msgstr ""
 
-#: ../tools/osinfo-db-path.c:51
+#: ../tools/osinfo-db-path.c:50
 msgid "Report the local directory"
 msgstr ""
 
-#: ../tools/osinfo-db-path.c:53
+#: ../tools/osinfo-db-path.c:52
 msgid "Report the system directory"
 msgstr ""
 
-#: ../tools/osinfo-db-path.c:55
+#: ../tools/osinfo-db-path.c:54
 msgid "Report the custom directory"
 msgstr ""
 
-#: ../tools/osinfo-db-path.c:57
+#: ../tools/osinfo-db-path.c:56
 msgid "Report against root directory"
 msgstr ""
 
-#: ../tools/osinfo-db-path.c:67
+#: ../tools/osinfo-db-path.c:66
 msgid "- Report database locations "
 msgstr ""
 
-#: ../tools/osinfo-db-path.c:79
+#: ../tools/osinfo-db-path.c:78
 #, c-format
 msgid "%s: unexpected extra arguments\n"
 msgstr ""
 
-#: ../tools/osinfo-db-util.c:158
+#: ../tools/osinfo-db-util.c:157
 #, c-format
 msgid "Unable to locate '%s' in any database location"
 msgstr ""
 
-#: ../tools/osinfo-db-validate.c:46
+#: ../tools/osinfo-db-validate.c:45
 #, c-format
 msgid "Schema validity error %s"
 msgstr ""
 
-#: ../tools/osinfo-db-validate.c:62
+#: ../tools/osinfo-db-validate.c:61
 msgid "Unable to create libxml parser"
 msgstr ""
 
-#: ../tools/osinfo-db-validate.c:70
+#: ../tools/osinfo-db-validate.c:69
 #, c-format
 msgid "Unable to parse XML document '%s'"
 msgstr ""
 
-#: ../tools/osinfo-db-validate.c:102
+#: ../tools/osinfo-db-validate.c:101
 #, c-format
 msgid "Unable to validate XML document '%s'"
 msgstr ""
 
-#: ../tools/osinfo-db-validate.c:152
+#: ../tools/osinfo-db-validate.c:151
 #, c-format
 msgid "Processing '%s'...\n"
 msgstr ""
 
-#: ../tools/osinfo-db-validate.c:201
+#: ../tools/osinfo-db-validate.c:200
 #, c-format
 msgid "Unable to create RNG parser for %s"
 msgstr ""
 
-#: ../tools/osinfo-db-validate.c:209
+#: ../tools/osinfo-db-validate.c:208
 #, c-format
 msgid "Unable to parse RNG %s"
 msgstr ""
 
-#: ../tools/osinfo-db-validate.c:217
+#: ../tools/osinfo-db-validate.c:216
 #, c-format
 msgid "Unable to create RNG validation context %s"
 msgstr ""
 
-#: ../tools/osinfo-db-validate.c:256
+#: ../tools/osinfo-db-validate.c:255
 msgid "Validate files in user directory"
 msgstr ""
 
-#: ../tools/osinfo-db-validate.c:258
+#: ../tools/osinfo-db-validate.c:257
 msgid "Validate files in local directory"
 msgstr ""
 
-#: ../tools/osinfo-db-validate.c:260
+#: ../tools/osinfo-db-validate.c:259
 msgid "Validate files in system directory"
 msgstr ""
 
-#: ../tools/osinfo-db-validate.c:262
+#: ../tools/osinfo-db-validate.c:261
 msgid "Validate files in custom directory"
 msgstr ""
 
-#: ../tools/osinfo-db-validate.c:273
+#: ../tools/osinfo-db-validate.c:272
 msgid "- Validate XML documents "
 msgstr ""
 
-#: ../tools/osinfo-db-validate.c:278
+#: ../tools/osinfo-db-validate.c:277
 #, c-format
 msgid "Error while parsing commandline options: %s\n"
 msgstr ""
 
-#: ../tools/osinfo-db-validate.c:293
+#: ../tools/osinfo-db-validate.c:292
 #, c-format
 msgid ""
 "Only one of --user, --local, --system, --dir or positional filenames can be "
-"used"
+"used\n"
 msgstr ""

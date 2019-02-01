@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-05 11:32+0100\n"
-"PO-Revision-Date: 2017-12-06 12:09+0000\n"
+"POT-Creation-Date: 2019-02-01 16:48+0100\n"
+"PO-Revision-Date: 2017-12-06 12:08+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/projects/p/libosinfo/"
 "language/uk/)\n"
@@ -23,8 +23,8 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Zanata 4.6.2\n"
 
-#: ../tools/osinfo-db-export.c:490 ../tools/osinfo-db-import.c:213
-#: ../tools/osinfo-db-validate.c:254
+#: ../tools/osinfo-db-export.c:490 ../tools/osinfo-db-import.c:399
+#: ../tools/osinfo-db-validate.c:253
 msgid "Verbose progress information"
 msgstr "Докладні дані щодо поступу"
 
@@ -40,7 +40,7 @@ msgstr "Встановити до локального каталогу"
 msgid "Install into system directory"
 msgstr "Встановити до системного каталогу"
 
-#: ../tools/osinfo-db-export.c:498 ../tools/osinfo-db-import.c:221
+#: ../tools/osinfo-db-export.c:498 ../tools/osinfo-db-import.c:407
 msgid "Import into custom directory"
 msgstr "Імпортувати до нетипового каталогу"
 
@@ -48,8 +48,8 @@ msgstr "Імпортувати до нетипового каталогу"
 msgid "Set version number of archive"
 msgstr "Встановити номер версії архіву"
 
-#: ../tools/osinfo-db-export.c:502 ../tools/osinfo-db-import.c:223
-#: ../tools/osinfo-db-validate.c:264
+#: ../tools/osinfo-db-export.c:502 ../tools/osinfo-db-import.c:409
+#: ../tools/osinfo-db-validate.c:263
 msgid "Installation root directory"
 msgstr "Кореневий каталог встановлення"
 
@@ -61,8 +61,8 @@ msgstr "Файл умов ліцензування"
 msgid "- Export database archive "
 msgstr "- Експортувати архів бази даних "
 
-#: ../tools/osinfo-db-export.c:519 ../tools/osinfo-db-import.c:238
-#: ../tools/osinfo-db-path.c:72
+#: ../tools/osinfo-db-export.c:519 ../tools/osinfo-db-import.c:426
+#: ../tools/osinfo-db-path.c:71
 #, c-format
 msgid ""
 "%s: error while parsing commandline options: %s\n"
@@ -77,139 +77,139 @@ msgid "%s: expected path to one archive file to export\n"
 msgstr ""
 "%s: мало бути вказано шлях до одного з файлів архіву для експортування\n"
 
-#: ../tools/osinfo-db-export.c:540 ../tools/osinfo-db-import.c:259
-#: ../tools/osinfo-db-path.c:93
+#: ../tools/osinfo-db-export.c:540 ../tools/osinfo-db-import.c:447
+#: ../tools/osinfo-db-path.c:92
 #, c-format
-msgid "Only one of --user, --local, --system & --dir can be used"
+msgid "Only one of --user, --local, --system & --dir can be used\n"
 msgstr ""
-"Можна використовувати лише один з параметрів, --user, --local, --system або "
-"--dir"
 
-#: ../tools/osinfo-db-import.c:215
+#: ../tools/osinfo-db-import.c:401
 msgid "Import into user directory"
 msgstr "Імпортувати до каталогу користувача"
 
-#: ../tools/osinfo-db-import.c:217
+#: ../tools/osinfo-db-import.c:403
 msgid "Import into local directory"
 msgstr "Імпортувати до локального каталогу"
 
-#: ../tools/osinfo-db-import.c:219
+#: ../tools/osinfo-db-import.c:405
 msgid "Import into system directory"
 msgstr "Імпортувати до системного каталогу"
 
-#: ../tools/osinfo-db-import.c:233
+#: ../tools/osinfo-db-import.c:411
+msgid "Import the latest osinfo-db from osinfo-db's website"
+msgstr ""
+
+#: ../tools/osinfo-db-import.c:421
 msgid "- Import database archive "
 msgstr "- Імпортувати архів бази даних "
 
-#: ../tools/osinfo-db-import.c:245
+#: ../tools/osinfo-db-import.c:433
 #, c-format
 msgid "%s: expected path to one archive file to import\n"
 msgstr ""
 "%s: мало бути вказано шлях до одного з файлів архіву для імпортування\n"
 
-#: ../tools/osinfo-db-path.c:49
+#: ../tools/osinfo-db-path.c:48
 msgid "Report the user directory"
 msgstr "Звіт щодо каталогу користувача"
 
-#: ../tools/osinfo-db-path.c:51
+#: ../tools/osinfo-db-path.c:50
 msgid "Report the local directory"
 msgstr "Звіт щодо локального каталогу"
 
-#: ../tools/osinfo-db-path.c:53
+#: ../tools/osinfo-db-path.c:52
 msgid "Report the system directory"
 msgstr "Звіт щодо системного каталогу"
 
-#: ../tools/osinfo-db-path.c:55
+#: ../tools/osinfo-db-path.c:54
 msgid "Report the custom directory"
 msgstr "Звіт щодо нетипового каталогу"
 
-#: ../tools/osinfo-db-path.c:57
+#: ../tools/osinfo-db-path.c:56
 msgid "Report against root directory"
 msgstr "Звіт щодо кореневого каталогу"
 
-#: ../tools/osinfo-db-path.c:67
+#: ../tools/osinfo-db-path.c:66
 msgid "- Report database locations "
 msgstr "- Звіт щодо розташування баз даних "
 
-#: ../tools/osinfo-db-path.c:79
+#: ../tools/osinfo-db-path.c:78
 #, c-format
 msgid "%s: unexpected extra arguments\n"
 msgstr "%s: неочікувані зайві аргументи\n"
 
-#: ../tools/osinfo-db-util.c:158
+#: ../tools/osinfo-db-util.c:157
 #, c-format
 msgid "Unable to locate '%s' in any database location"
 msgstr "Не вдалося знайти «%s» у жодному з розташувань баз даних"
 
-#: ../tools/osinfo-db-validate.c:46
+#: ../tools/osinfo-db-validate.c:45
 #, c-format
 msgid "Schema validity error %s"
 msgstr "Помилка під час перевірки чинності схеми, %s"
 
-#: ../tools/osinfo-db-validate.c:62
+#: ../tools/osinfo-db-validate.c:61
 msgid "Unable to create libxml parser"
 msgstr "Не вдалося створити обробник libxml"
 
-#: ../tools/osinfo-db-validate.c:70
+#: ../tools/osinfo-db-validate.c:69
 #, c-format
 msgid "Unable to parse XML document '%s'"
 msgstr "Не вдалося обробити документ XML, «%s»"
 
-#: ../tools/osinfo-db-validate.c:102
+#: ../tools/osinfo-db-validate.c:101
 #, c-format
 msgid "Unable to validate XML document '%s'"
 msgstr "Не вдалося перевірити коректність документа XML, «%s»"
 
-#: ../tools/osinfo-db-validate.c:152
+#: ../tools/osinfo-db-validate.c:151
 #, c-format
 msgid "Processing '%s'...\n"
 msgstr "Обробляємо «%s»…\n"
 
-#: ../tools/osinfo-db-validate.c:201
+#: ../tools/osinfo-db-validate.c:200
 #, c-format
 msgid "Unable to create RNG parser for %s"
 msgstr "Не вдалося створити обробник RNG для %s"
 
-#: ../tools/osinfo-db-validate.c:209
+#: ../tools/osinfo-db-validate.c:208
 #, c-format
 msgid "Unable to parse RNG %s"
 msgstr "Не вдалося обробити RNG, %s"
 
-#: ../tools/osinfo-db-validate.c:217
+#: ../tools/osinfo-db-validate.c:216
 #, c-format
 msgid "Unable to create RNG validation context %s"
 msgstr "Не вдалося створити контекст перевірки RNG, %s"
 
-#: ../tools/osinfo-db-validate.c:256
+#: ../tools/osinfo-db-validate.c:255
 msgid "Validate files in user directory"
 msgstr "Перевірити файли у каталозі користувача"
 
-#: ../tools/osinfo-db-validate.c:258
+#: ../tools/osinfo-db-validate.c:257
 msgid "Validate files in local directory"
 msgstr "Перевірити файли у локальному каталозі"
 
-#: ../tools/osinfo-db-validate.c:260
+#: ../tools/osinfo-db-validate.c:259
 msgid "Validate files in system directory"
 msgstr "Перевірити файли у системному каталозі"
 
-#: ../tools/osinfo-db-validate.c:262
+#: ../tools/osinfo-db-validate.c:261
 msgid "Validate files in custom directory"
 msgstr "Перевірити файли у нетиповому каталозі"
 
-#: ../tools/osinfo-db-validate.c:273
+#: ../tools/osinfo-db-validate.c:272
 msgid "- Validate XML documents "
 msgstr "- Перевірка документів XML "
 
-#: ../tools/osinfo-db-validate.c:278
+#: ../tools/osinfo-db-validate.c:277
 #, c-format
 msgid "Error while parsing commandline options: %s\n"
 msgstr "Помилка під час спроби обробити параметри командного рядка: %s\n"
 
-#: ../tools/osinfo-db-validate.c:293
+#: ../tools/osinfo-db-validate.c:292
 #, c-format
 msgid ""
 "Only one of --user, --local, --system, --dir or positional filenames can be "
-"used"
+"used\n"
 msgstr ""
-"Можна використовувати лише один з параметрів, --user, --local, --system, --"
-"dir або позиційні назви файлів"
