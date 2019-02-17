@@ -19,7 +19,6 @@ cd "$srcdir"
 touch ChangeLog AUTHORS
 
 aclocal --install || exit 1
-intltoolize --force --copy --automake || exit 1
 autoreconf --verbose --force --install || exit 1
 
 cd "$olddir"

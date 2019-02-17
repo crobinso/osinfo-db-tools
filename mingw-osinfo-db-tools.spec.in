@@ -11,7 +11,7 @@ URL: https://libosinfo.org
 
 BuildArch: noarch
 
-BuildRequires: intltool
+BuildRequires: gettext
 
 BuildRequires: mingw32-filesystem >= 95
 BuildRequires: mingw64-filesystem >= 95

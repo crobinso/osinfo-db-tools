@@ -26,9 +26,6 @@ config.h.in
 config.log
 config.status
 configure
-intltool-extract.in
-intltool-merge.in
-intltool-update.in
 libtool
 m4
 stamp-h1
@@ -46,7 +43,6 @@ tools/osinfo-db-export.1
 tools/osinfo-db-path
 tools/osinfo-db-path.exe
 tools/osinfo-db-path.1
-po/.intltool-merge-cache
 po/Makefile.in.in
 po/POTFILES
 po/osinfo-db-tools.pot
@@ -59,5 +55,7 @@ po/en@quot.header
 po/insert-header.sin
 po/quot.sed
 po/remove-potcdate.sin
+po/remove-potcdate.sed
+po/stamp-po
 po/*.gmo
 ABOUT-NLS

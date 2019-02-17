@@ -8,7 +8,7 @@ License: GPLv2+
 Group: Development/Libraries
 Source: https://releases.pagure.io/libosinfo/%{name}-%{version}.tar.gz
 URL: https://libosinfo.org
-BuildRequires: intltool
+BuildRequires: gettext-devel
 BuildRequires: glib2-devel
 BuildRequires: libxml2-devel >= 2.6.0
 BuildRequires: libxslt-devel >= 1.0.0

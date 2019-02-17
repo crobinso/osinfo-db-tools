@@ -40,7 +40,6 @@ VC_LIST_ALWAYS_EXCLUDE_REGEX = \
   (^HACKING|\.po|maint.mk)$$
 
 # Tweak how some of the syntax check rules work
-_makefile_at_at_check_exceptions = ' && !/INTLTOOL_XML_RULE/'
 _gl_translatable_string_re = \
 	(\b(N?_|gettext *)\([^)"]*("|$$))|(<(_[a-zA-Z]*).*/\5>)
 

@@ -1,19 +1,6 @@
 
 SUBDIRS = tools docs po
 
-INTLTOOL_FILES = \
-	intltool-extract.in \
-	intltool-merge.in \
-	intltool-update.in \
-	$(NULL)
-
-DISTCLEANFILES =				\
-	intltool-extract			\
-	intltool-merge				\
-	intltool-update				\
-	po/.intltool-merge-cache		\
-	$(NULL)
-
 EXTRA_DIST = \
   osinfo-db-tools.spec \
   osinfo-db-tools.spec.in \
@@ -23,7 +10,6 @@ EXTRA_DIST = \
   GNUmakefile \
   maint.mk \
   AUTHORS.in \
-  $(INTLTOOL_FILES) \
   $(NULL)
 
 MAINTAINERCLEANFILES =				\
