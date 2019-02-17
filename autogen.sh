@@ -1,17 +1,15 @@
 #!/bin/sh
 # Run this to generate all the initial makefiles, etc.
+test -n "$srcdir" || srcdir=$(dirname "$0")
+test -n "$srcdir" || srcdir=.
 
-srcdir=`dirname $0`
-test -z "$srcdir" && srcdir=.
+olddir=$(pwd)
 
-(test -f $srcdir/tools/osinfo-db-validate.c) || {
+cd "$srcdir"
+
+(test -f tools/osinfo-db-validate.c) || {
     echo -n "**Error**: Directory "\`$srcdir\'" does not look like the"
-    echo " top-level libosinfo directory"
-    exit 1
-}
-
-which gnome-autogen.sh || {
-    echo "You need to install gnome-common from the GNOME git"
+    echo " top-level osinfo-db-tools directory"
     exit 1
 }
 
@@ -20,4 +18,20 @@ which gnome-autogen.sh || {
 # exists at all times :-(
 touch ChangeLog AUTHORS
 
-ACLOCAL_FLAGS="$ACLOCAL_FLAGS" . gnome-autogen.sh "$@"
+aclocal --install || exit 1
+intltoolize --force --copy --automake || exit 1
+autoreconf --verbose --force --install || exit 1
+
+cd "$olddir"
+
+if [ "$NOCONFIGURE" = "" ]; then
+        $srcdir/configure "$@" || exit 1
+
+        if [ "$1" = "--help" ]; then
+                exit 0
+        else
+                echo "Now type 'make' to compile $PKG_NAME" || exit 1
+        fi
+else
+        echo "Skipping configure process."
+fi
