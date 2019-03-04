@@ -22,6 +22,8 @@ BuildRequires: mingw64-binutils
 
 BuildRequires: mingw32-glib2
 BuildRequires: mingw64-glib2
+BuildRequires: mingw32-json-glib
+BuildRequires: mingw64-json-glib
 BuildRequires: mingw32-libxml2
 BuildRequires: mingw64-libxml2
 BuildRequires: mingw32-libxslt
