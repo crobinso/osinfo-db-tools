@@ -74,22 +74,22 @@ information about operating systems for use with virtualization
 rm -rf $RPM_BUILD_ROOT%{mingw32_datadir}/man
 rm -rf $RPM_BUILD_ROOT%{mingw64_datadir}/man
 
-%files -n mingw32-osinfo-db-tools
+%mingw_find_lang osinfo-db-tools
+
+%files -n mingw32-osinfo-db-tools -f mingw32-osinfo-db-tools.lang
 %doc AUTHORS ChangeLog NEWS README
 %license COPYING
 %{mingw32_bindir}/osinfo-db-export.exe
 %{mingw32_bindir}/osinfo-db-import.exe
 %{mingw32_bindir}/osinfo-db-path.exe
 %{mingw32_bindir}/osinfo-db-validate.exe
-%{mingw32_datadir}/locale/*/LC_MESSAGES/osinfo-db-tools.mo
 
-%files -n mingw64-osinfo-db-tools
+%files -n mingw64-osinfo-db-tools -f mingw64-osinfo-db-tools.lang
 %doc AUTHORS ChangeLog NEWS README
 %license COPYING
 %{mingw64_bindir}/osinfo-db-export.exe
 %{mingw64_bindir}/osinfo-db-import.exe
 %{mingw64_bindir}/osinfo-db-path.exe
 %{mingw64_bindir}/osinfo-db-validate.exe
-%{mingw64_datadir}/locale/*/LC_MESSAGES/osinfo-db-tools.mo
 
 %changelog
