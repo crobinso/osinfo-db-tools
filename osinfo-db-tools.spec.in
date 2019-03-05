@@ -5,7 +5,6 @@ Name: osinfo-db-tools
 Version: @VERSION@
 Release: 1%{?dist}%{?extra_release}
 License: GPLv2+
-Group: Development/Libraries
 Source: https://releases.pagure.io/libosinfo/%{name}-%{version}.tar.gz
 URL: https://libosinfo.org
 BuildRequires: gcc
