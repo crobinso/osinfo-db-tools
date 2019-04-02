@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+
+  <datamap id="http://x.org/x11-keyboard">
+    <entry outval="za" inval="af_ZA"/>
+    <entry outval="ae" inval="ar_AE"/>
+    <entry outval="bh" inval="ar_BH"/>
+    <entry outval="dz" inval="ar_DZ"/>
+    <entry outval="eg" inval="ar_EG"/>
+    <entry outval="in" inval="ar_IN"/>
+    <entry outval="iq" inval="ar_IQ"/>
+    <entry outval="jo" inval="ar_JO"/>
+    <entry outval="kw" inval="ar_KW"/>
+    <entry outval="lb" inval="ar_LB"/>
+    <entry outval="ly" inval="ar_LY"/>
+    <entry outval="ma" inval="ar_MA"/>
+    <entry outval="om" inval="ar_OM"/>
+    <entry outval="qa" inval="ar_QA"/>
+    <entry outval="sa" inval="ar_SA"/>
+    <entry outval="sd" inval="ar_SD"/>
+    <entry outval="sy" inval="ar_SY"/>
+    <entry outval="tn" inval="ar_TN"/>
+    <entry outval="ye" inval="ar_YE"/>
+    <entry outval="in" inval="as_IN"/>
+    <entry outval="es (ast)" inval="ast_ES"/>
+    <entry outval="by" inval="be_BY"/>
+    <entry outval="bg" inval="bg_BG"/>
+    <entry outval="bd" inval="bn_BD"/>
+    <entry outval="in (ben)" inval="bn_IN"/>
+    <entry outval="fr (bre)" inval="br_FR"/>
+    <entry outval="ba" inval="bs_BA"/>
+    <entry outval="es (cat)" inval="ca_ES"/>
+    <entry outval="cz" inval="cs_CZ"/>
+    <entry outval="gb" inval="cy_GB"/>
+    <entry outval="dk" inval="da_DK"/>
+    <entry outval="at" inval="de_AT"/>
+    <entry outval="be" inval="de_BE"/>
+    <entry outval="ch" inval="de_CH"/>
+    <entry outval="de" inval="de_DE"/>
+    <entry outval="lu" inval="de_LU"/>
+    <entry outval="gr" inval="el_GR"/>
+    <entry outval="au" inval="en_AU"/>
+    <entry outval="bw" inval="en_BW"/>
+    <entry outval="ca (eng)" inval="en_CA"/>
+    <entry outval="dk" inval="en_DK"/>
+    <entry outval="gb" inval="en_GB"/>
+    <entry outval="hk" inval="en_HK"/>
+    <entry outval="ie" inval="en_IE"/>
+    <entry outval="in (eng)" inval="en_IN"/>
+    <entry outval="nz" inval="en_NZ"/>
+    <entry outval="ph" inval="en_PH"/>
+    <entry outval="sg" inval="en_SG"/>
+    <entry outval="us" inval="en_US"/>
+    <entry outval="za" inval="en_ZA"/>
+    <entry outval="zw" inval="en_ZW"/>
+    <entry outval="ar" inval="es_AR"/>
+    <entry outval="bo" inval="es_BO"/>
+    <entry outval="cl" inval="es_CL"/>
+    <entry outval="co" inval="es_CO"/>
+    <entry outval="cr" inval="es_CR"/>
+    <entry outval="do" inval="es_DO"/>
+    <entry outval="ec" inval="es_EC"/>
+    <entry outval="es" inval="es_ES"/>
+    <entry outval="gt" inval="es_GT"/>
+    <entry outval="hn" inval="es_HN"/>
+    <entry outval="mx" inval="es_MX"/>
+    <entry outval="ni" inval="es_NI"/>
+    <entry outval="pa" inval="es_PA"/>
+    <entry outval="pe" inval="es_PE"/>
+    <entry outval="pr" inval="es_PR"/>
+    <entry outval="py" inval="es_PY"/>
+    <entry outval="sv" inval="es_SV"/>
+    <entry outval="us" inval="es_US"/>
+    <entry outval="uy" inval="es_UY"/>
+    <entry outval="ve" inval="es_VE"/>
+    <entry outval="ee" inval="et_EE"/>
+    <entry outval="es" inval="eu_ES"/>
+    <entry outval="ir" inval="fa_IR"/>
+    <entry outval="fi" inval="fi_FI"/>
+    <entry outval="fo" inval="fo_FO"/>
+    <entry outval="be" inval="fr_BE"/>
+    <entry outval="ca" inval="fr_CA"/>
+    <entry outval="ch (fr)" inval="fr_CH"/>
+    <entry outval="fr" inval="fr_FR"/>
+    <entry outval="lu" inval="fr_LU"/>
+    <entry outval="ie" inval="ga_IE"/>
+    <entry outval="es" inval="gl_ES"/>
+    <entry outval="in (guj)" inval="gu_IN"/>
+    <entry outval="gb" inval="gv_GB"/>
+    <entry outval="il" inval="he_IL"/>
+    <entry outval="in" inval="hi_IN"/>
+    <entry outval="hr" inval="hr_HR"/>
+    <entry outval="hu" inval="hu_HU"/>
+    <entry outval="id" inval="id_ID"/>
+    <entry outval="is" inval="is_IS"/>
+    <entry outval="ch" inval="it_CH"/>
+    <entry outval="it" inval="it_IT"/>
+    <entry outval="jp" inval="ja_JP"/>
+    <entry outval="gl" inval="kl_GL"/>
+    <entry outval="in (kan)" inval="kn_IN"/>
+    <entry outval="kr" inval="ko_KR"/>
+    <entry outval="gb" inval="kw_GB"/>
+    <entry outval="la" inval="lo_LA"/>
+    <entry outval="lt" inval="lt_LT"/>
+    <entry outval="lv" inval="lv_LV"/>
+    <entry outval="in" inval="mai_IN"/>
+    <entry outval="mk" inval="mk_MK"/>
+    <entry outval="in (mal)" inval="ml_IN"/>
+    <entry outval="in" inval="mr_IN"/>
+    <entry outval="my" inval="ms_MY"/>
+    <entry outval="mt" inval="mt_MT"/>
+    <entry outval="no" inval="nb_NO"/>
+    <entry outval="de" inval="nds_DE"/>
+    <entry outval="np" inval="ne_NP"/>
+    <entry outval="be" inval="nl_BE"/>
+    <entry outval="nl" inval="nl_NL"/>
+    <entry outval="no" inval="nn_NO"/>
+    <entry outval="fr (oci)" inval="oc_FR"/>
+    <entry outval="in (ori)" inval="or_IN"/>
+    <entry outval="in (guru)" inval="pa_IN"/>
+    <entry outval="pl" inval="pl_PL"/>
+    <entry outval="br" inval="pt_BR"/>
+    <entry outval="pt" inval="pt_PT"/>
+    <entry outval="ro" inval="ro_RO"/>
+    <entry outval="ru" inval="ru_RU"/>
+    <entry outval="ua" inval="ru_UA"/>
+    <entry outval="no (smi)" inval="se_NO"/>
+    <entry outval="lk" inval="si_LK"/>
+    <entry outval="sk" inval="sk_SK"/>
+    <entry outval="si" inval="sl_SI"/>
+    <entry outval="al" inval="sq_AL"/>
+    <entry outval="rs" inval="sr_RS"/>
+    <entry outval="fi" inval="sv_FI"/>
+    <entry outval="se" inval="sv_SE"/>
+    <entry outval="in (tam)" inval="ta_IN"/>
+    <entry outval="in (tel)" inval="te_IN"/>
+    <entry outval="th" inval="th_TH"/>
+    <entry outval="ph" inval="tl_PH"/>
+    <entry outval="tr" inval="tr_TR"/>
+    <entry outval="ua" inval="uk_UA"/>
+    <entry outval="pk" inval="ur_PK"/>
+    <entry outval="uz" inval="uz_UZ"/>
+    <entry outval="be" inval="wa_BE"/>
+    <entry outval="za" inval="xh_ZA"/>
+    <entry outval="cn" inval="zh_CN"/>
+    <entry outval="hk" inval="zh_HK"/>
+    <entry outval="tw" inval="zh_TW"/>
+    <entry outval="za" inval="zu_ZA"/>
+  </datamap>
+</libosinfo>

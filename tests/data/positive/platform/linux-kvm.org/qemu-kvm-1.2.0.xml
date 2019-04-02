@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+
+  <platform id="http://linux-kvm.org/qemu-kvm/1.2.0">
+    <short-id>qemu-kvm-1.2.0</short-id>
+    <name>QEMU-KVM 1.2.0</name>
+    <name xml:lang="ca">QEMU-KVM 1.2.0</name>
+    <name xml:lang="es">QEMU-KVM 1.2.0</name>
+    <name xml:lang="fr">QEMU-KVM 1.2.0</name>
+    <name xml:lang="id">QEMU-KVM 1.2.0</name>
+    <name xml:lang="it">QEMU-KVM 1.2.0</name>
+    <name xml:lang="pl">QEMU-KVM 1.2.0</name>
+    <name xml:lang="pt_BR">QEMU-KVM 1.2.0</name>
+    <name xml:lang="uk">QEMU-KVM 1.2.0</name>
+    <vendor>linux-kvm.org</vendor>
+    <vendor xml:lang="ca">linux-kvm.org</vendor>
+    <vendor xml:lang="es">linux-kvm.org</vendor>
+    <vendor xml:lang="fr">linux-kvm.org</vendor>
+    <vendor xml:lang="id">linux-kvm.org</vendor>
+    <vendor xml:lang="it">linux-kvm.org</vendor>
+    <vendor xml:lang="pl">linux-kvm.org</vendor>
+    <vendor xml:lang="pt_BR">linux-kvm.org</vendor>
+    <vendor xml:lang="uk">linux-kvm.org</vendor>
+    <version>1.2.0</version>
+    <release-date>2012-09-10</release-date>
+    <upgrades id="http://linux-kvm.org/qemu-kvm/1.1.2"/>
+    <derives-from id="http://qemu.org/qemu/1.2.0"/>
+  </platform>
+</libosinfo>

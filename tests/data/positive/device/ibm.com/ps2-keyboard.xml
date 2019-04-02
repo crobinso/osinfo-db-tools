@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+
+  <device id="http://ibm.com/ps2/keyboard">
+    <name>keyboard</name>
+    <bus-type>ps2</bus-type>
+    <class>input</class>
+    <vendor>Qemu/KVM</vendor>
+    <vendor xml:lang="ca">Qemu/KVM</vendor>
+    <vendor xml:lang="de">Qemu/KVM</vendor>
+    <vendor xml:lang="es">Qemu/KVM</vendor>
+    <vendor xml:lang="fr">Qemu/KVM</vendor>
+    <vendor xml:lang="id">Qemu/KVM</vendor>
+    <vendor xml:lang="it">Qemu/KVM</vendor>
+    <vendor xml:lang="ja">QEMU/KVM</vendor>
+    <vendor xml:lang="pl">QEMU/KVM</vendor>
+    <vendor xml:lang="pt">Qemu/KVM</vendor>
+    <vendor xml:lang="pt_BR">Qemu/KVM</vendor>
+    <vendor xml:lang="uk">Qemu/KVM</vendor>
+    <product>Keyboard</product>
+  </device>
+</libosinfo>

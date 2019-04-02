@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+
+  <os id="http://fedoraproject.org/fedora/rawhide">
+    <short-id>fedora-rawhide</short-id>
+    <name>Fedora Rawhide</name>
+    <version>Rawhide</version>
+    <vendor>Fedora Project</vendor>
+    <vendor xml:lang="ca">Projecte Fedora</vendor>
+    <vendor xml:lang="de">Fedora-Projekt</vendor>
+    <vendor xml:lang="es">Fedora Project</vendor>
+    <vendor xml:lang="fr">Fedora Project</vendor>
+    <vendor xml:lang="id">Proyek Fedora</vendor>
+    <vendor xml:lang="it">Progetto Fedora</vendor>
+    <vendor xml:lang="ja">Fedora Project</vendor>
+    <vendor xml:lang="pl">Projekt Fedora</vendor>
+    <vendor xml:lang="pt">Projecto Fedora </vendor>
+    <vendor xml:lang="pt_BR">Projeto Fedora</vendor>
+    <vendor xml:lang="uk">Проект Fedora</vendor>
+    <family>linux</family>
+    <distro>fedora</distro>
+    <upgrades id="http://fedoraproject.org/fedora/29"/>
+    <derives-from id="http://fedoraproject.org/fedora/29"/>
+    <release-status>prerelease</release-status>
+
+    <media arch="x86_64">
+      <iso>
+        <volume-id>Fedora-.*-dvd-x86_64-rawh</volume-id>
+      </iso>
+      <kernel>isolinux/vmlinuz</kernel>
+      <initrd>isolinux/initrd.img</initrd>
+    </media>
+
+    <media live="true" arch="x86_64" non-existent="false">
+      <iso>
+        <volume-id>Fedora-.*-Live-rawh.*</volume-id>
+      </iso>
+    </media>
+
+    <tree arch="x86_64">
+      <url>https://download.fedoraproject.org/pub/fedora/linux/development/rawhide/Workstation/x86_64/os</url>
+      <treeinfo>
+        <family>Fedora</family>
+        <version>Rawhide</version>
+        <arch>x86_64</arch>
+        <variant>Workstation</variant>
+      </treeinfo>
+    </tree>
+
+    <tree arch="x86_64">
+      <url>https://download.fedoraproject.org/pub/fedora/linux/development/rawhide/Server/x86_64/os</url>
+      <treeinfo>
+        <family>Fedora</family>
+        <version>Rawhide</version>
+        <arch>x86_64</arch>
+        <variant>Server</variant>
+      </treeinfo>
+    </tree>
+
+    <resources arch="all">
+      <minimum>
+        <n-cpus>1</n-cpus>
+        <cpu>1000000000</cpu>
+        <ram>1073741824</ram>
+        <storage>10737418240</storage>
+      </minimum>
+
+      <recommended>
+        <ram>2147483648</ram>
+        <storage>21474836480</storage>
+      </recommended>
+    </resources>
+  </os>
+</libosinfo>
