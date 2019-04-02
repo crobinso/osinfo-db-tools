@@ -106,7 +106,7 @@ static gboolean validate_file_regular(xmlRelaxNGValidCtxtPtr rngValid,
     ret = TRUE;
 
  cleanup:
-    //g_free(uri);
+    g_free(uri);
     xmlFreeDoc(doc);
     return ret;
 }
