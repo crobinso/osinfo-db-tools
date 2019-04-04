@@ -32,6 +32,8 @@ stamp-h1
 *.spec
 build/
 tests/*.log
+tests/*.trs
+tests/__pycache__
 tools/osinfo-db-validate
 tools/osinfo-db-validate.exe
 tools/osinfo-db-validate.1

@@ -5,6 +5,7 @@ test_helpers = \
 	$(NULL)
 
 test_programs = \
+	test_osinfo_db_path.py \
 	$(NULL)
 
 EXTRA_DIST += \
@@ -18,4 +19,6 @@ TESTS = \
 
 TESTS_ENVIRONMENT = \
 	abs_top_builddir="$(abs_top_builddir)" \
-	abs_top_srcdir="$(abs_top_srcdir)"
+	abs_top_srcdir="$(abs_top_srcdir)" \
+	datadir="$(datadir)" \
+	sysconfdir="$(sysconfdir)"
