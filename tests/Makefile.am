@@ -1,6 +1,7 @@
 EXTRA_DIST = data
 
 test_helpers = \
+	util.py \
 	$(NULL)
 
 test_programs = \
@@ -14,3 +15,7 @@ EXTRA_DIST += \
 TESTS = \
 	$(test_programs) \
 	$(NULL)
+
+TESTS_ENVIRONMENT = \
+	abs_top_builddir="$(abs_top_builddir)" \
+	abs_top_srcdir="$(abs_top_srcdir)"
