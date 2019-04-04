@@ -6,6 +6,7 @@ test_helpers = \
 
 test_programs = \
 	test_osinfo_db_path.py \
+	test_osinfo_db_validate.py \
 	$(NULL)
 
 EXTRA_DIST += \
