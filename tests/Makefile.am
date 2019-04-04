@@ -5,6 +5,7 @@ test_helpers = \
 	$(NULL)
 
 test_programs = \
+	test_osinfo_db_export_import.py \
 	test_osinfo_db_path.py \
 	test_osinfo_db_validate.py \
 	$(NULL)
