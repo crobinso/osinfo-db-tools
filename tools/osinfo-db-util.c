@@ -39,7 +39,7 @@ GFile *osinfo_db_get_system_path(const gchar *root)
     if (!path)
         path = DATA_DIR "/osinfo";
 
-    dbdir = g_strdup_printf("%s%s", root, path);
+    dbdir = g_build_filename(root, path, NULL);
     file = g_file_new_for_path(dbdir);
     g_free(dbdir);
     return file;
@@ -54,7 +54,7 @@ GFile *osinfo_db_get_local_path(const gchar *root)
     if (!path)
         path = SYSCONFDIR "/osinfo";
 
-    dbdir = g_strdup_printf("%s%s", root, path);
+    dbdir = g_build_filename(root, path, NULL);
     file = g_file_new_for_path(dbdir);
     g_free(dbdir);
     return file;
@@ -69,9 +69,9 @@ GFile *osinfo_db_get_user_path(const gchar *root)
     const gchar *configdir = g_get_user_config_dir();
 
     if (path) {
-        dbdir = g_strdup_printf("%s%s", root, path);
+        dbdir = g_build_filename(root, path, NULL);
     } else {
-        dbdir = g_strdup_printf("%s%s/osinfo", root, configdir);
+        dbdir = g_build_filename(root, configdir, "osinfo", NULL);
     }
     file = g_file_new_for_path(dbdir);
     g_free(dbdir);
@@ -85,7 +85,7 @@ GFile *osinfo_db_get_custom_path(const gchar *dir,
     GFile *file;
     gchar *dbdir;
 
-    dbdir = g_strdup_printf("%s%s", root, dir);
+    dbdir = g_build_filename(root, dir, NULL);
     file = g_file_new_for_path(dbdir);
     g_free(dbdir);
     return file;
