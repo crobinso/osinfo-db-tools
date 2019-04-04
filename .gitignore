@@ -31,6 +31,7 @@ m4
 stamp-h1
 *.spec
 build/
+tests/*.log
 tools/osinfo-db-validate
 tools/osinfo-db-validate.exe
 tools/osinfo-db-validate.1

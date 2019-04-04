@@ -1,5 +1,5 @@
 
-SUBDIRS = tools docs po
+SUBDIRS = tools docs po tests
 
 EXTRA_DIST = \
   osinfo-db-tools.spec \

@@ -60,6 +60,7 @@ AC_CONFIG_FILES([
 	mingw-osinfo-db-tools.spec
 	tools/Makefile
 	docs/Makefile
+	tests/Makefile
 	po/Makefile.in
 ])
 AC_OUTPUT
