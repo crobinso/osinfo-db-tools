@@ -42,4 +42,18 @@ homepage
 
    https://libosinfo.org/
 
+Testing
+=======
+
+In order to test osinfo-db-tools, you should run:
+
+    $ make check
+
+For a more complete test run, including testing command-line options that
+depend on network, you should export the OSINFO_DB_TOOLS_NETWORK_TESTS
+environment variable to the build system. For example:
+
+    $ export OSINFO_DB_TOOLS_NETWORK_TESTS=1
+    $ make check
+
 --End
