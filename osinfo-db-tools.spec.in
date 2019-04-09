@@ -1,5 +1,11 @@
 # -*- rpm-spec -*-
 
+%if 0%{?fedora} || (0%{?rhel} && 0%{?rhel} >= 8)
+    %define supports_python3 1
+%else
+    %define supports_python3 0
+%endif
+
 Summary: Tools for managing the osinfo database
 Name: osinfo-db-tools
 Version: @VERSION@
@@ -16,6 +22,13 @@ BuildRequires: libarchive-devel
 BuildRequires: json-glib-devel
 BuildRequires: /usr/bin/pod2man
 
+%if %{supports_python3}
+#Required for testing purposes
+BuildRequires: python3
+BuildRequires: python3-pytest
+BuildRequires: python3-requests
+%endif
+
 %description
 This package provides tools for managing the osinfo database of
 information about operating systems for use with virtualization
@@ -26,6 +39,13 @@ information about operating systems for use with virtualization
 %build
 %configure
 %__make %{?_smp_mflags} V=1
+
+%check
+if ! make check
+then
+  cat tests/test-suite.log || true
+  exit 1
+fi
 
 %install
 %__make install DESTDIR=%{buildroot}
