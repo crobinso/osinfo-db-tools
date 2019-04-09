@@ -15,7 +15,10 @@ EXTRA_DIST += \
 	$(test_programs) \
 	$(NULL)
 
-TESTS = \
+TESTS =
+
+if EXECUTE_TESTS
+TESTS += \
 	$(test_programs) \
 	$(NULL)
 
@@ -24,3 +27,4 @@ TESTS_ENVIRONMENT = \
 	abs_top_srcdir="$(abs_top_srcdir)" \
 	datadir="$(datadir)" \
 	sysconfdir="$(sysconfdir)"
+endif

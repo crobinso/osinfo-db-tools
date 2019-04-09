@@ -11,6 +11,29 @@ AC_PROG_LN_S
 # Perl is needed for syntax-check
 AC_PATH_PROG([PERL], [perl])
 
+# python3, python3-pytest and python3-requests are needed for our tests
+AC_CHECK_PROG(HAVE_PYTHON3, python3, yes, no)
+if test "x$HAVE_PYTHON3" == "xyes";
+then
+    PYTHON="python3"
+
+    $PYTHON -c "import pytest"
+    if test $? -eq 0;
+    then
+        HAVE_PYTEST="yes"
+    fi
+
+    $PYTHON -c "import requests"
+    if test $? -eq 0;
+    then
+        HAVE_REQUESTS="yes"
+    fi
+else
+    HAVE_PYTEST="no"
+    HAVE_REQUESTS="no"
+fi
+AM_CONDITIONAL([EXECUTE_TESTS], [test "x$HAVE_PYTEST" == "xyes" -a "x$HAVE_REQUESTS" = "xyes"])
+
 LT_INIT([shared disable-static win32-dll])
 
 LIBOSINFO_COMPILE_WARNINGS
