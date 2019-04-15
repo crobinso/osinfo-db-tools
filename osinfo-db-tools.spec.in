@@ -21,6 +21,7 @@ BuildRequires: libxslt-devel >= 1.0.0
 BuildRequires: libarchive-devel
 BuildRequires: json-glib-devel
 BuildRequires: /usr/bin/pod2man
+Requires: gvfs
 
 %if %{supports_python3}
 #Required for testing purposes
