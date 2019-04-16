@@ -32,7 +32,7 @@ else
     HAVE_PYTEST="no"
     HAVE_REQUESTS="no"
 fi
-AM_CONDITIONAL([EXECUTE_TESTS], [test "x$HAVE_PYTEST" == "xyes" -a "x$HAVE_REQUESTS" = "xyes"])
+AM_CONDITIONAL([EXECUTE_TESTS], [test "x$HAVE_PYTEST" == "xyes" && "x$HAVE_REQUESTS" = "xyes"])
 
 LT_INIT([shared disable-static win32-dll])
 
