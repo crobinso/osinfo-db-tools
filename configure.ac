@@ -13,7 +13,7 @@ AC_PATH_PROG([PERL], [perl])
 
 # python3, python3-pytest and python3-requests are needed for our tests
 AC_CHECK_PROG(HAVE_PYTHON3, python3, yes, no)
-if test "x$HAVE_PYTHON3" == "xyes";
+if test "x$HAVE_PYTHON3" = "xyes";
 then
     PYTHON="python3"
 
@@ -32,7 +32,7 @@ else
     HAVE_PYTEST="no"
     HAVE_REQUESTS="no"
 fi
-AM_CONDITIONAL([EXECUTE_TESTS], [test "x$HAVE_PYTEST" == "xyes" && test "x$HAVE_REQUESTS" = "xyes"])
+AM_CONDITIONAL([EXECUTE_TESTS], [test "x$HAVE_PYTEST" = "xyes" && test "x$HAVE_REQUESTS" = "xyes"])
 
 LT_INIT([shared disable-static win32-dll])
 
