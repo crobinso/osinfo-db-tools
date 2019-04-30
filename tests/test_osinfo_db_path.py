@@ -18,6 +18,8 @@ def test_osinfo_db_path_system():
     """
     Test osinfo-db-path --system
     """
+    if "OSINFO_SYSTEM_DIR" in os.environ:
+        del os.environ["OSINFO_SYSTEM_DIR"]
     cmd = [util.Tools.db_path, util.ToolsArgs.SYSTEM]
     output = util.get_output(cmd)
     expected_output = os.path.join(DATADIR, "osinfo\n")
@@ -28,6 +30,8 @@ def test_osinfo_db_path_local():
     """
     Test osinfo-db-path --local
     """
+    if "OSINFO_DATA_DIR" in os.environ:
+        del os.environ["OSINFO_DATA_DIR"]
     cmd = [util.Tools.db_path, util.ToolsArgs.LOCAL]
     output = util.get_output(cmd)
     expected_output = os.path.join(SYSCONFDIR, "osinfo\n")
@@ -38,6 +42,8 @@ def test_osinfo_db_path_user():
     """
     Test osinfo-db-path --user
     """
+    if "OSINFO_USER_DIR" in os.environ:
+        del os.environ["OSINFO_USER_DIR"]
     cmd = [util.Tools.db_path, util.ToolsArgs.USER]
     output = util.get_output(cmd)
     expected_output = os.path.join(os.environ["HOME"], ".config",
@@ -59,6 +65,8 @@ def test_osinfo_db_path_root():
     """
     Test osinfo-db-path --root FOOBAR_DIR --system
     """
+    if "OSINFO_SYSTEM_DIR" in os.environ:
+        del os.environ["OSINFO_SYSTEM_DIR"]
     cmd = [util.Tools.db_path, util.ToolsArgs.ROOT, FOOBAR_DIR,
            util.ToolsArgs.SYSTEM]
     output = util.get_output(cmd)
