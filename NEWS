@@ -1,3 +1,11 @@
+1.5.0
+=====
+
+- Add a test suite covering all the tools
+- Improve usage of --root by not requiring its argument to end with '/'
+- Fix memory leak on osinfo-db-validate
+- Fix wording of osinfo-db-export --help
+
 1.4.0
 =====
 
