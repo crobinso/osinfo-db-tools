@@ -9,9 +9,9 @@
 # Yuri Chornoivan <yurchor@ukr.net>, 2019. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: osinfo-db-tools 1.4.0\n"
+"Project-Id-Version: osinfo-db-tools 1.5.0\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/libosinfo/osinfo-db-tools/issues\n"
-"POT-Creation-Date: 2019-03-01 17:11+0100\n"
+"POT-Creation-Date: 2019-05-06 12:18+0200\n"
 "PO-Revision-Date: 2019-02-03 07:51+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/projects/p/libosinfo/"
@@ -30,29 +30,28 @@ msgid "Verbose progress information"
 msgstr "Докладні дані щодо поступу"
 
 #: tools/osinfo-db-export.c:492
-msgid "Install into user directory"
-msgstr "Встановити до каталогу користувача"
+msgid "Export the osinfo-db user directory"
+msgstr ""
 
 #: tools/osinfo-db-export.c:494
-msgid "Install into local directory"
-msgstr "Встановити до локального каталогу"
+msgid "Export the osinfo-db local directory"
+msgstr ""
 
 #: tools/osinfo-db-export.c:496
-msgid "Install into system directory"
-msgstr "Встановити до системного каталогу"
+msgid "Export the osinfo-db system directory"
+msgstr ""
 
-#: tools/osinfo-db-export.c:498 tools/osinfo-db-import.c:407
-msgid "Import into custom directory"
-msgstr "Імпортувати до нетипового каталогу"
+#: tools/osinfo-db-export.c:498
+msgid "Export an osinfo-db custom directory"
+msgstr ""
 
 #: tools/osinfo-db-export.c:500
 msgid "Set version number of archive"
 msgstr "Встановити номер версії архіву"
 
-#: tools/osinfo-db-export.c:502 tools/osinfo-db-import.c:409
-#: tools/osinfo-db-validate.c:263
-msgid "Installation root directory"
-msgstr "Кореневий каталог встановлення"
+#: tools/osinfo-db-export.c:502
+msgid "Export the osinfo-db root directory"
+msgstr ""
 
 #: tools/osinfo-db-export.c:504
 msgid "License file"
@@ -96,6 +95,14 @@ msgstr "Імпортувати до локального каталогу"
 #: tools/osinfo-db-import.c:405
 msgid "Import into system directory"
 msgstr "Імпортувати до системного каталогу"
+
+#: tools/osinfo-db-import.c:407
+msgid "Import into custom directory"
+msgstr "Імпортувати до нетипового каталогу"
+
+#: tools/osinfo-db-import.c:409 tools/osinfo-db-validate.c:263
+msgid "Installation root directory"
+msgstr "Кореневий каталог встановлення"
 
 #: tools/osinfo-db-import.c:411
 msgid "Import the latest osinfo-db from osinfo-db's website"

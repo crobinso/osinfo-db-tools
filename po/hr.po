@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/libosinfo/osinfo-db-tools/issues\n"
-"POT-Creation-Date: 2019-03-01 17:11+0100\n"
+"POT-Creation-Date: 2019-05-06 12:18+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
@@ -25,28 +25,27 @@ msgid "Verbose progress information"
 msgstr ""
 
 #: tools/osinfo-db-export.c:492
-msgid "Install into user directory"
+msgid "Export the osinfo-db user directory"
 msgstr ""
 
 #: tools/osinfo-db-export.c:494
-msgid "Install into local directory"
+msgid "Export the osinfo-db local directory"
 msgstr ""
 
 #: tools/osinfo-db-export.c:496
-msgid "Install into system directory"
+msgid "Export the osinfo-db system directory"
 msgstr ""
 
-#: tools/osinfo-db-export.c:498 tools/osinfo-db-import.c:407
-msgid "Import into custom directory"
+#: tools/osinfo-db-export.c:498
+msgid "Export an osinfo-db custom directory"
 msgstr ""
 
 #: tools/osinfo-db-export.c:500
 msgid "Set version number of archive"
 msgstr ""
 
-#: tools/osinfo-db-export.c:502 tools/osinfo-db-import.c:409
-#: tools/osinfo-db-validate.c:263
-msgid "Installation root directory"
+#: tools/osinfo-db-export.c:502
+msgid "Export the osinfo-db root directory"
 msgstr ""
 
 #: tools/osinfo-db-export.c:504
@@ -85,6 +84,14 @@ msgstr ""
 
 #: tools/osinfo-db-import.c:405
 msgid "Import into system directory"
+msgstr ""
+
+#: tools/osinfo-db-import.c:407
+msgid "Import into custom directory"
+msgstr ""
+
+#: tools/osinfo-db-import.c:409 tools/osinfo-db-validate.c:263
+msgid "Installation root directory"
 msgstr ""
 
 #: tools/osinfo-db-import.c:411

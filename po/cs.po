@@ -1,12 +1,13 @@
 # Zdenek <chmelarz@gmail.com>, 2016. #zanata
 # Zdenek <chmelarz@gmail.com>, 2018. #zanata
+# Pavel Borecki <pavel.borecki@gmail.com>, 2019. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: osinfo-db-tools 1.4.0\n"
+"Project-Id-Version: osinfo-db-tools 1.5.0\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/libosinfo/osinfo-db-tools/issues\n"
-"POT-Creation-Date: 2019-03-01 17:11+0100\n"
-"PO-Revision-Date: 2018-02-21 11:21+0000\n"
-"Last-Translator: Zdenek <chmelarz@gmail.com>\n"
+"POT-Creation-Date: 2019-05-06 12:18+0200\n"
+"PO-Revision-Date: 2019-04-22 07:16+0000\n"
+"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -21,29 +22,28 @@ msgid "Verbose progress information"
 msgstr "Podrobnější výstup průběhu"
 
 #: tools/osinfo-db-export.c:492
-msgid "Install into user directory"
-msgstr "Nainstalovat do uživatelského adresáře"
+msgid "Export the osinfo-db user directory"
+msgstr ""
 
 #: tools/osinfo-db-export.c:494
-msgid "Install into local directory"
-msgstr "Nainstalovat do místního adresáře"
+msgid "Export the osinfo-db local directory"
+msgstr ""
 
 #: tools/osinfo-db-export.c:496
-msgid "Install into system directory"
-msgstr "Nainstalovat do systémového adresáře"
+msgid "Export the osinfo-db system directory"
+msgstr ""
 
-#: tools/osinfo-db-export.c:498 tools/osinfo-db-import.c:407
-msgid "Import into custom directory"
-msgstr "Importovat do vlastního adresáře"
+#: tools/osinfo-db-export.c:498
+msgid "Export an osinfo-db custom directory"
+msgstr ""
 
 #: tools/osinfo-db-export.c:500
 msgid "Set version number of archive"
 msgstr "Nastavit číslo verze archivu"
 
-#: tools/osinfo-db-export.c:502 tools/osinfo-db-import.c:409
-#: tools/osinfo-db-validate.c:263
-msgid "Installation root directory"
-msgstr "Instalační kořenový adresář"
+#: tools/osinfo-db-export.c:502
+msgid "Export the osinfo-db root directory"
+msgstr ""
 
 #: tools/osinfo-db-export.c:504
 msgid "License file"
@@ -72,7 +72,7 @@ msgstr ""
 #: tools/osinfo-db-export.c:540 tools/osinfo-db-import.c:447
 #: tools/osinfo-db-path.c:92
 msgid "Only one of --user, --local, --system & --dir can be used\n"
-msgstr ""
+msgstr "Je možné použít pouze jedno z --user, --local, --system --dir\n"
 
 #: tools/osinfo-db-import.c:401
 msgid "Import into user directory"
@@ -86,9 +86,17 @@ msgstr "Importovat do místního adresáře"
 msgid "Import into system directory"
 msgstr "Importovat do systémového adresáře"
 
+#: tools/osinfo-db-import.c:407
+msgid "Import into custom directory"
+msgstr "Importovat do vlastního adresáře"
+
+#: tools/osinfo-db-import.c:409 tools/osinfo-db-validate.c:263
+msgid "Installation root directory"
+msgstr "Instalační kořenový adresář"
+
 #: tools/osinfo-db-import.c:411
 msgid "Import the latest osinfo-db from osinfo-db's website"
-msgstr ""
+msgstr "Importovat nejnovější osinfo-db z webu projektu"
 
 #: tools/osinfo-db-import.c:421
 msgid "- Import database archive "
@@ -203,3 +211,5 @@ msgid ""
 "Only one of --user, --local, --system, --dir or positional filenames can be "
 "used\n"
 msgstr ""
+"Je možné použít jen jedno z --user, --local, --system, --dir nebo poziční "
+"soubory\n"
