@@ -327,6 +327,7 @@ gint main(gint argc, gchar **argv)
         g_object_unref(schema);
     if (dir)
         g_object_unref(dir);
+    g_free(files);
     g_clear_error(&error);
     g_option_context_free(context);
 
