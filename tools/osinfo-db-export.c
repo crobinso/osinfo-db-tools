@@ -407,7 +407,6 @@ static int osinfo_db_export_create(const gchar *prefix,
     struct archive *arc;
     int ret = -1;
     int r;
-    GError *err = NULL;
 
     arc = archive_write_new();
 
@@ -445,8 +444,6 @@ static int osinfo_db_export_create(const gchar *prefix,
     ret = 0;
  cleanup:
     archive_write_free(arc);
-    if (err)
-        g_error_free(err);
     return ret;
 }
 
