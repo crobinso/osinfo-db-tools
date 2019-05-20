@@ -177,7 +177,7 @@ osinfo_db_import_download_file(GFile *file,
         g_object_unref(out);
     if (err != NULL)
         g_error_free(err);
-    if (ret != 0)
+    if (ret != 0 && *source_file != NULL)
         unlink(*source_file);
 
     return ret;
