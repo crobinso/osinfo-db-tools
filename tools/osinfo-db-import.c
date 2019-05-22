@@ -370,7 +370,7 @@ static int osinfo_db_import_extract(GFile *target,
     archive_read_free(arc);
     if (file)
         g_object_unref(file);
-    if (!file_is_native)
+    if (!file_is_native && source_file != NULL)
         unlink(source_file);
     g_free(source_file);
     return ret;
