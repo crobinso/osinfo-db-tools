@@ -44,6 +44,8 @@ def test_osinfo_db_path_user():
     """
     if "OSINFO_USER_DIR" in os.environ:
         del os.environ["OSINFO_USER_DIR"]
+    if "XDG_CONFIG_HOME" in os.environ:
+        del os.environ["XDG_CONFIG_HOME"]
     cmd = [util.Tools.db_path, util.ToolsArgs.USER]
     output = util.get_output(cmd)
     expected_output = os.path.join(os.environ["HOME"], ".config",
