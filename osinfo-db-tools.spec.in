@@ -11,8 +11,9 @@ Name: osinfo-db-tools
 Version: @VERSION@
 Release: 1%{?dist}%{?extra_release}
 License: GPLv2+
-Source: https://releases.pagure.org/libosinfo/%{name}-%{version}.tar.gz
+Source: https://releases.pagure.org/libosinfo/%{name}-%{version}.tar.xz
 URL: https://libosinfo.org
+BuildRequires: meson
 BuildRequires: gcc
 BuildRequires: gettext-devel
 BuildRequires: glib2-devel
@@ -38,18 +39,14 @@ information about operating systems for use with virtualization
 %setup -q
 
 %build
-%configure
-%__make %{?_smp_mflags} V=1
+%meson
+%meson_build
 
 %check
-if ! make check
-then
-  cat tests/test-suite.log || true
-  exit 1
-fi
+%meson_test
 
 %install
-%__make install DESTDIR=%{buildroot}
+%meson_install
 
 %find_lang %{name}
 

@@ -5,15 +5,16 @@ Version: @VERSION@
 Release: 1%{?dist}%{?extra_release}
 Summary: MinGW Windows port of a library for managing OS information for virtualization
 License: LGPLv2+
-Source: https://releases.pagure.org/libosinfo/osinfo-db-tools-%{version}.tar.gz
+Source: https://releases.pagure.org/libosinfo/osinfo-db-tools-%{version}.tar.xz
 URL: https://libosinfo.org
 
 BuildArch: noarch
 
+BuildRequires: meson
 BuildRequires: gettext
 
-BuildRequires: mingw32-filesystem >= 95
-BuildRequires: mingw64-filesystem >= 95
+BuildRequires: mingw32-filesystem >= 107
+BuildRequires: mingw64-filesystem >= 107
 BuildRequires: mingw32-gcc
 BuildRequires: mingw64-gcc
 BuildRequires: mingw32-binutils
@@ -64,12 +65,11 @@ information about operating systems for use with virtualization
 %setup -q -n osinfo-db-tools-%{version}
 
 %build
-%mingw_configure
-%mingw_make %{?_smp_mflags}
-
+%mingw_meson
+%mingw_ninja
 
 %install
-%mingw_make_install DESTDIR=$RPM_BUILD_ROOT
+%mingw_ninja_install
 
 # Manpages don't need to be bundled
 rm -rf $RPM_BUILD_ROOT%{mingw32_datadir}/man
