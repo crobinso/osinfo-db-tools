@@ -18,6 +18,8 @@ exec 3>&1
 st=$(
   exec 4>&1 >&3
   { ninja -C build/native test 2>&1 3>&- 4>&-; echo $? >&4; } | tee "$RESULTS"
+  exec 4>&1 >&3
+  { ninja -C build/native syntax-check 2>&1 3>&- 4>&-; echo $? >&4; } | tee --append "$RESULTS"
 )
 exec 3>&-
 test "$st" = 0
