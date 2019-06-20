@@ -20,8 +20,6 @@
  *   Daniel P. Berrange <berrange@redhat.com>
  */
 
-#include <config.h>
-
 #include <libxml/relaxng.h>
 #include <locale.h>
 #include <glib/gi18n.h>

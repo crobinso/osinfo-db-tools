@@ -20,8 +20,6 @@
  *   Daniel P. Berrange <berrange@redhat.com>
  */
 
-#include <config.h>
-
 #include <glib/gi18n.h>
 
 #include "osinfo-db-util.h"

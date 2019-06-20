@@ -4,7 +4,6 @@ AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE([1.11.1 foreign color-tests tar-ustar])
 AC_PREREQ([2.61])
 AC_CONFIG_SRCDIR([tools/osinfo-db-validate.c])
-AC_CONFIG_HEADERS([config.h])
 AC_PROG_CC
 AC_PROG_LN_S
 

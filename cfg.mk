@@ -33,7 +33,9 @@ local-checks-to-skip =			\
   sc_two_space_separator_in_usage	\
   sc_error_message_uppercase		\
   sc_program_name			\
-  sc_makefile_check
+  sc_makefile_check			\
+  sc_require_config_h			\
+  sc_require_config_h_first
 
 # Files that should never cause syntax check failures.
 VC_LIST_ALWAYS_EXCLUDE_REGEX = \
