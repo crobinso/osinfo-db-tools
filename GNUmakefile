@@ -30,18 +30,14 @@ else
 SHELL = sh
 endif
 
-# If the user runs GNU make but has not yet run ./configure,
-# give them a diagnostic.
-_have-Makefile := $(shell test -f Makefile && echo yes)
-ifeq ($(_have-Makefile),yes)
+srcdir = .
+top_srcdir = .
 
 # Make tar archive easier to reproduce.
 export TAR_OPTIONS = --owner=0 --group=0 --numeric-owner
 
 # Allow the user to add to this in the Makefile.
 ALL_RECURSIVE_TARGETS =
-
-include Makefile
 
 # Some projects override e.g., _autoreconf here.
 -include $(srcdir)/cfg.mk
@@ -93,26 +89,6 @@ endif
 _version:
 	cd $(srcdir) && rm -rf autom4te.cache .version && $(_autoreconf)
 	$(MAKE) $(AM_MAKEFLAGS) Makefile
-
-else
-
-.DEFAULT_GOAL := abort-due-to-no-makefile
-srcdir = .
-
-# The package can override .DEFAULT_GOAL to run actions like autoreconf.
--include ./cfg.mk
-include ./maint.mk
-
-ifeq ($(.DEFAULT_GOAL),abort-due-to-no-makefile)
-$(MAKECMDGOALS): abort-due-to-no-makefile
-endif
-
-abort-due-to-no-makefile:
-	@echo There seems to be no Makefile in this directory.   1>&2
-	@echo "You must run ./configure before running \`make'." 1>&2
-	@exit 1
-
-endif
 
 # Tell version 3.79 and up of GNU make to not build goals in this
 # directory in parallel, in case someone tries to build multiple

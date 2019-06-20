@@ -35,7 +35,8 @@ local-checks-to-skip =			\
   sc_program_name			\
   sc_makefile_check			\
   sc_require_config_h			\
-  sc_require_config_h_first
+  sc_require_config_h_first		\
+  sc_prohibit_always-defined_macros
 
 # Files that should never cause syntax check failures.
 VC_LIST_ALWAYS_EXCLUDE_REGEX = \
