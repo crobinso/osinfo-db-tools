@@ -123,11 +123,12 @@ static gboolean validate_file_directory(xmlRelaxNGValidCtxtPtr rngValid, GFile *
 
     while ((info = g_file_enumerator_next_file(children, NULL, error))) {
         GFile *child = g_file_get_child(file, g_file_info_get_name(info));
-        if (!validate_file(rngValid, child, info, error)) {
-            g_object_unref(child);
+        gboolean ret_validate;
+        ret_validate = validate_file(rngValid, child, info, error);
+        g_clear_object(&child);
+
+        if (!ret_validate)
             goto cleanup;
-        }
-        g_object_unref(child);
     }
 
     if (*error)
