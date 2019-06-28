@@ -102,9 +102,7 @@ gint main(gint argc, gchar **argv)
     ret = EXIT_SUCCESS;
 
  error:
-    if (dir) {
-        g_object_unref(dir);
-    }
+    g_clear_object(&dir);
     g_clear_error(&error);
     g_option_context_free(context);
 
