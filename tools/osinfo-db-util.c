@@ -148,8 +148,7 @@ GFile *osinfo_db_get_file(const char *root,
         ret = g_file_resolve_relative_path(paths[i], file);
         if (g_file_query_exists(ret, NULL))
             break;
-        g_object_unref(ret);
-        ret = NULL;
+        g_clear_object(&ret);
     }
 
     if (!ret) {
