@@ -104,6 +104,8 @@ static int osinfo_db_export_create_dir(const gchar *prefix,
                                        gboolean verbose)
 {
     GFileEnumerator *children;
+    GFileInfo *childinfo = NULL;
+    GFile *child = NULL;
     GError *err = NULL;
     int ret = -1;
 
@@ -121,8 +123,7 @@ static int osinfo_db_export_create_dir(const gchar *prefix,
     }
 
     while (1) {
-        GFileInfo *childinfo = NULL;
-        GFile *child = NULL;
+        int export_create_ret;
 
         childinfo = g_file_enumerator_next_file(children, NULL, &err);
         if (!childinfo) {
@@ -137,14 +138,12 @@ static int osinfo_db_export_create_dir(const gchar *prefix,
 
         child = g_file_enumerator_get_child(children, childinfo);
 
-        if (osinfo_db_export_create_file(prefix, child, childinfo, base, target, arc, verbose) < 0) {
-            g_object_unref(child);
-            g_object_unref(childinfo);
-            goto cleanup;
-        }
+        export_create_ret = osinfo_db_export_create_file(prefix, child, childinfo, base, target, arc, verbose);
+        g_clear_object(&child);
+        g_clear_object(&childinfo);
 
-        g_object_unref(child);
-        g_object_unref(childinfo);
+        if (export_create_ret < 0)
+            goto cleanup;
     }
 
     ret = 0;
