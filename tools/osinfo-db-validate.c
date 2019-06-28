@@ -137,7 +137,7 @@ static gboolean validate_file_directory(xmlRelaxNGValidCtxtPtr rngValid, GFile *
     ret = TRUE;
 
  cleanup:
-    g_object_unref(children);
+    g_clear_object(&children);
     return ret;
 }
 
@@ -176,8 +176,7 @@ static gboolean validate_file(xmlRelaxNGValidCtxtPtr rngValid, GFile *file, GFil
 
  cleanup:
     g_free(uri);
-    if (thisinfo)
-        g_object_unref(thisinfo);
+    g_clear_object(&thisinfo);
     return ret;
 }
 
@@ -324,10 +323,8 @@ gint main(gint argc, gchar **argv)
     ret = EXIT_SUCCESS;
 
  error:
-    if (schema)
-        g_object_unref(schema);
-    if (dir)
-        g_object_unref(dir);
+    g_clear_object(&schema);
+    g_clear_object(&dir);
     g_free(files);
     g_clear_error(&error);
     g_option_context_free(context);
