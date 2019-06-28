@@ -88,9 +88,8 @@ static int osinfo_db_export_create_reg(GFile *file,
 
     ret = 0;
  cleanup:
-    if (err)
-        g_error_free(err);
-    g_object_unref(is);
+    g_clear_error(&err);
+    g_clear_object(&is);
     g_free(buf);
     return ret;
 }
@@ -148,8 +147,7 @@ static int osinfo_db_export_create_dir(const gchar *prefix,
 
     ret = 0;
  cleanup:
-    if (err)
-        g_error_free(err);
+    g_clear_error(&err);
     return ret;
 }
 
@@ -284,10 +282,8 @@ static int osinfo_db_export_create_file(const gchar *prefix,
     g_free(abspath);
     g_free(relpath);
     g_free(entpath);
-    if (info)
-        g_object_unref(info);
-    if (err)
-        g_error_free(err);
+    g_clear_object(&info);
+    g_clear_error(&err);
     return ret;
 }
 
@@ -391,8 +387,7 @@ static int osinfo_db_export_create_license(const gchar *prefix,
     ret = 0;
  cleanup:
     archive_entry_free(entry);
-    if (err)
-        g_error_free(err);
+    g_clear_error(&err);
     return ret;
 }
 
@@ -559,9 +554,7 @@ gint main(gint argc, gchar **argv)
     g_free(archive);
     g_free(autoversion);
     g_free(prefix);
-    if (dir) {
-        g_object_unref(dir);
-    }
+    g_clear_object(&dir);
     g_clear_error(&error);
     g_option_context_free(context);
 
