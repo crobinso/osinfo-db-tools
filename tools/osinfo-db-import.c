@@ -82,7 +82,7 @@ static int osinfo_db_import_create_reg(GFile *file,
     }
     ret = 0;
  cleanup:
-    g_object_unref(os);
+    g_clear_object(&os);
     return ret;
 }
 
@@ -209,10 +209,8 @@ osinfo_db_import_download_file(const gchar *source)
     g_free(content);
     g_clear_object(&message);
     g_clear_object(&stream);
-    if (out != NULL)
-        g_object_unref(out);
-    if (err != NULL)
-        g_error_free(err);
+    g_clear_object(&out);
+    g_clear_error(&err);
     if (ret != 0 && source_file != NULL) {
         unlink(source_file);
         g_free(source_file);
@@ -245,7 +243,7 @@ static gboolean osinfo_db_get_installed_version(GFile *dir,
 
  cleanup:
     g_clear_error(&err);
-    g_object_unref(file);
+    g_clear_object(&file);
 
     return ret;
 }
@@ -347,10 +345,8 @@ static gboolean osinfo_db_get_latest_info(gchar **version,
 
  cleanup:
     g_clear_object(&message);
-    if (parser != NULL)
-        g_object_unref(parser);
-    if (reader != NULL)
-        g_object_unref(reader);
+    g_clear_object(&parser);
+    g_clear_object(&reader);
     g_free(content);
     g_clear_error(&err);
 
@@ -428,8 +424,7 @@ static int osinfo_db_import_extract(GFile *target,
         if (osinfo_db_import_create(file, arc, entry, verbose) < 0) {
             goto cleanup;
         }
-        g_object_unref(file);
-        file = NULL;
+        g_clear_object(&file);
     }
 
     if (archive_read_close(arc) != ARCHIVE_OK) {
@@ -441,8 +436,7 @@ static int osinfo_db_import_extract(GFile *target,
     ret = 0;
  cleanup:
     archive_read_free(arc);
-    if (file)
-        g_object_unref(file);
+    g_clear_object(&file);
     if (!file_is_native && source_file != NULL)
         unlink(source_file);
     g_free(source_file);
@@ -545,9 +539,7 @@ gint main(gint argc, gchar **argv)
     ret = EXIT_SUCCESS;
 
  error:
-    if (dir) {
-        g_object_unref(dir);
-    }
+    g_clear_object(&dir);
     g_free(installed_version);
     g_free(latest_version);
     g_free(latest_url);
