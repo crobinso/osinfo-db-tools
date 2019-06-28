@@ -29,6 +29,7 @@
 #include <stdlib.h>
 #include <archive.h>
 #include <archive_entry.h>
+#include <libsoup/soup.h>
 
 #include "osinfo-db-util.h"
 
@@ -36,6 +37,7 @@
 #define VERSION_FILE "VERSION"
 
 const char *argv0;
+static SoupSession *session = NULL;
 
 static int osinfo_db_import_create_reg(GFile *file,
                                        struct archive *arc,
@@ -139,33 +141,64 @@ static GFile *osinfo_db_import_get_file(GFile *target,
     return g_file_resolve_relative_path(target, tmp);
 }
 
-static int
-osinfo_db_import_download_file(GFile *file,
-                               gchar **source_file)
+static gchar *
+osinfo_db_import_download_file(const gchar *source)
 {
+    GInputStream *stream = NULL;
     GFile *out = NULL;
     GError *err = NULL;
+    SoupMessage *message = NULL;
     gchar *filename = NULL;
-    GFileCopyFlags flags = G_FILE_COPY_OVERWRITE | G_FILE_COPY_BACKUP;
+    gchar *source_file = NULL;
+    gchar *content = NULL;
+    goffset content_size = 0;
+    GFileCreateFlags flags = G_FILE_CREATE_REPLACE_DESTINATION;
     int ret = -1;
 
-    filename = g_file_get_basename(file);
+    filename = g_path_get_basename(source);
     if (filename == NULL)
         goto cleanup;
 
-    *source_file = g_build_filename(g_get_user_cache_dir(), filename, NULL);
-    if (*source_file == NULL)
+    source_file = g_build_filename(g_get_user_cache_dir(), filename, NULL);
+    if (source_file == NULL)
         goto cleanup;
 
-    out = g_file_new_for_path(*source_file);
+    out = g_file_new_for_path(source_file);
     if (out == NULL)
         goto cleanup;
 
-    if (!g_file_copy(file, out, flags, NULL, NULL, NULL, &err)) {
-        gchar *path = g_file_get_path(file);
+    if (session == NULL)
+        session = soup_session_new();
+
+    if (session == NULL)
+        goto cleanup;
+
+    message = soup_message_new("GET", source);
+    if (message == NULL)
+        goto cleanup;
+
+    stream = soup_session_send(session, message, NULL, &err);
+    if (stream == NULL ||
+        !SOUP_STATUS_IS_SUCCESSFUL(message->status_code)) {
+        g_printerr("Could not access %s: %s\n",
+                   source,
+                   err != NULL ? err->message :
+                                 soup_status_get_phrase(message->status_code));
+        goto cleanup;
+    }
+
+    content_size = soup_message_headers_get_content_length(message->response_headers);
+    content = g_malloc0(content_size);
+
+    if (!g_input_stream_read_all(stream, content, content_size, NULL, NULL, &err)) {
+        g_printerr("Could not load the content of %s: %s\n",
+                   source, err->message);
+        goto cleanup;
+    }
+
+    if (!g_file_replace_contents(out, content, content_size, NULL, TRUE, flags, NULL, NULL, &err)) {
         g_printerr("Could not download file \"%s\": %s\n",
-                   path, err->message);
-        g_free(path);
+                   source, err->message);
         goto cleanup;
     }
 
@@ -173,14 +206,20 @@ osinfo_db_import_download_file(GFile *file,
 
  cleanup:
     g_free(filename);
+    g_free(content);
+    g_clear_object(&message);
+    g_clear_object(&stream);
     if (out != NULL)
         g_object_unref(out);
     if (err != NULL)
         g_error_free(err);
-    if (ret != 0 && *source_file != NULL)
-        unlink(*source_file);
+    if (ret != 0 && source_file != NULL) {
+        unlink(source_file);
+        g_free(source_file);
+        source_file = NULL;
+    }
 
-    return ret;
+    return source_file;
 }
 
 static gboolean osinfo_db_get_installed_version(GFile *dir,
@@ -214,18 +253,39 @@ static gboolean osinfo_db_get_installed_version(GFile *dir,
 static gboolean osinfo_db_get_latest_info(gchar **version,
                                           gchar **url)
 {
+    SoupMessage *message = NULL;
+    GInputStream *stream = NULL;
     JsonParser *parser = NULL;
     JsonReader *reader = NULL;
-    GFile *uri = NULL;
     GError *err = NULL;
     gchar *content = NULL;
+    goffset content_size = 0;
     gboolean ret = FALSE;
 
-    uri = g_file_new_for_uri(LATEST_URI);
-    if (uri == NULL)
-        return FALSE;
+    if (session == NULL)
+        session = soup_session_new();
 
-    if (!g_file_load_contents(uri, NULL, &content, NULL, NULL, &err)) {
+    if (session == NULL)
+        goto cleanup;
+
+    message = soup_message_new("GET", LATEST_URI);
+    if (message == NULL)
+        goto cleanup;
+
+    stream = soup_session_send(session, message, NULL, &err);
+    if (stream == NULL ||
+        !SOUP_STATUS_IS_SUCCESSFUL(message->status_code)) {
+        g_printerr("Could not access %s: %s\n",
+                   LATEST_URI,
+                   err != NULL ? err->message :
+                                 soup_status_get_phrase(message->status_code));
+        goto cleanup;
+    }
+
+    content_size = soup_message_headers_get_content_length(message->response_headers);
+    content = g_malloc0(content_size);
+
+    if (!g_input_stream_read_all(stream, content, content_size, NULL, NULL, &err)) {
         g_printerr("Could not load the content of %s: %s\n",
                    LATEST_URI, err->message);
         goto cleanup;
@@ -286,7 +346,7 @@ static gboolean osinfo_db_get_latest_info(gchar **version,
     ret = TRUE;
 
  cleanup:
-    g_object_unref(uri);
+    g_clear_object(&message);
     if (parser != NULL)
         g_object_unref(parser);
     if (reader != NULL)
@@ -295,6 +355,19 @@ static gboolean osinfo_db_get_latest_info(gchar **version,
     g_clear_error(&err);
 
     return ret;
+}
+
+static gboolean requires_soup(const gchar *source)
+{
+    const gchar *prefixes[] = { "http://", "https://", NULL };
+    gsize i;
+
+    for (i = 0; prefixes[i] != NULL; i++) {
+        if (g_str_has_prefix(source, prefixes[i]))
+            return TRUE;
+    }
+
+    return FALSE;
 }
 
 static int osinfo_db_import_extract(GFile *target,
@@ -318,21 +391,21 @@ static int osinfo_db_import_extract(GFile *target,
         source = NULL;
 
     if (source != NULL) {
-        file = g_file_new_for_commandline_arg(source);
-        if (file == NULL)
-            goto cleanup;
+        file_is_native = !requires_soup(source);
 
-        file_is_native = g_file_is_native(file);
-        if (!file_is_native) {
-            if (osinfo_db_import_download_file(file, &source_file) < 0)
+        if (file_is_native) {
+            file = g_file_new_for_commandline_arg(source);
+            if (file == NULL)
                 goto cleanup;
-        } else {
+
             source_file = g_file_get_path(file);
+            g_clear_object(&file);
+        } else {
+            source_file = osinfo_db_import_download_file(source);
         }
+
         if (source_file == NULL)
             goto cleanup;
-
-        g_clear_object(&file);
     }
 
     if ((r = archive_read_open_filename(arc, source_file, 10240)) != ARCHIVE_OK) {
@@ -478,6 +551,7 @@ gint main(gint argc, gchar **argv)
     g_free(installed_version);
     g_free(latest_version);
     g_free(latest_url);
+    g_clear_object(&session);
     g_clear_error(&error);
     g_option_context_free(context);
 
@@ -527,6 +601,9 @@ they use with an updated database.
 If run by a privileged account (ie root), the B<local> database
 location will be used by default, otherwise the B<user> location
 will be used.
+
+When passing a non local ARCHIVE-FILE, only http:// and https://
+protocols are supported.
 
 With no ARCHIVE-FILE, or when ARCHIVE-FILE is -, read standard
 input.

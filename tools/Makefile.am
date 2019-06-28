@@ -2,6 +2,7 @@ AM_CFLAGS = $(GOBJECT_CFLAGS) \
 	    $(GIO_CFLAGS)     \
 	    $(GLIB_CFLAGS)    \
 	    $(LIBXML_CFLAGS)  \
+	    $(LIBSOUP_CFLAGS)  \
 	    -DPKGDATADIR="\"$(pkgdatadir)\"" \
 	    -DDATA_DIR="\"$(datadir)\"" \
 	    -DSYSCONFDIR="\"$(sysconfdir)\"" \
@@ -36,6 +37,7 @@ osinfo_db_import_SOURCES = osinfo-db-import.c $(COMMON_SOURCES)
 osinfo_db_import_LDADD = $(GOBJECT_LIBS)	\
 		      $(GIO_LIBS)		\
 		      $(GLIB_LIBS)		\
+		      $(LIBSOUP_LIBS)		\
 		      $(JSON_GLIB_LIBS)	\
 		      $(LIBARCHIVE_LIBS)
 osinfo_db_import_CFLAGS = $(AM_CFLAGS)		\
