@@ -21,11 +21,11 @@
  */
 
 #ifndef OSINFO_DB_UTIL_H__
-#define OSINFO_DB_UTIL_H__
+# define OSINFO_DB_UTIL_H__
 
-#include <gio/gio.h>
+# include <gio/gio.h>
 
-#define OSINFO_DB_ERROR osinfo_db_error_quark()
+# define OSINFO_DB_ERROR osinfo_db_error_quark()
 
 GQuark osinfo_db_error_quark(void);
 GFile *osinfo_db_get_system_path(const gchar *root);
