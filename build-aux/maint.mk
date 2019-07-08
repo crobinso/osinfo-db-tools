@@ -19,7 +19,7 @@
 
 # This is reported not to work with make-3.79.1
 # ME := $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
-ME := maint.mk
+ME := $(_build-aux)/maint.mk
 
 # These variables ought to be defined through the configure.ac section
 # of the module description. But some packages import this file directly,
@@ -1660,7 +1660,7 @@ _gl_TS_dir ?= src
 ALL_RECURSIVE_TARGETS += sc_tight_scope
 sc_tight_scope: tight-scope.mk
 	@fail=0;							\
-	if ! $(GREP) '^ *export _gl_TS_headers *=' $(srcdir)/cfg.mk	\
+	if ! $(GREP) '^ *export _gl_TS_headers *=' $(srcdir)/$(_build-aux)/cfg.mk	\
 		> /dev/null						\
 	   && ! $(GREP) -w noinst_HEADERS $(srcdir)/$(_gl_TS_dir)/Makefile.am \
 		> /dev/null 2>&1; then					\
@@ -1668,7 +1668,7 @@ sc_tight_scope: tight-scope.mk
 	else								\
 	    $(MAKE) -s -C $(_gl_TS_dir)					\
 		-f Makefile						\
-		-f $(abs_top_srcdir)/cfg.mk				\
+		-f $(abs_top_srcdir)/$(_build-aux)/cfg.mk				\
 		-f $(abs_top_builddir)/$<				\
 	      _gl_tight_scope						\
 		|| fail=1;						\
@@ -1676,7 +1676,7 @@ sc_tight_scope: tight-scope.mk
 	rm -f $<;							\
 	exit $$fail
 
-tight-scope.mk: $(ME)
+tight-scope.mk: maint.mk
 	@rm -f $@ $@-t
 	@perl -ne '/^# TS-start/.../^# TS-end/ and print' $(srcdir)/$(ME) > $@-t
 	@chmod a=r $@-t && mv $@-t $@

@@ -30,8 +30,8 @@ else
 SHELL = sh
 endif
 
-srcdir = .
-top_srcdir = .
+srcdir = ..
+top_srcdir = ..
 
 # Make tar archive easier to reproduce.
 export TAR_OPTIONS = --owner=0 --group=0 --numeric-owner
@@ -40,13 +40,13 @@ export TAR_OPTIONS = --owner=0 --group=0 --numeric-owner
 ALL_RECURSIVE_TARGETS =
 
 # Some projects override e.g., _autoreconf here.
--include $(srcdir)/cfg.mk
 
 # Allow cfg.mk to override these.
 _build-aux ?= build-aux
 _autoreconf ?= autoreconf -v
 
-include $(srcdir)/maint.mk
+-include $(srcdir)/$(_build-aux)/cfg.mk
+include $(srcdir)/$(_build-aux)/maint.mk
 
 # Ensure that $(VERSION) is up to date for dist-related targets, but not
 # for others: rerunning autoreconf and recompiling everything isn't cheap.
