@@ -30,8 +30,8 @@ def test_osinfo_db_path_local():
     """
     Test osinfo-db-path --local
     """
-    if "OSINFO_DATA_DIR" in os.environ:
-        del os.environ["OSINFO_DATA_DIR"]
+    if "OSINFO_LOCAL_DIR" in os.environ:
+        del os.environ["OSINFO_LOCAL_DIR"]
     cmd = [util.Tools.db_path, util.ToolsArgs.LOCAL]
     output = util.get_output(cmd)
     expected_output = os.path.join(SYSCONFDIR, "osinfo\n")
