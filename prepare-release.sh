@@ -14,7 +14,7 @@ mkdir build
 cd build
 
 ../autogen.sh --prefix=$INSTALL_ROOT \
-    --enable-werror --enable-gtk-doc
+    --enable-werror
 
 # If the MAKEFLAGS envvar does not yet include a -j option,
 # add -jN where N depends on the number of processors.
@@ -59,9 +59,7 @@ if test -x /usr/bin/i686-w64-mingw32-gcc ; then
     --build=$(uname -m)-pc-linux \
     --host=i686-w64-mingw32 \
     --prefix="$INSTALL_ROOT/i686-w64-mingw32/sys-root/mingw" \
-    --enable-werror \
-    --enable-introspection=no \
-    --enable-tests=no
+    --enable-werror
 
   make
   make install
@@ -78,9 +76,7 @@ if test -x /usr/bin/x86_64-w64-mingw32-gcc ; then
     --build=$(uname -m)-pc-linux \
     --host=x86_64-w64-mingw32 \
     --prefix="$INSTALL_ROOT/i686-w64-mingw32/sys-root/mingw" \
-    --enable-werror \
-    --enable-introspection=no \
-    --enable-tests=no
+    --enable-werror
 
   make
   make install
