@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/libosinfo/osinfo-db-tools/issues\n"
-"POT-Creation-Date: 2019-05-06 12:18+0200\n"
+"POT-Creation-Date: 2019-07-26 21:52+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Albanian\n"
@@ -18,44 +18,44 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "X-Generator: Zanata 3.7.3\n"
 
-#: tools/osinfo-db-export.c:490 tools/osinfo-db-import.c:399
+#: tools/osinfo-db-export.c:481 tools/osinfo-db-import.c:466
 #: tools/osinfo-db-validate.c:253
 msgid "Verbose progress information"
 msgstr ""
 
-#: tools/osinfo-db-export.c:492
+#: tools/osinfo-db-export.c:483
 msgid "Export the osinfo-db user directory"
 msgstr ""
 
-#: tools/osinfo-db-export.c:494
+#: tools/osinfo-db-export.c:485
 msgid "Export the osinfo-db local directory"
 msgstr ""
 
-#: tools/osinfo-db-export.c:496
+#: tools/osinfo-db-export.c:487
 msgid "Export the osinfo-db system directory"
 msgstr ""
 
-#: tools/osinfo-db-export.c:498
+#: tools/osinfo-db-export.c:489
 msgid "Export an osinfo-db custom directory"
 msgstr ""
 
-#: tools/osinfo-db-export.c:500
+#: tools/osinfo-db-export.c:491
 msgid "Set version number of archive"
 msgstr ""
 
-#: tools/osinfo-db-export.c:502
+#: tools/osinfo-db-export.c:493
 msgid "Export the osinfo-db root directory"
 msgstr ""
 
-#: tools/osinfo-db-export.c:504
+#: tools/osinfo-db-export.c:495
 msgid "License file"
 msgstr ""
 
-#: tools/osinfo-db-export.c:514
+#: tools/osinfo-db-export.c:505
 msgid "- Export database archive "
 msgstr ""
 
-#: tools/osinfo-db-export.c:519 tools/osinfo-db-import.c:426
+#: tools/osinfo-db-export.c:510 tools/osinfo-db-import.c:493
 #: tools/osinfo-db-path.c:71
 #, c-format
 msgid ""
@@ -63,45 +63,45 @@ msgid ""
 "\n"
 msgstr ""
 
-#: tools/osinfo-db-export.c:526
+#: tools/osinfo-db-export.c:517
 #, c-format
 msgid "%s: expected path to one archive file to export\n"
 msgstr ""
 
-#: tools/osinfo-db-export.c:540 tools/osinfo-db-import.c:447
+#: tools/osinfo-db-export.c:531 tools/osinfo-db-import.c:514
 #: tools/osinfo-db-path.c:92
 msgid "Only one of --user, --local, --system & --dir can be used\n"
 msgstr ""
 
-#: tools/osinfo-db-import.c:401
+#: tools/osinfo-db-import.c:468
 msgid "Import into user directory"
 msgstr ""
 
-#: tools/osinfo-db-import.c:403
+#: tools/osinfo-db-import.c:470
 msgid "Import into local directory"
 msgstr ""
 
-#: tools/osinfo-db-import.c:405
+#: tools/osinfo-db-import.c:472
 msgid "Import into system directory"
 msgstr ""
 
-#: tools/osinfo-db-import.c:407
+#: tools/osinfo-db-import.c:474
 msgid "Import into custom directory"
 msgstr ""
 
-#: tools/osinfo-db-import.c:409 tools/osinfo-db-validate.c:263
+#: tools/osinfo-db-import.c:476 tools/osinfo-db-validate.c:263
 msgid "Installation root directory"
 msgstr ""
 
-#: tools/osinfo-db-import.c:411
+#: tools/osinfo-db-import.c:478
 msgid "Import the latest osinfo-db from osinfo-db's website"
 msgstr ""
 
-#: tools/osinfo-db-import.c:421
+#: tools/osinfo-db-import.c:488
 msgid "- Import database archive "
 msgstr ""
 
-#: tools/osinfo-db-import.c:433
+#: tools/osinfo-db-import.c:500
 #, c-format
 msgid "%s: expected path to one archive file to import\n"
 msgstr ""
@@ -135,7 +135,7 @@ msgstr ""
 msgid "%s: unexpected extra arguments\n"
 msgstr ""
 
-#: tools/osinfo-db-util.c:157
+#: tools/osinfo-db-util.c:156
 #, c-format
 msgid "Unable to locate '%s' in any database location"
 msgstr ""
@@ -159,7 +159,7 @@ msgstr ""
 msgid "Unable to validate XML document '%s'"
 msgstr ""
 
-#: tools/osinfo-db-validate.c:151
+#: tools/osinfo-db-validate.c:152
 #, c-format
 msgid "Processing '%s'...\n"
 msgstr ""
