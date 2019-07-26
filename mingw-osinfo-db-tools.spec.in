@@ -29,6 +29,8 @@ BuildRequires: mingw32-libxslt
 BuildRequires: mingw64-libxslt
 BuildRequires: mingw32-libarchive
 BuildRequires: mingw64-libarchive
+BuildRequires: mingw32-libsoup
+BuildRequires: mingw64-libsoup
 
 BuildRequires: pkgconfig
 
