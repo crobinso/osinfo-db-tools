@@ -1,0 +1,28 @@
+.job_template: &job_definition
+  script:
+    - mkdir build
+    - cd build
+    - meson .. .
+    - ninja syntax-check
+    - ninja
+    - ninja test
+
+fedora-29:
+  <<: *job_definition
+  image: quay.io/libvirt/buildenv-libosinfo-fedora-29:latest
+
+fedora-30:
+  <<: *job_definition
+  image: quay.io/libvirt/buildenv-libosinfo-fedora-30:latest
+
+fedora-rawhide:
+  <<: *job_definition
+  image: quay.io/libvirt/buildenv-libosinfo-fedora-rawhide:latest
+
+debian-10:
+  <<: *job_definition
+  image: quay.io/libvirt/buildenv-libosinfo-debian-10:latest
+
+debian-sid:
+  <<: *job_definition
+  image: quay.io/libvirt/buildenv-libosinfo-debian-sid:latest
