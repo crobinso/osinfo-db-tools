@@ -37,9 +37,6 @@ foreach spec: specs
     )
 endforeach
 
-# ninja syntax-check target
-run_target('syntax-check', command: 'build-aux/syntax-check')
-
 # ninja dist helper
 meson.add_dist_script('build-aux/dist.sh', meson.source_root(), meson.build_root())
 

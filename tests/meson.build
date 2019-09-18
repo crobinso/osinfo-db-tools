@@ -1,3 +1,11 @@
+test(
+    'syntax-check',
+    find_program('@0@/build-aux/syntax-check'.format(meson.source_root())),
+    env: [
+        'MESON_SOURCE_ROOT=@0@'.format(meson.source_root()),
+    ],
+)
+
 python = import('python')
 
 python3 = python.find_installation('python3')

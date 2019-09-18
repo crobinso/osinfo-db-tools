@@ -16,12 +16,6 @@
   ninja install
   popd
 
-.osinfo-db-tools-syntax-check: &osinfo-db-tools-syntax-check |
-  pushd .
-  cd build
-  ninja syntax-check
-  popd
-
 .osinfo-db-tools-check: &osinfo-db-tools-check |
   pushd .
   cd build
@@ -63,7 +57,6 @@ fedora-29:
   script:
     - *environment
     - *osinfo-db-tools-build
-    - *osinfo-db-tools-syntax-check
     - *osinfo-db-tools-check
     - *osinfo-db-tools-rpm
   image: quay.io/libvirt/buildenv-libosinfo-fedora-29:latest
@@ -72,7 +65,6 @@ fedora-30:
   script:
     - *environment
     - *osinfo-db-tools-build
-    - *osinfo-db-tools-syntax-check
     - *osinfo-db-tools-check
     - *osinfo-db-tools-rpm
     - *osinfo-db-tools-mingw32-build
@@ -83,7 +75,6 @@ fedora-rawhide:
   script:
     - *environment
     - *osinfo-db-tools-build
-    - *osinfo-db-tools-syntax-check
     - *osinfo-db-tools-check
     - *osinfo-db-tools-rpm
   image: quay.io/libvirt/buildenv-libosinfo-fedora-rawhide:latest
@@ -92,7 +83,6 @@ debian-10:
   script:
     - *environment
     - *osinfo-db-tools-build
-    - *osinfo-db-tools-syntax-check
     - *osinfo-db-tools-check
   image: quay.io/libvirt/buildenv-libosinfo-debian-10:latest
 
@@ -100,6 +90,5 @@ debian-sid:
   script:
     - *environment
     - *osinfo-db-tools-build
-    - *osinfo-db-tools-syntax-check
     - *osinfo-db-tools-check
   image: quay.io/libvirt/buildenv-libosinfo-debian-sid:latest
