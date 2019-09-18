@@ -51,7 +51,7 @@ information about operating systems for use with virtualization
 %find_lang %{name}
 
 %files -f %{name}.lang
-%doc AUTHORS ChangeLog NEWS README
+%doc NEWS README
 %license COPYING
 %{_bindir}/osinfo-db-export
 %{_bindir}/osinfo-db-import

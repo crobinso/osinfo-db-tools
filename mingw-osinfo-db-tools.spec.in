@@ -78,7 +78,7 @@ rm -rf $RPM_BUILD_ROOT%{mingw64_datadir}/man
 %mingw_find_lang osinfo-db-tools
 
 %files -n mingw32-osinfo-db-tools -f mingw32-osinfo-db-tools.lang
-%doc AUTHORS ChangeLog NEWS README
+%doc NEWS README
 %license COPYING
 %{mingw32_bindir}/osinfo-db-export.exe
 %{mingw32_bindir}/osinfo-db-import.exe
@@ -86,7 +86,7 @@ rm -rf $RPM_BUILD_ROOT%{mingw64_datadir}/man
 %{mingw32_bindir}/osinfo-db-validate.exe
 
 %files -n mingw64-osinfo-db-tools -f mingw64-osinfo-db-tools.lang
-%doc AUTHORS ChangeLog NEWS README
+%doc NEWS README
 %license COPYING
 %{mingw64_bindir}/osinfo-db-export.exe
 %{mingw64_bindir}/osinfo-db-import.exe
