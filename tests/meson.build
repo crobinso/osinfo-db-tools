@@ -1,6 +1,7 @@
 test(
     'syntax-check',
     find_program('@0@/build-aux/syntax-check'.format(meson.source_root())),
+    suite: 'style',
     env: [
         'MESON_SOURCE_ROOT=@0@'.format(meson.source_root()),
     ],
@@ -24,6 +25,11 @@ if python3.found()
     ]
 
     foreach name, file: tests
-        test(name, find_program(file), env: env_vars)
+        test(
+            name,
+            find_program(file),
+            suite: 'unit',
+            env: env_vars,
+        )
     endforeach
 endif
