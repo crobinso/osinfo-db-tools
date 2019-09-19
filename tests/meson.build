@@ -12,9 +12,9 @@ python = import('python')
 python3 = python.find_installation('python3')
 if python3.found()
     tests = {
-        'export/import test': 'test_osinfo_db_export_import.py',
-        'path test': 'test_osinfo_db_path.py',
-        'validate test': 'test_osinfo_db_validate.py'
+        'export-import': 'test_osinfo_db_export_import.py',
+        'path': 'test_osinfo_db_path.py',
+        'validate': 'test_osinfo_db_validate.py'
     }
 
     env_vars = [
