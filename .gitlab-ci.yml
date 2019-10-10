@@ -15,6 +15,9 @@
   export GI_TYPELIB_PATH="$VIRT_PREFIX/$multilib/girepository-1.0"
   export OSINFO_SYSTEM_DIR="$VIRT_PREFIX/share/osinfo"
 
+.environment-centos-7: &environment-centos-7 |
+  export NINJA="ninja-build"
+
 .osinfo-db-tools-build: &osinfo-db-tools-build |
   pushd .
   mkdir build
@@ -59,6 +62,15 @@
   $NINJA
   $NINJA install
   popd
+
+centos-7:
+  script:
+    - *multilib-rpm
+    - *environment
+    - *environment-centos-7
+    - *osinfo-db-tools-build
+    - *osinfo-db-tools-check
+  image: quay.io/libvirt/buildenv-libosinfo-centos-7:latest
 
 debian-10:
   script:
