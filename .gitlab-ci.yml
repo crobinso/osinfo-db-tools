@@ -1,4 +1,5 @@
 .environment: &environment |
+  export NINJA="ninja"
   export VIRT_PREFIX="$HOME/build/libvirt"
   export PATH="$VIRT_PREFIX/bin:$HOME/.ccache/bin:$PATH"
   export C_INCLUDE_PATH="$VIRT_PREFIX/include"
@@ -13,19 +14,19 @@
   mkdir build
   cd build
   meson .. . --prefix=$VIRT_PREFIX --werror
-  ninja install
+  $NINJA install
   popd
 
 .osinfo-db-tools-check: &osinfo-db-tools-check |
   pushd .
   cd build
-  ninja test
+  $NINJA test
   popd
 
 .osinfo-db-tools-rpm: &osinfo-db-tools-rpm |
   pushd .
   cd build
-  ninja dist
+  $NINJA dist
   rpmbuild --clean --define "_topdir `pwd`/rpmbuild" -ta meson-dist/*.tar.xz
   popd
 
@@ -37,8 +38,8 @@
   mkdir build_win32
   cd build_win32
   meson .. . --cross-file=/usr/share/mingw/toolchain-mingw32.meson --prefix=$MINGW32_VIRT_PREFIX --werror
-  ninja
-  ninja install
+  $NINJA
+  $NINJA install
   popd
 
 .osinfo-db-tools-mingw64-build: &osinfo-db-tools-mingw64-build |
@@ -49,8 +50,8 @@
   mkdir build_win64
   cd build_win64
   meson .. . --cross-file=/usr/share/mingw/toolchain-mingw64.meson --prefix=$MINGW64_VIRT_PREFIX --werror
-  ninja
-  ninja install
+  $NINJA
+  $NINJA install
   popd
 
 fedora-29:
