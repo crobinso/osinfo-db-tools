@@ -10,6 +10,15 @@ project(
     ],
 )
 
+compiler = meson.get_compiler('c')
+supported_compiler = false
+if compiler.get_id() == 'clang'
+    supported_compiler = true
+elif compiler.get_id() == 'gcc'
+    supported_compiler = true
+endif
+assert(supported_compiler == true, 'osinfo-db-tools requires GCC or CLang')
+
 osinfo_db_tools_prefix = get_option('prefix')
 
 # those directories have to be known by the project
@@ -210,7 +219,6 @@ if run_command('[', '-d', '.git', ']').returncode() == 0
     osinfo_db_tools_check_cflags += ['-Werror']
 endif
 
-compiler = meson.get_compiler('c')
 foreach cflag: osinfo_db_tools_check_cflags
   if compiler.has_argument(cflag)
     osinfo_db_tools_cflags += [cflag]
