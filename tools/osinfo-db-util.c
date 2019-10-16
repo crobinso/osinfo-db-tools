@@ -32,14 +32,13 @@ GQuark osinfo_db_error_quark(void)
 GFile *osinfo_db_get_system_path(const gchar *root)
 {
     GFile *file;
-    gchar *dbdir;
+    g_autofree gchar *dbdir = NULL;
     const gchar *path = g_getenv("OSINFO_SYSTEM_DIR");
     if (!path)
         path = DATA_DIR "/osinfo";
 
     dbdir = g_build_filename(root, path, NULL);
     file = g_file_new_for_path(dbdir);
-    g_free(dbdir);
     return file;
 }
 
@@ -47,14 +46,13 @@ GFile *osinfo_db_get_system_path(const gchar *root)
 GFile *osinfo_db_get_local_path(const gchar *root)
 {
     GFile *file;
-    gchar *dbdir;
+    g_autofree gchar *dbdir = NULL;
     const gchar *path = g_getenv("OSINFO_LOCAL_DIR");
     if (!path)
         path = SYSCONFDIR "/osinfo";
 
     dbdir = g_build_filename(root, path, NULL);
     file = g_file_new_for_path(dbdir);
-    g_free(dbdir);
     return file;
 }
 
@@ -62,7 +60,7 @@ GFile *osinfo_db_get_local_path(const gchar *root)
 GFile *osinfo_db_get_user_path(const gchar *root)
 {
     GFile *file;
-    gchar *dbdir;
+    g_autofree gchar *dbdir = NULL;
     const gchar *path = g_getenv("OSINFO_USER_DIR");
     const gchar *configdir = g_get_user_config_dir();
 
@@ -72,7 +70,6 @@ GFile *osinfo_db_get_user_path(const gchar *root)
         dbdir = g_build_filename(root, configdir, "osinfo", NULL);
     }
     file = g_file_new_for_path(dbdir);
-    g_free(dbdir);
     return file;
 }
 
@@ -81,11 +78,10 @@ GFile *osinfo_db_get_custom_path(const gchar *dir,
                                  const gchar *root)
 {
     GFile *file;
-    gchar *dbdir;
+    g_autofree gchar *dbdir = NULL;
 
     dbdir = g_build_filename(root, dir, NULL);
     file = g_file_new_for_path(dbdir);
-    g_free(dbdir);
     return file;
 }
 
