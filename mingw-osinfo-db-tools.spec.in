@@ -11,6 +11,7 @@ URL: https://libosinfo.org
 BuildArch: noarch
 
 BuildRequires: meson
+BuildRequires: gcc
 BuildRequires: gettext
 
 BuildRequires: mingw32-filesystem >= 107
