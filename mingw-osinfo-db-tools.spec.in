@@ -10,6 +10,8 @@ URL: https://libosinfo.org
 
 BuildArch: noarch
 
+BuildRequires: git
+
 BuildRequires: meson
 BuildRequires: gcc
 BuildRequires: gettext
@@ -63,7 +65,7 @@ information about operating systems for use with virtualization
 %{?mingw_debug_package}
 
 %prep
-%setup -q -n osinfo-db-tools-%{version}
+%autosetup -S git -n osinfo-db-tools-%{version}
 
 %build
 %mingw_meson
