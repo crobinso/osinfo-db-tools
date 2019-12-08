@@ -90,7 +90,7 @@ if pod2man.found()
             output: file + '.1',
             input: file + '.c',
             install: true,
-            install_dir: join_paths(osinfo_db_tools_datadir, 'man', 'man1'),
+            install_dir: join_paths(osinfo_db_tools_mandir, 'man1'),
             build_by_default: true,
             command: [
                 pod2man,
