@@ -76,7 +76,7 @@ osinfo_db_tools_cflags += [
 ]
 
 #  gettext package name
-osinfo_db_tools_cflags += ['-DGETTEXT_PACKAGE="0"'.format(meson.project_name())]
+osinfo_db_tools_cflags += ['-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name())]
 
 #  cflags to check whether the compiler supports them or not
 osinfo_db_tools_check_cflags = [
