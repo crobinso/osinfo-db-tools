@@ -46,18 +46,17 @@ static int osinfo_db_export_create_reg(GFile *file,
                                        const gchar *target,
                                        struct archive *arc)
 {
-    GFileInputStream *is = NULL;
-    GError *err = NULL;
-    gchar *buf = NULL;
+    g_autoptr(GFileInputStream) is = NULL;
+    g_autoptr(GError) err = NULL;
+    g_autofree gchar *buf = NULL;
     gsize size;
-    int ret = -1;
     gsize rv;
 
     is = g_file_read(file, NULL, &err);
     if (!is) {
         g_printerr("%s: cannot read file %s: %s\n",
                    argv0, abspath, err->message);
-        goto cleanup;
+        return -1;
     }
 
     size = 64 * 1024;
@@ -71,7 +70,7 @@ static int osinfo_db_export_create_reg(GFile *file,
         if (rv == -1) {
             g_printerr("%s: cannot read data %s: %s\n",
                        argv0, abspath, err->message);
-            goto cleanup;
+            return -1;
         }
 
         if (rv == 0)
@@ -80,16 +79,11 @@ static int osinfo_db_export_create_reg(GFile *file,
         if (archive_write_data(arc, buf, rv) < 0) {
             g_printerr("%s: cannot write archive data for %s to %s: %s\n",
                        argv0, abspath, target, archive_error_string(arc));
-            goto cleanup;
+            return -1;
         }
     }
 
-    ret = 0;
- cleanup:
-    g_clear_error(&err);
-    g_clear_object(&is);
-    g_free(buf);
-    return ret;
+    return 0;
 }
 
 static int osinfo_db_export_create_dir(const gchar *prefix,
@@ -100,11 +94,8 @@ static int osinfo_db_export_create_dir(const gchar *prefix,
                                        struct archive *arc,
                                        gboolean verbose)
 {
-    GFileEnumerator *children;
-    GFileInfo *childinfo = NULL;
-    GFile *child = NULL;
-    GError *err = NULL;
-    int ret = -1;
+    g_autoptr(GFileEnumerator) children = NULL;
+    g_autoptr(GError) err = NULL;
 
     children = g_file_enumerate_children(file,
                                          G_FILE_ATTRIBUTE_STANDARD_NAME
@@ -116,10 +107,12 @@ static int osinfo_db_export_create_dir(const gchar *prefix,
     if (!children) {
         g_printerr("%s: cannot read directory %s: %s\n",
                    argv0, abspath, err->message);
-        goto cleanup;
+        return -1;
     }
 
     while (1) {
+        g_autoptr(GFileInfo) childinfo = NULL;
+        g_autoptr(GFile) child = NULL;
         int export_create_ret;
 
         childinfo = g_file_enumerator_next_file(children, NULL, &err);
@@ -127,7 +120,7 @@ static int osinfo_db_export_create_dir(const gchar *prefix,
             if (err) {
                 g_printerr("%s: cannot read directory entry %s: %s\n",
                            argv0, abspath, err->message);
-                goto cleanup;
+                return -1;
             } else {
                 break;
             }
@@ -136,17 +129,12 @@ static int osinfo_db_export_create_dir(const gchar *prefix,
         child = g_file_enumerator_get_child(children, childinfo);
 
         export_create_ret = osinfo_db_export_create_file(prefix, child, childinfo, base, target, arc, verbose);
-        g_clear_object(&child);
-        g_clear_object(&childinfo);
 
         if (export_create_ret < 0)
-            goto cleanup;
+            return -1;
     }
 
-    ret = 0;
- cleanup:
-    g_clear_error(&err);
-    return ret;
+    return 0;
 }
 
 
@@ -161,10 +149,11 @@ static int osinfo_db_export_create_file(const gchar *prefix,
     GFileType type = g_file_query_file_type(file,
                                             G_FILE_QUERY_INFO_NONE,
                                             NULL);
-    gchar *abspath, *relpath;
-    int ret = -1;
-    GError *err = NULL;
-    gchar *entpath = NULL;
+
+    g_autoptr(GError) err = NULL;
+    g_autofree gchar *abspath = NULL;
+    g_autofree gchar *relpath = NULL;
+    g_autofree gchar *entpath = NULL;
     struct archive_entry *entry = NULL;
 
     abspath = g_file_get_path(file);
@@ -184,7 +173,7 @@ static int osinfo_db_export_create_file(const gchar *prefix,
     if (!info) {
         g_printerr("%s: cannot get file info %s: %s\n",
                    argv0, abspath, err->message);
-        goto cleanup;
+        return -1;
     }
 
     entpath = g_strdup_printf("%s/%s", prefix, relpath ? relpath : "");
@@ -202,14 +191,12 @@ static int osinfo_db_export_create_file(const gchar *prefix,
     case G_FILE_TYPE_SYMBOLIC_LINK:
         if (g_file_info_get_is_backup(info) ||
             g_file_info_get_is_hidden(info)) {
-            ret = 0;
-            goto cleanup;
+            return 0;
         }
         if (!g_str_has_suffix(entpath, ".rng") &&
             !g_str_has_suffix(entpath, ".xml") &&
             !g_str_has_suffix(entpath, ".ids")) {
-            ret = 0;
-            goto cleanup;
+            return 0;
         }
 
         if (verbose) {
@@ -233,56 +220,48 @@ static int osinfo_db_export_create_file(const gchar *prefix,
     case G_FILE_TYPE_SPECIAL:
         g_printerr("%s: cannot archive special file type %s\n",
                    argv0, abspath);
-        goto cleanup;
+        return -1;
 
     case G_FILE_TYPE_SHORTCUT:
         g_printerr("%s: cannot archive shortcut file type %s\n",
                    argv0, abspath);
-        goto cleanup;
+        return -1;
 
     case G_FILE_TYPE_MOUNTABLE:
         g_printerr("%s: cannot archive mount file type %s\n",
                    argv0, abspath);
-        goto cleanup;
+        return -1;
 
     case G_FILE_TYPE_UNKNOWN:
     default:
         g_printerr("%s: cannot archive unknown file type %s\n",
                    argv0, abspath);
-        goto cleanup;
+        return -1;
     }
 
     if (archive_write_header(arc, entry) != ARCHIVE_OK) {
         g_printerr("%s: cannot write archive header %s: %s\n",
                    argv0, target, archive_error_string(arc));
-        goto cleanup;
+        return -1;
     }
 
     switch (type) {
     case G_FILE_TYPE_REGULAR:
     case G_FILE_TYPE_SYMBOLIC_LINK:
         if (osinfo_db_export_create_reg(file, abspath, target, arc) < 0)
-            goto cleanup;
+            return -1;
         break;
 
     case G_FILE_TYPE_DIRECTORY:
         if (osinfo_db_export_create_dir(prefix, file, base, abspath, target, arc, verbose) < 0)
-            goto cleanup;
+            return -1;
         break;
 
     default:
         g_assert_not_reached();
     }
 
-    ret = 0;
- cleanup:
-    archive_entry_free(entry);
-    g_free(abspath);
-    g_free(relpath);
-    g_free(entpath);
-    g_clear_object(&info);
-    g_clear_error(&err);
-    return ret;
+    return 0;
 }
 
 static int osinfo_db_export_create_version(const gchar *prefix,
@@ -293,7 +272,7 @@ static int osinfo_db_export_create_version(const gchar *prefix,
 {
     int ret = -1;
     struct archive_entry *entry = NULL;
-    gchar *entpath = NULL;
+    g_autofree gchar *entpath = NULL;
 
     entpath = g_strdup_printf("%s/VERSION", prefix);
     entry = archive_entry_new();
@@ -337,10 +316,10 @@ static int osinfo_db_export_create_license(const gchar *prefix,
 {
     int ret = -1;
     struct archive_entry *entry = NULL;
-    gchar *entpath = NULL;
-    GFile *file = NULL;
-    GFileInfo *info = NULL;
-    GError *err = NULL;
+    g_autofree gchar *entpath = NULL;
+    g_autoptr(GFile) file = NULL;
+    g_autoptr(GFileInfo) info = NULL;
+    g_autoptr(GError) err = NULL;
 
     file = g_file_new_for_path(license);
 
@@ -385,7 +364,6 @@ static int osinfo_db_export_create_license(const gchar *prefix,
     ret = 0;
  cleanup:
     archive_entry_free(entry);
-    g_clear_error(&err);
     return ret;
 }
 
@@ -442,38 +420,35 @@ static int osinfo_db_export_create(const gchar *prefix,
 
 static gchar *osinfo_db_version(void)
 {
-    GTimeZone *tz = g_time_zone_new_utc();
-    GDateTime *now = g_date_time_new_now(tz);
+    g_autoptr(GTimeZone) tz = g_time_zone_new_utc();
+    g_autoptr(GDateTime) now = g_date_time_new_now(tz);
     gchar *ret;
 
     ret = g_strdup_printf("%04d%02d%02d",
                           g_date_time_get_year(now),
                           g_date_time_get_month(now),
                           g_date_time_get_day_of_month(now));
-    g_date_time_unref(now);
-    g_time_zone_unref(tz);
     return ret;
 }
 
 
 gint main(gint argc, gchar **argv)
 {
-    GOptionContext *context;
-    GError *error = NULL;
-    gint ret = EXIT_FAILURE;
+    g_autoptr(GOptionContext) context = NULL;
+    g_autoptr(GError) error = NULL;
+    g_autoptr(GFile) dir = NULL;
     gboolean verbose = FALSE;
     gboolean user = FALSE;
     gboolean local = FALSE;
     gboolean system = FALSE;
+    g_autofree gchar *archive = NULL;
+    g_autofree gchar *autoversion = NULL;
+    g_autofree gchar *prefix = NULL;
     const gchar *root = "";
-    gchar *archive = NULL;
     const gchar *custom = NULL;
     const gchar *version = NULL;
-    gchar *autoversion = NULL;
-    gchar *prefix = NULL;
     const gchar *license = NULL;
     int locs = 0;
-    GFile *dir = NULL;
     const GOptionEntry entries[] = {
       { "verbose", 'v', 0, G_OPTION_ARG_NONE, (void*)&verbose,
         N_("Verbose progress information"), NULL, },
@@ -508,13 +483,13 @@ gint main(gint argc, gchar **argv)
         g_printerr(_("%s: error while parsing commandline options: %s\n\n"),
                    argv0, error->message);
         g_printerr("%s\n", g_option_context_get_help(context, FALSE, NULL));
-        goto error;
+        return EXIT_FAILURE;
     }
 
     if (argc > 2) {
         g_printerr(_("%s: expected path to one archive file to export\n"),
                    argv0);
-        goto error;
+        return EXIT_FAILURE;
     }
 
     if (local)
@@ -527,7 +502,7 @@ gint main(gint argc, gchar **argv)
         locs++;
     if (locs > 1) {
         g_printerr(_("Only one of --user, --local, --system & --dir can be used\n"));
-        goto error;
+        return EXIT_FAILURE;
     }
 
     entryts = time(NULL);
@@ -544,19 +519,9 @@ gint main(gint argc, gchar **argv)
     dir = osinfo_db_get_path(root, user, local, system, custom);
     if (osinfo_db_export_create(prefix, version, dir, archive,
                                 license, verbose) < 0)
-        goto error;
+        return EXIT_FAILURE;
 
-    ret = EXIT_SUCCESS;
-
- error:
-    g_free(archive);
-    g_free(autoversion);
-    g_free(prefix);
-    g_clear_object(&dir);
-    g_clear_error(&error);
-    g_option_context_free(context);
-
-    return ret;
+    return EXIT_SUCCESS;
 }
 
 
