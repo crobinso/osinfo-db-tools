@@ -47,17 +47,17 @@ static xmlDocPtr parse_file(GFile *file, GError **error)
 {
     xmlDocPtr doc = NULL;
     xmlParserCtxtPtr pctxt;
-    gchar *data = NULL;
+    g_autofree gchar *data = NULL;
+    g_autofree gchar *uri = g_file_get_uri(file);
     gsize length;
-    gchar *uri = g_file_get_uri(file);
 
     if (!g_file_load_contents(file, NULL, &data, &length, NULL, error))
-        goto cleanup;
+        return NULL;
 
     if (!(pctxt = xmlNewParserCtxt())) {
         g_set_error(error, OSINFO_DB_ERROR, 0, "%s",
                     _("Unable to create libxml parser"));
-        goto cleanup;
+        return NULL;
     }
 
     if (!(doc = xmlCtxtReadDoc(pctxt, (const xmlChar*)data, uri, NULL,
@@ -66,12 +66,9 @@ static xmlDocPtr parse_file(GFile *file, GError **error)
         g_set_error(error, OSINFO_DB_ERROR, 0,
                     _("Unable to parse XML document '%s'"),
                     uri);
-        goto cleanup;
+        return NULL;
     }
 
- cleanup:
-    g_free(uri);
-    g_free(data);
     return doc;
 }
 
@@ -84,7 +81,7 @@ static gboolean validate_file_regular(xmlRelaxNGValidCtxtPtr rngValid,
 {
     gboolean ret = FALSE;
     xmlDocPtr doc = NULL;
-    gchar *uri = g_file_get_uri(file);
+    g_autofree gchar *uri = g_file_get_uri(file);
 
     if (!g_str_has_suffix(uri, ".xml")) {
         ret = TRUE;
@@ -104,7 +101,6 @@ static gboolean validate_file_regular(xmlRelaxNGValidCtxtPtr rngValid,
     ret = TRUE;
 
  cleanup:
-    g_free(uri);
     xmlFreeDoc(doc);
     return ret;
 }
@@ -112,39 +108,32 @@ static gboolean validate_file_regular(xmlRelaxNGValidCtxtPtr rngValid,
 
 static gboolean validate_file_directory(xmlRelaxNGValidCtxtPtr rngValid, GFile *file, GError **error)
 {
-    gboolean ret = FALSE;
-    GFileEnumerator *children = NULL;
-    GFileInfo *info = NULL;
+    g_autoptr(GFileEnumerator) children = NULL;
+    g_autoptr(GFileInfo) info = NULL;
 
     if (!(children = g_file_enumerate_children(file, "standard::*", 0, NULL, error)))
-        goto cleanup;
+        return FALSE;
 
     while ((info = g_file_enumerator_next_file(children, NULL, error))) {
-        GFile *child = g_file_get_child(file, g_file_info_get_name(info));
+        g_autoptr(GFile) child = g_file_get_child(file, g_file_info_get_name(info));
         gboolean ret_validate;
         ret_validate = validate_file(rngValid, child, info, error);
-        g_clear_object(&child);
 
         if (!ret_validate)
-            goto cleanup;
+            return FALSE;
     }
 
     if (*error)
-        goto cleanup;
+        return FALSE;
 
-    ret = TRUE;
-
- cleanup:
-    g_clear_object(&children);
-    return ret;
+    return TRUE;
 }
 
 
 static gboolean validate_file(xmlRelaxNGValidCtxtPtr rngValid, GFile *file, GFileInfo *info, GError **error)
 {
-    gboolean ret = FALSE;
-    GFileInfo *thisinfo = NULL;
-    gchar *uri = g_file_get_uri(file);
+    g_autoptr(GFileInfo) thisinfo = NULL;
+    g_autofree gchar *uri = g_file_get_uri(file);
 
     if (verbose)
         g_print(_("Processing '%s'...\n"), uri);
@@ -153,29 +142,24 @@ static gboolean validate_file(xmlRelaxNGValidCtxtPtr rngValid, GFile *file, GFil
         if (!(thisinfo = g_file_query_info(file, "standard::*",
                                            G_FILE_QUERY_INFO_NONE,
                                            NULL, error)))
-            goto cleanup;
+            return FALSE;
         info = thisinfo;
     }
 
     if (g_file_info_get_file_type(info) == G_FILE_TYPE_DIRECTORY) {
         if (!validate_file_directory(rngValid, file, error))
-            goto cleanup;
+            return FALSE;
     } else if (g_file_info_get_file_type(info) == G_FILE_TYPE_REGULAR) {
         if (!validate_file_regular(rngValid, file, error))
-            goto cleanup;
+            return FALSE;
     } else {
         g_set_error(error, OSINFO_DB_ERROR, 0,
                     "Unable to handle file type for %s",
                     uri);
-        goto cleanup;
+        return FALSE;
     }
 
-    ret = TRUE;
-
- cleanup:
-    g_free(uri);
-    g_clear_object(&thisinfo);
-    return ret;
+    return TRUE;
 }
 
 
@@ -186,7 +170,7 @@ static gboolean validate_files(GFile *schema, gsize nfiles, GFile **files, GErro
     xmlRelaxNGValidCtxtPtr rngValid = NULL;
     gboolean ret = FALSE;
     gsize i;
-    gchar *schemapath = NULL;
+    g_autofree gchar *schemapath = NULL;
 
     xmlSetGenericErrorFunc(NULL, validate_generic_error_nop);
     xmlSetStructuredErrorFunc(NULL, validate_structured_error_nop);
@@ -224,7 +208,6 @@ static gboolean validate_files(GFile *schema, gsize nfiles, GFile **files, GErro
     ret = TRUE;
 
  cleanup:
-    g_free(schemapath);
     xmlRelaxNGFreeValidCtxt(rngValid);
     xmlRelaxNGFreeParserCtxt(rngParser);
     xmlRelaxNGFree(rng);
@@ -233,19 +216,18 @@ static gboolean validate_files(GFile *schema, gsize nfiles, GFile **files, GErro
 
 gint main(gint argc, gchar **argv)
 {
-    GOptionContext *context;
-    GError *error = NULL;
-    gint ret = EXIT_FAILURE;
-    GFile *schema = NULL;
+    g_autoptr(GOptionContext) context = NULL;
+    g_autoptr(GError) error = NULL;
+    g_autoptr(GFile) schema = NULL;
+    g_autoptr(GFile) dir = NULL;
+    g_autofree GFile **files = NULL;
+    gsize nfiles = 0, i;
     gboolean user = FALSE;
     gboolean local = FALSE;
     gboolean system = FALSE;
     const gchar *root = "";
     const gchar *custom = NULL;
     int locs = 0;
-    GFile *dir = NULL;
-    GFile **files = NULL;
-    gsize nfiles = 0, i;
     const GOptionEntry entries[] = {
       { "verbose", 'v', 0, G_OPTION_ARG_NONE, (void*)&verbose,
         N_("Verbose progress information"), NULL, },
@@ -275,7 +257,7 @@ gint main(gint argc, gchar **argv)
         g_printerr(_("Error while parsing commandline options: %s\n"),
                    error->message);
         g_printerr("%s\n", g_option_context_get_help(context, FALSE, NULL));
-        goto error;
+        return EXIT_FAILURE;
     }
 
     if (local)
@@ -288,7 +270,7 @@ gint main(gint argc, gchar **argv)
         locs++;
     if (locs > 1 || (locs && argc > 1)) {
         g_printerr(_("Only one of --user, --local, --system, --dir or positional filenames can be used\n"));
-        goto error;
+        return EXIT_FAILURE;
     }
 
     schema = osinfo_db_get_file(root,
@@ -299,7 +281,7 @@ gint main(gint argc, gchar **argv)
                                 "schema/osinfo.rng", &error);
     if (!schema) {
         g_printerr("%s\n", error->message);
-        goto error;
+        return EXIT_FAILURE;
     }
 
     dir = osinfo_db_get_path(root, user, local, system, custom);
@@ -315,19 +297,10 @@ gint main(gint argc, gchar **argv)
     }
     if (!validate_files(schema, nfiles, files, &error)) {
         g_printerr("%s\n", error->message);
-        goto error;
+        return EXIT_FAILURE;
     }
 
-    ret = EXIT_SUCCESS;
-
- error:
-    g_clear_object(&schema);
-    g_clear_object(&dir);
-    g_free(files);
-    g_clear_error(&error);
-    g_option_context_free(context);
-
-    return ret;
+    return EXIT_SUCCESS;
 }
 
 /*
