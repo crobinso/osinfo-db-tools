@@ -41,9 +41,8 @@ static int osinfo_db_import_create_reg(GFile *file,
                                        struct archive *arc,
                                        struct archive_entry *entry)
 {
-    GFileOutputStream *os = NULL;
-    GError *err = NULL;
-    int ret = -1;
+    g_autoptr(GFileOutputStream) os = NULL;
+    g_autoptr(GError) err = NULL;
     int r;
     const void *buf;
     size_t size;
@@ -64,37 +63,32 @@ static int osinfo_db_import_create_reg(GFile *file,
         if (r != ARCHIVE_OK) {
             g_printerr("%s: cannot write to %s\n",
                        argv0, g_file_get_path(file));
-            goto cleanup;
+            return -1;
         }
 
         if (!g_seekable_seek(G_SEEKABLE(os), offset, G_SEEK_SET, NULL, NULL)) {
             g_printerr("%s: cannot seek to %" G_GUINT64_FORMAT " in %s\n",
                        argv0, (uint64_t)offset, g_file_get_path(file));
-            goto cleanup;
+            return -1;
         }
         if (!g_output_stream_write_all(G_OUTPUT_STREAM(os), buf, size, NULL, NULL, NULL)) {
             g_printerr("%s: cannot write to %s\n",
                        argv0, g_file_get_path(file));
-            goto cleanup;
+            return -1;
         }
     }
-    ret = 0;
- cleanup:
-    g_clear_object(&os);
-    return ret;
+    return 0;
 }
 
 static int osinfo_db_import_create_dir(GFile *file,
                                        struct archive_entry *entry)
 {
-    GError *err = NULL;
+    g_autoptr(GError) err = NULL;
     if (!g_file_make_directory_with_parents(file, NULL, &err) &&
         err->code != G_IO_ERROR_EXISTS) {
         g_printerr("%s: %s\n", argv0, err->message);
         return -1;
     }
-    if (err)
-        g_error_free(err);
     return 0;
 }
 
@@ -142,13 +136,13 @@ static GFile *osinfo_db_import_get_file(GFile *target,
 static gchar *
 osinfo_db_import_download_file(const gchar *source)
 {
-    GInputStream *stream = NULL;
-    GFile *out = NULL;
-    GError *err = NULL;
-    SoupMessage *message = NULL;
-    gchar *filename = NULL;
+    g_autoptr(GInputStream) stream = NULL;
+    g_autoptr(GFile) out = NULL;
+    g_autoptr(GError) err = NULL;
+    g_autoptr(SoupMessage) message = NULL;
+    g_autofree gchar *filename = NULL;
+    g_autofree gchar *content = NULL;
     gchar *source_file = NULL;
-    gchar *content = NULL;
     goffset content_size = 0;
     GFileCreateFlags flags = G_FILE_CREATE_REPLACE_DESTINATION;
     int ret = -1;
@@ -203,12 +197,6 @@ osinfo_db_import_download_file(const gchar *source)
     ret = 0;
 
  cleanup:
-    g_free(filename);
-    g_free(content);
-    g_clear_object(&message);
-    g_clear_object(&stream);
-    g_clear_object(&out);
-    g_clear_error(&err);
     if (ret != 0 && source_file != NULL) {
         unlink(source_file);
         g_free(source_file);
@@ -221,9 +209,8 @@ osinfo_db_import_download_file(const gchar *source)
 static gboolean osinfo_db_get_installed_version(GFile *dir,
                                                 gchar **version)
 {
-    GFile *file = NULL;
-    GError *err = NULL;
-    gboolean ret = FALSE;
+    g_autoptr(GFile) file = NULL;
+    g_autoptr(GError) err = NULL;
 
     file = g_file_get_child(dir, VERSION_FILE);
     if (file == NULL)
@@ -233,40 +220,33 @@ static gboolean osinfo_db_get_installed_version(GFile *dir,
         if (!g_error_matches(err, G_IO_ERROR, G_IO_ERROR_NOT_FOUND)) {
             g_printerr("Failed get the content of file %s: %s\n",
                        VERSION_FILE, err->message);
-            goto cleanup;
+            return FALSE;
         }
     }
 
-    ret = TRUE;
-
- cleanup:
-    g_clear_error(&err);
-    g_clear_object(&file);
-
-    return ret;
+    return TRUE;
 }
 
 static gboolean osinfo_db_get_latest_info(gchar **version,
                                           gchar **url)
 {
-    SoupMessage *message = NULL;
-    GInputStream *stream = NULL;
-    JsonParser *parser = NULL;
-    JsonReader *reader = NULL;
-    GError *err = NULL;
-    gchar *content = NULL;
+    g_autoptr(SoupMessage) message = NULL;
+    g_autoptr(GInputStream) stream = NULL;
+    g_autoptr(JsonParser) parser = NULL;
+    g_autoptr(JsonReader) reader = NULL;
+    g_autoptr(GError) err = NULL;
+    g_autofree gchar *content = NULL;
     goffset content_size = 0;
-    gboolean ret = FALSE;
 
     if (session == NULL)
         session = soup_session_new();
 
     if (session == NULL)
-        goto cleanup;
+        return FALSE;
 
     message = soup_message_new("GET", LATEST_URI);
     if (message == NULL)
-        goto cleanup;
+        return FALSE;
 
     stream = soup_session_send(session, message, NULL, &err);
     if (stream == NULL ||
@@ -275,7 +255,7 @@ static gboolean osinfo_db_get_latest_info(gchar **version,
                    LATEST_URI,
                    err != NULL ? err->message :
                                  soup_status_get_phrase(message->status_code));
-        goto cleanup;
+        return FALSE;
     }
 
     content_size = soup_message_headers_get_content_length(message->response_headers);
@@ -284,44 +264,44 @@ static gboolean osinfo_db_get_latest_info(gchar **version,
     if (!g_input_stream_read_all(stream, content, content_size, NULL, NULL, &err)) {
         g_printerr("Could not load the content of %s: %s\n",
                    LATEST_URI, err->message);
-        goto cleanup;
+        return FALSE;
     }
 
     parser = json_parser_new();
     if (parser == NULL) {
         g_printerr("Failed to create the json parser\n");
-        goto cleanup;
+        return FALSE;
     }
 
     if (!json_parser_load_from_data(parser, content, -1, &err)) {
         g_printerr("Failed to parse the content of %s: %s\n",
                    LATEST_URI, err->message);
-        goto cleanup;
+        return FALSE;
     }
 
     reader = json_reader_new(json_parser_get_root(parser));
     if (reader == NULL) {
         g_printerr("Failed to create the reader for the json parser\n");
-        goto cleanup;
+        return FALSE;
     }
 
     if (!json_reader_read_member(reader, "release")) {
         const GError *error = json_reader_get_error(reader);
         g_printerr("Failed to read the \"release\" member of the %s file: %s\n",
                    LATEST_URI, error->message);
-        goto cleanup;
+        return FALSE;
     }
 
     if (!json_reader_read_member(reader, "version")) {
         const GError *error = json_reader_get_error(reader);
         g_printerr("Failed to read the \"version\" member of the %s file: %s\n",
                    LATEST_URI, error->message);
-        goto cleanup;
+        return FALSE;
     }
 
     *version = g_strdup(json_reader_get_string_value(reader));
     if (*version == NULL)
-        goto cleanup;
+        return FALSE;
 
     json_reader_end_member(reader); /* "version" */
 
@@ -329,26 +309,17 @@ static gboolean osinfo_db_get_latest_info(gchar **version,
         const GError *error = json_reader_get_error(reader);
         g_printerr("Failed to read the \"archive\" member of the %s file: %s\n",
                    LATEST_URI, error->message);
-        goto cleanup;
+        return FALSE;
     }
 
     *url = g_strdup(json_reader_get_string_value(reader));
     if (*url == NULL)
-        goto cleanup;
+        return FALSE;
 
     json_reader_end_member(reader); /* "archive" */
     json_reader_end_member(reader); /* "release" */
 
-    ret = TRUE;
-
- cleanup:
-    g_clear_object(&message);
-    g_clear_object(&parser);
-    g_clear_object(&reader);
-    g_free(content);
-    g_clear_error(&err);
-
-    return ret;
+    return TRUE;
 }
 
 static gboolean requires_soup(const gchar *source)
@@ -372,8 +343,8 @@ static int osinfo_db_import_extract(GFile *target,
     struct archive_entry *entry;
     int ret = -1;
     int r;
-    GFile *file = NULL;
-    gchar *source_file = NULL;
+    g_autoptr(GFile) file = NULL;
+    g_autofree gchar *source_file = NULL;
     gboolean file_is_native = TRUE;
 
     arc = archive_read_new();
@@ -434,31 +405,28 @@ static int osinfo_db_import_extract(GFile *target,
     ret = 0;
  cleanup:
     archive_read_free(arc);
-    g_clear_object(&file);
     if (!file_is_native && source_file != NULL)
         unlink(source_file);
-    g_free(source_file);
     return ret;
 }
 
 gint main(gint argc, gchar **argv)
 {
-    GOptionContext *context;
-    GError *error = NULL;
-    gint ret = EXIT_FAILURE;
+    g_autoptr(GOptionContext) context = NULL;
+    g_autoptr(GError) error = NULL;
+    g_autoptr(GFile) dir = NULL;
     gboolean verbose = FALSE;
     gboolean user = FALSE;
     gboolean local = FALSE;
     gboolean system = FALSE;
     gboolean latest = FALSE;
-    gchar *installed_version = NULL;
-    gchar *latest_version = NULL;
-    gchar *latest_url = NULL;
+    g_autofree gchar *installed_version = NULL;
+    g_autofree gchar *latest_version = NULL;
+    g_autofree gchar *latest_url = NULL;
     const gchar *root = "";
     const gchar *archive = NULL;
     const gchar *custom = NULL;
     int locs = 0;
-    GFile *dir = NULL;
     const GOptionEntry entries[] = {
       { "verbose", 'v', 0, G_OPTION_ARG_NONE, (void*)&verbose,
         N_("Verbose progress information"), NULL, },
@@ -491,13 +459,13 @@ gint main(gint argc, gchar **argv)
         g_printerr(_("%s: error while parsing commandline options: %s\n\n"),
                    argv0, error->message);
         g_printerr("%s\n", g_option_context_get_help(context, FALSE, NULL));
-        goto error;
+        return EXIT_FAILURE;
     }
 
     if (argc > 2) {
         g_printerr(_("%s: expected path to one archive file to import\n"),
                    argv0);
-        goto error;
+        return EXIT_FAILURE;
     }
 
     if (local)
@@ -510,7 +478,7 @@ gint main(gint argc, gchar **argv)
         locs++;
     if (locs > 1) {
         g_printerr(_("Only one of --user, --local, --system & --dir can be used\n"));
-        goto error;
+        return EXIT_FAILURE;
     }
 
     archive = argc == 2 ? argv[1] : NULL;
@@ -518,34 +486,22 @@ gint main(gint argc, gchar **argv)
 
     if (latest) {
         if (!osinfo_db_get_installed_version(dir, &installed_version))
-            goto error;
+            return EXIT_FAILURE;
 
         if (!osinfo_db_get_latest_info(&latest_version, &latest_url))
-            goto error;
+            return EXIT_FAILURE;
 
         if (g_strcmp0(latest_version, installed_version) <= 0) {
-            ret = EXIT_SUCCESS;
-            goto error;
+            return EXIT_SUCCESS;
         }
 
         archive = latest_url;
     }
 
     if (osinfo_db_import_extract(dir, archive, verbose) < 0)
-        goto error;
+        return EXIT_FAILURE;
 
-    ret = EXIT_SUCCESS;
-
- error:
-    g_clear_object(&dir);
-    g_free(installed_version);
-    g_free(latest_version);
-    g_free(latest_url);
-    g_clear_object(&session);
-    g_clear_error(&error);
-    g_option_context_free(context);
-
-    return ret;
+    return EXIT_SUCCESS;
 }
 
 
