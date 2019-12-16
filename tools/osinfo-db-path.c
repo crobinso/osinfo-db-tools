@@ -30,17 +30,16 @@ const char *argv0;
 
 gint main(gint argc, gchar **argv)
 {
-    GOptionContext *context;
-    GError *error = NULL;
-    gint ret = EXIT_FAILURE;
+    g_autoptr(GOptionContext) context = NULL;
+    g_autoptr(GError) error = NULL;
+    g_autoptr(GFile) dir = NULL;
+    g_autofree gchar *path = NULL;
     gboolean user = FALSE;
     gboolean local = FALSE;
     gboolean system = FALSE;
     const gchar *root = "";
     const gchar *custom = NULL;
     int locs = 0;
-    char *path;
-    GFile *dir = NULL;
     const GOptionEntry entries[] = {
       { "user", 0, 0, G_OPTION_ARG_NONE, (void *)&user,
         N_("Report the user directory"), NULL, },
@@ -69,13 +68,13 @@ gint main(gint argc, gchar **argv)
         g_printerr(_("%s: error while parsing commandline options: %s\n\n"),
                    argv0, error->message);
         g_printerr("%s\n", g_option_context_get_help(context, FALSE, NULL));
-        goto error;
+        return EXIT_FAILURE;
     }
 
     if (argc > 1) {
         g_printerr(_("%s: unexpected extra arguments\n"),
                    argv0);
-        goto error;
+        return EXIT_FAILURE;
     }
 
     if (local)
@@ -88,23 +87,15 @@ gint main(gint argc, gchar **argv)
         locs++;
     if (locs > 1) {
         g_printerr(_("Only one of --user, --local, --system & --dir can be used\n"));
-        goto error;
+        return EXIT_FAILURE;
     }
 
     dir = osinfo_db_get_path(root, user, local, system, custom);
 
     path = g_file_get_path(dir);
     g_print("%s\n", path);
-    g_free(path);
 
-    ret = EXIT_SUCCESS;
-
- error:
-    g_clear_object(&dir);
-    g_clear_error(&error);
-    g_option_context_free(context);
-
-    return ret;
+    return EXIT_SUCCESS;
 }
 
 
