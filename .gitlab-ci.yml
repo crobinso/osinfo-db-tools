@@ -18,6 +18,11 @@
 .environment-centos-7: &environment-centos-7 |
   export NINJA="ninja-build"
 
+.dco: &dco |
+  pushd .
+  ./scripts/require-dco.sh
+  popd
+
 .osinfo-db-tools-build: &osinfo-db-tools-build |
   pushd .
   mkdir build
@@ -68,6 +73,7 @@ centos-7:
     - *multilib-rpm
     - *environment
     - *environment-centos-7
+    - *dco
     - *osinfo-db-tools-build
     - *osinfo-db-tools-check
   image: quay.io/libvirt/buildenv-libosinfo-centos-7:latest
@@ -76,6 +82,7 @@ centos-8:
   script:
     - *multilib-rpm
     - *environment
+    - *dco
     - *osinfo-db-tools-build
     - *osinfo-db-tools-check
   image: quay.io/libvirt/buildenv-libosinfo-centos-8:latest
@@ -84,6 +91,7 @@ debian-9:
   script:
     - *multilib-deb
     - *environment
+    - *dco
     - *osinfo-db-tools-build
     - *osinfo-db-tools-check
   image: quay.io/libvirt/buildenv-libosinfo-debian-9:latest
@@ -92,6 +100,7 @@ debian-10:
   script:
     - *multilib-deb
     - *environment
+    - *dco
     - *osinfo-db-tools-build
     - *osinfo-db-tools-check
   image: quay.io/libvirt/buildenv-libosinfo-debian-10:latest
@@ -100,6 +109,7 @@ debian-sid:
   script:
     - *multilib-deb
     - *environment
+    - *dco
     - *osinfo-db-tools-build
     - *osinfo-db-tools-check
   image: quay.io/libvirt/buildenv-libosinfo-debian-sid:latest
@@ -108,6 +118,7 @@ fedora-30:
   script:
     - *multilib-rpm
     - *environment
+    - *dco
     - *osinfo-db-tools-build
     - *osinfo-db-tools-check
     - *osinfo-db-tools-rpm
@@ -119,6 +130,7 @@ fedora-31:
   script:
     - *multilib-rpm
     - *environment
+    - *dco
     - *osinfo-db-tools-build
     - *osinfo-db-tools-check
     - *osinfo-db-tools-rpm
@@ -128,6 +140,7 @@ fedora-rawhide:
   script:
     - *multilib-rpm
     - *environment
+    - *dco
     - *osinfo-db-tools-build
     - *osinfo-db-tools-check
     - *osinfo-db-tools-rpm
@@ -137,6 +150,7 @@ ubuntu-1604:
   script:
     - *multilib-deb
     - *environment
+    - *dco
     - *osinfo-db-tools-build
     - *osinfo-db-tools-check
   image: quay.io/libvirt/buildenv-libosinfo-ubuntu-1604:latest
@@ -145,6 +159,7 @@ ubuntu-1804:
   script:
     - *multilib-deb
     - *environment
+    - *dco
     - *osinfo-db-tools-build
     - *osinfo-db-tools-check
   image: quay.io/libvirt/buildenv-libosinfo-ubuntu-1804:latest
