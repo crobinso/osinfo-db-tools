@@ -85,6 +85,7 @@ centos-8:
     - *dco
     - *osinfo-db-tools-build
     - *osinfo-db-tools-check
+    - *osinfo-db-tools-rpm
   image: quay.io/libvirt/buildenv-libosinfo-centos-8:latest
 
 debian-9:
