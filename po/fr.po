@@ -1,25 +1,26 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Jérôme Fenal <jfenal@gmail.com>, 2013
 # Daniel Berrange <dan-zanata@berrange.com>, 2016. #zanata
+# Julien Humbert <julroy67@gmail.com>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: osinfo-db-tools\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-29 14:07+0100\n"
-"PO-Revision-Date: 2016-03-04 07:50+0000\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/libosinfo/"
-"language/fr/)\n"
+"PO-Revision-Date: 2020-01-19 05:15+0000\n"
+"Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
+"Language-Team: French <https://translate.stg.fedoraproject.org/projects/"
+"libosinfo/osinfo-db-tools/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Zanata 4.6.2\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.10.3\n"
 
 #: tools/osinfo-db-export.c:479 tools/osinfo-db-import.c:464
 #: tools/osinfo-db-validate.c:251
@@ -28,35 +29,35 @@ msgstr "Informations étendues de progression"
 
 #: tools/osinfo-db-export.c:481
 msgid "Export the osinfo-db user directory"
-msgstr ""
+msgstr "Exporter le dossier utilisateur osinfo-db"
 
 #: tools/osinfo-db-export.c:483
 msgid "Export the osinfo-db local directory"
-msgstr ""
+msgstr "Exporter le dossier local osinfo-db"
 
 #: tools/osinfo-db-export.c:485
 msgid "Export the osinfo-db system directory"
-msgstr ""
+msgstr "Exporter le dossier système osinfo-db"
 
 #: tools/osinfo-db-export.c:487
 msgid "Export an osinfo-db custom directory"
-msgstr ""
+msgstr "Exporter le dossier personnalisé osinfo-db"
 
 #: tools/osinfo-db-export.c:489
 msgid "Set version number of archive"
-msgstr ""
+msgstr "Modifier le numéro de version de l’archive"
 
 #: tools/osinfo-db-export.c:491
 msgid "Export the osinfo-db root directory"
-msgstr ""
+msgstr "Exporter le dossier racine osinfo-db"
 
 #: tools/osinfo-db-export.c:493
 msgid "License file"
-msgstr ""
+msgstr "Fichier licence"
 
 #: tools/osinfo-db-export.c:503
 msgid "- Export database archive "
-msgstr ""
+msgstr "– Exporter une archive de la base de données "
 
 #: tools/osinfo-db-export.c:508 tools/osinfo-db-import.c:491
 #: tools/osinfo-db-path.c:69
@@ -65,84 +66,86 @@ msgid ""
 "%s: error while parsing commandline options: %s\n"
 "\n"
 msgstr ""
+"%s : erreur lors de l’analyse des options de la ligne de commande : %s\n"
+"\n"
 
 #: tools/osinfo-db-export.c:515
 #, c-format
 msgid "%s: expected path to one archive file to export\n"
-msgstr ""
+msgstr "%s : chemin d’accès attendu à un fichier d’archive à exporter\n"
 
 #: tools/osinfo-db-export.c:529 tools/osinfo-db-import.c:512
 #: tools/osinfo-db-path.c:90
 #, c-format
 msgid "Only one of --user, --local, --system & --dir can be used\n"
-msgstr ""
+msgstr "Seul un --user, --local, --system ou --dir peut être utilisé\n"
 
 #: tools/osinfo-db-import.c:466
 msgid "Import into user directory"
-msgstr ""
+msgstr "Importer dans le dossier utilisateur"
 
 #: tools/osinfo-db-import.c:468
 msgid "Import into local directory"
-msgstr ""
+msgstr "Importer dans le dossier local"
 
 #: tools/osinfo-db-import.c:470
 msgid "Import into system directory"
-msgstr ""
+msgstr "Importer dans le dossier système"
 
 #: tools/osinfo-db-import.c:472
 msgid "Import into custom directory"
-msgstr ""
+msgstr "Importer dans le dossier personnalisé"
 
 #: tools/osinfo-db-import.c:474 tools/osinfo-db-validate.c:261
 msgid "Installation root directory"
-msgstr ""
+msgstr "Importer dans le dossier racine"
 
 #: tools/osinfo-db-import.c:476
 msgid "Import the latest osinfo-db from osinfo-db's website"
-msgstr ""
+msgstr "Importer la dernière version d’osinfo-db depuis le site d’osinfo-db"
 
 #: tools/osinfo-db-import.c:486
 msgid "- Import database archive "
-msgstr ""
+msgstr "– Importer l’archive de la base de données "
 
 #: tools/osinfo-db-import.c:498
 #, c-format
 msgid "%s: expected path to one archive file to import\n"
-msgstr ""
+msgstr "%s : chemin attendu vers un fichier d’archive à importer\n"
 
 #: tools/osinfo-db-path.c:46
 msgid "Report the user directory"
-msgstr ""
+msgstr "Signaler le dossier utilisateur"
 
 #: tools/osinfo-db-path.c:48
 msgid "Report the local directory"
-msgstr ""
+msgstr "Signaler le dossier local"
 
 #: tools/osinfo-db-path.c:50
 msgid "Report the system directory"
-msgstr ""
+msgstr "Signaler le dossier système"
 
 #: tools/osinfo-db-path.c:52
 msgid "Report the custom directory"
-msgstr ""
+msgstr "Signaler le dossier personnalisé"
 
 #: tools/osinfo-db-path.c:54
 msgid "Report against root directory"
-msgstr ""
+msgstr "Signaler le dossier racine"
 
 #: tools/osinfo-db-path.c:64
 msgid "- Report database locations "
-msgstr ""
+msgstr "– Signaler l’emplacement de la base de données "
 
 #: tools/osinfo-db-path.c:76
 #, c-format
 msgid "%s: unexpected extra arguments\n"
-msgstr ""
+msgstr "%s : arguments supplémentaires inattendus\n"
 
 #: tools/osinfo-db-util.c:154
 #, c-format
 msgid "Unable to locate '%s' in any database location"
-msgstr ""
+msgstr "Impossible de localiser « %s » dans aucune base de données"
 
 #: tools/osinfo-db-validate.c:43
 #, c-format
@@ -151,12 +154,12 @@ msgstr "Erreur de validation du schéma %s"
 
 #: tools/osinfo-db-validate.c:59
 msgid "Unable to create libxml parser"
-msgstr "Impossible de créer l'analyseur libxml"
+msgstr "Impossible de créer l’analyseur libxml"
 
 #: tools/osinfo-db-validate.c:67
 #, c-format
 msgid "Unable to parse XML document '%s'"
-msgstr "Impossible d'analyser le document XML « %s »"
+msgstr "Impossible d’analyser le document XML « %s »"
 
 #: tools/osinfo-db-validate.c:99
 #, c-format
@@ -166,17 +169,17 @@ msgstr "Impossible de valider le document XML « %s »"
 #: tools/osinfo-db-validate.c:150
 #, c-format
 msgid "Processing '%s'...\n"
-msgstr "Traitement de « %s »...\n"
+msgstr "Traitement de « %s »…\n"
 
 #: tools/osinfo-db-validate.c:198
 #, c-format
 msgid "Unable to create RNG parser for %s"
-msgstr "Impossible de créer l'analyseur Relax NG pour %s"
+msgstr "Impossible de créer l’analyseur Relax NG pour %s"
 
 #: tools/osinfo-db-validate.c:206
 #, c-format
 msgid "Unable to parse RNG %s"
-msgstr "Impossible d'analyser « %s » avec Relax NG"
+msgstr "Impossible d’analyser « %s » avec Relax NG"
 
 #: tools/osinfo-db-validate.c:214
 #, c-format
@@ -185,28 +188,28 @@ msgstr "Impossible de créer le contexte de validation pour Relax NG %s"
 
 #: tools/osinfo-db-validate.c:253
 msgid "Validate files in user directory"
-msgstr ""
+msgstr "Valider les fichiers dans le dossier utilisateur"
 
 #: tools/osinfo-db-validate.c:255
 msgid "Validate files in local directory"
-msgstr ""
+msgstr "Valider les fichiers dans le dossier local"
 
 #: tools/osinfo-db-validate.c:257
 msgid "Validate files in system directory"
-msgstr ""
+msgstr "Valider les fichiers dans le dossier système"
 
 #: tools/osinfo-db-validate.c:259
 msgid "Validate files in custom directory"
-msgstr ""
+msgstr "Valider les fichiers dans le dossier personnalisé"
 
 #: tools/osinfo-db-validate.c:270
 msgid "- Validate XML documents "
-msgstr "- Valider les documents XML "
+msgstr "– Valider les documents XML "
 
 #: tools/osinfo-db-validate.c:275
 #, c-format
 msgid "Error while parsing commandline options: %s\n"
-msgstr "Erreur lors de l'analyse des options de ligne de commande : %s\n"
+msgstr "Erreur lors de l’analyse des options de ligne de commande : %s\n"
 
 #: tools/osinfo-db-validate.c:290
 #, c-format
@@ -214,3 +217,5 @@ msgid ""
 "Only one of --user, --local, --system, --dir or positional filenames can be "
 "used\n"
 msgstr ""
+"Seul un --user, --local, --system, --dir ou nom de fichier positionnel peut "
+"être utilisé\n"
