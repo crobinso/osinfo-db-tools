@@ -1,18 +1,20 @@
 # Daniel Berrange <dan-zanata@berrange.com>, 2016. #zanata
+# Antoni Bella Pérez <antonibella5@yahoo.com>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: osinfo-db-tools\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-29 14:07+0100\n"
-"PO-Revision-Date: 2016-03-04 07:50+0000\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: Catalan\n"
+"PO-Revision-Date: 2020-01-09 20:15+0000\n"
+"Last-Translator: Antoni Bella Pérez <antonibella5@yahoo.com>\n"
+"Language-Team: Catalan <https://translate.stg.fedoraproject.org/projects/"
+"libosinfo/osinfo-db-tools/ca/>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Zanata 4.6.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 #: tools/osinfo-db-export.c:479 tools/osinfo-db-import.c:464
 #: tools/osinfo-db-validate.c:251
@@ -58,6 +60,8 @@ msgid ""
 "%s: error while parsing commandline options: %s\n"
 "\n"
 msgstr ""
+"%s: error en analitzar sintàcticament les opcions de la línia d'ordres: %s\n"
+"\n"
 
 #: tools/osinfo-db-export.c:515
 #, c-format
@@ -194,7 +198,7 @@ msgstr ""
 
 #: tools/osinfo-db-validate.c:270
 msgid "- Validate XML documents "
-msgstr "- Valida documents XML"
+msgstr "- Valida documents XML "
 
 #: tools/osinfo-db-validate.c:275
 #, c-format
