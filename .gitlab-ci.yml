@@ -125,6 +125,22 @@ fedora-30:
     - *osinfo-db-tools-rpm
   image: quay.io/libvirt/buildenv-libosinfo-fedora-30:latest
 
+fedora-30-cross-mingw32:
+  script:
+    - *multilib-rpm
+    - *environment
+    - *dco
+    - *osinfo-db-tools-mingw32-build
+  image: quay.io/libvirt/buildenv-libosinfo-fedora-30-cross-mingw32:latest
+
+fedora-30-cross-mingw64:
+  script:
+    - *multilib-rpm
+    - *environment
+    - *dco
+    - *osinfo-db-tools-mingw64-build
+  image: quay.io/libvirt/buildenv-libosinfo-fedora-30-cross-mingw64:latest
+
 fedora-31:
   script:
     - *multilib-rpm
