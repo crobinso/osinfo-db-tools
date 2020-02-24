@@ -123,8 +123,6 @@ fedora-30:
     - *osinfo-db-tools-build
     - *osinfo-db-tools-check
     - *osinfo-db-tools-rpm
-    - *osinfo-db-tools-mingw32-build
-    - *osinfo-db-tools-mingw64-build
   image: quay.io/libvirt/buildenv-libosinfo-fedora-30:latest
 
 fedora-31:
