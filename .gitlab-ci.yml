@@ -47,7 +47,6 @@
 .osinfo-db-tools-mingw32-build: &osinfo-db-tools-mingw32-build |
   export MINGW32_VIRT_PREFIX="$VIRT_PREFIX/i686-w64-mingw32/sys-root/mingw"
   export PKG_CONFIG_PATH="$MINGW32_VIRT_PREFIX/lib/pkgconfig"
-  export PKG_CONFIG_LIBDIR="/usr/i686-w64-mingw32/sys-root/mingw/lib/pkgconfig:/usr/i686-w64-mingw32/sys-root/mingw/share/pkgconfig"
   pushd .
   mkdir build_win32
   cd build_win32
@@ -59,7 +58,6 @@
 .osinfo-db-tools-mingw64-build: &osinfo-db-tools-mingw64-build |
   export MINGW64_VIRT_PREFIX="$VIRT_PREFIX/x86_64-w64-mingw32/sys-root/mingw"
   export PKG_CONFIG_PATH="$MINGW64_VIRT_PREFIX/lib/pkgconfig"
-  export PKG_CONFIG_LIBDIR="/usr/x86_64-w64-mingw32/sys-root/mingw/lib/pkgconfig:/usr/x86_64-w64-mingw32/sys-root/mingw/share/pkgconfig"
   pushd .
   mkdir build_win64
   cd build_win64
