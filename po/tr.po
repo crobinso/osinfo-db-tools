@@ -7,50 +7,53 @@ msgstr ""
 "Project-Id-Version: osinfo-db-tools\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-23 11:40+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2020-03-27 18:38+0000\n"
+"Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
+"Language-Team: Turkish <https://translate.fedoraproject.org/projects/"
+"libosinfo/osinfo-db-tools/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.11.3\n"
 
 #: tools/osinfo-db-export.c:454 tools/osinfo-db-import.c:432
 #: tools/osinfo-db-validate.c:233
 msgid "Verbose progress information"
-msgstr ""
+msgstr "Ayrıntılı ilerleme durumu bilgisi"
 
 #: tools/osinfo-db-export.c:456
 msgid "Export the osinfo-db user directory"
-msgstr ""
+msgstr "osinfo-db kullanıcı dizinini dışa aktar"
 
 #: tools/osinfo-db-export.c:458
 msgid "Export the osinfo-db local directory"
-msgstr ""
+msgstr "osinfo-db yerel dizinini dışa aktar"
 
 #: tools/osinfo-db-export.c:460
 msgid "Export the osinfo-db system directory"
-msgstr ""
+msgstr "osinfo-db sistem dizinini dışa aktar"
 
 #: tools/osinfo-db-export.c:462
 msgid "Export an osinfo-db custom directory"
-msgstr ""
+msgstr "Özel bir osinfo-db dizinini dışa aktar"
 
 #: tools/osinfo-db-export.c:464
 msgid "Set version number of archive"
-msgstr ""
+msgstr "Arşiv sürüm numarasını ayarla"
 
 #: tools/osinfo-db-export.c:466
 msgid "Export the osinfo-db root directory"
-msgstr ""
+msgstr "osinfo-db kök dizinini dışa aktar"
 
 #: tools/osinfo-db-export.c:468
 msgid "License file"
-msgstr ""
+msgstr "Lisans dosyası"
 
 #: tools/osinfo-db-export.c:478
 msgid "- Export database archive "
-msgstr ""
+msgstr "- Veri tabanı arşivini dışa aktar "
 
 #: tools/osinfo-db-export.c:483 tools/osinfo-db-import.c:459
 #: tools/osinfo-db-path.c:68
@@ -59,148 +62,152 @@ msgid ""
 "%s: error while parsing commandline options: %s\n"
 "\n"
 msgstr ""
+"%s: komut satırı seçenekleri ayrıştırılırken hata oluştu: %s\n"
+"\n"
 
 #: tools/osinfo-db-export.c:490
 #, c-format
 msgid "%s: expected path to one archive file to export\n"
-msgstr ""
+msgstr "%s: dışa aktarmak için bir tane arşiv dosyası yolu bekleniyor\n"
 
 #: tools/osinfo-db-export.c:504 tools/osinfo-db-import.c:480
 #: tools/osinfo-db-path.c:89
 #, c-format
 msgid "Only one of --user, --local, --system & --dir can be used\n"
 msgstr ""
+"--user, --local, --system ve --dir seçeneklerinden sadece biri "
+"kullanılabilir\n"
 
 #: tools/osinfo-db-import.c:434
 msgid "Import into user directory"
-msgstr ""
+msgstr "Kullanıcı dizinine aktar"
 
 #: tools/osinfo-db-import.c:436
 msgid "Import into local directory"
-msgstr ""
+msgstr "Yerel dizine aktar"
 
 #: tools/osinfo-db-import.c:438
 msgid "Import into system directory"
-msgstr ""
+msgstr "Sistem dizinine aktar"
 
 #: tools/osinfo-db-import.c:440
 msgid "Import into custom directory"
-msgstr ""
+msgstr "Özel dizine aktar"
 
 #: tools/osinfo-db-import.c:442 tools/osinfo-db-validate.c:243
 msgid "Installation root directory"
-msgstr ""
+msgstr "Kurulum kök dizini"
 
 #: tools/osinfo-db-import.c:444
 msgid "Import the latest osinfo-db from osinfo-db's website"
-msgstr ""
+msgstr "En güncel osinfo-db'yi, osinfo-db'nin web sitesinden içe aktar"
 
 #: tools/osinfo-db-import.c:454
 msgid "- Import database archive "
-msgstr ""
+msgstr "- Veri tabanı arşivini içe aktar "
 
 #: tools/osinfo-db-import.c:466
 #, c-format
 msgid "%s: expected path to one archive file to import\n"
-msgstr ""
+msgstr "%s: içe aktarmak için bir tane arşiv dosyası yolu bekleniyor\n"
 
 #: tools/osinfo-db-path.c:45
 msgid "Report the user directory"
-msgstr ""
+msgstr "Kullanıcı dizinini bildir"
 
 #: tools/osinfo-db-path.c:47
 msgid "Report the local directory"
-msgstr ""
+msgstr "Yerel dizini bildir"
 
 #: tools/osinfo-db-path.c:49
 msgid "Report the system directory"
-msgstr ""
+msgstr "Sistem dizinini bildir"
 
 #: tools/osinfo-db-path.c:51
 msgid "Report the custom directory"
-msgstr ""
+msgstr "Özel dizini bildir"
 
 #: tools/osinfo-db-path.c:53
 msgid "Report against root directory"
-msgstr ""
+msgstr "Kök dizine göre bildir"
 
 #: tools/osinfo-db-path.c:63
 msgid "- Report database locations "
-msgstr ""
+msgstr "- Veri tabanı konumlarını bildir "
 
 #: tools/osinfo-db-path.c:75
 #, c-format
 msgid "%s: unexpected extra arguments\n"
-msgstr ""
+msgstr "%s: beklenmeyen ekstra argümanlar\n"
 
 #: tools/osinfo-db-util.c:150
 #, c-format
 msgid "Unable to locate '%s' in any database location"
-msgstr ""
+msgstr "'%s' hiçbir veri tabanı konumunda bulunamıyor"
 
 #: tools/osinfo-db-validate.c:43
 #, c-format
 msgid "Schema validity error %s"
-msgstr ""
+msgstr "Şema doğrulama hatası %s"
 
 #: tools/osinfo-db-validate.c:59
 msgid "Unable to create libxml parser"
-msgstr ""
+msgstr "libxml ayrıştırıcısı oluşturulamıyor"
 
 #: tools/osinfo-db-validate.c:67
 #, c-format
 msgid "Unable to parse XML document '%s'"
-msgstr ""
+msgstr "'%s' XML belgesi ayrıştırılamıyor"
 
 #: tools/osinfo-db-validate.c:96
 #, c-format
 msgid "Unable to validate XML document '%s'"
-msgstr ""
+msgstr "'%s' XML belgesi doğrulanamıyor"
 
 #: tools/osinfo-db-validate.c:139
 #, c-format
 msgid "Processing '%s'...\n"
-msgstr ""
+msgstr "'%s' işleniyor...\n"
 
 #: tools/osinfo-db-validate.c:182
 #, c-format
 msgid "Unable to create RNG parser for %s"
-msgstr ""
+msgstr "%s için RNG ayrıştırıcısı oluşturulamıyor"
 
 #: tools/osinfo-db-validate.c:190
 #, c-format
 msgid "Unable to parse RNG %s"
-msgstr ""
+msgstr "RNG %s ayrıştırılamıyor"
 
 #: tools/osinfo-db-validate.c:198
 #, c-format
 msgid "Unable to create RNG validation context %s"
-msgstr ""
+msgstr "%s RNG doğrulama bağlamı oluşturulamıyor"
 
 #: tools/osinfo-db-validate.c:235
 msgid "Validate files in user directory"
-msgstr ""
+msgstr "Kullanıcı dizinindeki dosyaları doğrula"
 
 #: tools/osinfo-db-validate.c:237
 msgid "Validate files in local directory"
-msgstr ""
+msgstr "Yerel dizindeki dosyaları doğrula"
 
 #: tools/osinfo-db-validate.c:239
 msgid "Validate files in system directory"
-msgstr ""
+msgstr "Sistem dizinindeki dosyaları doğrula"
 
 #: tools/osinfo-db-validate.c:241
 msgid "Validate files in custom directory"
-msgstr ""
+msgstr "Özel dizindeki dosyaları doğrula"
 
 #: tools/osinfo-db-validate.c:252
 msgid "- Validate XML documents "
-msgstr ""
+msgstr "- XML belgelerini doğrula "
 
 #: tools/osinfo-db-validate.c:257
 #, c-format
 msgid "Error while parsing commandline options: %s\n"
-msgstr ""
+msgstr "Komut satırı seçenekleri ayrıştırılırken hata oluştu: %s\n"
 
 #: tools/osinfo-db-validate.c:272
 #, c-format
@@ -208,3 +215,5 @@ msgid ""
 "Only one of --user, --local, --system, --dir or positional filenames can be "
 "used\n"
 msgstr ""
+"--user, --local, --system, --dir veya konumsal dosya adlarından sadece biri "
+"kullanılabilir\n"
