@@ -8,6 +8,7 @@ INSTALL_ROOT=$HOME/builder
 
 # Make things clean.
 rm -rf build
+
 meson build/native --prefix=$INSTALL_ROOT --werror
 
 ninja -C build/native
