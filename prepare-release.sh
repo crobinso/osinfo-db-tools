@@ -34,8 +34,6 @@ fi
 # Test mingw32 cross-compile
 if test -x /usr/bin/i686-w64-mingw32-gcc && \
    test -r /usr/share/mingw/toolchain-mingw32.meson ; then
-  rm -rf build/win32 || :
-
   meson build/win32 \
         --werror \
         --prefix="$INSTALL_ROOT/i686-w64-mingw32/sys-root/mingw" \
@@ -48,8 +46,6 @@ fi
 # Test mingw64 cross-compile
 if test -x /usr/bin/x86_64-w64-mingw32-gcc && \
    test -r /usr/share/mingw/toolchain-mingw64.meson ; then
-  rm -rf build/win64 || :
-
   meson build/win64 \
         --werror \
         --prefix="$INSTALL_ROOT/x86_64-w64-mingw32/sys-root/mingw" \
