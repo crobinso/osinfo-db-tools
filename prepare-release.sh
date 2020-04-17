@@ -15,7 +15,7 @@ ninja -C build/native install
 ninja -C build/native test
 ninja -C build/native dist
 
-if test -f /usr/bin/rpmbuild; then
+if test -x /usr/bin/rpmbuild; then
   rpmbuild --nodeps \
      --define "_sourcedir `pwd`/build/native/meson-dist/" \
      -ba --clean build/native/osinfo-db-tools.spec
@@ -49,7 +49,7 @@ if test -x /usr/bin/i686-w64-mingw32-gcc && \
    test -r /usr/share/mingw/toolchain-mingw32.meson && \
    test -x /usr/bin/x86_64-w64-mingw32-gcc && \
    test -r /usr/share/mingw/toolchain-mingw64.meson && \
-   test -f /usr/bin/rpmbuild; then
+   test -x /usr/bin/rpmbuild; then
   rpmbuild --nodeps \
      --define "_sourcedir `pwd`/build/native/meson-dist/" \
      -ba --clean build/native/mingw-osinfo-db-tools.spec
