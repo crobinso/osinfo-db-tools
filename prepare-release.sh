@@ -3,7 +3,6 @@
 set -e
 set -v
 
-test -n "$1" && RESULTS=$1 || RESULTS=results.log
 INSTALL_ROOT=$HOME/builder
 
 # Make things clean.
@@ -13,16 +12,7 @@ meson build/native --prefix=$INSTALL_ROOT --werror
 
 ninja -C build/native
 ninja -C build/native install
-
-# set -o pipefail is a bashism; this use of exec is the POSIX alternative
-exec 3>&1
-st=$(
-  exec 4>&1 >&3
-  { ninja -C build/native test 2>&1 3>&- 4>&-; echo $? >&4; } | tee "$RESULTS"
-)
-exec 3>&-
-test "$st" = 0
-
+ninja -C build/native test
 ninja -C build/native dist
 
 if test -f /usr/bin/rpmbuild; then
