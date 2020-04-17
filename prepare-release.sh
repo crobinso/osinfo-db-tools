@@ -6,6 +6,7 @@ set -v
 BUILD_ROOT="$PWD/build"
 INSTALL_ROOT="$PWD/install"
 RPMBUILD_ROOT="$PWD/rpmbuild"
+DIST_ROOT="$BUILD_ROOT/native/meson-dist"
 
 # Make things clean.
 rm -rf "$BUILD_ROOT" "$INSTALL_ROOT" "$RPMBUILD_ROOT"
@@ -20,7 +21,7 @@ ninja -C "$BUILD_ROOT/native" dist
 if test -x /usr/bin/rpmbuild; then
   rpmbuild --nodeps \
      --define "_topdir $RPMBUILD_ROOT" \
-     --define "_sourcedir $BUILD_ROOT/native/meson-dist/" \
+     --define "_sourcedir $DIST_ROOT" \
      -ba --clean "$BUILD_ROOT/native/osinfo-db-tools.spec"
 fi
 
@@ -53,6 +54,6 @@ if test -x /usr/bin/i686-w64-mingw32-gcc && \
    test -x /usr/bin/rpmbuild; then
   rpmbuild --nodeps \
      --define "_topdir $RPMBUILD_ROOT" \
-     --define "_sourcedir $BUILD_ROOT/native/meson-dist/" \
+     --define "_sourcedir $DIST_ROOT" \
      -ba --clean "$BUILD_ROOT/native/mingw-osinfo-db-tools.spec"
 fi
