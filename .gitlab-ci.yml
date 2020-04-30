@@ -137,14 +137,6 @@ fedora-30:
   <<: *x86_64-build-job-rpm
   image: quay.io/libvirt/buildenv-libosinfo-fedora-30:latest
 
-fedora-30-cross-mingw32:
-  <<: *mingw32-build-job
-  image: quay.io/libvirt/buildenv-libosinfo-fedora-30-cross-mingw32:latest
-
-fedora-30-cross-mingw64:
-  <<: *mingw64-build-job
-  image: quay.io/libvirt/buildenv-libosinfo-fedora-30-cross-mingw64:latest
-
 fedora-31:
   <<: *x86_64-build-job-rpm
   image: quay.io/libvirt/buildenv-libosinfo-fedora-31:latest
@@ -152,6 +144,14 @@ fedora-31:
 fedora-rawhide:
   <<: *x86_64-build-job-rpm
   image: quay.io/libvirt/buildenv-libosinfo-fedora-rawhide:latest
+
+fedora-rawhide-cross-mingw32:
+  <<: *mingw32-build-job
+  image: quay.io/libvirt/buildenv-libosinfo-fedora-rawhide-cross-mingw32:latest
+
+fedora-rawhide-cross-mingw64:
+  <<: *mingw64-build-job
+  image: quay.io/libvirt/buildenv-libosinfo-fedora-rawhide-cross-mingw64:latest
 
 opensuse-151:
   <<: *x86_64-build-job-rpm
