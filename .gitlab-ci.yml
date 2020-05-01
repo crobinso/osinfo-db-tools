@@ -21,6 +21,10 @@ stages:
   export CCACHE_MAXSIZE="50M"
   export PATH="$CCACHE_WRAPPERSDIR:$PATH"
 
+.mingw-environment: &mingw-environment |
+  export VIRT_PREFIX="$VIRT_PREFIX/$ABI/sys-root/mingw"
+  export PKG_CONFIG_PATH="$VIRT_PREFIX/lib/pkgconfig"
+
 .dco: &dco |
   pushd .
   ./scripts/require-dco.sh
@@ -51,23 +55,19 @@ stages:
   popd
 
 .osinfo-db-tools-mingw32-build: &osinfo-db-tools-mingw32-build |
-  export MINGW32_VIRT_PREFIX="$VIRT_PREFIX/i686-w64-mingw32/sys-root/mingw"
-  export PKG_CONFIG_PATH="$MINGW32_VIRT_PREFIX/lib/pkgconfig"
   pushd .
   mkdir build_win32
   cd build_win32
-  meson .. . --cross-file=/usr/share/mingw/toolchain-mingw32.meson --prefix=$MINGW32_VIRT_PREFIX --werror
+  meson .. . --cross-file=/usr/share/mingw/toolchain-mingw32.meson --prefix=$VIRT_PREFIX --werror
   $NINJA
   $NINJA install
   popd
 
 .osinfo-db-tools-mingw64-build: &osinfo-db-tools-mingw64-build |
-  export MINGW64_VIRT_PREFIX="$VIRT_PREFIX/x86_64-w64-mingw32/sys-root/mingw"
-  export PKG_CONFIG_PATH="$MINGW64_VIRT_PREFIX/lib/pkgconfig"
   pushd .
   mkdir build_win64
   cd build_win64
-  meson .. . --cross-file=/usr/share/mingw/toolchain-mingw64.meson --prefix=$MINGW64_VIRT_PREFIX --werror
+  meson .. . --cross-file=/usr/share/mingw/toolchain-mingw64.meson --prefix=$VIRT_PREFIX --werror
   $NINJA
   $NINJA install
   popd
@@ -112,6 +112,7 @@ stages:
     - *multilib-rpm
     - *environment
     - *dco
+    - *mingw-environment
     - *osinfo-db-tools-mingw32-build
 
 .mingw64-build-job: &mingw64-build-job
@@ -125,6 +126,7 @@ stages:
     - *multilib-rpm
     - *environment
     - *dco
+    - *mingw-environment
     - *osinfo-db-tools-mingw64-build
 
 centos-7:
