@@ -54,20 +54,11 @@ stages:
   rpmbuild --clean --define "_topdir `pwd`/rpmbuild" -ta meson-dist/*.tar.xz
   popd
 
-.osinfo-db-tools-mingw32-build: &osinfo-db-tools-mingw32-build |
+.osinfo-db-tools-mingw-build: &osinfo-db-tools-mingw-build |
   pushd .
-  mkdir build_win32
-  cd build_win32
-  meson .. . --cross-file=/usr/share/mingw/toolchain-mingw32.meson --prefix=$VIRT_PREFIX --werror
-  $NINJA
-  $NINJA install
-  popd
-
-.osinfo-db-tools-mingw64-build: &osinfo-db-tools-mingw64-build |
-  pushd .
-  mkdir build_win64
-  cd build_win64
-  meson .. . --cross-file=/usr/share/mingw/toolchain-mingw64.meson --prefix=$VIRT_PREFIX --werror
+  mkdir build
+  cd build
+  meson .. . --cross-file=/usr/share/mingw/toolchain-$CROSS.meson --prefix=$VIRT_PREFIX --werror
   $NINJA
   $NINJA install
   popd
@@ -101,7 +92,7 @@ stages:
     - *osinfo-db-tools-check
     - *osinfo-db-tools-rpm
 
-.mingw32-build-job: &mingw32-build-job
+.mingw-build-job: &mingw-build-job
   stage: builds
   image: quay.io/libvirt/buildenv-libosinfo-$NAME-cross-$CROSS:latest
   cache:
@@ -113,21 +104,7 @@ stages:
     - *environment
     - *dco
     - *mingw-environment
-    - *osinfo-db-tools-mingw32-build
-
-.mingw64-build-job: &mingw64-build-job
-  stage: builds
-  image: quay.io/libvirt/buildenv-libosinfo-$NAME-cross-$CROSS:latest
-  cache:
-    paths:
-      - ccache
-    key: "$CI_JOB_NAME"
-  script:
-    - *multilib-rpm
-    - *environment
-    - *dco
-    - *mingw-environment
-    - *osinfo-db-tools-mingw64-build
+    - *osinfo-db-tools-mingw-build
 
 centos-7:
   <<: *x86_64-build-job-rpm
@@ -172,13 +149,13 @@ fedora-rawhide:
     NAME: fedora-rawhide
 
 fedora-rawhide-cross-mingw32:
-  <<: *mingw32-build-job
+  <<: *mingw-build-job
   variables:
     NAME: fedora-rawhide
     CROSS: mingw32
 
 fedora-rawhide-cross-mingw64:
-  <<: *mingw64-build-job
+  <<: *mingw-build-job
   variables:
     NAME: fedora-rawhide
     CROSS: mingw64
