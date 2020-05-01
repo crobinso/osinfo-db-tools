@@ -92,6 +92,7 @@
     - *dco
     - *osinfo-db-tools-build
     - *osinfo-db-tools-check
+    - *osinfo-db-tools-rpm
 
 .mingw32-build-job: &mingw32-build-job
   cache:
@@ -118,6 +119,8 @@
 centos-7:
   <<: *x86_64-build-job-rpm
   image: quay.io/libvirt/buildenv-libosinfo-centos-7:latest
+  variables:
+    RPM: skip
 
 centos-8:
   script:
@@ -159,6 +162,8 @@ fedora-rawhide-cross-mingw64:
 opensuse-151:
   <<: *x86_64-build-job-rpm
   image: quay.io/libvirt/buildenv-libosinfo-opensuse-151:latest
+  variables:
+    RPM: skip
 
 ubuntu-1804:
   <<: *x86_64-build-job-deb
