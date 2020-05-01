@@ -38,6 +38,9 @@
   popd
 
 .osinfo-db-tools-rpm: &osinfo-db-tools-rpm |
+  if test "$RPM" = "skip"; then
+    exit 0
+  fi
   pushd .
   cd build
   $NINJA dist
