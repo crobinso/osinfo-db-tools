@@ -1,4 +1,5 @@
 stages:
+  - prebuild
   - builds
 
 .multilib: &multilib |
@@ -27,11 +28,6 @@ stages:
 .mingw-environment: &mingw-environment |
   export VIRT_PREFIX="$VIRT_PREFIX/$ABI/sys-root/mingw"
   export PKG_CONFIG_PATH="$VIRT_PREFIX/lib/pkgconfig"
-
-.dco: &dco |
-  pushd .
-  ./scripts/require-dco.sh
-  popd
 
 .osinfo-db-tools-build: &osinfo-db-tools-build |
   pushd .
@@ -76,7 +72,6 @@ stages:
   script:
     - *multilib
     - *native-environment
-    - *dco
     - *osinfo-db-tools-build
     - *osinfo-db-tools-check
     - *osinfo-db-tools-rpm
@@ -91,9 +86,21 @@ stages:
   script:
     - *multilib
     - *native-environment
-    - *dco
     - *mingw-environment
     - *osinfo-db-tools-mingw-build
+
+# Check that all commits are signed-off for the DCO.
+# Skip on "libosinfo" namespace, since we only need to run
+# this test on developer's personal forks from which
+# merge requests are submitted
+check-dco:
+  stage: prebuild
+  image: registry.gitlab.com/libvirt/libvirt-ci/check-dco:master
+  script:
+    - /check-dco libosinfo
+  except:
+    variables:
+      - $CI_PROJECT_NAMESPACE == "libosinfo"
 
 centos-7:
   <<: *native-build-job
