@@ -15,29 +15,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# Tests not to run as part of "make distcheck".
-local-checks-to-skip =			\
-  changelog-check			\
-  makefile-check			\
-  makefile_path_separator_check		\
-  patch-check				\
-  sc_GPL_version			\
-  sc_always_defined_macros		\
-  sc_cast_of_alloca_return_value	\
-  sc_cross_check_PATH_usage_in_tests	\
-  sc_dd_max_sym_length			\
-  sc_error_exit_success			\
-  sc_file_system			\
-  sc_immutable_NEWS			\
-  sc_prohibit_always_true_header_tests  \
-  sc_two_space_separator_in_usage	\
-  sc_error_message_uppercase		\
-  sc_program_name			\
-  sc_makefile_check			\
-  sc_require_config_h			\
-  sc_require_config_h_first		\
-  sc_prohibit_always-defined_macros
-
 # Files that should never cause syntax check failures.
 VC_LIST_ALWAYS_EXCLUDE_REGEX = \
   (^HACKING|\.po|maint.mk)$$

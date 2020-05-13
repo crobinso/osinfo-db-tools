@@ -37,25 +37,6 @@ _sp = $(_empty) $(_empty)
 # If S1 == S2, return S1, otherwise the empty string.
 _equal = $(and $(findstring $(1),$(2)),$(findstring $(2),$(1)))
 
-# member-check,VARIABLE,VALID-VALUES
-# ----------------------------------
-# Check that $(VARIABLE) is in the space-separated list of VALID-VALUES, and
-# return it.  Die otherwise.
-member-check =								\
-  $(strip								\
-    $(if $($(1)),							\
-      $(if $(findstring $(_sp),$($(1))),				\
-          $(error invalid $(1): '$($(1))', expected $(2)),		\
-          $(or $(findstring $(_sp)$($(1))$(_sp),$(_sp)$(2)$(_sp)),	\
-            $(error invalid $(1): '$($(1))', expected $(2)))),		\
-      $(error $(1) undefined)))
-
-# Do not save the original name or timestamp in the .tar.gz file.
-# Use --rsyncable if available.
-gzip_rsyncable := \
-  $(shell gzip --help 2>/dev/null|$(GREP) rsyncable >/dev/null \
-    && printf %s --rsyncable)
-GZIP_ENV = '--no-name --best $(gzip_rsyncable)'
 
 GIT = git
 VC = $(GIT)
@@ -94,62 +75,6 @@ VC_LIST_EXCEPT = \
 	  else $(GREP) -Ev -e "$${VC_LIST_EXCEPT_DEFAULT-ChangeLog}"; fi \
 	| $(GREP) -Ev -e '($(VC_LIST_ALWAYS_EXCLUDE_REGEX)|$(_sc_excl))' \
 	$(_prepend_srcdir_prefix)
-
-ifeq ($(origin prev_version_file), undefined)
-  prev_version_file = $(srcdir)/.prev-version
-endif
-
-PREV_VERSION := $(shell cat $(prev_version_file) 2>/dev/null)
-VERSION_REGEXP = $(subst .,\.,$(VERSION))
-PREV_VERSION_REGEXP = $(subst .,\.,$(PREV_VERSION))
-
-ifeq ($(VC),$(GIT))
-  this-vc-tag = v$(VERSION)
-  this-vc-tag-regexp = v$(VERSION_REGEXP)
-else
-  tag-package = $(shell echo "$(PACKAGE)" | tr '[:lower:]' '[:upper:]')
-  tag-this-version = $(subst .,_,$(VERSION))
-  this-vc-tag = $(tag-package)-$(tag-this-version)
-  this-vc-tag-regexp = $(this-vc-tag)
-endif
-my_distdir = $(PACKAGE)-$(VERSION)
-
-# Old releases are stored here.
-release_archive_dir ?= ../release
-
-# If RELEASE_TYPE is undefined, but RELEASE is, use its second word.
-# But overwrite VERSION.
-ifdef RELEASE
-  VERSION := $(word 1, $(RELEASE))
-  RELEASE_TYPE ?= $(word 2, $(RELEASE))
-endif
-
-# Validate and return $(RELEASE_TYPE), or die.
-RELEASE_TYPES = alpha beta stable
-release-type = $(call member-check,RELEASE_TYPE,$(RELEASE_TYPES))
-
-# Override gnu_rel_host and url_dir_list in cfg.mk if these are not right.
-# Use alpha.gnu.org for alpha and beta releases.
-# Use ftp.gnu.org for stable releases.
-gnu_ftp_host-alpha = alpha.gnu.org
-gnu_ftp_host-beta = alpha.gnu.org
-gnu_ftp_host-stable = ftp.gnu.org
-gnu_rel_host ?= $(gnu_ftp_host-$(release-type))
-
-url_dir_list ?= $(if $(call _equal,$(gnu_rel_host),ftp.gnu.org),	\
-                     https://ftpmirror.gnu.org/$(PACKAGE),		\
-                     https://$(gnu_rel_host)/gnu/$(PACKAGE))
-
-# Override this in cfg.mk if you are using a different format in your
-# NEWS file.
-today = $(shell date +%Y-%m-%d)
-
-# Select which lines of NEWS are searched for $(news-check-regexp).
-# This is a sed line number spec.  The default says that we search
-# lines 1..10 of NEWS for $(news-check-regexp).
-# If you want to search only line 3 or only lines 20-22, use "3" or "20,22".
-news-check-lines-spec ?= 1,10
-news-check-regexp ?= '^\*.* $(VERSION_REGEXP) \($(today)\)'
 
 # Prevent programs like 'sort' from considering distinct strings to be equal.
 # Doing it here saves us from having to set LC_ALL elsewhere in this file.
@@ -357,11 +282,6 @@ sc_cast_of_x_alloc_return_value:
 	halt="don't cast x*alloc return value"				\
 	  $(_sc_search_regexp)
 
-sc_cast_of_alloca_return_value:
-	@prohibit='\*\) *alloca\>'					\
-	halt="don't cast alloca return value"				\
-	  $(_sc_search_regexp)
-
 sc_space_tab:
 	@prohibit='[ ]	'						\
 	halt='found SPACE-TAB sequence; remove the SPACE'		\
@@ -407,51 +327,6 @@ sc_prohibit_magic_number_exit:
 	halt='use EXIT_* values rather than magic number'		\
 	  $(_sc_search_regexp)
 
-# Check that we don't use $< in non-implicit Makefile rules.
-#
-# To find the Makefiles, trace AC_CONFIG_FILES.  Using VC_LIST would
-# miss the Makefiles that are not under VC control (e.g., symlinks
-# installed for gettext).  "Parsing" (recursive) uses of SUBDIRS seems
-# too delicate.
-#
-# Use GNU Make's --print-data-base to normalize the rules into some
-# easy to parse format: they are separated by two \n.  Look for the
-# "section" about non-pattern rules (marked with "# Files") inside
-# which there are still the POSIX Make like implicit rules (".c.o").
-sc_prohibit_gnu_make_extensions_awk_ =					\
-  BEGIN {								\
-      RS = "\n\n";							\
-      in_rules = 0;							\
-  }									\
-  /^\# Files/ {								\
-      in_rules = 1;							\
-  }									\
-  /\$$</ && in_rules && $$0 !~ /^(.*\n)*\.\w+(\.\w+)?:/ {		\
-      print "Error: " file ": $$< in a non implicit rule\n" $$0;	\
-      status = 1;							\
-  }									\
-  END {									\
-     exit status;							\
-  }
-sc_prohibit_gnu_make_extensions:
-	@if $(AWK) --version | grep GNU >/dev/null 2>&1; then		\
-	  (cd $(srcdir) && autoconf --trace AC_CONFIG_FILES:'$$1') |	\
-	    tr ' ' '\n' |						\
-	    $(SED) -ne '/Makefile/{s/\.in$$//;p;}' |			\
-	    while read m; do						\
-	      $(MAKE) -qp -f $$m .DUMMY-TARGET 2>/dev/null |		\
-	        $(AWK) -v file=$$m -e '$($@_awk_)' || exit 1;		\
-	    done;							\
-	fi
-
-# Using EXIT_SUCCESS as the first argument to error is misleading,
-# since when that parameter is 0, error does not exit.  Use '0' instead.
-sc_error_exit_success:
-	@prohibit='error *\(EXIT_SUCCESS,'				\
-	in_vc_files='\.[chly]$$'					\
-	halt='found error (EXIT_SUCCESS'				\
-	 $(_sc_search_regexp)
-
 # "FATAL:" should be fully upper-cased in error messages
 # "WARNING:" should be fully upper-cased, or fully lower-cased
 sc_error_message_warn_fatal:
@@ -459,16 +334,6 @@ sc_error_message_warn_fatal:
 	  | xargs $(GREP) -nEA2 '[^rp]error *\(' /dev/null		\
 	  | $(GREP) -E '"Warning|"Fatal|"fatal'				\
 	  && { echo '$(ME): use FATAL, WARNING or warning' 1>&2;	\
-	       exit 1; }						\
-	  || :
-
-# Error messages should not start with a capital letter
-sc_error_message_uppercase:
-	@$(VC_LIST_EXCEPT)						\
-	  | xargs $(GREP) -nEA2 '[^rp]error *\(' /dev/null		\
-	  | $(GREP) -E '"[A-Z]'						\
-	  | $(GREP) -vE '"FATAL|"WARNING|"Java|"C#|PRIuMAX'		\
-	  && { echo '$(ME): found capitalized error message' 1>&2;	\
 	       exit 1; }						\
 	  || :
 
@@ -480,54 +345,6 @@ sc_error_message_period:
 	  && { echo '$(ME): found error message ending in period' 1>&2;	\
 	       exit 1; }						\
 	  || :
-
-sc_file_system:
-	@prohibit=file''system						\
-	exclude='/proc/filesystems'					\
-	ignore_case=1							\
-	halt='found use of "file''system"; spell it "file system"'	\
-	  $(_sc_search_regexp)
-
-# Don't use cpp tests of this symbol.  All code assumes config.h is included.
-sc_prohibit_have_config_h:
-	@prohibit='^# *if.*HAVE''_CONFIG_H'				\
-	halt='found use of HAVE''_CONFIG_H; remove'			\
-	  $(_sc_search_regexp)
-
-# Nearly all .c files must include <config.h>.  However, we also permit this
-# via inclusion of a package-specific header, if cfg.mk specified one.
-# config_h_header must be suitable for grep -E.
-config_h_header ?= <config\.h>
-sc_require_config_h:
-	@require='^# *include $(config_h_header)'			\
-	in_vc_files='\.c$$'						\
-	halt='the above files do not include <config.h>'		\
-	  $(_sc_search_regexp)
-
-# Print each file name for which the first #include does not match
-# $(config_h_header).  Like grep -m 1, this only looks at the first match.
-perl_config_h_first_ =							\
-  -e 'BEGIN {$$ret = 0}'						\
-  -e 'if (/^\# *include\b/) {'						\
-  -e '  if (not m{^\# *include $(config_h_header)}) {'			\
-  -e '    print "$$ARGV\n";'						\
-  -e '    $$ret = 1;'							\
-  -e '  }'								\
-  -e '  \# Move on to next file after first include'			\
-  -e '  close ARGV;'							\
-  -e '}'								\
-  -e 'END {exit $$ret}'
-
-# You must include <config.h> before including any other header file.
-# This can possibly be via a package-specific header, if given by cfg.mk.
-sc_require_config_h_first:
-	@if $(VC_LIST_EXCEPT) | $(GREP) '\.c$$' > /dev/null; then	\
-	  files=$$($(VC_LIST_EXCEPT) | $(GREP) '\.c$$') &&		\
-	  perl -n $(perl_config_h_first_) $$files ||			\
-	    { echo '$(ME): the above files include some other header'	\
-		'before <config.h>' 1>&2; exit 1; } || :;		\
-	else :;								\
-	fi
 
 sc_prohibit_HAVE_MBRTOWC:
 	@prohibit='\bHAVE_MBRTOWC\b'					\
@@ -724,21 +541,6 @@ sc_prohibit_strings_without_use:
 	re='\<(strn?casecmp|ffs(ll)?)\>'				\
 	  $(_sc_header_without_use)
 
-# Extract the raw list of symbol names with this:
-gl_extract_define_simple = \
-  /^\# *define ([A-Z]\w+)\(/ and print $$1
-# Filter out duplicates and convert to a space-separated list:
-_intprops_names = \
-  $(shell f=$(gnulib_dir)/lib/intprops.h;				\
-    perl -lne '$(gl_extract_define_simple)' $$f | sort -u | tr '\n' ' ')
-# Remove trailing space and convert to a regular expression:
-_intprops_syms_re = $(subst $(_sp),|,$(strip $(_intprops_names)))
-# Prohibit the inclusion of intprops.h without an actual use.
-sc_prohibit_intprops_without_use:
-	@h='intprops.h'							\
-	re='\<($(_intprops_syms_re)) *\('				\
-	  $(_sc_header_without_use)
-
 _stddef_syms_re = NULL|offsetof|ptrdiff_t|size_t|wchar_t
 # Prohibit the inclusion of stddef.h without an actual use.
 sc_prohibit_stddef_without_use:
@@ -756,29 +558,9 @@ sc_prohibit_dirent_without_use:
 	re='\<($(_dirent_syms_re))\>'					\
 	  $(_sc_header_without_use)
 
-# Prohibit the inclusion of verify.h without an actual use.
-sc_prohibit_verify_without_use:
-	@h='verify.h'							\
-	re='\<(verify(true|expr)?|assume|static_assert) *\('		\
-	  $(_sc_header_without_use)
-
 # Don't include xfreopen.h unless you use one of its functions.
 sc_prohibit_xfreopen_without_use:
 	@h='xfreopen.h' re='\<xfreopen *\(' $(_sc_header_without_use)
-
-sc_obsolete_symbols:
-	@prohibit='\<(HAVE''_FCNTL_H|O''_NDELAY)\>'			\
-	halt='do not use HAVE''_FCNTL_H or O'_NDELAY			\
-	  $(_sc_search_regexp)
-
-# FIXME: warn about definitions of EXIT_FAILURE, EXIT_SUCCESS, STREQ
-
-# Each nonempty ChangeLog line must start with a year number, or a TAB.
-sc_changelog:
-	@prohibit='^[^12	]'					\
-	in_vc_files='^ChangeLog$$'					\
-	halt='found unexpected prefix in a ChangeLog'			\
-	  $(_sc_search_regexp)
 
 # Ensure that each .c file containing a "main" function also
 # calls bindtextdomain.
@@ -789,39 +571,12 @@ sc_bindtextdomain:
 	halt='the above files do not call bindtextdomain'		\
 	  $(_sc_search_regexp)
 
-# Require that the final line of each test-lib.sh-using test be this one:
-# Exit $fail
-# Note: this test requires GNU grep's --label= option.
-Exit_witness_file ?= tests/test-lib.sh
-Exit_base := $(notdir $(Exit_witness_file))
-sc_require_test_exit_idiom:
-	@if test -f $(srcdir)/$(Exit_witness_file); then		\
-	  die=0;							\
-	  for i in $$($(GREP) -l -F 'srcdir/$(Exit_base)'		\
-		$$($(VC_LIST) tests)); do				\
-	    tail -n1 $$i | $(GREP) '^Exit .' > /dev/null		\
-	      && : || { die=1; echo $$i; }				\
-	  done;								\
-	  test $$die = 1 &&						\
-	    { echo 1>&2 '$(ME): the final line in each of the above is not:'; \
-	      echo 1>&2 'Exit something';				\
-	      exit 1; } || :;						\
-	fi
-
 sc_trailing_blank:
 	@prohibit='[	 ]$$'						\
 	halt='found trailing blank(s)'					\
 	exclude='^Binary file .* matches$$'				\
 	  $(_sc_search_regexp)
 
-# Match lines like the following, but where there is only one space
-# between the options and the description:
-#   -D, --all-repeated[=delimit-method]  print all duplicate lines\n
-longopt_re = --[a-z][0-9A-Za-z-]*(\[?=[0-9A-Za-z-]*\]?)?
-sc_two_space_separator_in_usage:
-	@prohibit='^   *(-[A-Za-z],)? $(longopt_re) [^ ].*\\$$'		\
-	halt='help2man requires at least two spaces between an option and its description'\
-	  $(_sc_search_regexp)
 
 # A regexp matching function names like "error" that may be used
 # to emit translatable messages.
@@ -842,118 +597,16 @@ sc_useless_cpp_parens:
 	halt='found useless parentheses in cpp directive'		\
 	  $(_sc_search_regexp)
 
-# List headers for which HAVE_HEADER_H is always true, assuming you are
-# using the appropriate gnulib module.  CAUTION: for each "unnecessary"
-# #if HAVE_HEADER_H that you remove, be sure that your project explicitly
-# requires the gnulib module that guarantees the usability of that header.
-gl_assured_headers_ = \
-  cd $(gnulib_dir)/lib && echo *.in.h|$(SED) 's/\.in\.h//g'
-
-# Convert the list of names to upper case, and replace each space with "|".
-az_ = abcdefghijklmnopqrstuvwxyz
-AZ_ = ABCDEFGHIJKLMNOPQRSTUVWXYZ
-gl_header_upper_case_or_ =						\
-  $$($(gl_assured_headers_)						\
-    | tr $(az_)/.- $(AZ_)___						\
-    | tr -s ' ' '|'							\
-    )
-sc_prohibit_always_true_header_tests:
-	@or=$(gl_header_upper_case_or_);				\
-	re="HAVE_($$or)_H";						\
-	prohibit='\<'"$$re"'\>'						\
-	halt=$$(printf '%s\n'						\
-	'do not test the above HAVE_<header>_H symbol(s);'		\
-	'  with the corresponding gnulib module, they are always true')	\
-	  $(_sc_search_regexp)
-
 sc_prohibit_defined_have_decl_tests:
 	@prohibit='(#[	 ]*ifn?def|\<defined)\>[	 (]+HAVE_DECL_'	\
 	halt='HAVE_DECL macros are always defined'			\
 	  $(_sc_search_regexp)
-
-# ==================================================================
-gl_other_headers_ ?= \
-  intprops.h	\
-  openat.h	\
-  stat-macros.h
-
-# Perl -lne code to extract "significant" cpp-defined symbols from a
-# gnulib header file, eliminating a few common false-positives.
-# The exempted names below are defined only conditionally in gnulib,
-# and hence sometimes must/may be defined in application code.
-gl_extract_significant_defines_ = \
-  /^\# *define ([^_ (][^ (]*)(\s*\(|\s+\w+)/\
-    && $$2 !~ /(?:rpl_|_used_without_)/\
-    && $$1 !~ /^(?:NSIG|ENODATA)$$/\
-    && $$1 !~ /^(?:SA_RESETHAND|SA_RESTART)$$/\
-    and print $$1
-
-# Create a list of regular expressions matching the names
-# of macros that are guaranteed to be defined by parts of gnulib.
-define def_sym_regex
-	gen_h=$(gl_generated_headers_);					\
-	(cd $(gnulib_dir)/lib;						\
-	  for f in *.in.h $(gl_other_headers_); do			\
-	    test -f $$f							\
-	      && perl -lne '$(gl_extract_significant_defines_)' $$f;	\
-	  done;								\
-	) | sort -u							\
-	  | $(SED) 's/^/^ *# *(define|undef)  */;s/$$/\\>/'
-endef
-
-# Don't define macros that we already get from gnulib header files.
-sc_prohibit_always-defined_macros:
-	@if test -d $(gnulib_dir); then					\
-	  case $$(echo all: | $(GREP) -l -f - Makefile) in Makefile);; *) \
-	    echo '$(ME): skipping $@: you lack GNU grep' 1>&2; exit 0;;	\
-	  esac;								\
-	  regex=$$($(def_sym_regex)); export regex;			\
-	  $(VC_LIST_EXCEPT)						\
-	    | xargs sh -c 'echo $$regex | $(GREP) -E -f - "$$@"'	\
-		dummy /dev/null						\
-	    && { printf '$(ME): define the above'			\
-			' via some gnulib .h file\n' 1>&2;		\
-	         exit 1; }						\
-	    || :;							\
-	fi
-# ==================================================================
 
 # Prohibit checked in backup files.
 sc_prohibit_backup_files:
 	@$(VC_LIST) | $(GREP) '~$$' &&					\
 	  { echo '$(ME): found version controlled backup file' 1>&2;	\
 	    exit 1; } || :
-
-# Require the latest GPL.
-sc_GPL_version:
-	@prohibit='either ''version [^3]'				\
-	halt='GPL vN, N!=3'						\
-	  $(_sc_search_regexp)
-
-# Require the latest GFDL.  Two regexp, since some .texi files end up
-# line wrapping between 'Free Documentation License,' and 'Version'.
-_GFDL_regexp = (Free ''Documentation.*Version 1\.[^3]|Version 1\.[^3] or any)
-sc_GFDL_version:
-	@prohibit='$(_GFDL_regexp)'					\
-	halt='GFDL vN, N!=3'						\
-	  $(_sc_search_regexp)
-
-# Don't use Texinfo's @acronym{}.
-# https://lists.gnu.org/r/bug-gnulib/2010-03/msg00321.html
-texinfo_suffix_re_ ?= \.(txi|texi(nfo)?)$$
-sc_texinfo_acronym:
-	@prohibit='@acronym\{'						\
-	in_vc_files='$(texinfo_suffix_re_)'				\
-	halt='found use of Texinfo @acronym{}'				\
-	  $(_sc_search_regexp)
-
-cvs_keywords = \
-  Author|Date|Header|Id|Name|Locker|Log|RCSfile|Revision|Source|State
-
-sc_prohibit_cvs_keyword:
-	@prohibit='\$$($(cvs_keywords))\$$'				\
-	halt='do not use CVS keyword expansion'				\
-	  $(_sc_search_regexp)
 
 # This Perl code is slightly obfuscated.  Not only is each "$" doubled
 # because it's in a Makefile, but the $$c's are comments;  we cannot
@@ -1101,30 +754,6 @@ sc_prohibit_test_double_equal:
 	halt='use "test x = x", not "test x =''= x"'			\
 	  $(_sc_search_regexp)
 
-# Each program that uses proper_name_utf8 must link with one of the
-# ICONV libraries.  Otherwise, some ICONV library must appear in LDADD.
-# The perl -0777 invocation below extracts the possibly-multi-line
-# definition of LDADD from the appropriate Makefile.am and exits 0
-# when it contains "ICONV".
-sc_proper_name_utf8_requires_ICONV:
-	@progs=$$($(VC_LIST_EXCEPT)					\
-		    | xargs $(GREP) -l 'proper_name_utf8 ''("');	\
-	if test "x$$progs" != x; then					\
-	  fail=0;							\
-	  for p in $$progs; do						\
-	    dir=$$(dirname "$$p");					\
-	    perl -0777							\
-	      -ne 'exit !(/^LDADD =(.+?[^\\]\n)/ms && $$1 =~ /ICONV/)'	\
-	      $$dir/Makefile.am && continue;				\
-	    base=$$(basename "$$p" .c);					\
-	    $(GREP) "$${base}_LDADD.*ICONV)" $$dir/Makefile.am > /dev/null	\
-	      || { fail=1; echo 1>&2 "$(ME): $$p uses proper_name_utf8"; }; \
-	  done;								\
-	  test $$fail = 1 &&						\
-	    { echo 1>&2 '$(ME): the above do not link with any ICONV library'; \
-	      exit 1; } || :;						\
-	fi
-
 # Warn about "c0nst struct Foo const foo[]",
 # but not about "char const *const foo" or "#define const const".
 sc_redundant_const:
@@ -1136,70 +765,6 @@ sc_const_long_option:
 	@prohibit='^ *static.*struct option '				\
 	exclude='const struct option|struct option const'		\
 	halt='add "const" to the above declarations'			\
-	  $(_sc_search_regexp)
-
-NEWS_hash =								\
-  $$($(SED) -n '/^\*.* $(PREV_VERSION_REGEXP) ([0-9-]*)/,$$p'		\
-       $(srcdir)/NEWS							\
-     | perl -0777 -pe							\
-	's/^Copyright.+?Free\sSoftware\sFoundation,\sInc\.\n//ms'	\
-     | md5sum -								\
-     | $(SED) 's/ .*//')
-
-# Ensure that we don't accidentally insert an entry into an old NEWS block.
-sc_immutable_NEWS:
-	@if test -f $(srcdir)/NEWS; then				\
-	  test "$(NEWS_hash)" = '$(old_NEWS_hash)' && : ||		\
-	    { echo '$(ME): you have modified old NEWS' 1>&2; exit 1; };	\
-	fi
-
-# Update the hash stored above.  Do this after each release and
-# for any corrections to old entries.
-update-NEWS-hash: NEWS
-	perl -pi -e 's/^(old_NEWS_hash[ \t]+:?=[ \t]+).*/$${1}'"$(NEWS_hash)/" \
-	  $(srcdir)/cfg.mk
-
-# Ensure that we use only the standard $(VAR) notation,
-# not @...@ in Makefile.am, now that we can rely on automake
-# to emit a definition for each substituted variable.
-# However, there is still one case in which @VAR@ use is not just
-# legitimate, but actually required: when augmenting an automake-defined
-# variable with a prefix.  For example, gettext uses this:
-# MAKEINFO = env LANG= LC_MESSAGES= LC_ALL= LANGUAGE= @MAKEINFO@
-# otherwise, makeinfo would put German or French (current locale)
-# navigation hints in the otherwise-English documentation.
-#
-# Allow the package to add exceptions via a hook in cfg.mk;
-# for example, @PRAGMA_SYSTEM_HEADER@ can be permitted by
-# setting this to ' && !/PRAGMA_SYSTEM_HEADER/'.
-_makefile_at_at_check_exceptions ?=
-sc_makefile_at_at_check:
-	@perl -ne '/\@\w+\@/'						\
-          -e ' && !/(\w+)\s+=.*\@\1\@$$/'				\
-          -e ''$(_makefile_at_at_check_exceptions)			\
-	  -e 'and (print "$$ARGV:$$.: $$_"), $$m=1; END {exit !$$m}'	\
-	    $$($(VC_LIST_EXCEPT) | $(GREP) -E '(^|/)(Makefile\.am|[^/]+\.mk)$$') \
-	  && { echo '$(ME): use $$(...), not @...@' 1>&2; exit 1; } || :
-
-news-check: NEWS
-	$(AM_V_GEN)if $(SED) -n $(news-check-lines-spec)p $<		\
-	    | $(GREP) -E $(news-check-regexp) >/dev/null; then		\
-	  :;								\
-	else								\
-	  echo 'NEWS: $$(news-check-regexp) failed to match' 1>&2;	\
-	  exit 1;							\
-	fi
-
-sc_makefile_TAB_only_indentation:
-	@prohibit='^	[ ]{8}'						\
-	in_vc_files='akefile|\.mk$$'					\
-	halt='found TAB-8-space indentation'				\
-	  $(_sc_search_regexp)
-
-sc_m4_quote_check:
-	@prohibit='(AC_DEFINE(_UNQUOTED)?|AC_DEFUN)\([^[]'		\
-	in_vc_files='(^configure\.ac|\.m4)$$'				\
-	halt='quote the first arg to AC_DEF*'				\
 	  $(_sc_search_regexp)
 
 fix_po_file_diag = \
@@ -1240,84 +805,6 @@ sc_po_check:
 	  rm -f $@-1 $@-2;						\
 	fi
 
-# Sometimes it is useful to change the PATH environment variable
-# in Makefiles.  When doing so, it's better not to use the Unix-centric
-# path separator of ':', but rather the automake-provided '$(PATH_SEPARATOR)'.
-msg = 'Do not use ":" above; use $$(PATH_SEPARATOR) instead'
-sc_makefile_path_separator_check:
-	@prohibit='PATH[=].*:'						\
-	in_vc_files='akefile|\.mk$$'					\
-	halt=$(msg)							\
-	  $(_sc_search_regexp)
-
-# Check that 'make alpha' will not fail at the end of the process,
-# i.e., when pkg-M.N.tar.xz already exists (either in "." or in ../release)
-# and is read-only.
-writable-files:
-	$(AM_V_GEN)if test -d $(release_archive_dir); then		\
-	  for file in $(DIST_ARCHIVES); do				\
-	    for p in ./ $(release_archive_dir)/; do			\
-	      test -e $$p$$file || continue;				\
-	      test -w $$p$$file						\
-		|| { echo ERROR: $$p$$file is not writable; fail=1; };	\
-	    done;							\
-	  done;								\
-	  test "$$fail" && exit 1 || : ;				\
-	else :;								\
-	fi
-
-v_etc_file = $(gnulib_dir)/lib/version-etc.c
-sample-test = tests/sample-test
-texi = doc/$(PACKAGE).texi
-# Make sure that the copyright date in $(v_etc_file) is up to date.
-# Do the same for the $(sample-test) and the main doc/.texi file.
-sc_copyright_check:
-	@require='enum { COPYRIGHT_YEAR = '$$(date +%Y)' };'		\
-	in_files=$(v_etc_file)						\
-	halt='out of date copyright in $(v_etc_file); update it'	\
-	  $(_sc_search_regexp)
-	@require='# Copyright \(C\) '$$(date +%Y)' Free'		\
-	in_vc_files=$(sample-test)					\
-	halt='out of date copyright in $(sample-test); update it'	\
-	  $(_sc_search_regexp)
-	@require='Copyright @copyright\{\} .*'$$(date +%Y)		\
-	in_vc_files=$(texi)						\
-	halt='out of date copyright in $(texi); update it'		\
-	  $(_sc_search_regexp)
-
-# If tests/help-version exists and seems to be new enough, assume that its
-# use of init.sh and path_prepend_ is correct, and ensure that every other
-# use of init.sh is identical.
-# This is useful because help-version cross-checks prog --version
-# with $(VERSION), which verifies that its path_prepend_ invocation
-# sets PATH correctly.  This is an inexpensive way to ensure that
-# the other init.sh-using tests also get it right.
-_hv_file ?= $(srcdir)/tests/help-version
-_hv_regex_weak ?= ^ *\. .*/init\.sh"
-# Fix syntax-highlighters "
-_hv_regex_strong ?= ^ *\. "\$${srcdir=\.}/init\.sh"
-sc_cross_check_PATH_usage_in_tests:
-	@if test -f $(_hv_file); then					\
-	  $(GREP) -l 'VERSION mismatch' $(_hv_file) >/dev/null		\
-	    || { echo "$@: skipped: no such file: $(_hv_file)" 1>&2;	\
-		 exit 0; };						\
-	  $(GREP) -lE '$(_hv_regex_strong)' $(_hv_file) >/dev/null	\
-	    || { echo "$@: $(_hv_file) lacks conforming use of init.sh" 1>&2; \
-		 exit 1; };						\
-	  good=$$($(GREP) -E '$(_hv_regex_strong)' $(_hv_file));	\
-	  $(VC_LIST_EXCEPT)						\
-	    | xargs $(GREP) -lE '$(_hv_regex_weak)'			\
-	    | xargs $(GREP) -LFx "$$good"				\
-	    | $(GREP) .							\
-	    && { printf "$(ME): the above files use"			\
-			" path_prepend_ inconsistently\n" 1>&2;		\
-		 exit 1; }						\
-	    || :;							\
-	fi
-
-# BRE regex of file contents to identify a test script.
-_test_script_regex ?= \<init\.sh\>
-
 # In tests, use "compare expected actual", not the reverse.
 sc_prohibit_reversed_compare_failure:
 	@prohibit='\<compare [^ ]+ ([^ ]*exp|/dev/null)'		\
@@ -1342,413 +829,3 @@ sc_prohibit_path_max_allocation:
 	@prohibit='(\balloca *\([^)]*|\[[^]]*)\bPATH_MAX'		\
 	halt='Avoid stack allocations of size PATH_MAX'			\
 	  $(_sc_search_regexp)
-
-sc_vulnerable_makefile_CVE-2009-4029:
-	@prohibit='perm -777 -exec chmod a\+rwx|chmod 777 \$$\(distdir\)' \
-	in_files='(^|/)Makefile\.in$$'					\
-	halt=$$(printf '%s\n'						\
-	  'the above files are vulnerable; beware of running'		\
-	  '  "make dist*" rules, and upgrade to fixed automake'		\
-	  '  see https://bugzilla.redhat.com/show_bug.cgi?id=542609 for details') \
-	  $(_sc_search_regexp)
-
-sc_vulnerable_makefile_CVE-2012-3386:
-	@prohibit='chmod a\+w \$$\(distdir\)'				\
-	in_files='(^|/)Makefile\.in$$'					\
-	halt=$$(printf '%s\n'						\
-	  'the above files are vulnerable; beware of running'		\
-	  '  "make distcheck", and upgrade to fixed automake'		\
-	  '  see https://bugzilla.redhat.com/show_bug.cgi?id=CVE-2012-3386 for details') \
-	  $(_sc_search_regexp)
-
-vc-diff-check:
-	$(AM_V_GEN)(unset CDPATH; cd $(srcdir) && $(VC) diff) > vc-diffs || :
-	$(AM_V_at)if test -s vc-diffs; then			\
-	  cat vc-diffs;						\
-	  echo "Some files are locally modified:" 1>&2;		\
-	  exit 1;						\
-	else							\
-	  rm vc-diffs;						\
-	fi
-
-rel-files = $(DIST_ARCHIVES)
-
-gnulib-version = $$(cd $(gnulib_dir)				\
-                    && { git describe || git rev-parse --short=10 HEAD; } )
-bootstrap-tools ?= autoconf,automake,gnulib
-
-gpgv = $$(gpgv2 --version >/dev/null && echo gpgv2 || echo gpgv)
-# If it's not already specified, derive the GPG key ID from
-# the signed tag we've just applied to mark this release.
-gpg_key_ID ?=								\
-  $$(cd $(srcdir)							\
-     && git cat-file tag v$(VERSION)					\
-        | $(gpgv) --status-fd 1 --keyring /dev/null - - 2>/dev/null	\
-        | $(AWK) '/^\[GNUPG:\] ERRSIG / {print $$3; exit}')
-
-translation_project_ ?= coordinator@translationproject.org
-
-# Make info-gnu the default only for a stable release.
-announcement_Cc_stable = $(translation_project_), $(PACKAGE_BUGREPORT)
-announcement_mail_headers_stable =		\
-  To: info-gnu@gnu.org				\
-  Cc: $(announcement_Cc_)			\
-  Mail-Followup-To: $(PACKAGE_BUGREPORT)
-
-announcement_Cc_alpha = $(translation_project_)
-announcement_mail_headers_alpha =		\
-  To: $(PACKAGE_BUGREPORT)			\
-  Cc: $(announcement_Cc_)
-
-announcement_mail_Cc_beta = $(announcement_mail_Cc_alpha)
-announcement_mail_headers_beta = $(announcement_mail_headers_alpha)
-
-announcement_mail_Cc_ ?= $(announcement_mail_Cc_$(release-type))
-announcement_mail_headers_ ?= $(announcement_mail_headers_$(release-type))
-announcement: NEWS ChangeLog $(rel-files)
-# Not $(AM_V_GEN) since the output of this command serves as
-# announcement message: it would start with " GEN announcement".
-	$(AM_V_at)$(srcdir)/$(_build-aux)/announce-gen			\
-	    --mail-headers='$(announcement_mail_headers_)'		\
-	    --release-type=$(release-type)				\
-	    --package=$(PACKAGE)					\
-	    --prev=$(PREV_VERSION)					\
-	    --curr=$(VERSION)						\
-	    --gpg-key-id=$(gpg_key_ID)					\
-	    --srcdir=$(srcdir)						\
-	    --news=$(srcdir)/NEWS					\
-	    --bootstrap-tools=$(bootstrap-tools)			\
-	    $$(case ,$(bootstrap-tools), in (*,gnulib,*)		\
-	       echo --gnulib-version=$(gnulib-version);; esac)		\
-	    --no-print-checksums					\
-	    $(addprefix --url-dir=, $(url_dir_list))
-
-.PHONY: release-commit
-release-commit:
-	$(AM_V_GEN)cd $(srcdir)				\
-	  && $(_build-aux)/do-release-commit-and-tag	\
-	       -C $(abs_builddir) $(RELEASE)
-
-## ---------------- ##
-## Updating files.  ##
-## ---------------- ##
-
-ftp-gnu = https://ftp.gnu.org/gnu
-www-gnu = https://www.gnu.org
-
-upload_dest_dir_ ?= $(PACKAGE)
-upload_command =						\
-  $(srcdir)/$(_build-aux)/gnupload $(GNUPLOADFLAGS)		\
-  --to $(gnu_rel_host):$(upload_dest_dir_)			\
-  $(rel-files)
-emit_upload_commands:
-	@echo =====================================
-	@echo =====================================
-	@echo '$(upload_command)'
-	@echo '# send the ~/announce-$(my_distdir) e-mail'
-	@echo =====================================
-	@echo =====================================
-
-.PHONY: upload
-upload:
-	$(AM_V_GEN)$(upload_command)
-
-define emit-commit-log
-  printf '%s\n' 'maint: post-release administrivia' ''			\
-    '* NEWS: Add header line for next release.'				\
-    '* .prev-version: Record previous version.'				\
-    '* cfg.mk (old_NEWS_hash): Auto-update.'
-endef
-
-.PHONY: no-submodule-changes
-no-submodule-changes:
-	$(AM_V_GEN)if test -d $(srcdir)/.git				\
-		&& git --version >/dev/null 2>&1; then			\
-	  diff=$$(cd $(srcdir) && git submodule -q foreach		\
-		  git diff-index --name-only HEAD)			\
-	    || exit 1;							\
-	  case $$diff in '') ;;						\
-	    *) echo '$(ME): submodule files are locally modified:';	\
-		echo "$$diff"; exit 1;; esac;				\
-	else								\
-	  : ;								\
-	fi
-
-submodule-checks ?= no-submodule-changes public-submodule-commit
-
-# Ensure that each sub-module commit we're using is public.
-# Without this, it is too easy to tag and release code that
-# cannot be built from a fresh clone.
-.PHONY: public-submodule-commit
-public-submodule-commit:
-	$(AM_V_GEN)if test -d $(srcdir)/.git				\
-		&& git --version >/dev/null 2>&1; then			\
-	  cd $(srcdir) &&						\
-	  git submodule --quiet foreach					\
-	      'test "$$(git rev-parse "$$sha1")"			\
-		  = "$$(git merge-base origin "$$sha1")"'		\
-	    || { echo '$(ME): found non-public submodule commit' >&2;	\
-		 exit 1; };						\
-	else								\
-	  : ;								\
-	fi
-# This rule has a high enough utility/cost ratio that it should be a
-# dependent of "check" by default.  However, some of us do occasionally
-# commit a temporary change that deliberately points to a non-public
-# submodule commit, and want to be able to use rules like "make check".
-# In that case, run e.g., "make check gl_public_submodule_commit="
-# to disable this test.
-gl_public_submodule_commit ?= public-submodule-commit
-check: $(gl_public_submodule_commit)
-
-.PHONY: alpha beta stable release
-ALL_RECURSIVE_TARGETS += alpha beta stable
-alpha beta stable: $(local-check) writable-files $(submodule-checks)
-	$(AM_V_GEN)test $@ = stable					\
-	  && { echo $(VERSION) | $(GREP) -E '^[0-9]+(\.[0-9]+)+$$'	\
-	       || { echo "invalid version string: $(VERSION)" 1>&2; exit 1;};}\
-	  || :
-	$(AM_V_at)$(MAKE) vc-diff-check
-	$(AM_V_at)$(MAKE) news-check
-	$(AM_V_at)$(MAKE) distcheck
-	$(AM_V_at)$(MAKE) dist
-	$(AM_V_at)$(MAKE) $(release-prep-hook) RELEASE_TYPE=$@
-	$(AM_V_at)$(MAKE) -s emit_upload_commands RELEASE_TYPE=$@
-
-release:
-	$(AM_V_GEN)$(MAKE) _version
-	$(AM_V_GEN)$(MAKE) $(release-type)
-
-# Override this in cfg.mk if you follow different procedures.
-release-prep-hook ?= release-prep
-
-gl_noteworthy_news_ = * Noteworthy changes in release ?.? (????-??-??) [?]
-.PHONY: release-prep
-release-prep:
-	$(AM_V_GEN)$(MAKE) --no-print-directory -s announcement \
-	  > ~/announce-$(my_distdir)
-	$(AM_V_at)if test -d $(release_archive_dir); then	\
-	  ln $(rel-files) $(release_archive_dir);		\
-	  chmod a-w $(rel-files);				\
-	fi
-	$(AM_V_at)echo $(VERSION) > $(prev_version_file)
-	$(AM_V_at)$(MAKE) update-NEWS-hash
-	$(AM_V_at)perl -pi						\
-	  -e '$$. == 3 and print "$(gl_noteworthy_news_)\n\n\n"'	\
-	  $(srcdir)/NEWS
-	$(AM_V_at)msg=$$($(emit-commit-log)) || exit 1;		\
-	cd $(srcdir) && $(VC) commit -m "$$msg" -a
-
-# Override this with e.g., -s $(srcdir)/some_other_name.texi
-# if the default $(PACKAGE)-derived name doesn't apply.
-gendocs_options_ ?=
-
-.PHONY: web-manual
-web-manual:
-	$(AM_V_GEN)test -z "$(manual_title)" \
-	  && { echo define manual_title in cfg.mk 1>&2; exit 1; } || :
-	$(AM_V_at)cd '$(srcdir)/doc'; \
-	  $(SHELL) ../$(_build-aux)/gendocs.sh $(gendocs_options_) \
-	     -o '$(abs_builddir)/doc/manual' \
-	     --email $(PACKAGE_BUGREPORT) $(PACKAGE) \
-	    "$(PACKAGE_NAME) - $(manual_title)"
-	$(AM_V_at)echo " *** Upload the doc/manual directory to web-cvs."
-
-.PHONY: web-manual-update
-web-manual-update:
-	$(AM_V_GEN)cd $(srcdir) \
-	  && $(_build-aux)/gnu-web-doc-update -C $(abs_builddir)
-
-
-# Code Coverage
-
-init-coverage:
-	$(MAKE) $(AM_MAKEFLAGS) clean
-	lcov --directory . --zerocounters
-
-COVERAGE_CCOPTS ?= "-g --coverage"
-COVERAGE_OUT ?= doc/coverage
-
-build-coverage:
-	$(MAKE) $(AM_MAKEFLAGS) CFLAGS=$(COVERAGE_CCOPTS) CXXFLAGS=$(COVERAGE_CCOPTS)
-	$(MAKE) $(AM_MAKEFLAGS) CFLAGS=$(COVERAGE_CCOPTS) CXXFLAGS=$(COVERAGE_CCOPTS) check
-	mkdir -p $(COVERAGE_OUT)
-	lcov --directory . --output-file $(COVERAGE_OUT)/$(PACKAGE).info \
-		--capture
-
-gen-coverage:
-	genhtml --output-directory $(COVERAGE_OUT) \
-		$(COVERAGE_OUT)/$(PACKAGE).info \
-		--highlight --frames --legend \
-		--title "$(PACKAGE_NAME)"
-
-coverage:
-	$(MAKE) init-coverage
-	$(MAKE) build-coverage
-	$(MAKE) gen-coverage
-
-# Some projects carry local adjustments for gnulib modules via patches in
-# a gnulib patch directory whose default name is gl/ (defined in bootstrap
-# via local_gl_dir=gl).  Those patches become stale as the originals evolve
-# in gnulib.  Use this rule to refresh any stale patches.  It applies each
-# patch to the original in $(gnulib_dir) and uses the temporary result to
-# generate a fuzz-free .diff file.  If you customize the name of your local
-# gnulib patch directory via bootstrap.conf, this rule detects that name.
-# Run this from a non-VPATH (i.e., srcdir) build directory.
-.PHONY: refresh-gnulib-patches
-refresh-gnulib-patches:
-	gl=gl;								\
-	if test -f bootstrap.conf; then					\
-	  t=$$(perl -lne '/^\s*local_gl_dir=(\S+)/ and $$d=$$1;'	\
-	       -e 'END{defined $$d and print $$d}' bootstrap.conf);	\
-	  test -n "$$t" && gl=$$t;					\
-	fi;								\
-	for diff in $$(cd $$gl; git ls-files | $(GREP) '\.diff$$'); do	\
-	  b=$$(printf %s "$$diff"|$(SED) 's/\.diff$$//');		\
-	  VERSION_CONTROL=none						\
-	    patch "$(gnulib_dir)/$$b" "$$gl/$$diff" || exit 1;		\
-	  ( cd $(gnulib_dir) || exit 1;					\
-	    git diff "$$b" > "../$$gl/$$diff";				\
-	    git checkout $$b ) || exit 1;				\
-	done
-
-# Update gettext files.
-PACKAGE ?= $(shell basename $(PWD))
-PO_DOMAIN ?= $(PACKAGE)
-POURL = https://translationproject.org/latest/$(PO_DOMAIN)/
-PODIR ?= po
-refresh-po:
-	rm -f $(PODIR)/*.po && \
-	echo "$(ME): getting translations into po (please ignore the robots.txt ERROR 404)..." && \
-	wget --no-verbose --directory-prefix $(PODIR) --no-directories --recursive --level 1 --accept .po --accept .po.1 $(POURL) && \
-	echo 'en@boldquot' > $(PODIR)/LINGUAS && \
-	echo 'en@quot' >> $(PODIR)/LINGUAS && \
-	ls $(PODIR)/*.po | $(SED) 's/\.po//;s,$(PODIR)/,,' | \
-	  sort >> $(PODIR)/LINGUAS
-
- # Running indent once is not idempotent, but running it twice is.
-INDENT_SOURCES ?= $(C_SOURCES)
-.PHONY: indent
-indent:
-	indent $(INDENT_SOURCES)
-	indent $(INDENT_SOURCES)
-
-# If you want to set UPDATE_COPYRIGHT_* environment variables,
-# put the assignments in this variable.
-update-copyright-env ?=
-
-# Run this rule once per year (usually early in January)
-# to update all FSF copyright year lists in your project.
-# If you have an additional project-specific rule,
-# add it in cfg.mk along with a line 'update-copyright: prereq'.
-# By default, exclude all variants of COPYING; you can also
-# add exemptions (such as ChangeLog..* for rotated change logs)
-# in the file .x-update-copyright.
-.PHONY: update-copyright
-update-copyright:
-	$(AM_V_GEN)$(GREP) -l -w Copyright                               \
-	  $$(export VC_LIST_EXCEPT_DEFAULT=COPYING && $(VC_LIST_EXCEPT)) \
-	  | $(update-copyright-env) xargs $(srcdir)/$(_build-aux)/$@
-
-# This tight_scope test is skipped with a warning if $(_gl_TS_headers) is not
-# overridden and $(_gl_TS_dir)/Makefile.am does not mention noinst_HEADERS.
-
-# NOTE: to override any _gl_TS_* default value, you must
-# define the variable(s) using "export" in cfg.mk.
-_gl_TS_dir ?= src
-
-ALL_RECURSIVE_TARGETS += sc_tight_scope
-sc_tight_scope: tight-scope.mk
-	@fail=0;							\
-	if ! $(GREP) '^ *export _gl_TS_headers *=' $(srcdir)/$(_build-aux)/cfg.mk	\
-		> /dev/null						\
-	   && ! $(GREP) -w noinst_HEADERS $(srcdir)/$(_gl_TS_dir)/Makefile.am \
-		> /dev/null 2>&1; then					\
-	    echo '$(ME): skipping $@';					\
-	else								\
-	    $(MAKE) -s -C $(_gl_TS_dir)					\
-		-f Makefile						\
-		-f $(abs_top_srcdir)/$(_build-aux)/cfg.mk				\
-		-f $(abs_top_builddir)/$<				\
-	      _gl_tight_scope						\
-		|| fail=1;						\
-	fi;								\
-	rm -f $<;							\
-	exit $$fail
-
-tight-scope.mk: maint.mk
-	@rm -f $@ $@-t
-	@perl -ne '/^# TS-start/.../^# TS-end/ and print' $(srcdir)/$(ME) > $@-t
-	@chmod a=r $@-t && mv $@-t $@
-
-ifeq (a,b)
-# TS-start
-
-# Most functions should have static scope.
-# Any that don't must be marked with 'extern', but 'main'
-# and 'usage' are exceptions: they're always extern, but
-# do not need to be marked.  Symbols matching '__.*' are
-# reserved by the compiler, so are automatically excluded below.
-_gl_TS_unmarked_extern_functions ?= main usage
-_gl_TS_function_match ?= /^(?:$(_gl_TS_extern)) +.*?(\w+) *\(/
-
-# If your project uses a macro like "XTERN", then put
-# the following in cfg.mk to override this default:
-# export _gl_TS_extern = extern|XTERN
-_gl_TS_extern ?= extern
-
-# The second nm|grep checks for file-scope variables with 'extern' scope.
-# Without gnulib's progname module, you might put program_name here.
-# Symbols matching '__.*' are reserved by the compiler,
-# so are automatically excluded below.
-_gl_TS_unmarked_extern_vars ?=
-
-# NOTE: the _match variables are perl expressions -- not mere regular
-# expressions -- so that you can extend them to match other patterns
-# and easily extract matched variable names.
-# For example, if your project declares some global variables via
-# a macro like this: GLOBAL(type, var_name, initializer), then you
-# can override this definition to automatically extract those names:
-# export _gl_TS_var_match = \
-#   /^(?:$(_gl_TS_extern)) .*?\**(\w+)(\[.*?\])?;/ || /\bGLOBAL\(.*?,\s*(.*?),/
-_gl_TS_var_match ?= /^(?:$(_gl_TS_extern)) .*?(\w+)(\[.*?\])?;/
-
-# The names of object files in (or relative to) $(_gl_TS_dir).
-_gl_TS_obj_files ?= *.$(OBJEXT)
-
-# Files in which to search for the one-line style extern declarations.
-# $(_gl_TS_dir)-relative.
-_gl_TS_headers ?= $(noinst_HEADERS)
-_gl_TS_other_headers ?= *.h
-
-.PHONY: _gl_tight_scope
-_gl_tight_scope: $(bin_PROGRAMS)
-	sed_wrap='s/^/^_?/;s/$$/$$/';					\
-	t=exceptions-$$$$;						\
-	trap 's=$$?; rm -f $$t; exit $$s' 0;				\
-	for sig in 1 2 3 13 15; do					\
-	  eval "trap 'v=`expr $$sig + 128`; (exit $$v); exit $$v' $$sig"; \
-	done;								\
-	src=`for f in $(SOURCES); do					\
-	       test -f $$f && d= || d=$(srcdir)/; echo $$d$$f; done`;	\
-	hdr=`for f in $(_gl_TS_headers); do				\
-	       test -f $$f && d= || d=$(srcdir)/; echo $$d$$f; done`;	\
-	( printf '%s\n' '__.*' $(_gl_TS_unmarked_extern_functions);	\
-	  $(GREP) -h -A1 '^extern .*[^;]$$' $$src			\
-	    | $(GREP) -vE '^(extern |--|#)' | $(SED) 's/ .*//; /^$$/d';	\
-	  perl -lne							\
-	     '$(_gl_TS_function_match) and print $$1' $$hdr;		\
-	) | sort -u | $(SED) "$$sed_wrap" > $$t;			\
-	nm -g $(_gl_TS_obj_files)|$(SED) -n 's/.* T //p'|$(GREP) -Ev -f $$t \
-	  && { echo the above functions should have static scope >&2;	\
-	       exit 1; } || : ;						\
-	( printf '%s\n' '__.*' main $(_gl_TS_unmarked_extern_vars);	\
-	  perl -lne '$(_gl_TS_var_match) and print $$1'			\
-		$$hdr $(_gl_TS_other_headers)				\
-	) | sort -u | $(SED) "$$sed_wrap" > $$t;			\
-	nm -g $(_gl_TS_obj_files) | $(SED) -n 's/.* [BCDGRS] //p'	\
-            | sort -u | $(GREP) -Ev -f $$t				\
-	  && { echo the above variables should have static scope >&2;	\
-	       exit 1; } || :
-# TS-end
-endif
