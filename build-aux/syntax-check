@@ -2,4 +2,4 @@
 
 cd $MESON_SOURCE_ROOT/build-aux
 
-make syntax-check
+make -f syntax-check.mk syntax-check
