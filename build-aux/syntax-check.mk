@@ -23,7 +23,7 @@ _build-aux ?= build-aux
 
 # This is reported not to work with make-3.79.1
 # ME := $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
-ME := $(_build-aux)/maint.mk
+ME := $(_build-aux)/syntax-check.mk
 
 # These variables ought to be defined through the configure.ac section
 # of the module description. But some packages import this file directly,
@@ -82,7 +82,7 @@ VC_LIST_EXCEPT = \
 
 # Files that should never cause syntax check failures.
 VC_LIST_ALWAYS_EXCLUDE_REGEX = \
-  (^HACKING|\.po|maint.mk)$$
+  (^HACKING|\.po|syntax-check.mk)$$
 
 # Tweak how some of the syntax check rules work
 _gl_translatable_string_re = \
