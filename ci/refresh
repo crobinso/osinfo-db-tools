@@ -1,0 +1,30 @@
+#!/bin/sh
+
+if test -z "$1"
+then
+    echo "syntax: $0 PATH-TO-LCITOOL"
+    exit 1
+fi
+
+LCITOOL=$1
+
+if ! test -x "$LCITOOL"
+then
+    echo "$LCITOOL is not executable"
+    exit 1
+fi
+
+HOSTS=$($LCITOOL hosts | grep -v freebsd)
+
+for host in $HOSTS
+do
+    name="ci-${host#libvirt-}"
+
+    $LCITOOL dockerfile $host osinfo-db-tools >$name.Dockerfile
+
+    if test "$host" = "libvirt-fedora-rawhide"
+    then
+        $LCITOOL dockerfile $host osinfo-db-tools --cross mingw32 >$name-cross-mingw32.Dockerfile
+        $LCITOOL dockerfile $host osinfo-db-tools --cross mingw64 >$name-cross-mingw64.Dockerfile
+    fi
+done
