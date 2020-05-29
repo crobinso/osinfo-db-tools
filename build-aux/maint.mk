@@ -76,6 +76,23 @@ VC_LIST_EXCEPT = \
 	| $(GREP) -Ev -e '($(VC_LIST_ALWAYS_EXCLUDE_REGEX)|$(_sc_excl))' \
 	$(_prepend_srcdir_prefix)
 
+# Files that should never cause syntax check failures.
+VC_LIST_ALWAYS_EXCLUDE_REGEX = \
+  (^HACKING|\.po|maint.mk)$$
+
+# Tweak how some of the syntax check rules work
+_gl_translatable_string_re = \
+	(\b(N?_|gettext *)\([^)"]*("|$$))|(<(_[a-zA-Z]*).*/\5>)
+
+# Functions like free() that are no-ops on NULL arguments.
+useless_free_options =				\
+  --name=g_free					\
+  --name=xmlBufferFree				\
+  --name=xmlFree				\
+  --name=xmlFreeDoc				\
+  --name=xmlXPathFreeContext			\
+  --name=xmlXPathFreeObject
+
 # Prevent programs like 'sort' from considering distinct strings to be equal.
 # Doing it here saves us from having to set LC_ALL elsewhere in this file.
 export LC_ALL = C
@@ -84,11 +101,9 @@ export LC_ALL = C
 ## Sanity checks.  ##
 ## --------------- ##
 
-_cfg_mk := $(wildcard $(srcdir)/cfg.mk)
-
 # Collect the names of rules starting with 'sc_'.
 syntax-check-rules := $(sort $(shell $(SED) -n \
-   's/^\(sc_[a-zA-Z0-9_-]*\):.*/\1/p' $(srcdir)/$(ME) $(_cfg_mk)))
+   's/^\(sc_[a-zA-Z0-9_-]*\):.*/\1/p' $(srcdir)/$(ME)))
 .PHONY: $(syntax-check-rules)
 
 ifeq ($(shell $(VC_LIST) >/dev/null 2>&1; echo $$?),0)
@@ -829,3 +844,49 @@ sc_prohibit_path_max_allocation:
 	@prohibit='(\balloca *\([^)]*|\[[^]]*)\bPATH_MAX'		\
 	halt='Avoid stack allocations of size PATH_MAX'			\
 	  $(_sc_search_regexp)
+
+# Ensure that no C source file, docs, or rng schema uses TABs for
+# indentation.  Also match *.h.in files, to get libvirt.h.in.  Exclude
+# files in gnulib, since they're imported.
+space_indent_files=(\.(rng|s?[ch](\.in)?|html.in|py)|(daemon|tools)/.*\.in)
+sc_TAB_in_indentation:
+	@prohibit='^ *	'						\
+	in_vc_files='$(space_indent_files)$$'				\
+	halt='indent with space, not TAB, in C, sh, html, py, and RNG schemas' \
+	  $(_sc_search_regexp)
+
+# G_GNUC_UNUSED should only be applied in implementations, not
+# header declarations
+sc_avoid_attribute_unused_in_header:
+	@prohibit='^[^#]*G_GNUC_UNUSED([^:]|$$)'			\
+	in_vc_files='\.h$$'						\
+	halt='use G_GNUC_UNUSED in .c rather than .h files'		\
+	  $(_sc_search_regexp)
+
+# Enforce recommended preprocessor indentation style.
+sc_preprocessor_indentation:
+	@if cppi --version >/dev/null 2>&1; then			\
+	  $(VC_LIST_EXCEPT) | grep '\.[ch]$$' | xargs cppi -a -c	\
+	    || { echo '$(ME): incorrect preprocessor indentation' 1>&2;	\
+		exit 1; };						\
+	else								\
+	  echo '$(ME): skipping test $@: cppi not installed' 1>&2;	\
+	fi
+
+sc_copyright_format:
+	@require='Copyright .*Red 'Hat', Inc\.'				\
+	containing='Copyright .*Red 'Hat				\
+	halt='Red Hat copyright is missing Inc.'			\
+	  $(_sc_search_regexp)
+	@prohibit='Copyright [^(].*Red 'Hat				\
+	halt='consistently use (C) in Red Hat copyright'		\
+	  $(_sc_search_regexp)
+	@prohibit='\<Red''Hat\>'					\
+	halt='spell Red Hat as two words'				\
+	  $(_sc_search_regexp)
+
+sc_bracket_spacing_check:
+	@files=`$(VC_LIST) | grep '\.c$$'`; \
+	$(PERL) $(top_srcdir)/build-aux/bracket-spacing.pl $$files || \
+	  { echo '$(ME): incorrect whitespace' 1>&2; \
+	    exit 1; }
