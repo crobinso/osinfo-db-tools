@@ -17,6 +17,10 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+srcdir = ..
+top_srcdir = ..
+_build-aux ?= build-aux
+
 # This is reported not to work with make-3.79.1
 # ME := $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
 ME := $(_build-aux)/maint.mk
