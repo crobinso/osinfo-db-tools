@@ -20,11 +20,12 @@ for host in $HOSTS
 do
     name="ci-${host#libvirt-}"
 
-    $LCITOOL dockerfile $host osinfo-db-tools >$name.Dockerfile
-
     if test "$host" = "libvirt-fedora-rawhide"
     then
-        $LCITOOL dockerfile $host osinfo-db-tools --cross mingw32 >$name-cross-mingw32.Dockerfile
-        $LCITOOL dockerfile $host osinfo-db-tools --cross mingw64 >$name-cross-mingw64.Dockerfile
+        for cross in mingw32 mingw64; do
+            $LCITOOL dockerfile $host osinfo-db-tools --cross $cross >$name-cross-$cross.Dockerfile
+        done
     fi
+
+    $LCITOOL dockerfile $host osinfo-db-tools >$name.Dockerfile
 done
