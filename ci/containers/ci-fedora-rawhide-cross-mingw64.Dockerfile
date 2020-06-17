@@ -68,3 +68,4 @@ ENV CCACHE_WRAPPERSDIR "/usr/libexec/ccache-wrappers"
 
 ENV ABI "x86_64-w64-mingw32"
 ENV CONFIGURE_OPTS "--host=x86_64-w64-mingw32"
+ENV MESON_OPTS "--cross-file=/usr/share/mingw/toolchain-mingw64.meson"
