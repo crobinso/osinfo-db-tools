@@ -131,6 +131,11 @@ centos-8-container:
   variables:
     NAME: centos-8
 
+centos-stream-container:
+  <<: *container_job_definition
+  variables:
+    NAME: centos-stream
+
 debian-9-container:
   <<: *container_job_definition
   variables:
@@ -199,6 +204,12 @@ centos-8:
   <<: *native-build-job
   variables:
     NAME: centos-8
+
+centos-stream:
+  script:
+  <<: *native-build-job
+  variables:
+    NAME: centos-stream
 
 debian-9:
   <<: *native-build-job
