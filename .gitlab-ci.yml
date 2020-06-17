@@ -75,7 +75,7 @@ stages:
   pushd .
   mkdir build
   cd build
-  meson .. . --cross-file=/usr/share/mingw/toolchain-$CROSS.meson --prefix=$VIRT_PREFIX --werror
+  meson .. . $MESON_OPTS --prefix=$VIRT_PREFIX --werror
   $NINJA
   $NINJA install
   popd
@@ -96,7 +96,7 @@ stages:
 
 .mingw-build-job: &mingw-build-job
   stage: builds
-  image: $CI_REGISTRY_IMAGE/ci-$NAME-cross-$CROSS:latest
+  image: $CI_REGISTRY_IMAGE/ci-$NAME:latest
   cache:
     paths:
       - ccache
@@ -236,14 +236,12 @@ fedora-rawhide:
 fedora-rawhide-cross-mingw32:
   <<: *mingw-build-job
   variables:
-    NAME: fedora-rawhide
-    CROSS: mingw32
+    NAME: fedora-rawhide-cross-mingw32
 
 fedora-rawhide-cross-mingw64:
   <<: *mingw-build-job
   variables:
-    NAME: fedora-rawhide
-    CROSS: mingw64
+    NAME: fedora-rawhide-cross-mingw64
 
 opensuse-151:
   <<: *native-build-job
