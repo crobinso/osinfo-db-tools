@@ -68,7 +68,7 @@ stages:
   pushd .
   cd build
   $NINJA dist
-  rpmbuild --clean --define "_topdir `pwd`/rpmbuild" -ta meson-dist/*.tar.xz
+  rpmbuild --nodeps -ta meson-dist/*.tar.xz
   popd
 
 .osinfo-db-tools-mingw-build: &osinfo-db-tools-mingw-build |
