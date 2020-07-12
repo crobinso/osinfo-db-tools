@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: osinfo-db-tools\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-23 11:40+0100\n"
-"PO-Revision-Date: 2020-07-11 06:49+0000\n"
+"PO-Revision-Date: 2020-07-12 12:27+0000\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/libosinfo/osinfo-db-tools/pt_BR/>\n"
@@ -107,105 +107,105 @@ msgstr "- Importa pacote de banco de dados "
 #: tools/osinfo-db-import.c:466
 #, c-format
 msgid "%s: expected path to one archive file to import\n"
-msgstr ""
+msgstr "%s: esperava caminho para um arquivo de pacote para importar\n"
 
 #: tools/osinfo-db-path.c:45
 msgid "Report the user directory"
-msgstr ""
+msgstr "Relata o diretório de usuário"
 
 #: tools/osinfo-db-path.c:47
 msgid "Report the local directory"
-msgstr ""
+msgstr "Relata o diretório local"
 
 #: tools/osinfo-db-path.c:49
 msgid "Report the system directory"
-msgstr ""
+msgstr "Relata o diretório de sistema"
 
 #: tools/osinfo-db-path.c:51
 msgid "Report the custom directory"
-msgstr ""
+msgstr "Relata o diretório personalizado"
 
 #: tools/osinfo-db-path.c:53
 msgid "Report against root directory"
-msgstr ""
+msgstr "Relata o diretório raiz"
 
 #: tools/osinfo-db-path.c:63
 msgid "- Report database locations "
-msgstr ""
+msgstr "- Relata locais de banco de dados "
 
 #: tools/osinfo-db-path.c:75
 #, c-format
 msgid "%s: unexpected extra arguments\n"
-msgstr ""
+msgstr "%s: argumentos extras inesperados\n"
 
 #: tools/osinfo-db-util.c:150
 #, c-format
 msgid "Unable to locate '%s' in any database location"
-msgstr ""
+msgstr "Não foi possível encontrar \"%s\" nos locais de banco de dados"
 
 #: tools/osinfo-db-validate.c:43
 #, c-format
 msgid "Schema validity error %s"
-msgstr ""
+msgstr "esquema com erro de validade %s"
 
 #: tools/osinfo-db-validate.c:59
 msgid "Unable to create libxml parser"
-msgstr ""
+msgstr "Não foi possível criar analisador libxml"
 
 #: tools/osinfo-db-validate.c:67
 #, c-format
 msgid "Unable to parse XML document '%s'"
-msgstr ""
+msgstr "Não foi possível analisar o documento XML \"%s\""
 
 #: tools/osinfo-db-validate.c:96
 #, c-format
 msgid "Unable to validate XML document '%s'"
-msgstr ""
+msgstr "Não foi possível validar o documento XML \"%s\""
 
 #: tools/osinfo-db-validate.c:139
 #, c-format
 msgid "Processing '%s'...\n"
-msgstr ""
+msgstr "Processando \"%s\"...\n"
 
 #: tools/osinfo-db-validate.c:182
 #, c-format
 msgid "Unable to create RNG parser for %s"
-msgstr ""
+msgstr "Não foi possível criar analisador RNG para %s"
 
 #: tools/osinfo-db-validate.c:190
 #, c-format
 msgid "Unable to parse RNG %s"
-msgstr ""
+msgstr "Não foi possível analisar RNG %s"
 
 #: tools/osinfo-db-validate.c:198
 #, c-format
 msgid "Unable to create RNG validation context %s"
-msgstr ""
+msgstr "Não foi possível criar o contexto de validação RNG %s"
 
 #: tools/osinfo-db-validate.c:235
 msgid "Validate files in user directory"
-msgstr ""
+msgstr "Valida arquivos no diretório de usuário"
 
 #: tools/osinfo-db-validate.c:237
 msgid "Validate files in local directory"
-msgstr ""
+msgstr "Valida arquivos no diretório local"
 
 #: tools/osinfo-db-validate.c:239
 msgid "Validate files in system directory"
-msgstr ""
+msgstr "Valida arquivos no diretório de sistema"
 
 #: tools/osinfo-db-validate.c:241
 msgid "Validate files in custom directory"
-msgstr ""
+msgstr "Valida arquivos no diretório personalizado"
 
 #: tools/osinfo-db-validate.c:252
 msgid "- Validate XML documents "
-msgstr ""
+msgstr "- Valida documentos XML "
 
 #: tools/osinfo-db-validate.c:257
 #, c-format
 msgid "Error while parsing commandline options: %s\n"
-msgstr ""
+msgstr "Erro ao analisar as opções de linha de comando: %s\n"
 
 #: tools/osinfo-db-validate.c:272
 #, c-format
@@ -213,3 +213,5 @@ msgid ""
 "Only one of --user, --local, --system, --dir or positional filenames can be "
 "used\n"
 msgstr ""
+"Apenas um entre --user, --local, --system, --dir ou nomes de arquivos "
+"posicionais podem ser usados\n"
