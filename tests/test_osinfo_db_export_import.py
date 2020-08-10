@@ -3,12 +3,12 @@
 # This work is licensed under the GNU GPLv2 or later.
 # See the COPYING file in the top-level directory.
 
+import datetime
 import filecmp
 import json
 import os
 import shutil
 import sys
-import time
 import pytest
 import requests
 import util
@@ -27,13 +27,28 @@ def test_osinfo_db_export_import_system():
     """
     Test osinfo-db-export --system and osinfo-db-import --system
     """
-    default_filename = "osinfo-db-%s.tar.xz" % time.strftime("%Y%m%d")
+    # We build the expected filename before running osinfo-db-export;
+    # the filename includes the day, so if the day changes while
+    # osinfo-db-export runs then we cannot find the output archive
+    # anymore.
+    # As workaround, build the filename for today and tomorrow,
+    # checking that one of them must exist.
+    today = datetime.date.today()
+    tomorrow = today + datetime.timedelta(days=1)
+    default_filename_today = "osinfo-db-%s.tar.xz" % today.strftime("%Y%m%d")
+    default_filename_tomorrow = ("osinfo-db-%s.tar.xz" %
+                                 tomorrow.strftime("%Y%m%d"))
 
     os.environ["OSINFO_SYSTEM_DIR"] = util.Data.positive
     cmd = [util.Tools.db_export, util.ToolsArgs.SYSTEM]
     returncode = util.get_returncode(cmd)
     assert returncode == 0
-    assert os.path.isfile(default_filename)
+    assert os.path.isfile(default_filename_today) or \
+        os.path.isfile(default_filename_tomorrow)
+    if os.path.isfile(default_filename_today):
+        default_filename = default_filename_today
+    else:
+        default_filename = default_filename_tomorrow
 
     tempdir = util.tempdir()
     os.environ["OSINFO_SYSTEM_DIR"] = tempdir
