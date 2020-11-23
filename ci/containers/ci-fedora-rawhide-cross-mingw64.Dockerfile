@@ -3,8 +3,6 @@ FROM registry.fedoraproject.org/fedora:rawhide
 RUN dnf update -y --nogpgcheck fedora-gpg-keys && \
     dnf update -y && \
     dnf install -y \
-        bash \
-        bash-completion \
         ca-certificates \
         ccache \
         gcc \
@@ -13,15 +11,9 @@ RUN dnf update -y --nogpgcheck fedora-gpg-keys && \
         make \
         meson \
         ninja-build \
-        patch \
-        perl \
-        perl-App-cpanminus \
         python3 \
-        python3-pip \
         python3-pytest \
         python3-requests \
-        python3-setuptools \
-        python3-wheel \
         rpm-build && \
     dnf autoremove -y && \
     dnf clean all -y && \
@@ -33,7 +25,6 @@ RUN dnf install -y \
         mingw64-gcc \
         mingw64-gettext \
         mingw64-glib2 \
-        mingw64-headers \
         mingw64-json-glib \
         mingw64-libarchive \
         mingw64-libsoup \
@@ -43,11 +34,9 @@ RUN dnf install -y \
     dnf clean all -y
 
 ENV LANG "en_US.UTF-8"
-
 ENV MAKE "/usr/bin/make"
 ENV NINJA "/usr/bin/ninja"
 ENV PYTHON "/usr/bin/python3"
-
 ENV CCACHE_WRAPPERSDIR "/usr/libexec/ccache-wrappers"
 
 ENV ABI "x86_64-w64-mingw32"
