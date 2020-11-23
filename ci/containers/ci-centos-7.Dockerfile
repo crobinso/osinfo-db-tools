@@ -1,4 +1,4 @@
-FROM centos:7
+FROM registry.centos.org/centos:7
 
 RUN echo -e '[openvz]\n\
 name=OpenVZ addons\n\
@@ -33,17 +33,12 @@ WEiJKtQrZDJloqtyi/mmRa1VsV7RYR0VPJjhK/R8EQ7Ysshy\n\
     yum install -y epel-release && \
     yum update -y && \
     yum install -y \
-        autoconf \
-        automake \
         bash \
         bash-completion \
         ca-certificates \
         ccache \
-        chrony \
         gcc \
-        gdb \
         gettext \
-        gettext-devel \
         git \
         glib2-devel \
         glibc-common \
@@ -51,15 +46,13 @@ WEiJKtQrZDJloqtyi/mmRa1VsV7RYR0VPJjhK/R8EQ7Ysshy\n\
         json-glib-devel \
         libarchive-devel \
         libsoup-devel \
-        libtool \
         libxml2-devel \
         libxslt-devel \
-        lsof \
         make \
-        net-tools \
         ninja-build \
         patch \
         perl \
+        perl-App-cpanminus \
         pkgconfig \
         python3 \
         python3-pip \
@@ -67,11 +60,7 @@ WEiJKtQrZDJloqtyi/mmRa1VsV7RYR0VPJjhK/R8EQ7Ysshy\n\
         python3-wheel \
         python36-pytest \
         python36-requests \
-        rpm-build \
-        screen \
-        strace \
-        sudo \
-        vim && \
+        rpm-build && \
     yum autoremove -y && \
     yum clean all -y && \
     mkdir -p /usr/libexec/ccache-wrappers && \
@@ -79,7 +68,7 @@ WEiJKtQrZDJloqtyi/mmRa1VsV7RYR0VPJjhK/R8EQ7Ysshy\n\
     ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/$(basename /usr/bin/gcc)
 
 RUN pip3 install \
-         meson==0.49.0
+         meson==0.54.0
 
 ENV LANG "en_US.UTF-8"
 
