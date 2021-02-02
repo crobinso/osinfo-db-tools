@@ -1,3 +1,10 @@
+1.9.0
+====
+
+- Several CI improvements
+- Several translation improvements
+- Fix export/import tests
+
 1.8.0
 =====
 
