@@ -1,6 +1,6 @@
 project(
     'osinfo-db-tools', 'c',
-    version: '1.9.0',
+    version: '1.10.0',
     license: 'GPLv2+',
     meson_version: '>= 0.49.0',
     default_options: [
