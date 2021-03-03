@@ -2,13 +2,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the osinfo-db-tools package.
 # Ricky Tigg <ricky.tigg@gmail.com>, 2021.
+# Jan Kuparinen <copper_fin@hotmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: osinfo-db-tools\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-23 11:40+0100\n"
-"PO-Revision-Date: 2021-02-12 14:40+0000\n"
-"Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
+"PO-Revision-Date: 2021-02-16 17:40+0000\n"
+"Last-Translator: Jan Kuparinen <copper_fin@hotmail.com>\n"
 "Language-Team: Finnish <https://translate.fedoraproject.org/projects/"
 "libosinfo/osinfo-db-tools/fi/>\n"
 "Language: fi\n"
@@ -21,39 +22,39 @@ msgstr ""
 #: tools/osinfo-db-export.c:454 tools/osinfo-db-import.c:432
 #: tools/osinfo-db-validate.c:233
 msgid "Verbose progress information"
-msgstr ""
+msgstr "Runsaat tiedot edistymisestä"
 
 #: tools/osinfo-db-export.c:456
 msgid "Export the osinfo-db user directory"
-msgstr ""
+msgstr "Vie osinfo-db käyttäjähakemisto"
 
 #: tools/osinfo-db-export.c:458
 msgid "Export the osinfo-db local directory"
-msgstr ""
+msgstr "Vie osinfo-db paikallinen hakemisto"
 
 #: tools/osinfo-db-export.c:460
 msgid "Export the osinfo-db system directory"
-msgstr ""
+msgstr "Vie osinfo-db järjestelmähakemisto"
 
 #: tools/osinfo-db-export.c:462
 msgid "Export an osinfo-db custom directory"
-msgstr ""
+msgstr "Vie osinfo-db mukautettu hakemisto"
 
 #: tools/osinfo-db-export.c:464
 msgid "Set version number of archive"
-msgstr ""
+msgstr "Aseta arkiston versionumero"
 
 #: tools/osinfo-db-export.c:466
 msgid "Export the osinfo-db root directory"
-msgstr ""
+msgstr "Vie osinfo-db juurihakemisto"
 
 #: tools/osinfo-db-export.c:468
 msgid "License file"
-msgstr ""
+msgstr "Lisenssitiedosto"
 
 #: tools/osinfo-db-export.c:478
 msgid "- Export database archive "
-msgstr ""
+msgstr "- Vie tietokanta-arkisto "
 
 #: tools/osinfo-db-export.c:483 tools/osinfo-db-import.c:459
 #: tools/osinfo-db-path.c:68
@@ -62,108 +63,111 @@ msgid ""
 "%s: error while parsing commandline options: %s\n"
 "\n"
 msgstr ""
+"%s: virhe jäsennettäessä komentorivivalintoja: %s\n"
+"\n"
 
 #: tools/osinfo-db-export.c:490
 #, c-format
 msgid "%s: expected path to one archive file to export\n"
-msgstr ""
+msgstr "%s: odotti polkua yhteen vietävään arkistotiedostoon\n"
 
 #: tools/osinfo-db-export.c:504 tools/osinfo-db-import.c:480
 #: tools/osinfo-db-path.c:89
 #, c-format
 msgid "Only one of --user, --local, --system & --dir can be used\n"
 msgstr ""
+"Vain yhtä parametriä --user, --local, --system & --dir voidaan käyttää\n"
 
 #: tools/osinfo-db-import.c:434
 msgid "Import into user directory"
-msgstr ""
+msgstr "Tuo käyttäjän hakemistoon"
 
 #: tools/osinfo-db-import.c:436
 msgid "Import into local directory"
-msgstr ""
+msgstr "Tuo paikalliseen hakemistoon"
 
 #: tools/osinfo-db-import.c:438
 msgid "Import into system directory"
-msgstr ""
+msgstr "Tuo järjestelmähakemistoon"
 
 #: tools/osinfo-db-import.c:440
 msgid "Import into custom directory"
-msgstr ""
+msgstr "Tuo mukautettuun hakemistoon"
 
 #: tools/osinfo-db-import.c:442 tools/osinfo-db-validate.c:243
 msgid "Installation root directory"
-msgstr ""
+msgstr "Asennuksen juurihakemisto"
 
 #: tools/osinfo-db-import.c:444
 msgid "Import the latest osinfo-db from osinfo-db's website"
-msgstr ""
+msgstr "Tuo viimeisin osinfo-db sen webbisivulta"
 
 #: tools/osinfo-db-import.c:454
 msgid "- Import database archive "
-msgstr ""
+msgstr "- Tuo tietokanta-arkisto "
 
 #: tools/osinfo-db-import.c:466
 #, c-format
 msgid "%s: expected path to one archive file to import\n"
-msgstr ""
+msgstr "%s: odotti polkua yhteen tuotavaan arkistotiedostoon\n"
 
 #: tools/osinfo-db-path.c:45
 msgid "Report the user directory"
-msgstr ""
+msgstr "Ilmoita käyttäjähakemisto"
 
 #: tools/osinfo-db-path.c:47
 msgid "Report the local directory"
-msgstr ""
+msgstr "Ilmoita paikallinen hakemisto"
 
 #: tools/osinfo-db-path.c:49
 msgid "Report the system directory"
-msgstr ""
+msgstr "Ilmoita järjestelmähakemisto"
 
 #: tools/osinfo-db-path.c:51
 msgid "Report the custom directory"
-msgstr ""
+msgstr "Ilmoita mukautettu hakemisto"
 
 #: tools/osinfo-db-path.c:53
 msgid "Report against root directory"
-msgstr ""
+msgstr "Ilmoita juurihakemistoa vastaan"
 
 #: tools/osinfo-db-path.c:63
 msgid "- Report database locations "
-msgstr ""
+msgstr "- Ilmoita tietokantasijainnit "
 
 #: tools/osinfo-db-path.c:75
 #, c-format
 msgid "%s: unexpected extra arguments\n"
-msgstr ""
+msgstr "%s: odottamaton ylimääräinen argumentti\n"
 
 #: tools/osinfo-db-util.c:150
 #, c-format
 msgid "Unable to locate '%s' in any database location"
-msgstr ""
+msgstr "Mistään tietokantasijainnista ei löytynyt %s"
 
 #: tools/osinfo-db-validate.c:43
 #, c-format
 msgid "Schema validity error %s"
-msgstr ""
+msgstr "Scheman oikeellisuusvirhe %s"
 
 #: tools/osinfo-db-validate.c:59
 msgid "Unable to create libxml parser"
-msgstr ""
+msgstr "Libxml-jäsennintä ei voitu luoda"
 
 #: tools/osinfo-db-validate.c:67
 #, c-format
 msgid "Unable to parse XML document '%s'"
-msgstr ""
+msgstr "XML dokumenttia %s ei pystytty jäsentämään"
 
 #: tools/osinfo-db-validate.c:96
 #, c-format
 msgid "Unable to validate XML document '%s'"
-msgstr ""
+msgstr "XML dokumenttia %s ei pystytty vahvistamaan"
 
 #: tools/osinfo-db-validate.c:139
 #, c-format
 msgid "Processing '%s'...\n"
-msgstr ""
+msgstr "Suoritetaan '%s'...\n"
 
 #: tools/osinfo-db-validate.c:182
 #, c-format
@@ -182,28 +186,28 @@ msgstr "RNG-vahvistuskontekstia %s ei voida luoda"
 
 #: tools/osinfo-db-validate.c:235
 msgid "Validate files in user directory"
-msgstr ""
+msgstr "Vahvista tiedostot käyttäjän hakemistossa"
 
 #: tools/osinfo-db-validate.c:237
 msgid "Validate files in local directory"
-msgstr ""
+msgstr "Vahvista tiedostot paikallisessa hakemistossa"
 
 #: tools/osinfo-db-validate.c:239
 msgid "Validate files in system directory"
-msgstr ""
+msgstr "Vahvista tiedostot järjestelmähakemistossa"
 
 #: tools/osinfo-db-validate.c:241
 msgid "Validate files in custom directory"
-msgstr ""
+msgstr "Vahvista tiedostot mukautetussa hakemistossa"
 
 #: tools/osinfo-db-validate.c:252
 msgid "- Validate XML documents "
-msgstr ""
+msgstr "- Vahvista XML dokumentit "
 
 #: tools/osinfo-db-validate.c:257
 #, c-format
 msgid "Error while parsing commandline options: %s\n"
-msgstr ""
+msgstr "Virhe jäsennettäessä komentorivivalintoja: %s\n"
 
 #: tools/osinfo-db-validate.c:272
 #, c-format
@@ -211,3 +215,5 @@ msgid ""
 "Only one of --user, --local, --system, --dir or positional filenames can be "
 "used\n"
 msgstr ""
+"Vain yhtä parametria --user, --local, --system, --dir tai sijainnillisia "
+"tiedostonimiä voidaan käyttää\n"
