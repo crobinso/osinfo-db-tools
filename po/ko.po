@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: osinfo-db-tools\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-23 11:40+0100\n"
-"PO-Revision-Date: 2021-04-04 08:01+0000\n"
+"PO-Revision-Date: 2021-04-07 05:01+0000\n"
 "Last-Translator: simmon <simmon@nplob.com>\n"
 "Language-Team: Korean <https://translate.fedoraproject.org/projects/"
 "libosinfo/osinfo-db-tools/ko/>\n"
@@ -41,7 +41,7 @@ msgstr "osinfo-db 사용자 정의 디렉토리 내보내기"
 
 #: tools/osinfo-db-export.c:464
 msgid "Set version number of archive"
-msgstr "저장소 버전 번호를 설정합니다"
+msgstr "저장소 상태번호를 설정합니다"
 
 #: tools/osinfo-db-export.c:466
 msgid "Export the osinfo-db root directory"
