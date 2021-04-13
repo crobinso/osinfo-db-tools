@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: osinfo-db-tools\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-23 11:40+0100\n"
-"PO-Revision-Date: 2021-04-07 05:01+0000\n"
+"PO-Revision-Date: 2021-04-13 06:01+0000\n"
 "Last-Translator: simmon <simmon@nplob.com>\n"
 "Language-Team: Korean <https://translate.fedoraproject.org/projects/"
 "libosinfo/osinfo-db-tools/ko/>\n"
@@ -41,7 +41,7 @@ msgstr "osinfo-db 사용자 정의 디렉토리 내보내기"
 
 #: tools/osinfo-db-export.c:464
 msgid "Set version number of archive"
-msgstr "저장소 상태번호를 설정합니다"
+msgstr "저장소 버전을 설정합니다"
 
 #: tools/osinfo-db-export.c:466
 msgid "Export the osinfo-db root directory"
@@ -53,7 +53,7 @@ msgstr "저작권 파일"
 
 #: tools/osinfo-db-export.c:478
 msgid "- Export database archive "
-msgstr "- 자료저장소 저장소를 내료냅니다 "
+msgstr "- 데이타베이스 저장소를 내보냅니다 "
 
 #: tools/osinfo-db-export.c:483 tools/osinfo-db-import.c:459
 #: tools/osinfo-db-path.c:68
@@ -102,7 +102,7 @@ msgstr "osinfo-db의 웹사이트에서 최신 osinfo-db를 가져옵니다"
 
 #: tools/osinfo-db-import.c:454
 msgid "- Import database archive "
-msgstr "자료저장소 저장소를 가져옵니다 "
+msgstr "데이타베이스 저장소를 가져옵니다 "
 
 #: tools/osinfo-db-import.c:466
 #, c-format
@@ -131,7 +131,7 @@ msgstr "루트 디렉토레에 대해 보고합니다"
 
 #: tools/osinfo-db-path.c:63
 msgid "- Report database locations "
-msgstr "자료저장소 위치를 보고합니다 "
+msgstr "데이타베이스 위치를 보고합니다 "
 
 #: tools/osinfo-db-path.c:75
 #, c-format
@@ -141,7 +141,7 @@ msgstr "%s: 예상 할 수 없는 추가 인수\n"
 #: tools/osinfo-db-util.c:150
 #, c-format
 msgid "Unable to locate '%s' in any database location"
-msgstr "어떤 자료저장소 위치에서 '%s'로 위치 할 수 없습니다"
+msgstr "어떤 데이타베이스 위치에서 '%s'로 위치 할 수 없습니다"
 
 #: tools/osinfo-db-validate.c:43
 #, c-format
