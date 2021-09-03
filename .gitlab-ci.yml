@@ -131,11 +131,6 @@ centos-stream-container:
   variables:
     NAME: centos-stream
 
-debian-9-container:
-  <<: *container_job_definition
-  variables:
-    NAME: debian-9
-
 debian-10-container:
   <<: *container_job_definition
   variables:
@@ -200,11 +195,6 @@ centos-stream:
   variables:
     NAME: centos-stream
     RPM: skip
-
-debian-9:
-  <<: *native-build-job
-  variables:
-    NAME: debian-9
 
 debian-10:
   <<: *native-build-job
