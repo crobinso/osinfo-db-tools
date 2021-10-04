@@ -34,6 +34,11 @@
 #define LATEST_URI "https://db.libosinfo.org/latest.json"
 #define VERSION_FILE "VERSION"
 
+#if SOUP_MAJOR_VERSION < 3
+#define soup_message_get_status(message) message->status_code
+#define soup_message_get_response_headers(message) message->response_headers
+#endif
+
 const char *argv0;
 static SoupSession *session = NULL;
 
@@ -171,15 +176,15 @@ osinfo_db_import_download_file(const gchar *source)
 
     stream = soup_session_send(session, message, NULL, &err);
     if (stream == NULL ||
-        !SOUP_STATUS_IS_SUCCESSFUL(message->status_code)) {
+        !SOUP_STATUS_IS_SUCCESSFUL(soup_message_get_status(message))) {
         g_printerr("Could not access %s: %s\n",
                    source,
                    err != NULL ? err->message :
-                                 soup_status_get_phrase(message->status_code));
+                                 soup_status_get_phrase(soup_message_get_status(message)));
         goto cleanup;
     }
 
-    content_size = soup_message_headers_get_content_length(message->response_headers);
+    content_size = soup_message_headers_get_content_length(soup_message_get_response_headers(message));
     content = g_malloc0(content_size);
 
     if (!g_input_stream_read_all(stream, content, content_size, NULL, NULL, &err)) {
@@ -250,15 +255,15 @@ static gboolean osinfo_db_get_latest_info(gchar **version,
 
     stream = soup_session_send(session, message, NULL, &err);
     if (stream == NULL ||
-        !SOUP_STATUS_IS_SUCCESSFUL(message->status_code)) {
+        !SOUP_STATUS_IS_SUCCESSFUL(soup_message_get_status(message))) {
         g_printerr("Could not access %s: %s\n",
                    LATEST_URI,
                    err != NULL ? err->message :
-                                 soup_status_get_phrase(message->status_code));
+                                 soup_status_get_phrase(soup_message_get_status(message)));
         return FALSE;
     }
 
-    content_size = soup_message_headers_get_content_length(message->response_headers);
+    content_size = soup_message_headers_get_content_length(soup_message_get_response_headers(message));
     content = g_malloc0(content_size);
 
     if (!g_input_stream_read_all(stream, content, content_size, NULL, NULL, &err)) {
