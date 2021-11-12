@@ -25,14 +25,12 @@ RUN dnf update -y && \
         libxml2-devel \
         libxslt-devel \
         make \
+        meson \
         ninja-build \
         pkgconfig \
         python3 \
-        python3-pip \
         python3-pytest \
         python3-requests \
-        python3-setuptools \
-        python3-wheel \
         rpm-build && \
     dnf autoremove -y && \
     dnf clean all -y && \
@@ -40,9 +38,6 @@ RUN dnf update -y && \
     mkdir -p /usr/libexec/ccache-wrappers && \
     ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/cc && \
     ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/gcc
-
-RUN pip3 install \
-         meson==0.56.0
 
 ENV LANG "en_US.UTF-8"
 ENV MAKE "/usr/bin/make"

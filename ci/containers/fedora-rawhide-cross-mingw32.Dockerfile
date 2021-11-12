@@ -31,11 +31,7 @@ exec "$@"' > /usr/bin/nosync && \
         python3-requests \
         rpm-build && \
     nosync dnf autoremove -y && \
-    nosync dnf clean all -y && \
-    rpm -qa | sort > /packages.txt && \
-    mkdir -p /usr/libexec/ccache-wrappers && \
-    ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/i686-w64-mingw32-cc && \
-    ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/i686-w64-mingw32-gcc
+    nosync dnf clean all -y
 
 RUN nosync dnf install -y \
         mingw32-gcc \
@@ -47,7 +43,11 @@ RUN nosync dnf install -y \
         mingw32-libxml2 \
         mingw32-libxslt \
         mingw32-pkg-config && \
-    nosync dnf clean all -y
+    nosync dnf clean all -y && \
+    rpm -qa | sort > /packages.txt && \
+    mkdir -p /usr/libexec/ccache-wrappers && \
+    ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/i686-w64-mingw32-cc && \
+    ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/i686-w64-mingw32-gcc
 
 ENV LANG "en_US.UTF-8"
 ENV MAKE "/usr/bin/make"
