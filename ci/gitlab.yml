@@ -146,7 +146,6 @@ x86_64-centos-8:
   allow_failure: false
   variables:
     NAME: centos-8
-    RPM: skip
 
 
 x86_64-centos-stream-8:
@@ -156,7 +155,6 @@ x86_64-centos-stream-8:
   allow_failure: false
   variables:
     NAME: centos-stream-8
-    RPM: skip
 
 
 x86_64-debian-10:
