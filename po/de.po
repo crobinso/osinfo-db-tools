@@ -4,21 +4,22 @@
 #
 # Translators:
 # Daniel Berrange <dan-zanata@berrange.com>, 2016. #zanata
+# Ettore Atalan <atalanttore@googlemail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: osinfo-db-tools\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-23 11:40+0100\n"
-"PO-Revision-Date: 2016-03-04 07:50+0000\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: German (http://www.transifex.com/projects/p/libosinfo/"
-"language/de/)\n"
+"PO-Revision-Date: 2021-12-28 22:16+0000\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
+"Language-Team: German <https://translate.fedoraproject.org/projects/"
+"libosinfo/osinfo-db-tools/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Zanata 4.6.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.10.1\n"
 
 #: tools/osinfo-db-export.c:454 tools/osinfo-db-import.c:432
 #: tools/osinfo-db-validate.c:233
@@ -51,11 +52,11 @@ msgstr ""
 
 #: tools/osinfo-db-export.c:468
 msgid "License file"
-msgstr ""
+msgstr "Lizenzdatei"
 
 #: tools/osinfo-db-export.c:478
 msgid "- Export database archive "
-msgstr ""
+msgstr "- Datenbankarchiv exportieren "
 
 #: tools/osinfo-db-export.c:483 tools/osinfo-db-import.c:459
 #: tools/osinfo-db-path.c:68
@@ -78,15 +79,15 @@ msgstr ""
 
 #: tools/osinfo-db-import.c:434
 msgid "Import into user directory"
-msgstr ""
+msgstr "In Benutzerverzeichnis importieren"
 
 #: tools/osinfo-db-import.c:436
 msgid "Import into local directory"
-msgstr ""
+msgstr "In lokales Verzeichnis importieren"
 
 #: tools/osinfo-db-import.c:438
 msgid "Import into system directory"
-msgstr ""
+msgstr "In Systemverzeichnis importieren"
 
 #: tools/osinfo-db-import.c:440
 msgid "Import into custom directory"
@@ -94,7 +95,7 @@ msgstr ""
 
 #: tools/osinfo-db-import.c:442 tools/osinfo-db-validate.c:243
 msgid "Installation root directory"
-msgstr ""
+msgstr "Wurzelverzeichnis der Installation"
 
 #: tools/osinfo-db-import.c:444
 msgid "Import the latest osinfo-db from osinfo-db's website"
@@ -102,7 +103,7 @@ msgstr ""
 
 #: tools/osinfo-db-import.c:454
 msgid "- Import database archive "
-msgstr ""
+msgstr "- Datenbankarchiv importieren "
 
 #: tools/osinfo-db-import.c:466
 #, c-format
@@ -136,7 +137,7 @@ msgstr ""
 #: tools/osinfo-db-path.c:75
 #, c-format
 msgid "%s: unexpected extra arguments\n"
-msgstr ""
+msgstr "%s: unerwartete zusätzliche Argumente\n"
 
 #: tools/osinfo-db-util.c:150
 #, c-format
@@ -184,15 +185,15 @@ msgstr "RNG-Validierungskontext %s konnte nicht erzeugt werden"
 
 #: tools/osinfo-db-validate.c:235
 msgid "Validate files in user directory"
-msgstr ""
+msgstr "Dateien im Benutzerverzeichnis validieren"
 
 #: tools/osinfo-db-validate.c:237
 msgid "Validate files in local directory"
-msgstr ""
+msgstr "Dateien im lokalen Verzeichnis validieren"
 
 #: tools/osinfo-db-validate.c:239
 msgid "Validate files in system directory"
-msgstr ""
+msgstr "Dateien im Systemverzeichnis validieren"
 
 #: tools/osinfo-db-validate.c:241
 msgid "Validate files in custom directory"
@@ -200,7 +201,7 @@ msgstr ""
 
 #: tools/osinfo-db-validate.c:252
 msgid "- Validate XML documents "
-msgstr "- XML-Dokumente validieren"
+msgstr "- XML-Dokumente validieren "
 
 #: tools/osinfo-db-validate.c:257
 #, c-format
