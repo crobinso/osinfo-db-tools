@@ -1,3 +1,10 @@
+1.10.0
+======
+
+- Port to libsoup3 (optional)
+- Several CI improvements
+- Several translation improvements
+
 1.9.0
 ====
 
