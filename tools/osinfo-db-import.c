@@ -35,8 +35,8 @@
 #define VERSION_FILE "VERSION"
 
 #if SOUP_MAJOR_VERSION < 3
-#define soup_message_get_status(message) message->status_code
-#define soup_message_get_response_headers(message) message->response_headers
+# define soup_message_get_status(message) message->status_code
+# define soup_message_get_response_headers(message) message->response_headers
 #endif
 
 const char *argv0;
