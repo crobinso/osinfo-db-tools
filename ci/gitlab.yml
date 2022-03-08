@@ -271,8 +271,8 @@ mingw32-fedora-rawhide:
     - mingw32-fedora-rawhide-container
   allow_failure: false
   variables:
-    NAME: fedora-rawhide
     CROSS: mingw32
+    NAME: fedora-rawhide
 
 
 mingw64-fedora-rawhide:
@@ -281,5 +281,5 @@ mingw64-fedora-rawhide:
     - mingw64-fedora-rawhide-container
   allow_failure: false
   variables:
-    NAME: fedora-rawhide
     CROSS: mingw64
+    NAME: fedora-rawhide
