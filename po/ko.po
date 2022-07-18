@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the osinfo-db-tools package.
 # simmon <simmon@nplob.com>, 2021.
 # Seong-ho Cho <darkcircle.0426@gmail.com>, 2022.
+# 김인수 <simmon@nplob.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: osinfo-db-tools\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-23 11:40+0100\n"
-"PO-Revision-Date: 2022-04-12 12:17+0000\n"
-"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
+"PO-Revision-Date: 2022-07-18 15:18+0000\n"
+"Last-Translator: 김인수 <simmon@nplob.com>\n"
 "Language-Team: Korean <https://translate.fedoraproject.org/projects/"
 "libosinfo/osinfo-db-tools/ko/>\n"
 "Language: ko\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 4.13\n"
 
 #: tools/osinfo-db-export.c:454 tools/osinfo-db-import.c:432
 #: tools/osinfo-db-validate.c:233
@@ -26,19 +27,19 @@ msgstr "자세한 진행 정보"
 
 #: tools/osinfo-db-export.c:456
 msgid "Export the osinfo-db user directory"
-msgstr "osinfo-db 사용자 디렉터리 내보내기"
+msgstr "osinfo-db 사용자 디렉토리 내보내기"
 
 #: tools/osinfo-db-export.c:458
 msgid "Export the osinfo-db local directory"
-msgstr "osinfo-db 로컬 디렉터리 내보내기"
+msgstr "osinfo-db 로컬 디렉토리 내보내기"
 
 #: tools/osinfo-db-export.c:460
 msgid "Export the osinfo-db system directory"
-msgstr "osinfo-db 시스템 디렉터리 내보내기"
+msgstr "osinfo-db 시스템 디렉토리 내보내기"
 
 #: tools/osinfo-db-export.c:462
 msgid "Export an osinfo-db custom directory"
-msgstr "osinfo-db 사용자 지정 디렉터리 내보내기"
+msgstr "osinfo-db 사용자 지정 디렉토리 내보내기"
 
 #: tools/osinfo-db-export.c:464
 msgid "Set version number of archive"
@@ -46,7 +47,7 @@ msgstr "저장소 버전을 설정합니다"
 
 #: tools/osinfo-db-export.c:466
 msgid "Export the osinfo-db root directory"
-msgstr "osinfo-db 루트 디렉터리 내보내기"
+msgstr "osinfo-db 루트 디렉토리 내보내기"
 
 #: tools/osinfo-db-export.c:468
 msgid "License file"
@@ -79,23 +80,23 @@ msgstr "--user, --local, --system & --dir 중 하나만 사용할 수 있습니�
 
 #: tools/osinfo-db-import.c:434
 msgid "Import into user directory"
-msgstr "사용자 디렉터리로 가져옵니다"
+msgstr "사용자 디렉토리로 가져옵니다"
 
 #: tools/osinfo-db-import.c:436
 msgid "Import into local directory"
-msgstr "로컬 디렉터리로 가져옵니다"
+msgstr "로컬 디렉토리로 가져옵니다"
 
 #: tools/osinfo-db-import.c:438
 msgid "Import into system directory"
-msgstr "시스템 디렉터리로 가져옵니다"
+msgstr "시스템 디렉토리로 가져옵니다"
 
 #: tools/osinfo-db-import.c:440
 msgid "Import into custom directory"
-msgstr "사용자 디렉터리로 가져옵니다"
+msgstr "사용자 정의 디렉토리로 가져옵니다"
 
 #: tools/osinfo-db-import.c:442 tools/osinfo-db-validate.c:243
 msgid "Installation root directory"
-msgstr "루트 디렉터리 설치"
+msgstr "루트 디렉토리 설치"
 
 #: tools/osinfo-db-import.c:444
 msgid "Import the latest osinfo-db from osinfo-db's website"
@@ -112,23 +113,23 @@ msgstr "%s: 가져오는 하나의 저장소 파일에 예상된 경로\n"
 
 #: tools/osinfo-db-path.c:45
 msgid "Report the user directory"
-msgstr "사용자 디렉터리를 보고합니다"
+msgstr "사용자 디렉토리를 보고합니다"
 
 #: tools/osinfo-db-path.c:47
 msgid "Report the local directory"
-msgstr "로컬 디렉터리를 보고합니다"
+msgstr "로컬 디렉토리를 보고합니다"
 
 #: tools/osinfo-db-path.c:49
 msgid "Report the system directory"
-msgstr "시스템 디렉터리를 보고합니다"
+msgstr "시스템 디렉토리를 보고합니다"
 
 #: tools/osinfo-db-path.c:51
 msgid "Report the custom directory"
-msgstr "사용자 정의 디렉터리를 보고합니다"
+msgstr "사용자 정의 디렉토리를 보고합니다"
 
 #: tools/osinfo-db-path.c:53
 msgid "Report against root directory"
-msgstr "루트 디렉터리를 보고합니다"
+msgstr "루트 디렉토리를 보고합니다"
 
 #: tools/osinfo-db-path.c:63
 msgid "- Report database locations "
@@ -185,19 +186,19 @@ msgstr "%s RNG 유효 검사 컨텍스트를 만들 수 없습니다"
 
 #: tools/osinfo-db-validate.c:235
 msgid "Validate files in user directory"
-msgstr "사용자 디렉터리의 파일 유효성을 검사합니다"
+msgstr "사용자 디렉토리의 파일 유효성을 검사합니다"
 
 #: tools/osinfo-db-validate.c:237
 msgid "Validate files in local directory"
-msgstr "로컬 디렉터리의 파일 유효성을 검사합니다"
+msgstr "로컬 디렉토리의 파일 유효성을 검사합니다"
 
 #: tools/osinfo-db-validate.c:239
 msgid "Validate files in system directory"
-msgstr "시스템 디렉터리의 파일 유효성을 검사합니다"
+msgstr "시스템 디렉토리의 파일 유효성을 검사합니다"
 
 #: tools/osinfo-db-validate.c:241
 msgid "Validate files in custom directory"
-msgstr "사용자 지정 디렉터리의 파일 유효성을 검사합니다"
+msgstr "사용자 정의 디렉토리의 파일 유효성을 검사합니다"
 
 #: tools/osinfo-db-validate.c:252
 msgid "- Validate XML documents "
