@@ -47,15 +47,4 @@ if test -x /usr/bin/x86_64-w64-mingw32-gcc && \
   DESTDIR="$INSTALL_ROOT/win64" ninja -C "$BUILD_ROOT/win64" install
 fi
 
-if test -x /usr/bin/i686-w64-mingw32-gcc && \
-   test -r /usr/share/mingw/toolchain-mingw32.meson && \
-   test -x /usr/bin/x86_64-w64-mingw32-gcc && \
-   test -r /usr/share/mingw/toolchain-mingw64.meson && \
-   test -x /usr/bin/rpmbuild; then
-  rpmbuild --nodeps \
-     --define "_topdir $RPMBUILD_ROOT" \
-     --define "_sourcedir $DIST_ROOT" \
-     -ba --clean "$BUILD_ROOT/native/mingw-osinfo-db-tools.spec"
-fi
-
 mv "$DIST_ROOT"/*.tar.xz .

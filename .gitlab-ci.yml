@@ -47,7 +47,7 @@ stages:
     - $NINJA dist
     - if test -x /usr/bin/rpmbuild && test "$RPM" != "skip";
       then
-        rpmbuild --nodeps -ta meson-dist/*.tar.xz;
+        rpmbuild --nodeps --define '_without_mingw 1' -ta meson-dist/*.tar.xz;
       fi
 
 .cross_build_job:

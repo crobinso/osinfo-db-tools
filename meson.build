@@ -37,14 +37,11 @@ osinfo_db_tools_mandir = join_paths(osinfo_db_tools_prefix, get_option('mandir')
 osinfo_db_tools_spec_data = configuration_data()
 osinfo_db_tools_spec_data.set('VERSION', meson.project_version())
 
-specs = ['osinfo-db-tools.spec', 'mingw-osinfo-db-tools.spec']
-foreach spec: specs
-    configure_file(
-        input: spec + '.in',
-        output: spec,
-        configuration: osinfo_db_tools_spec_data
-    )
-endforeach
+configure_file(
+    input: 'osinfo-db-tools.spec.in',
+    output: 'osinfo-db-tools.spec',
+    configuration: osinfo_db_tools_spec_data
+)
 
 # ninja dist helper
 meson.add_dist_script('build-aux/dist.sh', meson.source_root(), meson.build_root())
