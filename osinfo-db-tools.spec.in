@@ -1,11 +1,5 @@
 # -*- rpm-spec -*-
 
-%if 0%{?fedora} || (0%{?rhel} && 0%{?rhel} >= 8)
-    %define supports_python3 1
-%else
-    %define supports_python3 0
-%endif
-
 %define with_mingw 0
 %if 0%{?fedora}
     %define with_mingw 0%{!?_without_mingw:1}
@@ -30,12 +24,10 @@ BuildRequires: libarchive-devel
 BuildRequires: json-glib-devel
 BuildRequires: /usr/bin/pod2man
 
-%if %{supports_python3}
 #Required for testing purposes
 BuildRequires: python3
 BuildRequires: python3-pytest
 BuildRequires: python3-requests
-%endif
 
 %if %{with_mingw}
 BuildRequires: mingw32-filesystem
