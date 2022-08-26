@@ -5,13 +5,14 @@
 # Translators:
 # Daniel Berrange <dan-zanata@berrange.com>, 2016. #zanata
 # Ettore Atalan <atalanttore@googlemail.com>, 2021.
+# Philipp Hahn <pmhahn+fedora@pmhahn.de>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: osinfo-db-tools\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-23 11:40+0100\n"
-"PO-Revision-Date: 2021-12-28 22:16+0000\n"
-"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
+"PO-Revision-Date: 2022-08-26 06:02+0000\n"
+"Last-Translator: Philipp Hahn <pmhahn+fedora@pmhahn.de>\n"
 "Language-Team: German <https://translate.fedoraproject.org/projects/"
 "libosinfo/osinfo-db-tools/de/>\n"
 "Language: de\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.13\n"
 
 #: tools/osinfo-db-export.c:454 tools/osinfo-db-import.c:432
 #: tools/osinfo-db-validate.c:233
@@ -28,27 +29,27 @@ msgstr "Ausführliche Fortschrittsinformationen"
 
 #: tools/osinfo-db-export.c:456
 msgid "Export the osinfo-db user directory"
-msgstr ""
+msgstr "Exportiere das osinfo-DB-Benutzerverzeichnis"
 
 #: tools/osinfo-db-export.c:458
 msgid "Export the osinfo-db local directory"
-msgstr ""
+msgstr "Exportiere das lokale osinfo-DB-Verzeichnis"
 
 #: tools/osinfo-db-export.c:460
 msgid "Export the osinfo-db system directory"
-msgstr ""
+msgstr "Exportiere das osinfo-DB-Systemverzeichnis"
 
 #: tools/osinfo-db-export.c:462
 msgid "Export an osinfo-db custom directory"
-msgstr ""
+msgstr "Exportiere das benutzerdefinierte osinfo-DB-Verzeichnis"
 
 #: tools/osinfo-db-export.c:464
 msgid "Set version number of archive"
-msgstr ""
+msgstr "Setze Versionsnummer des Archivs"
 
 #: tools/osinfo-db-export.c:466
 msgid "Export the osinfo-db root directory"
-msgstr ""
+msgstr "Exportiere das osinfo-DB-Wurzelverzeichnis"
 
 #: tools/osinfo-db-export.c:468
 msgid "License file"
@@ -65,17 +66,21 @@ msgid ""
 "%s: error while parsing commandline options: %s\n"
 "\n"
 msgstr ""
+"%s: Fehler beim Auswerten der Befehlszeilenoption: %s\n"
+"\n"
 
 #: tools/osinfo-db-export.c:490
 #, c-format
 msgid "%s: expected path to one archive file to export\n"
-msgstr ""
+msgstr "%s: Pfad zu einer Archivdatei für den Export wird erwartet\n"
 
 #: tools/osinfo-db-export.c:504 tools/osinfo-db-import.c:480
 #: tools/osinfo-db-path.c:89
 #, c-format
 msgid "Only one of --user, --local, --system & --dir can be used\n"
 msgstr ""
+"Nur eins von --user, --local, --system oder --dir kann gleichzeitig genutzt "
+"werden\n"
 
 #: tools/osinfo-db-import.c:434
 msgid "Import into user directory"
@@ -91,7 +96,7 @@ msgstr "In Systemverzeichnis importieren"
 
 #: tools/osinfo-db-import.c:440
 msgid "Import into custom directory"
-msgstr ""
+msgstr "In benutzerdefiniertes Verzeichnis importieren"
 
 #: tools/osinfo-db-import.c:442 tools/osinfo-db-validate.c:243
 msgid "Installation root directory"
@@ -99,7 +104,7 @@ msgstr "Wurzelverzeichnis der Installation"
 
 #: tools/osinfo-db-import.c:444
 msgid "Import the latest osinfo-db from osinfo-db's website"
-msgstr ""
+msgstr "Importiere die letzte osinfo-DB von der osinfo-DB-Webseite"
 
 #: tools/osinfo-db-import.c:454
 msgid "- Import database archive "
@@ -108,31 +113,31 @@ msgstr "- Datenbankarchiv importieren "
 #: tools/osinfo-db-import.c:466
 #, c-format
 msgid "%s: expected path to one archive file to import\n"
-msgstr ""
+msgstr "%s: Pfad zu einer Archivdatei für den Import wird erwartet\n"
 
 #: tools/osinfo-db-path.c:45
 msgid "Report the user directory"
-msgstr ""
+msgstr "Benutzerverzeichnis ausgeben"
 
 #: tools/osinfo-db-path.c:47
 msgid "Report the local directory"
-msgstr ""
+msgstr "Lokales Verzeichnis ausgeben"
 
 #: tools/osinfo-db-path.c:49
 msgid "Report the system directory"
-msgstr ""
+msgstr "Systemverzeichnis ausgeben"
 
 #: tools/osinfo-db-path.c:51
 msgid "Report the custom directory"
-msgstr ""
+msgstr "Benutzerdefiniertes Verzeichnis ausgeben"
 
 #: tools/osinfo-db-path.c:53
 msgid "Report against root directory"
-msgstr ""
+msgstr "Relativ zum Wurzelverzechnis ausgeben"
 
 #: tools/osinfo-db-path.c:63
 msgid "- Report database locations "
-msgstr ""
+msgstr "- Pfade der Datenbanken ausgeben "
 
 #: tools/osinfo-db-path.c:75
 #, c-format
@@ -142,7 +147,7 @@ msgstr "%s: unerwartete zusätzliche Argumente\n"
 #: tools/osinfo-db-util.c:150
 #, c-format
 msgid "Unable to locate '%s' in any database location"
-msgstr ""
+msgstr "Konnte '%s' in keinem Pfad der Datenbanken finden"
 
 #: tools/osinfo-db-validate.c:43
 #, c-format
@@ -197,7 +202,7 @@ msgstr "Dateien im Systemverzeichnis validieren"
 
 #: tools/osinfo-db-validate.c:241
 msgid "Validate files in custom directory"
-msgstr ""
+msgstr "Dateien in benutzerdefiniertem Verzeichnis validieren"
 
 #: tools/osinfo-db-validate.c:252
 msgid "- Validate XML documents "
@@ -214,3 +219,5 @@ msgid ""
 "Only one of --user, --local, --system, --dir or positional filenames can be "
 "used\n"
 msgstr ""
+"Nur eins von --user, --local, --system, --dir oder ein Dateiname kann "
+"gleichzeitig genutzt werden\n"
