@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: osinfo-db-tools\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-23 11:40+0100\n"
-"PO-Revision-Date: 2022-08-26 06:02+0000\n"
+"PO-Revision-Date: 2022-11-24 08:19+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
 "libosinfo/osinfo-db-tools/ka/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13\n"
+"X-Generator: Weblate 4.14.2\n"
 
 #: tools/osinfo-db-export.c:454 tools/osinfo-db-import.c:432
 #: tools/osinfo-db-validate.c:233
@@ -143,7 +143,7 @@ msgstr "%s: მოულოდნელი დამატებითი არ
 #: tools/osinfo-db-util.c:150
 #, c-format
 msgid "Unable to locate '%s' in any database location"
-msgstr ""
+msgstr "'%s'-ის პოვნა შეუძლებელია ბაზის ყველა მდებარეობაზე"
 
 #: tools/osinfo-db-validate.c:43
 #, c-format
@@ -182,7 +182,7 @@ msgstr "RNG-ის დამუშავების შეცდომა: %s"
 #: tools/osinfo-db-validate.c:198
 #, c-format
 msgid "Unable to create RNG validation context %s"
-msgstr ""
+msgstr "RNG-ის გადამოწმების კონტექსტის (%s) შექმნის შეცდომა"
 
 #: tools/osinfo-db-validate.c:235
 msgid "Validate files in user directory"
