@@ -2,15 +2,15 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the osinfo-db-tools package.
 # simmon <simmon@nplob.com>, 2021.
-# Seong-ho Cho <darkcircle.0426@gmail.com>, 2022.
+# Seong-ho Cho <darkcircle.0426@gmail.com>, 2022, 2023.
 # 김인수 <simmon@nplob.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: osinfo-db-tools\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-23 11:40+0100\n"
-"PO-Revision-Date: 2022-07-18 15:18+0000\n"
-"Last-Translator: 김인수 <simmon@nplob.com>\n"
+"PO-Revision-Date: 2023-02-10 04:20+0000\n"
+"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
 "Language-Team: Korean <https://translate.fedoraproject.org/projects/"
 "libosinfo/osinfo-db-tools/ko/>\n"
 "Language: ko\n"
@@ -18,28 +18,28 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.13\n"
+"X-Generator: Weblate 4.15.2\n"
 
 #: tools/osinfo-db-export.c:454 tools/osinfo-db-import.c:432
 #: tools/osinfo-db-validate.c:233
 msgid "Verbose progress information"
-msgstr "자세한 진행 정보"
+msgstr "자세한 진행 정보 출력"
 
 #: tools/osinfo-db-export.c:456
 msgid "Export the osinfo-db user directory"
-msgstr "osinfo-db 사용자 디렉토리 내보내기"
+msgstr "osinfo-db 사용자 디렉터리를 내보냅니다"
 
 #: tools/osinfo-db-export.c:458
 msgid "Export the osinfo-db local directory"
-msgstr "osinfo-db 로컬 디렉토리 내보내기"
+msgstr "osinfo-db 로컬 디렉터리를 내보냅니다"
 
 #: tools/osinfo-db-export.c:460
 msgid "Export the osinfo-db system directory"
-msgstr "osinfo-db 시스템 디렉토리 내보내기"
+msgstr "osinfo-db 시스템 디렉터리를 내보냅니다"
 
 #: tools/osinfo-db-export.c:462
 msgid "Export an osinfo-db custom directory"
-msgstr "osinfo-db 사용자 지정 디렉토리 내보내기"
+msgstr "osinfo-db 개별 지정 디렉터리를 내보냅니다"
 
 #: tools/osinfo-db-export.c:464
 msgid "Set version number of archive"
@@ -47,11 +47,11 @@ msgstr "저장소 버전을 설정합니다"
 
 #: tools/osinfo-db-export.c:466
 msgid "Export the osinfo-db root directory"
-msgstr "osinfo-db 루트 디렉토리 내보내기"
+msgstr "osinfo-db 루트 디렉터리를 내보냅니다"
 
 #: tools/osinfo-db-export.c:468
 msgid "License file"
-msgstr "저작권 파일"
+msgstr "라이선스 파일"
 
 #: tools/osinfo-db-export.c:478
 msgid "- Export database archive "
@@ -64,7 +64,7 @@ msgid ""
 "%s: error while parsing commandline options: %s\n"
 "\n"
 msgstr ""
-"%s: 명령행 선택을 구문 분석 할 때에 오류: %s\n"
+"%s: 명령행 옵션 분석 중 오류: %s\n"
 "\n"
 
 #: tools/osinfo-db-export.c:490
@@ -80,23 +80,23 @@ msgstr "--user, --local, --system & --dir 중 하나만 사용할 수 있습니�
 
 #: tools/osinfo-db-import.c:434
 msgid "Import into user directory"
-msgstr "사용자 디렉토리로 가져옵니다"
+msgstr "사용자 디렉터리로 가져옵니다"
 
 #: tools/osinfo-db-import.c:436
 msgid "Import into local directory"
-msgstr "로컬 디렉토리로 가져옵니다"
+msgstr "로컬 디렉터리로 가져옵니다"
 
 #: tools/osinfo-db-import.c:438
 msgid "Import into system directory"
-msgstr "시스템 디렉토리로 가져옵니다"
+msgstr "시스템 디렉터리로 가져옵니다"
 
 #: tools/osinfo-db-import.c:440
 msgid "Import into custom directory"
-msgstr "사용자 정의 디렉토리로 가져옵니다"
+msgstr "개별 지정 디렉터리로 가져옵니다"
 
 #: tools/osinfo-db-import.c:442 tools/osinfo-db-validate.c:243
 msgid "Installation root directory"
-msgstr "루트 디렉토리 설치"
+msgstr "설치 루트 디렉터리"
 
 #: tools/osinfo-db-import.c:444
 msgid "Import the latest osinfo-db from osinfo-db's website"
@@ -109,27 +109,27 @@ msgstr "데이타베이스 저장소를 가져옵니다 "
 #: tools/osinfo-db-import.c:466
 #, c-format
 msgid "%s: expected path to one archive file to import\n"
-msgstr "%s: 가져오는 하나의 저장소 파일에 예상된 경로\n"
+msgstr "%s: 가져올 아카이브 파일 하나의 경로가 필요합니다\n"
 
 #: tools/osinfo-db-path.c:45
 msgid "Report the user directory"
-msgstr "사용자 디렉토리를 보고합니다"
+msgstr "사용자 디렉터리를 보고합니다"
 
 #: tools/osinfo-db-path.c:47
 msgid "Report the local directory"
-msgstr "로컬 디렉토리를 보고합니다"
+msgstr "로컬 디렉터리를 보고합니다"
 
 #: tools/osinfo-db-path.c:49
 msgid "Report the system directory"
-msgstr "시스템 디렉토리를 보고합니다"
+msgstr "시스템 디렉터리를 보고합니다"
 
 #: tools/osinfo-db-path.c:51
 msgid "Report the custom directory"
-msgstr "사용자 정의 디렉토리를 보고합니다"
+msgstr "개별 정의 디렉터리를 보고합니다"
 
 #: tools/osinfo-db-path.c:53
 msgid "Report against root directory"
-msgstr "루트 디렉토리를 보고합니다"
+msgstr "루트 디렉터리를 보고합니다"
 
 #: tools/osinfo-db-path.c:63
 msgid "- Report database locations "
@@ -138,7 +138,7 @@ msgstr "데이타베이스 위치를 보고합니다 "
 #: tools/osinfo-db-path.c:75
 #, c-format
 msgid "%s: unexpected extra arguments\n"
-msgstr "%s: 예상 할 수 없는 추가 인수\n"
+msgstr "%s: 예기치 못한 추가 인자\n"
 
 #: tools/osinfo-db-util.c:150
 #, c-format
@@ -148,7 +148,7 @@ msgstr "임의의 데이터베이스 위치에서 '%s'을(를) 찾을 수 없습
 #: tools/osinfo-db-validate.c:43
 #, c-format
 msgid "Schema validity error %s"
-msgstr "스키마 유효성 오류 %s"
+msgstr "스키마 검증 오류 %s"
 
 #: tools/osinfo-db-validate.c:59
 msgid "Unable to create libxml parser"
@@ -162,12 +162,12 @@ msgstr "'%s' XML 문서를 해석할 수 없습니다"
 #: tools/osinfo-db-validate.c:96
 #, c-format
 msgid "Unable to validate XML document '%s'"
-msgstr "XML 문서 '%s'를 유효성 검사를 할 수 없습니다"
+msgstr "'%s' XML 문서를 검증할 수 없습니다"
 
 #: tools/osinfo-db-validate.c:139
 #, c-format
 msgid "Processing '%s'...\n"
-msgstr "처리 '%s'...\n"
+msgstr "'%s' 처리중...\n"
 
 #: tools/osinfo-db-validate.c:182
 #, c-format
@@ -177,37 +177,37 @@ msgstr "%s의 RNG 해석기 객체를 생성 할 수 없습니다"
 #: tools/osinfo-db-validate.c:190
 #, c-format
 msgid "Unable to parse RNG %s"
-msgstr "RNG %s을(를) 해석 할 수 없습니다"
+msgstr "%s RNG를 해석 할 수 없습니다"
 
 #: tools/osinfo-db-validate.c:198
 #, c-format
 msgid "Unable to create RNG validation context %s"
-msgstr "%s RNG 유효 검사 컨텍스트를 만들 수 없습니다"
+msgstr "%s RNG 검증 컨텍스트를 만들 수 없습니다"
 
 #: tools/osinfo-db-validate.c:235
 msgid "Validate files in user directory"
-msgstr "사용자 디렉토리의 파일 유효성을 검사합니다"
+msgstr "사용자 디렉터리의 파일을 검증합니다"
 
 #: tools/osinfo-db-validate.c:237
 msgid "Validate files in local directory"
-msgstr "로컬 디렉토리의 파일 유효성을 검사합니다"
+msgstr "로컬 디렉터리의 파일을 검증합니다"
 
 #: tools/osinfo-db-validate.c:239
 msgid "Validate files in system directory"
-msgstr "시스템 디렉토리의 파일 유효성을 검사합니다"
+msgstr "시스템 디렉터리의 파일을 검증합니다"
 
 #: tools/osinfo-db-validate.c:241
 msgid "Validate files in custom directory"
-msgstr "사용자 정의 디렉토리의 파일 유효성을 검사합니다"
+msgstr "개별 정의 디렉터리의 파일을 검증합니다"
 
 #: tools/osinfo-db-validate.c:252
 msgid "- Validate XML documents "
-msgstr "- XML 문서 유효성을 검사합니다 "
+msgstr "- XML 문서를 검증합니다 "
 
 #: tools/osinfo-db-validate.c:257
 #, c-format
 msgid "Error while parsing commandline options: %s\n"
-msgstr "명령행 옵션을 해석하는 중 오류: %s\n"
+msgstr "명령행 옵션을 해석 중 오류: %s\n"
 
 #: tools/osinfo-db-validate.c:272
 #, c-format
