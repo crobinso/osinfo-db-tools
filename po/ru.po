@@ -1,19 +1,23 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the osinfo-db-tools package.
-# Alexey Shabalin <a.shabalin@gmail.com>, 2020.
+# Alexey Shabalin <a.shabalin@gmail.com>, 2020, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: osinfo-db-tools\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-23 11:40+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2023-04-02 01:20+0000\n"
+"Last-Translator: Alexey Shabalin <a.shabalin@gmail.com>\n"
+"Language-Team: Russian <https://translate.fedoraproject.org/projects/"
+"libosinfo/osinfo-db-tools/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.15.2\n"
 
 #: tools/osinfo-db-export.c:454 tools/osinfo-db-import.c:432
 #: tools/osinfo-db-validate.c:233
@@ -46,7 +50,7 @@ msgstr ""
 
 #: tools/osinfo-db-export.c:468
 msgid "License file"
-msgstr ""
+msgstr "Файл лицензии"
 
 #: tools/osinfo-db-export.c:478
 msgid "- Export database archive "
@@ -73,19 +77,19 @@ msgstr ""
 
 #: tools/osinfo-db-import.c:434
 msgid "Import into user directory"
-msgstr ""
+msgstr "Импортировать в каталог пользователя"
 
 #: tools/osinfo-db-import.c:436
 msgid "Import into local directory"
-msgstr ""
+msgstr "Импортировать в локальный каталог"
 
 #: tools/osinfo-db-import.c:438
 msgid "Import into system directory"
-msgstr ""
+msgstr "Импортировать в системный каталог"
 
 #: tools/osinfo-db-import.c:440
 msgid "Import into custom directory"
-msgstr ""
+msgstr "Импортировать в указанный каталог"
 
 #: tools/osinfo-db-import.c:442 tools/osinfo-db-validate.c:243
 msgid "Installation root directory"
@@ -145,7 +149,7 @@ msgstr ""
 
 #: tools/osinfo-db-validate.c:59
 msgid "Unable to create libxml parser"
-msgstr ""
+msgstr "Не удалось создать парсер libxml"
 
 #: tools/osinfo-db-validate.c:67
 #, c-format
