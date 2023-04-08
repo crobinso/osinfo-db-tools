@@ -1,20 +1,21 @@
 # Zdenek <chmelarz@gmail.com>, 2016. #zanata
 # Zdenek <chmelarz@gmail.com>, 2018. #zanata
-# Pavel Borecki <pavel.borecki@gmail.com>, 2019. #zanata
+# Pavel Borecki <pavel.borecki@gmail.com>, 2019. #zanata, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: osinfo-db-tools\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-23 11:40+0100\n"
-"PO-Revision-Date: 2019-04-22 07:16+0000\n"
+"PO-Revision-Date: 2023-04-02 01:20+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
-"Language-Team: Czech\n"
+"Language-Team: Czech <https://translate.fedoraproject.org/projects/libosinfo/"
+"osinfo-db-tools/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
-"X-Generator: Zanata 4.6.2\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 4.15.2\n"
 
 #: tools/osinfo-db-export.c:454 tools/osinfo-db-import.c:432
 #: tools/osinfo-db-validate.c:233
@@ -23,19 +24,19 @@ msgstr "Podrobnější výstup průběhu"
 
 #: tools/osinfo-db-export.c:456
 msgid "Export the osinfo-db user directory"
-msgstr ""
+msgstr "Exportovat složku uživatele osinfo-db"
 
 #: tools/osinfo-db-export.c:458
 msgid "Export the osinfo-db local directory"
-msgstr ""
+msgstr "Exportovat lokální složku osinfo-db"
 
 #: tools/osinfo-db-export.c:460
 msgid "Export the osinfo-db system directory"
-msgstr ""
+msgstr "Exportovat systémovou složku osinfo-db"
 
 #: tools/osinfo-db-export.c:462
 msgid "Export an osinfo-db custom directory"
-msgstr ""
+msgstr "Exportovat uživatelsky určenou složku osinfo-db"
 
 #: tools/osinfo-db-export.c:464
 msgid "Set version number of archive"
@@ -43,7 +44,7 @@ msgstr "Nastavit číslo verze archivu"
 
 #: tools/osinfo-db-export.c:466
 msgid "Export the osinfo-db root directory"
-msgstr ""
+msgstr "Exportovat root složku osinfo-db"
 
 #: tools/osinfo-db-export.c:468
 msgid "License file"
@@ -51,7 +52,7 @@ msgstr "Licenční soubor"
 
 #: tools/osinfo-db-export.c:478
 msgid "- Export database archive "
-msgstr "- Export databázového archivu"
+msgstr "- Export databázového archivu "
 
 #: tools/osinfo-db-export.c:483 tools/osinfo-db-import.c:459
 #: tools/osinfo-db-path.c:68
@@ -60,14 +61,15 @@ msgid ""
 "%s: error while parsing commandline options: %s\n"
 "\n"
 msgstr ""
-"%s: Chyba při parsování voleb příkazové řádky: %s\n"
+"%s: chyba při zpracovávání voleb příkazového řádku: %s\n"
 "\n"
 
 #: tools/osinfo-db-export.c:490
 #, c-format
 msgid "%s: expected path to one archive file to export\n"
 msgstr ""
-"%s: očekávaná cesta k jednomu archivnímu souboru, který chcete exportovat\n"
+"%s: očekáván popis umístění jednoho archivního souboru, který chcete "
+"exportovat\n"
 
 #: tools/osinfo-db-export.c:504 tools/osinfo-db-import.c:480
 #: tools/osinfo-db-path.c:89
@@ -77,57 +79,58 @@ msgstr "Je možné použít pouze jedno z --user, --local, --system --dir\n"
 
 #: tools/osinfo-db-import.c:434
 msgid "Import into user directory"
-msgstr "Importovat do uživatelského adresáře"
+msgstr "Naimportovat do uživatelské složky"
 
 #: tools/osinfo-db-import.c:436
 msgid "Import into local directory"
-msgstr "Importovat do místního adresáře"
+msgstr "Importovat do místní složky"
 
 #: tools/osinfo-db-import.c:438
 msgid "Import into system directory"
-msgstr "Importovat do systémového adresáře"
+msgstr "Importovat do systémové složky"
 
 #: tools/osinfo-db-import.c:440
 msgid "Import into custom directory"
-msgstr "Importovat do vlastního adresáře"
+msgstr "Importovat do uživatelsky určené složky"
 
 #: tools/osinfo-db-import.c:442 tools/osinfo-db-validate.c:243
 msgid "Installation root directory"
-msgstr "Instalační kořenový adresář"
+msgstr "Instalační kořenová složka"
 
 #: tools/osinfo-db-import.c:444
 msgid "Import the latest osinfo-db from osinfo-db's website"
-msgstr "Importovat nejnovější osinfo-db z webu projektu"
+msgstr "Naimportovat nejnovější osinfo-db z webu projektu"
 
 #: tools/osinfo-db-import.c:454
 msgid "- Import database archive "
-msgstr "- Import databázového archivu"
+msgstr "- Import databázového archivu "
 
 #: tools/osinfo-db-import.c:466
 #, c-format
 msgid "%s: expected path to one archive file to import\n"
 msgstr ""
-"%s: očekávaná cesta k jednomu archivnímu souboru, který chcete importovat\n"
+"%s: očekáván popis umístění jednoho archivního souboru, který chcete "
+"naimportovat\n"
 
 #: tools/osinfo-db-path.c:45
 msgid "Report the user directory"
-msgstr "Nahlásit uživatelský adresář"
+msgstr "Nahlásit uživatelskou složku"
 
 #: tools/osinfo-db-path.c:47
 msgid "Report the local directory"
-msgstr "Nahlásit místní adresář"
+msgstr "Nahlásit místní složku"
 
 #: tools/osinfo-db-path.c:49
 msgid "Report the system directory"
-msgstr "Nahlásit systémový adresář"
+msgstr "Nahlásit systémovou složku"
 
 #: tools/osinfo-db-path.c:51
 msgid "Report the custom directory"
-msgstr "Nahlásit vlastní adresář"
+msgstr "Nahlásit uživatelsky určenou složku"
 
 #: tools/osinfo-db-path.c:53
 msgid "Report against root directory"
-msgstr "Nahlásit proti kořenovému adresáři"
+msgstr "Nahlásit proti kořenové složce"
 
 #: tools/osinfo-db-path.c:63
 msgid "- Report database locations "
@@ -141,7 +144,7 @@ msgstr "%s: neočekávané další argumenty\n"
 #: tools/osinfo-db-util.c:150
 #, c-format
 msgid "Unable to locate '%s' in any database location"
-msgstr "Nelze nalézt '%s' v žádném umístění databáze"
+msgstr "„%s“ se nedaří nalézt v žádném umístění databáze"
 
 #: tools/osinfo-db-validate.c:43
 #, c-format
@@ -155,57 +158,57 @@ msgstr "Není možné vytvořit parser libxml"
 #: tools/osinfo-db-validate.c:67
 #, c-format
 msgid "Unable to parse XML document '%s'"
-msgstr "Nelze parsovat XML dokument '%s'"
+msgstr "Nedaří se zpracovat XML dokument „%s“"
 
 #: tools/osinfo-db-validate.c:96
 #, c-format
 msgid "Unable to validate XML document '%s'"
-msgstr "Nelze ověřit XML dokument '%s'"
+msgstr "Nedaří se ověřit XML dokument „%s“"
 
 #: tools/osinfo-db-validate.c:139
 #, c-format
 msgid "Processing '%s'...\n"
-msgstr "Zpracování '%s'...\n"
+msgstr "Zpracování „%s“…\n"
 
 #: tools/osinfo-db-validate.c:182
 #, c-format
 msgid "Unable to create RNG parser for %s"
-msgstr "Nelze vytvořit RNG parser pro %s"
+msgstr "Nedaří se vytvořit RNG parser pro %s"
 
 #: tools/osinfo-db-validate.c:190
 #, c-format
 msgid "Unable to parse RNG %s"
-msgstr "Nelze parsovat RNG %s"
+msgstr "Nedaří se zpracovat RNG %s"
 
 #: tools/osinfo-db-validate.c:198
 #, c-format
 msgid "Unable to create RNG validation context %s"
-msgstr "Nelze vytvořit ověření kontextu RNG %s"
+msgstr "Nedaří se vytvořit kontextu ověření RNG %s"
 
 #: tools/osinfo-db-validate.c:235
 msgid "Validate files in user directory"
-msgstr "Ověřit soubory v uživatelském adresáři"
+msgstr "Ověřit soubory v uživatelské složce"
 
 #: tools/osinfo-db-validate.c:237
 msgid "Validate files in local directory"
-msgstr "Ověřit soubory v místním adresáři"
+msgstr "Ověřit soubory v místní složce"
 
 #: tools/osinfo-db-validate.c:239
 msgid "Validate files in system directory"
-msgstr "Ověřit soubory v systémovém adresáři"
+msgstr "Ověřit soubory v systémové složce"
 
 #: tools/osinfo-db-validate.c:241
 msgid "Validate files in custom directory"
-msgstr "Ověřit soubory ve vlastním adresáři"
+msgstr "Ověřit soubory v uživatelsky určené složce"
 
 #: tools/osinfo-db-validate.c:252
 msgid "- Validate XML documents "
-msgstr "- Ověřit XML dokumenty"
+msgstr "- Ověřit XML dokumenty "
 
 #: tools/osinfo-db-validate.c:257
 #, c-format
 msgid "Error while parsing commandline options: %s\n"
-msgstr "Chyba při parsování voleb příkazové řádky: %s\n"
+msgstr "Chyba při zpracovávání voleb příkazového řádku: %s\n"
 
 #: tools/osinfo-db-validate.c:272
 #, c-format
