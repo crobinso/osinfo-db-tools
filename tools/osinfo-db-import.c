@@ -232,8 +232,9 @@ static gboolean osinfo_db_get_installed_version(GFile *dir,
     return TRUE;
 }
 
-static gboolean osinfo_db_get_latest_info(gchar **version,
-                                          gchar **url)
+static gboolean osinfo_db_get_info(const gchar *from_url,
+                                   gchar **version,
+                                   gchar **url)
 {
     g_autoptr(SoupMessage) message = NULL;
     g_autoptr(GInputStream) stream = NULL;
@@ -249,7 +250,7 @@ static gboolean osinfo_db_get_latest_info(gchar **version,
     if (session == NULL)
         return FALSE;
 
-    message = soup_message_new("GET", LATEST_URI);
+    message = soup_message_new("GET", from_url);
     if (message == NULL)
         return FALSE;
 
@@ -257,7 +258,7 @@ static gboolean osinfo_db_get_latest_info(gchar **version,
     if (stream == NULL ||
         !SOUP_STATUS_IS_SUCCESSFUL(soup_message_get_status(message))) {
         g_printerr("Could not access %s: %s\n",
-                   LATEST_URI,
+                   from_url,
                    err != NULL ? err->message :
                                  soup_status_get_phrase(soup_message_get_status(message)));
         return FALSE;
@@ -268,7 +269,7 @@ static gboolean osinfo_db_get_latest_info(gchar **version,
 
     if (!g_input_stream_read_all(stream, content, content_size, NULL, NULL, &err)) {
         g_printerr("Could not load the content of %s: %s\n",
-                   LATEST_URI, err->message);
+                   from_url, err->message);
         return FALSE;
     }
 
@@ -280,7 +281,7 @@ static gboolean osinfo_db_get_latest_info(gchar **version,
 
     if (!json_parser_load_from_data(parser, content, -1, &err)) {
         g_printerr("Failed to parse the content of %s: %s\n",
-                   LATEST_URI, err->message);
+                   from_url, err->message);
         return FALSE;
     }
 
@@ -293,14 +294,14 @@ static gboolean osinfo_db_get_latest_info(gchar **version,
     if (!json_reader_read_member(reader, "release")) {
         const GError *error = json_reader_get_error(reader);
         g_printerr("Failed to read the \"release\" member of the %s file: %s\n",
-                   LATEST_URI, error->message);
+                   from_url, error->message);
         return FALSE;
     }
 
     if (!json_reader_read_member(reader, "version")) {
         const GError *error = json_reader_get_error(reader);
         g_printerr("Failed to read the \"version\" member of the %s file: %s\n",
-                   LATEST_URI, error->message);
+                   from_url, error->message);
         return FALSE;
     }
 
@@ -313,7 +314,7 @@ static gboolean osinfo_db_get_latest_info(gchar **version,
     if (!json_reader_read_member(reader, "archive")) {
         const GError *error = json_reader_get_error(reader);
         g_printerr("Failed to read the \"archive\" member of the %s file: %s\n",
-                   LATEST_URI, error->message);
+                   from_url, error->message);
         return FALSE;
     }
 
@@ -325,6 +326,12 @@ static gboolean osinfo_db_get_latest_info(gchar **version,
     json_reader_end_member(reader); /* "release" */
 
     return TRUE;
+}
+
+static gboolean osinfo_db_get_latest_info(gchar **version,
+                                          gchar **url)
+{
+    return osinfo_db_get_info(LATEST_URI, version, url);
 }
 
 static gboolean requires_soup(const gchar *source)
