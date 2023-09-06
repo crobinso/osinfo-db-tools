@@ -625,6 +625,16 @@ Downloads the latest osinfo-db release from libosinfo's official
 releases website and installs it in the desired location.
 The latest osinfo-db release is only downloaded and installed
 when it's newer than the one installed in the desired location.
+Note that this option is mutually exclusive with '--nightly'.
+
+=item B<--nightly>
+
+Downloads the nightly (unreleased) osinfo-db build from libosinfo's
+website and installs it in the desired location.
+Unlike with '--latest' with this option the nightly archive always
+downloaded and installed regardless of the version installed in the
+desired location. Note that this option is mutually exclusive with
+'--latest'.
 
 =item B<-v>, B<--verbose>
 
