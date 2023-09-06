@@ -32,6 +32,7 @@
 #include "osinfo-db-util.h"
 
 #define LATEST_URI "https://db.libosinfo.org/latest.json"
+#define NIGHTLY_URI "https://db.libosinfo.org/nightly.json"
 #define VERSION_FILE "VERSION"
 
 #if SOUP_MAJOR_VERSION < 3
@@ -336,6 +337,11 @@ static gboolean osinfo_db_get_latest_info(gchar **version,
     return osinfo_db_get_info(LATEST_URI, version, url);
 }
 
+static gboolean osinfo_db_get_nightly_info(gchar **url)
+{
+    return osinfo_db_get_info(NIGHTLY_URI, NULL, url);
+}
+
 static gboolean requires_soup(const gchar *source)
 {
     const gchar *prefixes[] = { "http://", "https://", NULL };
@@ -434,6 +440,7 @@ gint main(gint argc, gchar **argv)
     gboolean local = FALSE;
     gboolean system = FALSE;
     gboolean latest = FALSE;
+    gboolean nightly = FALSE;
     g_autofree gchar *installed_version = NULL;
     g_autofree gchar *latest_version = NULL;
     g_autofree gchar *archive_url = NULL;
@@ -456,6 +463,8 @@ gint main(gint argc, gchar **argv)
         N_("Installation root directory"), NULL, },
       { "latest", 0, 0, G_OPTION_ARG_NONE, (void *)&latest,
         N_("Import the latest osinfo-db from osinfo-db's website"), NULL, },
+      { "nightly", 0, 0, G_OPTION_ARG_NONE, (void *)&nightly,
+        N_("Import the latest nightly build of unreleased osinfo-db from osinfo-db's website"), NULL, },
       { NULL, 0, 0, 0, NULL, NULL, NULL },
     };
     argv0 = argv[0];
@@ -482,6 +491,13 @@ gint main(gint argc, gchar **argv)
         return EXIT_FAILURE;
     }
 
+    /* check mutual exclusivity of --latest and --nightly */
+    if (latest && nightly)
+    {
+         g_printerr(_("--latest and --nightly are mutually exclusive\n"));
+         return EXIT_FAILURE;
+    }
+
     if (local)
         locs++;
     if (system)
@@ -498,7 +514,12 @@ gint main(gint argc, gchar **argv)
     archive = argc == 2 ? argv[1] : NULL;
     dir = osinfo_db_get_path(root, user, local, system, custom);
 
-    if (latest) {
+    if (nightly) {
+        if (!osinfo_db_get_nightly_info(&archive_url))
+            return EXIT_FAILURE;
+
+        archive = archive_url;
+    } else if (latest) {
         if (!osinfo_db_get_installed_version(dir, &installed_version))
             return EXIT_FAILURE;
 
