@@ -298,18 +298,20 @@ static gboolean osinfo_db_get_info(const gchar *from_url,
         return FALSE;
     }
 
-    if (!json_reader_read_member(reader, "version")) {
+    if (version && !json_reader_read_member(reader, "version")) {
         const GError *error = json_reader_get_error(reader);
         g_printerr("Failed to read the \"version\" member of the %s file: %s\n",
                    from_url, error->message);
         return FALSE;
     }
 
-    *version = g_strdup(json_reader_get_string_value(reader));
-    if (*version == NULL)
-        return FALSE;
+    if (version) {
+        *version = g_strdup(json_reader_get_string_value(reader));
+        if (*version == NULL)
+            return FALSE;
 
-    json_reader_end_member(reader); /* "version" */
+        json_reader_end_member(reader); /* "version" */
+    }
 
     if (!json_reader_read_member(reader, "archive")) {
         const GError *error = json_reader_get_error(reader);
