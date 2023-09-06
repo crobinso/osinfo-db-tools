@@ -436,7 +436,7 @@ gint main(gint argc, gchar **argv)
     gboolean latest = FALSE;
     g_autofree gchar *installed_version = NULL;
     g_autofree gchar *latest_version = NULL;
-    g_autofree gchar *latest_url = NULL;
+    g_autofree gchar *archive_url = NULL;
     const gchar *root = "";
     const gchar *archive = NULL;
     const gchar *custom = NULL;
@@ -502,14 +502,14 @@ gint main(gint argc, gchar **argv)
         if (!osinfo_db_get_installed_version(dir, &installed_version))
             return EXIT_FAILURE;
 
-        if (!osinfo_db_get_latest_info(&latest_version, &latest_url))
+        if (!osinfo_db_get_latest_info(&latest_version, &archive_url))
             return EXIT_FAILURE;
 
         if (g_strcmp0(latest_version, installed_version) <= 0) {
             return EXIT_SUCCESS;
         }
 
-        archive = latest_url;
+        archive = archive_url;
     }
 
     if (osinfo_db_import_extract(dir, archive, verbose) < 0)
