@@ -142,5 +142,6 @@ class ToolsArgs(EnumMeta):
     # --license is only valid for osinfo-db-export
     LICENSE = "--license"
     VERSION = "--version"
-    # --latest is only valid for osinfo-db-import
+    # --latest && --nightly are only valid for osinfo-db-import
     LATEST = "--latest"
+    NIGHTLY = "--nightly"

@@ -235,20 +235,30 @@ def test_osinfo_db_import_url():
     os.unlink(test_file)
 
 
+@pytest.mark.parametrize(
+    "import_net_opt, import_url",
+    [
+        pytest.param(util.ToolsArgs.LATEST,
+                     "https://db.libosinfo.org/latest.json",
+                     id="latest"),
+        pytest.param(util.ToolsArgs.NIGHTLY,
+                     "https://db.libosinfo.org/nightly.json",
+                     id="nightly"),
+    ]
+)
 @pytest.mark.skipif(os.environ.get("OSINFO_DB_TOOLS_NETWORK_TESTS") is None,
                     reason="Network related tests are not enabled")
-def test_osinfo_db_import_latest():
+def test_osinfo_db_import_from_net(import_net_opt, import_url):
     """
-    Test osinfo-dbimport --latest
+    Test osinfo-db-import --latest && --nightly
     """
     tempdir = util.tempdir()
     os.environ["OSINFO_USER_DIR"] = tempdir
-    cmd = [util.Tools.db_import, util.ToolsArgs.LATEST]
+    cmd = [util.Tools.db_import, import_net_opt]
     returncode = util.get_returncode(cmd)
     assert returncode == 0
 
-    latest_url = "https://db.libosinfo.org/latest.json"
-    req = requests.get(latest_url)
+    req = requests.get(import_url)
     data = json.loads(req.content)
     url = data["release"]["archive"]
 
