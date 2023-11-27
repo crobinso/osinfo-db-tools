@@ -20,7 +20,9 @@
  *   Daniel P. Berrange <berrange@redhat.com>
  */
 
+#include <libxml/parser.h>
 #include <libxml/relaxng.h>
+#include <libxml/tree.h>
 #include <locale.h>
 #include <glib/gi18n.h>
 
