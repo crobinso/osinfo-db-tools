@@ -35,7 +35,7 @@ static void validate_generic_error_nop(void *userData G_GNUC_UNUSED,
 }
 
 static void validate_structured_error_nop(void *userData G_GNUC_UNUSED,
-                                          xmlErrorPtr error G_GNUC_UNUSED)
+                                          const xmlError *error)
 {
     if (error->file)
         g_printerr("%s:%d %s", error->file, error->line, error->message);
@@ -173,7 +173,8 @@ static gboolean validate_files(GFile *schema, gsize nfiles, GFile **files, GErro
     g_autofree gchar *schemapath = NULL;
 
     xmlSetGenericErrorFunc(NULL, validate_generic_error_nop);
-    xmlSetStructuredErrorFunc(NULL, validate_structured_error_nop);
+    /* Drop this typecast when >=libxml2-2.12.0 is required */
+    xmlSetStructuredErrorFunc(NULL, (xmlStructuredErrorFunc) validate_structured_error_nop);
 
     schemapath = g_file_get_path(schema);
     rngParser = xmlRelaxNGNewParserCtxt(schemapath);
