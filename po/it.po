@@ -8,9 +8,8 @@ msgstr ""
 "Project-Id-Version: osinfo-db-tools\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-23 11:40+0100\n"
-"PO-Revision-Date: 2024-02-18 08:44+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2024-02-18 09:01+0000\n"
+"Last-Translator: Pino Toscano <toscano.pino@tiscali.it>\n"
 "Language-Team: Italian <https://translate.fedoraproject.org/projects/"
 "libosinfo/osinfo-db-tools/it/>\n"
 "Language: it\n"
@@ -23,7 +22,7 @@ msgstr ""
 #: tools/osinfo-db-export.c:454 tools/osinfo-db-import.c:432
 #: tools/osinfo-db-validate.c:233
 msgid "Verbose progress information"
-msgstr ""
+msgstr "Informazioni estese sull'avanzamento"
 
 #: tools/osinfo-db-export.c:456
 msgid "Export the osinfo-db user directory"
@@ -55,7 +54,7 @@ msgstr "File di licenza"
 
 #: tools/osinfo-db-export.c:478
 msgid "- Export database archive "
-msgstr ""
+msgstr "- Esporta un archivio del database "
 
 #: tools/osinfo-db-export.c:483 tools/osinfo-db-import.c:459
 #: tools/osinfo-db-path.c:68
@@ -100,11 +99,11 @@ msgstr "Importa nella directory principale"
 
 #: tools/osinfo-db-import.c:444
 msgid "Import the latest osinfo-db from osinfo-db's website"
-msgstr ""
+msgstr "Importa il più recente osinfo-db dal sito web di osinfo-db"
 
 #: tools/osinfo-db-import.c:454
 msgid "- Import database archive "
-msgstr ""
+msgstr "- Importa un archivio del database "
 
 #: tools/osinfo-db-import.c:466
 #, c-format
@@ -143,7 +142,7 @@ msgstr "%s: argomenti aggiuntivi non attesi\n"
 #: tools/osinfo-db-util.c:150
 #, c-format
 msgid "Unable to locate '%s' in any database location"
-msgstr ""
+msgstr "Impossibile trovare \"%s\" nel database"
 
 #: tools/osinfo-db-validate.c:43
 #, c-format
@@ -167,7 +166,7 @@ msgstr "Impossibile validare il documento XML \"%s\""
 #: tools/osinfo-db-validate.c:139
 #, c-format
 msgid "Processing '%s'...\n"
-msgstr ""
+msgstr "Analisi di \"%s\"...\n"
 
 #: tools/osinfo-db-validate.c:182
 #, c-format
@@ -177,37 +176,37 @@ msgstr "Impossibile creare un analizzatore RNG per %s"
 #: tools/osinfo-db-validate.c:190
 #, c-format
 msgid "Unable to parse RNG %s"
-msgstr ""
+msgstr "Impossibile analizzare RNG: %s"
 
 #: tools/osinfo-db-validate.c:198
 #, c-format
 msgid "Unable to create RNG validation context %s"
-msgstr "Impossibile creare il contesto di validazione RNG %s"
+msgstr "Impossibile creare un contesto di validazione RNG: %s"
 
 #: tools/osinfo-db-validate.c:235
 msgid "Validate files in user directory"
-msgstr ""
+msgstr "Valida file nella directory dell'utente"
 
 #: tools/osinfo-db-validate.c:237
 msgid "Validate files in local directory"
-msgstr ""
+msgstr "Valida file nella directory locale"
 
 #: tools/osinfo-db-validate.c:239
 msgid "Validate files in system directory"
-msgstr ""
+msgstr "Valida file nella directory di sistema"
 
 #: tools/osinfo-db-validate.c:241
 msgid "Validate files in custom directory"
-msgstr ""
+msgstr "Valida file nella directory personalizzata"
 
 #: tools/osinfo-db-validate.c:252
 msgid "- Validate XML documents "
-msgstr ""
+msgstr "- Valida documenti XML "
 
 #: tools/osinfo-db-validate.c:257
 #, c-format
 msgid "Error while parsing commandline options: %s\n"
-msgstr ""
+msgstr "Errore durante l'analisi delle opzioni a riga di comando: %s\n"
 
 #: tools/osinfo-db-validate.c:272
 #, c-format
