@@ -2,13 +2,15 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the osinfo-db-tools package.
 # Pino Toscano <toscano.pino@tiscali.it>, 2024.
+# Weblate Translation Memory <noreply-mt-weblate-translation-memory@weblate.org>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: osinfo-db-tools\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-23 11:40+0100\n"
 "PO-Revision-Date: 2024-02-18 08:43+0000\n"
-"Last-Translator: Pino Toscano <toscano.pino@tiscali.it>\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Italian <https://translate.fedoraproject.org/projects/"
 "libosinfo/osinfo-db-tools/it/>\n"
 "Language: it\n"
@@ -170,7 +172,7 @@ msgstr ""
 #: tools/osinfo-db-validate.c:182
 #, c-format
 msgid "Unable to create RNG parser for %s"
-msgstr ""
+msgstr "Impossibile creare un analizzatore RNG per %s"
 
 #: tools/osinfo-db-validate.c:190
 #, c-format
