@@ -27,6 +27,10 @@
 
 # define OSINFO_DB_ERROR osinfo_db_error_quark()
 
+# if !defined _FORTIFY_SOURCE && defined __OPTIMIZE__ && __OPTIMIZE__
+#  define _FORTIFY_SOURCE 2
+# endif
+
 GQuark osinfo_db_error_quark(void);
 GFile *osinfo_db_get_system_path(const gchar *root);
 GFile *osinfo_db_get_local_path(const gchar *root);

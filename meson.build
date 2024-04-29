@@ -201,7 +201,6 @@ osinfo_db_tools_check_cflags = [
   '-Wjump-misses-init',
   '-Wframe-larger-than=4096',
   '-Wno-overlength-strings',
-  '-Wp,-D_FORTIFY_SOURCE=2',
   '--param=ssp-buffer-size=4',
   '-fexceptions',
   '-fasynchronous-unwind-tables',
