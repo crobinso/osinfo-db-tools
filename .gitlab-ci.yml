@@ -42,7 +42,7 @@ stages:
     - *native-environment
     - mkdir build
     - cd build
-    - meson .. . --prefix=$VIRT_PREFIX --werror
+    - meson .. . --prefix=$VIRT_PREFIX --werror || ( cat meson-logs/meson-log.txt; exit 1 )
     - $NINJA install
     - $NINJA test
     - $NINJA dist
@@ -64,7 +64,7 @@ stages:
     - *mingw-environment
     - mkdir build
     - cd build
-    - meson .. . $MESON_OPTS --prefix=$VIRT_PREFIX --werror
+    - meson .. . $MESON_OPTS --prefix=$VIRT_PREFIX --werror || ( cat meson-logs/meson-log.txt; exit 1 )
     - $NINJA
     - $NINJA install
 
