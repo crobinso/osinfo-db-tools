@@ -7,6 +7,7 @@ packages:
   - glib2
   - json-glib
   - libarchive
+  - libc
   - libsoup
   - libxml2
   - libxslt
