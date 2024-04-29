@@ -4,17 +4,17 @@
 #
 # https://gitlab.com/libvirt/libvirt-ci
 
-FROM registry.fedoraproject.org/fedora:35
+FROM registry.fedoraproject.org/fedora:40
 
 RUN dnf install -y nosync && \
-    echo -e '#!/bin/sh\n\
+    printf '#!/bin/sh\n\
 if test -d /usr/lib64\n\
 then\n\
     export LD_PRELOAD=/usr/lib64/nosync/nosync.so\n\
 else\n\
     export LD_PRELOAD=/usr/lib/nosync/nosync.so\n\
 fi\n\
-exec "$@"' > /usr/bin/nosync && \
+exec "$@"\n' > /usr/bin/nosync && \
     chmod +x /usr/bin/nosync && \
     nosync dnf update -y && \
     nosync dnf install -y \
@@ -25,6 +25,7 @@ exec "$@"' > /usr/bin/nosync && \
                gettext \
                git \
                glib2-devel \
+               glibc-devel \
                glibc-langpack-en \
                json-glib-devel \
                libarchive-devel \
@@ -34,6 +35,7 @@ exec "$@"' > /usr/bin/nosync && \
                make \
                meson \
                ninja-build \
+               perl-podlators \
                pkgconfig \
                python3 \
                python3-pytest \
@@ -41,6 +43,7 @@ exec "$@"' > /usr/bin/nosync && \
                rpm-build && \
     nosync dnf autoremove -y && \
     nosync dnf clean all -y && \
+    rm -f /usr/lib*/python3*/EXTERNALLY-MANAGED && \
     rpm -qa | sort > /packages.txt && \
     mkdir -p /usr/libexec/ccache-wrappers && \
     ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/cc && \

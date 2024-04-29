@@ -31,6 +31,8 @@ stages:
   export PKG_CONFIG_PATH="$VIRT_PREFIX/lib/pkgconfig"
 
 .native_build_job:
+  extends:
+    - .gitlab_native_build_job
   cache:
     paths:
       - ccache
@@ -49,17 +51,9 @@ stages:
         rpmbuild --nodeps --define '_without_mingw 1' -ta meson-dist/*.tar.xz;
       fi
 
-.native_build_job_prebuilt_env:
-  extends:
-    - .native_build_job
-    - .gitlab_native_build_job_prebuilt_env
-
-.native_build_job_local_env:
-  extends:
-    - .native_build_job
-    - .gitlab_native_build_job_local_env
-
 .cross_build_job:
+  extends:
+    - .gitlab_cross_build_job
   cache:
     paths:
       - ccache
@@ -73,15 +67,5 @@ stages:
     - meson .. . $MESON_OPTS --prefix=$VIRT_PREFIX --werror
     - $NINJA
     - $NINJA install
-
-.cross_build_job_prebuilt_env:
-  extends:
-    - .cross_build_job
-    - .gitlab_cross_build_job_prebuilt_env
-
-.cross_build_job_local_env:
-  extends:
-    - .cross_build_job
-    - .gitlab_cross_build_job_local_env
 
 include: '/ci/gitlab.yml'

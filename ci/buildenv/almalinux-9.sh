@@ -6,14 +6,17 @@
 
 function install_buildenv() {
     dnf update -y
+    dnf install 'dnf-command(config-manager)' -y
+    dnf config-manager --set-enabled -y crb
+    dnf install -y epel-release
     dnf install -y \
         ca-certificates \
         ccache \
-        cppi \
         gcc \
         gettext \
         git \
         glib2-devel \
+        glibc-devel \
         glibc-langpack-en \
         json-glib-devel \
         libarchive-devel \
@@ -23,11 +26,13 @@ function install_buildenv() {
         make \
         meson \
         ninja-build \
+        perl-podlators \
         pkgconfig \
         python3 \
         python3-pytest \
         python3-requests \
         rpm-build
+    rm -f /usr/lib*/python3*/EXTERNALLY-MANAGED
     rpm -qa | sort > /packages.txt
     mkdir -p /usr/libexec/ccache-wrappers
     ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/cc

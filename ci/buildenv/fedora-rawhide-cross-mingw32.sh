@@ -16,14 +16,17 @@ function install_buildenv() {
         make \
         meson \
         ninja-build \
+        perl-podlators \
         python3 \
         python3-pytest \
         python3-requests \
         rpm-build
+    rm -f /usr/lib*/python3*/EXTERNALLY-MANAGED
     dnf install -y \
         mingw32-gcc \
         mingw32-gettext \
         mingw32-glib2 \
+        mingw32-headers \
         mingw32-json-glib \
         mingw32-libarchive \
         mingw32-libsoup \

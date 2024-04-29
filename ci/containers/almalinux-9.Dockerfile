@@ -4,12 +4,12 @@
 #
 # https://gitlab.com/libvirt/libvirt-ci
 
-function install_buildenv() {
-    dnf distro-sync -y
-    dnf install 'dnf-command(config-manager)' -y
-    dnf config-manager --set-enabled -y crb
-    dnf install -y epel-release
-    dnf install -y epel-next-release
+FROM docker.io/library/almalinux:9
+
+RUN dnf update -y && \
+    dnf install 'dnf-command(config-manager)' -y && \
+    dnf config-manager --set-enabled -y crb && \
+    dnf install -y epel-release && \
     dnf install -y \
         ca-certificates \
         ccache \
@@ -32,16 +32,17 @@ function install_buildenv() {
         python3 \
         python3-pytest \
         python3-requests \
-        rpm-build
-    rm -f /usr/lib*/python3*/EXTERNALLY-MANAGED
-    rpm -qa | sort > /packages.txt
-    mkdir -p /usr/libexec/ccache-wrappers
-    ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/cc
+        rpm-build && \
+    dnf autoremove -y && \
+    dnf clean all -y && \
+    rm -f /usr/lib*/python3*/EXTERNALLY-MANAGED && \
+    rpm -qa | sort > /packages.txt && \
+    mkdir -p /usr/libexec/ccache-wrappers && \
+    ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/cc && \
     ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/gcc
-}
 
-export CCACHE_WRAPPERSDIR="/usr/libexec/ccache-wrappers"
-export LANG="en_US.UTF-8"
-export MAKE="/usr/bin/make"
-export NINJA="/usr/bin/ninja"
-export PYTHON="/usr/bin/python3"
+ENV CCACHE_WRAPPERSDIR "/usr/libexec/ccache-wrappers"
+ENV LANG "en_US.UTF-8"
+ENV MAKE "/usr/bin/make"
+ENV NINJA "/usr/bin/ninja"
+ENV PYTHON "/usr/bin/python3"
