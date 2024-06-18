@@ -7,39 +7,6 @@
 
 # Native build jobs
 
-x86_64-almalinux-8:
-  extends: .native_build_job
-  needs:
-    - job: x86_64-almalinux-8-container
-      optional: true
-  allow_failure: false
-  variables:
-    NAME: almalinux-8
-    TARGET_BASE_IMAGE: docker.io/library/almalinux:8
-
-
-x86_64-almalinux-9:
-  extends: .native_build_job
-  needs:
-    - job: x86_64-almalinux-9-container
-      optional: true
-  allow_failure: false
-  variables:
-    NAME: almalinux-9
-    TARGET_BASE_IMAGE: docker.io/library/almalinux:9
-
-
-x86_64-alpine-318:
-  extends: .native_build_job
-  needs:
-    - job: x86_64-alpine-318-container
-      optional: true
-  allow_failure: false
-  variables:
-    NAME: alpine-318
-    TARGET_BASE_IMAGE: docker.io/library/alpine:3.18
-
-
 x86_64-alpine-319:
   extends: .native_build_job
   needs:
@@ -49,6 +16,17 @@ x86_64-alpine-319:
   variables:
     NAME: alpine-319
     TARGET_BASE_IMAGE: docker.io/library/alpine:3.19
+
+
+x86_64-alpine-320:
+  extends: .native_build_job
+  needs:
+    - job: x86_64-alpine-320-container
+      optional: true
+  allow_failure: false
+  variables:
+    NAME: alpine-320
+    TARGET_BASE_IMAGE: docker.io/library/alpine:3.20
 
 
 x86_64-alpine-edge:

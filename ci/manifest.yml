@@ -6,13 +6,9 @@ gitlab:
   project: osinfo-db-tools
 
 targets:
-  almalinux-8: x86_64
-
-  almalinux-9: x86_64
-
-  alpine-318: x86_64
-
   alpine-319: x86_64
+
+  alpine-320: x86_64
 
   alpine-edge: x86_64
 
