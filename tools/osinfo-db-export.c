@@ -100,7 +100,11 @@ static int osinfo_db_export_create_dir(const gchar *prefix,
     children = g_file_enumerate_children(file,
                                          G_FILE_ATTRIBUTE_STANDARD_NAME
                                          ","
-                                         G_FILE_ATTRIBUTE_STANDARD_SIZE,
+                                         G_FILE_ATTRIBUTE_STANDARD_SIZE
+                                         ","
+                                         G_FILE_ATTRIBUTE_STANDARD_IS_BACKUP
+                                         ","
+                                         G_FILE_ATTRIBUTE_STANDARD_IS_HIDDEN,
                                          G_FILE_QUERY_INFO_NONE,
                                          NULL,
                                          &err);
@@ -157,6 +161,7 @@ static int osinfo_db_export_create_file(const gchar *prefix,
     g_autofree gchar *relpath = NULL;
     g_autofree gchar *entpath = NULL;
     struct archive_entry *entry = NULL;
+    gboolean has_attribute;
 
     abspath = g_file_get_path(file);
     relpath = g_file_get_relative_path(base, file);
@@ -165,7 +170,11 @@ static int osinfo_db_export_create_file(const gchar *prefix,
         info = g_file_query_info(file,
                                  G_FILE_ATTRIBUTE_STANDARD_NAME
                                  ","
-                                 G_FILE_ATTRIBUTE_STANDARD_SIZE,
+                                 G_FILE_ATTRIBUTE_STANDARD_SIZE
+                                 ","
+                                 G_FILE_ATTRIBUTE_STANDARD_IS_BACKUP
+                                 ","
+                                 G_FILE_ATTRIBUTE_STANDARD_IS_HIDDEN,
                                  G_FILE_QUERY_INFO_NONE,
                                  NULL,
                                  &err);
@@ -191,10 +200,18 @@ static int osinfo_db_export_create_file(const gchar *prefix,
     switch (type) {
     case G_FILE_TYPE_REGULAR:
     case G_FILE_TYPE_SYMBOLIC_LINK:
-        if (g_file_info_get_is_backup(info) ||
-            g_file_info_get_is_hidden(info)) {
+        has_attribute = g_file_info_has_attribute(info, G_FILE_ATTRIBUTE_STANDARD_IS_BACKUP);
+        if (has_attribute && g_file_info_get_is_backup(info)) {
+            g_printerr("%s: Ignoring backup file %s\n", argv0, relpath);
             goto cleanup;
         }
+
+        has_attribute = g_file_info_has_attribute(info, G_FILE_ATTRIBUTE_STANDARD_IS_HIDDEN);
+        if (has_attribute && g_file_info_get_is_hidden(info)) {
+            g_printerr("%s: Ignoring hidden file %s\n", argv0, relpath);
+            goto cleanup;
+        }
+
         if (!g_str_has_suffix(entpath, ".rng") &&
             !g_str_has_suffix(entpath, ".xml") &&
             !g_str_has_suffix(entpath, ".ids")) {
