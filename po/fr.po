@@ -6,54 +6,55 @@
 # Jérôme Fenal <jfenal@gmail.com>, 2013
 # Daniel Berrange <dan-zanata@berrange.com>, 2016. #zanata
 # Julien Humbert <julroy67@gmail.com>, 2020.
+# Léane GRASSER <leane.grasser@proton.me>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: osinfo-db-tools\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-23 11:40+0100\n"
-"PO-Revision-Date: 2020-01-19 05:15+0000\n"
-"Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
-"Language-Team: French <https://translate.stg.fedoraproject.org/projects/"
+"PO-Revision-Date: 2024-10-15 08:48+0000\n"
+"Last-Translator: Léane GRASSER <leane.grasser@proton.me>\n"
+"Language-Team: French <https://translate.fedoraproject.org/projects/"
 "libosinfo/osinfo-db-tools/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.10.3\n"
+"X-Generator: Weblate 5.7.2\n"
 
 #: tools/osinfo-db-export.c:454 tools/osinfo-db-import.c:432
 #: tools/osinfo-db-validate.c:233
 msgid "Verbose progress information"
-msgstr "Informations étendues de progression"
+msgstr "Informations détaillées sur la progression"
 
 #: tools/osinfo-db-export.c:456
 msgid "Export the osinfo-db user directory"
-msgstr "Exporter le dossier utilisateur osinfo-db"
+msgstr "Exporter le répertoire utilisateur osinfo-db"
 
 #: tools/osinfo-db-export.c:458
 msgid "Export the osinfo-db local directory"
-msgstr "Exporter le dossier local osinfo-db"
+msgstr "Exporter le répertoire local osinfo-db"
 
 #: tools/osinfo-db-export.c:460
 msgid "Export the osinfo-db system directory"
-msgstr "Exporter le dossier système osinfo-db"
+msgstr "Exporter le répertoire système osinfo-db"
 
 #: tools/osinfo-db-export.c:462
 msgid "Export an osinfo-db custom directory"
-msgstr "Exporter le dossier personnalisé osinfo-db"
+msgstr "Exporter le répertoire personnalisé osinfo-db"
 
 #: tools/osinfo-db-export.c:464
 msgid "Set version number of archive"
-msgstr "Modifier le numéro de version de l’archive"
+msgstr "Définir le numéro de version de l’archive"
 
 #: tools/osinfo-db-export.c:466
 msgid "Export the osinfo-db root directory"
-msgstr "Exporter le dossier racine osinfo-db"
+msgstr "Exporter le répertoire racine osinfo-db"
 
 #: tools/osinfo-db-export.c:468
 msgid "License file"
-msgstr "Fichier licence"
+msgstr "Fichier de licence"
 
 #: tools/osinfo-db-export.c:478
 msgid "- Export database archive "
@@ -66,43 +67,45 @@ msgid ""
 "%s: error while parsing commandline options: %s\n"
 "\n"
 msgstr ""
-"%s : erreur lors de l’analyse des options de la ligne de commande : %s\n"
+"%s : erreur lors de l’analyse des options de la ligne de commande : %s\n"
 "\n"
 
 #: tools/osinfo-db-export.c:490
 #, c-format
 msgid "%s: expected path to one archive file to export\n"
-msgstr "%s : chemin d’accès attendu à un fichier d’archive à exporter\n"
+msgstr "%s : chemin d’accès à un fichier d’archive à exporter attendu\n"
 
 #: tools/osinfo-db-export.c:504 tools/osinfo-db-import.c:480
 #: tools/osinfo-db-path.c:89
 #, c-format
 msgid "Only one of --user, --local, --system & --dir can be used\n"
-msgstr "Seul un --user, --local, --system ou --dir peut être utilisé\n"
+msgstr ""
+"Seule une option parmi --user, --local, --system ou --dir peut être "
+"utilisée\n"
 
 #: tools/osinfo-db-import.c:434
 msgid "Import into user directory"
-msgstr "Importer dans le dossier utilisateur"
+msgstr "Importer dans le répertoire utilisateur"
 
 #: tools/osinfo-db-import.c:436
 msgid "Import into local directory"
-msgstr "Importer dans le dossier local"
+msgstr "Importer dans le répertoire local"
 
 #: tools/osinfo-db-import.c:438
 msgid "Import into system directory"
-msgstr "Importer dans le dossier système"
+msgstr "Importer dans le répertoire système"
 
 #: tools/osinfo-db-import.c:440
 msgid "Import into custom directory"
-msgstr "Importer dans le dossier personnalisé"
+msgstr "Importer dans le répertoire personnalisé"
 
 #: tools/osinfo-db-import.c:442 tools/osinfo-db-validate.c:243
 msgid "Installation root directory"
-msgstr "Importer dans le dossier racine"
+msgstr "Importer dans le répertoire racine"
 
 #: tools/osinfo-db-import.c:444
 msgid "Import the latest osinfo-db from osinfo-db's website"
-msgstr "Importer la dernière version d’osinfo-db depuis le site d’osinfo-db"
+msgstr "Importer la dernière osinfo-db depuis le site d’osinfo-db"
 
 #: tools/osinfo-db-import.c:454
 msgid "- Import database archive "
@@ -111,46 +114,48 @@ msgstr "– Importer l’archive de la base de données "
 #: tools/osinfo-db-import.c:466
 #, c-format
 msgid "%s: expected path to one archive file to import\n"
-msgstr "%s : chemin attendu vers un fichier d’archive à importer\n"
+msgstr "%s : chemin vers un fichier d’archive à importer attendu\n"
 
 #: tools/osinfo-db-path.c:45
 msgid "Report the user directory"
-msgstr "Signaler le dossier utilisateur"
+msgstr "Obtenir l'emplacement du répertoire utilisateur"
 
 #: tools/osinfo-db-path.c:47
 msgid "Report the local directory"
-msgstr "Signaler le dossier local"
+msgstr "Obtenir l'emplacement du répertoire local"
 
 #: tools/osinfo-db-path.c:49
 msgid "Report the system directory"
-msgstr "Signaler le dossier système"
+msgstr "Obtenir l'emplacement du répertoire système"
 
 #: tools/osinfo-db-path.c:51
 msgid "Report the custom directory"
-msgstr "Signaler le dossier personnalisé"
+msgstr "Obtenir l'emplacement du répertoire personnalisé"
 
 #: tools/osinfo-db-path.c:53
 msgid "Report against root directory"
-msgstr "Signaler le dossier racine"
+msgstr "Obtenir l'emplacement à partir du répertoire racine"
 
 #: tools/osinfo-db-path.c:63
 msgid "- Report database locations "
-msgstr "– Signaler l’emplacement de la base de données "
+msgstr "– Obtenir l'emplacement des bases de données "
 
 #: tools/osinfo-db-path.c:75
 #, c-format
 msgid "%s: unexpected extra arguments\n"
-msgstr "%s : arguments supplémentaires inattendus\n"
+msgstr "%s : arguments supplémentaires inattendus\n"
 
 #: tools/osinfo-db-util.c:150
 #, c-format
 msgid "Unable to locate '%s' in any database location"
-msgstr "Impossible de localiser « %s » dans aucune base de données"
+msgstr ""
+"Impossible de localiser « %s » parmi tous les emplacements des bases de "
+"données"
 
 #: tools/osinfo-db-validate.c:43
 #, c-format
 msgid "Schema validity error %s"
-msgstr "Erreur de validation du schéma %s"
+msgstr "Erreur de validité du schéma %s"
 
 #: tools/osinfo-db-validate.c:59
 msgid "Unable to create libxml parser"
@@ -179,7 +184,7 @@ msgstr "Impossible de créer l’analyseur Relax NG pour %s"
 #: tools/osinfo-db-validate.c:190
 #, c-format
 msgid "Unable to parse RNG %s"
-msgstr "Impossible d’analyser « %s » avec Relax NG"
+msgstr "Impossible d’analyser le RNG « %s »"
 
 #: tools/osinfo-db-validate.c:198
 #, c-format
@@ -188,28 +193,28 @@ msgstr "Impossible de créer le contexte de validation pour Relax NG %s"
 
 #: tools/osinfo-db-validate.c:235
 msgid "Validate files in user directory"
-msgstr "Valider les fichiers dans le dossier utilisateur"
+msgstr "Vérifier les fichiers dans le répertoire utilisateur"
 
 #: tools/osinfo-db-validate.c:237
 msgid "Validate files in local directory"
-msgstr "Valider les fichiers dans le dossier local"
+msgstr "Vérifier les fichiers dans le répertoire local"
 
 #: tools/osinfo-db-validate.c:239
 msgid "Validate files in system directory"
-msgstr "Valider les fichiers dans le dossier système"
+msgstr "Vérifier les fichiers dans le répertoire système"
 
 #: tools/osinfo-db-validate.c:241
 msgid "Validate files in custom directory"
-msgstr "Valider les fichiers dans le dossier personnalisé"
+msgstr "Vérifier les fichiers dans le répertoire personnalisé"
 
 #: tools/osinfo-db-validate.c:252
 msgid "- Validate XML documents "
-msgstr "– Valider les documents XML "
+msgstr "– Vérifier les documents XML "
 
 #: tools/osinfo-db-validate.c:257
 #, c-format
 msgid "Error while parsing commandline options: %s\n"
-msgstr "Erreur lors de l’analyse des options de ligne de commande : %s\n"
+msgstr "Erreur lors de l’analyse des options en ligne de commande : %s\n"
 
 #: tools/osinfo-db-validate.c:272
 #, c-format
@@ -217,5 +222,5 @@ msgid ""
 "Only one of --user, --local, --system, --dir or positional filenames can be "
 "used\n"
 msgstr ""
-"Seul un --user, --local, --system, --dir ou nom de fichier positionnel peut "
-"être utilisé\n"
+"Seule une option parmi --user, --local, --system et --dir, ou des noms de "
+"fichier positionnels peuvent être utilisés\n"
