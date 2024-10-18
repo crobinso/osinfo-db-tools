@@ -140,7 +140,7 @@ static int osinfo_db_export_create_dir(const gchar *prefix,
 
 static int osinfo_db_export_create_file(const gchar *prefix,
                                         GFile *file,
-                                        GFileInfo *info,
+                                        GFileInfo *arginfo,
                                         GFile *base,
                                         const gchar *target,
                                         struct archive *arc,
@@ -151,6 +151,7 @@ static int osinfo_db_export_create_file(const gchar *prefix,
                                             NULL);
 
     g_autoptr(GError) err = NULL;
+    g_autoptr(GFileInfo) info = NULL;
     g_autofree gchar *abspath = NULL;
     g_autofree gchar *relpath = NULL;
     g_autofree gchar *entpath = NULL;
@@ -159,7 +160,7 @@ static int osinfo_db_export_create_file(const gchar *prefix,
     abspath = g_file_get_path(file);
     relpath = g_file_get_relative_path(base, file);
 
-    if (!info) {
+    if (!arginfo) {
         info = g_file_query_info(file,
                                  G_FILE_ATTRIBUTE_STANDARD_NAME
                                  ","
@@ -168,7 +169,7 @@ static int osinfo_db_export_create_file(const gchar *prefix,
                                  NULL,
                                  &err);
     } else {
-        g_object_ref(info);
+        info = g_object_ref(arginfo);
     }
     if (!info) {
         g_printerr("%s: cannot get file info %s: %s\n",
