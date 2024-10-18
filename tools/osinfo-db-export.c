@@ -457,10 +457,10 @@ gint main(gint argc, gchar **argv)
     g_autofree gchar *archive = NULL;
     g_autofree gchar *autoversion = NULL;
     g_autofree gchar *prefix = NULL;
-    const gchar *root = "";
-    const gchar *custom = NULL;
-    const gchar *version = NULL;
-    const gchar *license = NULL;
+    g_autofree gchar *root = g_strdup("");
+    g_autofree gchar *custom = NULL;
+    g_autofree gchar *version = NULL;
+    g_autofree gchar *license = NULL;
     int locs = 0;
     const GOptionEntry entries[] = {
       { "verbose", 'v', 0, G_OPTION_ARG_NONE, (void*)&verbose,
