@@ -455,7 +455,6 @@ gint main(gint argc, gchar **argv)
     gboolean local = FALSE;
     gboolean system = FALSE;
     g_autofree gchar *archive = NULL;
-    g_autofree gchar *autoversion = NULL;
     g_autofree gchar *prefix = NULL;
     g_autofree gchar *root = g_strdup("");
     g_autofree gchar *custom = NULL;
@@ -520,8 +519,7 @@ gint main(gint argc, gchar **argv)
 
     entryts = time(NULL);
     if (version == NULL) {
-        autoversion = osinfo_db_version();
-        version = autoversion;
+        version = osinfo_db_version();
     }
     prefix = g_strdup_printf("osinfo-db-%s", version);
     if (argc == 2) {
