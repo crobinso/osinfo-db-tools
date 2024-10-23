@@ -1,3 +1,12 @@
+1.12.0
+======
+
+- Fix some memory leaks #86
+- Fix runtime warnings on osinfo-db-export #81
+- Adapt to libxml2 changes #80
+- Several CI improvements
+- Several translation improvements
+
 1.11.0
 ======
 
