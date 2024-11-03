@@ -9,7 +9,7 @@ test(
 
 python = import('python')
 
-python3 = python.find_installation('python3', required: false)
+python3 = import('python').find_installation()
 if python3.found()
     tests = {
         'export-import': 'test_osinfo_db_export_import.py',
