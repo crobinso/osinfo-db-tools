@@ -7,26 +7,26 @@
 
 # Native build jobs
 
-x86_64-alpine-319:
+x86_64-alpine-321:
   extends: .native_build_job
   needs:
-    - job: x86_64-alpine-319-container
+    - job: x86_64-alpine-321-container
       optional: true
   allow_failure: false
   variables:
-    NAME: alpine-319
-    TARGET_BASE_IMAGE: docker.io/library/alpine:3.19
+    NAME: alpine-321
+    TARGET_BASE_IMAGE: docker.io/library/alpine:3.21
 
 
-x86_64-alpine-320:
+x86_64-alpine-322:
   extends: .native_build_job
   needs:
-    - job: x86_64-alpine-320-container
+    - job: x86_64-alpine-322-container
       optional: true
   allow_failure: false
   variables:
-    NAME: alpine-320
-    TARGET_BASE_IMAGE: docker.io/library/alpine:3.20
+    NAME: alpine-322
+    TARGET_BASE_IMAGE: docker.io/library/alpine:3.22
 
 
 x86_64-alpine-edge:
@@ -51,17 +51,6 @@ x86_64-centos-stream-9:
     TARGET_BASE_IMAGE: quay.io/centos/centos:stream9
 
 
-x86_64-debian-11:
-  extends: .native_build_job
-  needs:
-    - job: x86_64-debian-11-container
-      optional: true
-  allow_failure: false
-  variables:
-    NAME: debian-11
-    TARGET_BASE_IMAGE: docker.io/library/debian:11-slim
-
-
 x86_64-debian-12:
   extends: .native_build_job
   needs:
@@ -71,6 +60,17 @@ x86_64-debian-12:
   variables:
     NAME: debian-12
     TARGET_BASE_IMAGE: docker.io/library/debian:12-slim
+
+
+x86_64-debian-13:
+  extends: .native_build_job
+  needs:
+    - job: x86_64-debian-13-container
+      optional: true
+  allow_failure: true
+  variables:
+    NAME: debian-13
+    TARGET_BASE_IMAGE: docker.io/library/debian:trixie-slim
 
 
 x86_64-debian-sid:
@@ -84,26 +84,26 @@ x86_64-debian-sid:
     TARGET_BASE_IMAGE: docker.io/library/debian:sid-slim
 
 
-x86_64-fedora-39:
+x86_64-fedora-41:
   extends: .native_build_job
   needs:
-    - job: x86_64-fedora-39-container
+    - job: x86_64-fedora-41-container
       optional: true
   allow_failure: false
   variables:
-    NAME: fedora-39
-    TARGET_BASE_IMAGE: registry.fedoraproject.org/fedora:39
+    NAME: fedora-41
+    TARGET_BASE_IMAGE: registry.fedoraproject.org/fedora:41
 
 
-x86_64-fedora-40:
+x86_64-fedora-42:
   extends: .native_build_job
   needs:
-    - job: x86_64-fedora-40-container
+    - job: x86_64-fedora-42-container
       optional: true
   allow_failure: false
   variables:
-    NAME: fedora-40
-    TARGET_BASE_IMAGE: registry.fedoraproject.org/fedora:40
+    NAME: fedora-42
+    TARGET_BASE_IMAGE: registry.fedoraproject.org/fedora:42
 
 
 x86_64-fedora-rawhide:
@@ -126,7 +126,7 @@ x86_64-opensuse-leap-15:
   variables:
     NAME: opensuse-leap-15
     RPM: skip
-    TARGET_BASE_IMAGE: registry.opensuse.org/opensuse/leap:15.5
+    TARGET_BASE_IMAGE: registry.opensuse.org/opensuse/leap:15.6
 
 
 x86_64-opensuse-tumbleweed:
