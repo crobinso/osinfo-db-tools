@@ -18,7 +18,6 @@ BuildRequires: gettext-devel
 BuildRequires: git
 BuildRequires: glib2-devel
 BuildRequires: libxml2-devel >= 2.6.0
-BuildRequires: libxslt-devel >= 1.0.0
 %if 0%{?fedora} > 36 || 0%{?rhel} > 9
 BuildRequires: libsoup3-devel
 %else
@@ -40,7 +39,6 @@ BuildRequires: mingw32-binutils
 BuildRequires: mingw32-glib2
 BuildRequires: mingw32-json-glib
 BuildRequires: mingw32-libxml2
-BuildRequires: mingw32-libxslt
 BuildRequires: mingw32-libarchive
 BuildRequires: mingw32-libsoup
 
@@ -50,7 +48,6 @@ BuildRequires: mingw64-binutils
 BuildRequires: mingw64-glib2
 BuildRequires: mingw64-json-glib
 BuildRequires: mingw64-libxml2
-BuildRequires: mingw64-libxslt
 BuildRequires: mingw64-libarchive
 BuildRequires: mingw64-libsoup
 %endif

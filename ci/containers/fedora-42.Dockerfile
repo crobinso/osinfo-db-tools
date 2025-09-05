@@ -31,7 +31,6 @@ exec "$@"\n' > /usr/bin/nosync && \
                libarchive-devel \
                libsoup-devel \
                libxml2-devel \
-               libxslt-devel \
                make \
                meson \
                ninja-build \

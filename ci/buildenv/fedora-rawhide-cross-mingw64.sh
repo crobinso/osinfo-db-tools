@@ -31,7 +31,6 @@ function install_buildenv() {
         mingw64-libarchive \
         mingw64-libsoup \
         mingw64-libxml2 \
-        mingw64-libxslt \
         mingw64-pkg-config
     rpm -qa | sort > /packages.txt
     mkdir -p /usr/libexec/ccache-wrappers

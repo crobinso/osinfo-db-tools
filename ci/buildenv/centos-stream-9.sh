@@ -23,7 +23,6 @@ function install_buildenv() {
         libarchive-devel \
         libsoup-devel \
         libxml2-devel \
-        libxslt-devel \
         make \
         meson \
         ninja-build \

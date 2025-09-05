@@ -23,7 +23,6 @@ Dependencies
   - json-glib
   - libarchive3
   - libxml-2.0
-  - libxslt-1.0
 - Optional (for testing):
   - python3
   - python3-pytest

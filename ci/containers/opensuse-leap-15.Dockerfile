@@ -22,7 +22,6 @@ RUN zypper update -y && \
            libarchive-devel \
            libsoup-devel \
            libxml2-devel \
-           libxslt-devel \
            make \
            meson \
            ninja \

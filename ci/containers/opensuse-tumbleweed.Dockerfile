@@ -21,7 +21,6 @@ RUN zypper dist-upgrade -y && \
            libarchive-devel \
            libsoup-devel \
            libxml2-devel \
-           libxslt-devel \
            make \
            meson \
            ninja \

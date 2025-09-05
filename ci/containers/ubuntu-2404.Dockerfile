@@ -22,7 +22,6 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
                       libjson-glib-dev \
                       libsoup2.4-dev \
                       libxml2-dev \
-                      libxslt1-dev \
                       locales \
                       make \
                       meson \

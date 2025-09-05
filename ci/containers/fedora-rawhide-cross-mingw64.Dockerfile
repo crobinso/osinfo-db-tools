@@ -51,7 +51,6 @@ RUN nosync dnf install -y \
                mingw64-libarchive \
                mingw64-libsoup \
                mingw64-libxml2 \
-               mingw64-libxslt \
                mingw64-pkg-config && \
     nosync dnf clean all -y && \
     rpm -qa | sort > /packages.txt && \

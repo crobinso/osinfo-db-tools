@@ -10,7 +10,6 @@ packages:
   - libc
   - libsoup
   - libxml2
-  - libxslt
   - make
   - meson
   - ninja

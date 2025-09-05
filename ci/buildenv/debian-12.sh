@@ -20,7 +20,6 @@ function install_buildenv() {
             libjson-glib-dev \
             libsoup2.4-dev \
             libxml2-dev \
-            libxslt1-dev \
             locales \
             make \
             meson \
