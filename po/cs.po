@@ -1,12 +1,12 @@
 # Zdenek <chmelarz@gmail.com>, 2016. #zanata
 # Zdenek <chmelarz@gmail.com>, 2018. #zanata
-# Pavel Borecki <pavel.borecki@gmail.com>, 2019. #zanata, 2023.
+# Pavel Borecki <pavel.borecki@gmail.com>, 2019. #zanata, 2023, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: osinfo-db-tools\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-23 11:40+0100\n"
-"PO-Revision-Date: 2023-04-02 01:20+0000\n"
+"PO-Revision-Date: 2025-12-07 21:10+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://translate.fedoraproject.org/projects/libosinfo/"
 "osinfo-db-tools/cs/>\n"
@@ -15,12 +15,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.15.2\n"
+"X-Generator: Weblate 5.14.3\n"
 
 #: tools/osinfo-db-export.c:454 tools/osinfo-db-import.c:432
 #: tools/osinfo-db-validate.c:233
 msgid "Verbose progress information"
-msgstr "Podrobnější výstup průběhu"
+msgstr "Podrobnější výstup z průběhu"
 
 #: tools/osinfo-db-export.c:456
 msgid "Export the osinfo-db user directory"
@@ -68,7 +68,7 @@ msgstr ""
 #, c-format
 msgid "%s: expected path to one archive file to export\n"
 msgstr ""
-"%s: očekáván popis umístění jednoho archivního souboru, který chcete "
+"%s: očekáván popis umístění (jednoho) souboru archivu, do kterého chcete "
 "exportovat\n"
 
 #: tools/osinfo-db-export.c:504 tools/osinfo-db-import.c:480
@@ -83,15 +83,15 @@ msgstr "Naimportovat do uživatelské složky"
 
 #: tools/osinfo-db-import.c:436
 msgid "Import into local directory"
-msgstr "Importovat do místní složky"
+msgstr "Naimportovat do místní složky"
 
 #: tools/osinfo-db-import.c:438
 msgid "Import into system directory"
-msgstr "Importovat do systémové složky"
+msgstr "Naimportovat do systémové složky"
 
 #: tools/osinfo-db-import.c:440
 msgid "Import into custom directory"
-msgstr "Importovat do uživatelsky určené složky"
+msgstr "Naimportovat do uživatelsky určené složky"
 
 #: tools/osinfo-db-import.c:442 tools/osinfo-db-validate.c:243
 msgid "Installation root directory"
@@ -109,7 +109,7 @@ msgstr "- Import databázového archivu "
 #, c-format
 msgid "%s: expected path to one archive file to import\n"
 msgstr ""
-"%s: očekáván popis umístění jednoho archivního souboru, který chcete "
+"%s: očekáván popis umístění jednoho archivního souboru, ze kterého "
 "naimportovat\n"
 
 #: tools/osinfo-db-path.c:45
@@ -130,7 +130,7 @@ msgstr "Nahlásit uživatelsky určenou složku"
 
 #: tools/osinfo-db-path.c:53
 msgid "Report against root directory"
-msgstr "Nahlásit proti kořenové složce"
+msgstr "Nahlásit vůči kořenové složce"
 
 #: tools/osinfo-db-path.c:63
 msgid "- Report database locations "
@@ -144,7 +144,7 @@ msgstr "%s: neočekávané další argumenty\n"
 #: tools/osinfo-db-util.c:150
 #, c-format
 msgid "Unable to locate '%s' in any database location"
-msgstr "„%s“ se nedaří nalézt v žádném umístění databáze"
+msgstr "„%s“ nebylo možné nalézt v žádném umístění databáze"
 
 #: tools/osinfo-db-validate.c:43
 #, c-format
@@ -158,12 +158,12 @@ msgstr "Není možné vytvořit parser libxml"
 #: tools/osinfo-db-validate.c:67
 #, c-format
 msgid "Unable to parse XML document '%s'"
-msgstr "Nedaří se zpracovat XML dokument „%s“"
+msgstr "Nebylo možné zpracovat XML dokument „%s“"
 
 #: tools/osinfo-db-validate.c:96
 #, c-format
 msgid "Unable to validate XML document '%s'"
-msgstr "Nedaří se ověřit XML dokument „%s“"
+msgstr "Nebylo možné ověřit XML dokument „%s“"
 
 #: tools/osinfo-db-validate.c:139
 #, c-format
@@ -173,17 +173,17 @@ msgstr "Zpracování „%s“…\n"
 #: tools/osinfo-db-validate.c:182
 #, c-format
 msgid "Unable to create RNG parser for %s"
-msgstr "Nedaří se vytvořit RNG parser pro %s"
+msgstr "Nebylo možné vytvořit RNG parser pro %s"
 
 #: tools/osinfo-db-validate.c:190
 #, c-format
 msgid "Unable to parse RNG %s"
-msgstr "Nedaří se zpracovat RNG %s"
+msgstr "Nebylo možné zpracovat RNG %s"
 
 #: tools/osinfo-db-validate.c:198
 #, c-format
 msgid "Unable to create RNG validation context %s"
-msgstr "Nedaří se vytvořit kontextu ověření RNG %s"
+msgstr "Nebylo možné vytvořit kontext ověření RNG %s"
 
 #: tools/osinfo-db-validate.c:235
 msgid "Validate files in user directory"
