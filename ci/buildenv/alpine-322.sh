@@ -16,7 +16,7 @@ function install_buildenv() {
         glib-dev \
         json-glib-dev \
         libarchive-dev \
-        libsoup-dev \
+        libsoup3-dev \
         libxml2-dev \
         make \
         meson \

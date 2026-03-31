@@ -18,7 +18,7 @@ function install_buildenv() {
             libc6-dev \
             libglib2.0-dev \
             libjson-glib-dev \
-            libsoup2.4-dev \
+            libsoup-3.0-dev \
             libxml2-dev \
             locales \
             make \

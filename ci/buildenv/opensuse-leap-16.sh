@@ -4,13 +4,11 @@
 #
 # https://gitlab.com/libvirt/libvirt-ci
 
-FROM registry.opensuse.org/opensuse/tumbleweed:latest
-
-RUN zypper dist-upgrade -y && \
+function install_buildenv() {
+    zypper update -y
     zypper install -y \
            ca-certificates \
            ccache \
-           cppi \
            gcc \
            gettext-runtime \
            git \
@@ -29,16 +27,16 @@ RUN zypper dist-upgrade -y && \
            python3-base \
            python3-pytest \
            python3-requests \
-           rpm-build && \
-    zypper clean --all && \
-    rm -f /usr/lib*/python3*/EXTERNALLY-MANAGED && \
-    rpm -qa | sort > /packages.txt && \
-    mkdir -p /usr/libexec/ccache-wrappers && \
-    ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/cc && \
+           rpm-build
+    rm -f /usr/lib*/python3*/EXTERNALLY-MANAGED
+    rpm -qa | sort > /packages.txt
+    mkdir -p /usr/libexec/ccache-wrappers
+    ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/cc
     ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/gcc
+}
 
-ENV CCACHE_WRAPPERSDIR="/usr/libexec/ccache-wrappers"
-ENV LANG="en_US.UTF-8"
-ENV MAKE="/usr/bin/make"
-ENV NINJA="/usr/bin/ninja"
-ENV PYTHON="/usr/bin/python3"
+export CCACHE_WRAPPERSDIR="/usr/libexec/ccache-wrappers"
+export LANG="en_US.UTF-8"
+export MAKE="/usr/bin/make"
+export NINJA="/usr/bin/ninja"
+export PYTHON="/usr/bin/python3"

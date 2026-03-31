@@ -6,13 +6,15 @@ gitlab:
   project: osinfo-db-tools
 
 targets:
-  alpine-321: x86_64
-
   alpine-322: x86_64
+
+  alpine-323: x86_64
 
   alpine-edge: x86_64
 
   centos-stream-9: x86_64
+
+  centos-stream-10: x86_64
 
   debian-12: x86_64
 
@@ -20,9 +22,9 @@ targets:
 
   debian-sid: x86_64
 
-  fedora-41: x86_64
-
   fedora-42: x86_64
+
+  fedora-43: x86_64
 
   fedora-rawhide:
     jobs:
@@ -33,6 +35,12 @@ targets:
       - arch: mingw64
 
   opensuse-leap-15:
+    jobs:
+      - arch: x86_64
+        variables:
+          RPM: skip
+
+  opensuse-leap-16:
     jobs:
       - arch: x86_64
         variables:
